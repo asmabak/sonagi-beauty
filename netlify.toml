@@ -1,0 +1,13 @@
+[build]
+  publish = "files"
+  functions = "netlify/functions"
+
+[build.environment]
+  # SHOP_OPEN = "false"  — set to "true" in Netlify dashboard when ready to sell
+  # STRIPE_SECRET_KEY    — set in Netlify dashboard (Environment Variables)
+  # ANTHROPIC_API_KEY    — set in Netlify dashboard (Environment Variables)
+
+[[redirects]]
+  from = "/images/*"
+  to = "/images/:splat"
+  status = 200

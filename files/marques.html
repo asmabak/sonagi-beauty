@@ -494,6 +494,56 @@ footer { background: #1a2744; background: var(--navy); color: #ede8e2; color: va
 .mob-lang { display: flex; gap: 10px; }
 .mob-quiz-btn { width: 100%; background: #1a2744; background: var(--navy); color: #fff; border: none; padding: 15px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
 
+/* ── SONAGI ADVISOR v2 STYLES ── */
+.quiz-input{width:100%;padding:14px 18px;font-size:16px;font-family:'DM Sans',sans-serif;border:1.5px solid var(--border);border-radius:8px;outline:none;background:#fff;box-sizing:border-box;transition:border .2s}
+.quiz-input:focus{border-color:var(--navy)}
+.quiz-opts.multi .q-opt.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
+.quiz-spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--navy);border-radius:50%;margin:0 auto;animation:qspin 1s linear infinite}
+@keyframes qspin{to{transform:rotate(360deg)}}
+.adv-headline{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--navy);text-align:center;margin-bottom:8px;line-height:1.3}
+.adv-diagnostic{font-size:15px;color:#444;text-align:center;line-height:1.7;margin-bottom:24px;max-width:520px;margin-left:auto;margin-right:auto}
+.adv-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px;position:relative}
+.adv-card.small{padding:18px}
+.adv-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--navy);margin-bottom:6px}
+.adv-card h4{font-size:14px;color:var(--navy);margin-bottom:10px}
+.adv-card-desc{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+.adv-badge{display:inline-block;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.adv-badge.essential{background:#e8f5e9;color:#2e7d32}
+.adv-badge.booster{background:#fff8e1;color:#f57f17}
+.adv-step{border-top:1px solid var(--border);padding:14px 0}
+.adv-step:first-child{border-top:none}
+.adv-step-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.adv-step-num{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
+.adv-step-name{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.adv-product{font-size:14px;color:var(--navy);margin-bottom:6px}
+.adv-why{font-size:12px;color:#555;line-height:1.6;margin-bottom:4px}
+.adv-how{font-size:12px;color:var(--navy);margin-bottom:4px}
+.adv-benefit{font-size:12px;color:#2e7d32;margin-bottom:6px}
+.adv-price{font-size:13px;font-weight:500;color:var(--navy);margin-right:8px}
+.adv-safe{font-size:10px;color:#2e7d32;background:#e8f5e9;padding:2px 8px;border-radius:10px}
+.adv-hero-pill{text-align:center;background:var(--peach-l);border:1px solid var(--peach);padding:16px;border-radius:12px;margin:16px 0;font-size:14px;color:var(--navy);line-height:1.6}
+.adv-hero-pill span{font-size:12px;color:var(--muted)}
+.adv-tip-box{background:#f0f7ff;border:1px solid #c8ddf5;border-radius:12px;padding:16px;margin:16px 0;font-size:13px;color:#1a2744;line-height:1.6}
+.adv-tip-box p{margin-top:6px}
+.adv-costs{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--navy);font-weight:500;padding:16px 0;border-top:1px solid var(--border);margin-top:8px}
+
+/* ── NAV BAR OVERRIDES ── */
+.main-nav { padding: 6px 0; }
+.nav-inner { max-width: 1400px; }
+.nav-logo { font-size: 26px !important; letter-spacing: 5px !important; font-weight: 400 !important; }
+.nav-logo small { font-size: 10px !important; letter-spacing: 2px !important; }
+.nav-links > li > a, .nav-links > .nav-item > a {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 13px !important; font-weight: 500 !important;
+  letter-spacing: 1.2px !important; text-transform: uppercase !important;
+  padding: 8px 14px !important;
+}
+.nav-right .lang-btn { font-size: 11px !important; font-weight: 500 !important; letter-spacing: 1px !important; }
+.quiz-nav-btn { font-size: 11px !important; letter-spacing: 1.5px !important; padding: 8px 18px !important; }
+@media(max-width:767px) {
+  .nav-logo { font-size: 22px !important; }
+}
+
 /* ── MEGA NAV ── */
 .nav-item { position: relative; }
 .nav-item > a { display: flex; align-items: center; gap: 4px; }
@@ -603,7 +653,20 @@ window.QUIZ_IMGS = {
   "EMAIL_HDR": "../images/visuals/sonagi-email_header.png",
   "PROD_CLEAN": "../images/visuals/sonagi-prod_card_clean.png",
   "PROD_MARBLE": "../images/visuals/sonagi-prod_card_marble.png",
-  "SOC_STORY": "../images/visuals/sonagi-social_story_face.png"
+  "SOC_STORY": "../images/visuals/sonagi-social_story_face.png",
+  "PH_GLOW": "../images/visuals/alexandra-tran-zZf7RA5aSTc-unsplash.jpg",
+  "PH_CENT": "../images/visuals/anna-keibalo-4W4zySfM86k-unsplash.jpg",
+  "PH_DALBA": "../images/visuals/duong-ngan-CI5RYLUO6B4-unsplash.jpg",
+  "PH_COSRX": "../images/visuals/elena-soroka-jEsaxA6gD2c-unsplash.jpg",
+  "PH_MIX1": "../images/visuals/maria-lupan-0U4IyX7Zwhg-unsplash.jpg",
+  "PH_BOJ": "../images/visuals/maria-lupan-2gtMeWc5HBc-unsplash.jpg",
+  "PH_MIX2": "../images/visuals/maria-lupan-5bPAkTyPj7E-unsplash.jpg",
+  "PH_MIX3": "../images/visuals/maria-lupan-OZzBzjYlw3I-unsplash.jpg",
+  "PH_HUX": "../images/visuals/maria-lupan-UYJTgxZtUmk-unsplash.jpg",
+  "PH_MIX4": "../images/visuals/maria-lupan-gVB7Rjp7dZg-unsplash.jpg",
+  "PH_BOJSUN": "../images/visuals/mona-jain-VG5xt6U9hQY-unsplash.jpg",
+  "BL_MEN2": "../images/visuals/sonagi-blog_men2.png",
+  "BL_ROUTINE2": "../images/visuals/sonagi-blog_routine2.png"
 };
 </script>
 </head>
@@ -904,85 +967,126 @@ window.QUIZ_IMGS = {
   <div class="modal">
     <div class="modal-header">
       <button class="modal-close" onclick="closeQuiz()">✕</button>
-      <h2 class="t" data-fr="Ma routine personnalisée" data-en="My personalised routine">Ma routine personnalisée</h2>
-      <p class="t" data-fr="4 questions · Protocole sur mesure · Panier prêt" data-en="4 questions · Bespoke protocol · Ready basket">4 questions · Protocole sur mesure · Panier prêt</p>
+      <h2>Sonagi Advisor</h2>
+      <p>Votre protocole K-beauty sur mesure</p>
     </div>
     <div class="modal-body">
-      <div class="disclaimer t" data-fr="⚕ Ce questionnaire est à des fins cosmétiques uniquement. Si vous êtes enceinte, allaitez ou avez des conditions de santé particulières, consultez votre médecin avant tout nouveau soin. contact@sonagibeauty.com" data-en="⚕ For cosmetic purposes only. If pregnant, breastfeeding or with specific health conditions, consult your GP first. contact@sonagibeauty.com">⚕ Ce questionnaire est à des fins cosmétiques uniquement. Consultez votre médecin en cas de condition de santé particulière.</div>
-      <div class="qprog"><div class="qprog-bar" id="qpbar" style="width:25%"></div></div>
+      <div class="disclaimer">⚕ Questionnaire cosmétique. Consultez votre médecin en cas de condition particulière.</div>
+      <div class="qprog"><div class="qprog-bar" id="qpbar" style="width:10%"></div></div>
 
       <div class="quiz-step active" data-step="1">
-        <span class="step-ctr t" data-fr="Question 1 / 4 — Type de peau" data-en="Question 1 / 4 — Skin type">Question 1 / 4 — Type de peau</span>
-        <h3 class="quiz-q t" data-fr="Quel est votre type de peau ?" data-en="What is your skin type?">Quel est votre type de peau ?</h3>
-        <div class="quiz-opts">
-          <button class="q-opt t" onclick="qsel(this,'skin','normal')" data-fr="Normale — équilibrée" data-en="Normal — balanced">Normale — équilibrée</button>
-          <button class="q-opt t" onclick="qsel(this,'skin','oily')" data-fr="Grasse — brillances, pores" data-en="Oily — shine, pores">Grasse — brillances, pores</button>
-          <button class="q-opt t" onclick="qsel(this,'skin','dry')" data-fr="Sèche — tiraillements" data-en="Dry — tight feeling">Sèche — tiraillements</button>
-          <button class="q-opt t" onclick="qsel(this,'skin','mixed')" data-fr="Mixte — zone T grasse" data-en="Combination — oily T-zone">Mixte — zone T grasse</button>
-          <button class="q-opt t" onclick="qsel(this,'skin','sensitive')" data-fr="Sensible — réactive, rougeurs" data-en="Sensitive — reactive, redness">Sensible — réactive, rougeurs</button>
-          <button class="q-opt full t" onclick="qsel(this,'skin','mature')" data-fr="Mature — rides, perte de fermeté" data-en="Mature — wrinkles, loss of firmness">Mature — rides, perte de fermeté</button>
-        </div>
+        <span class="step-ctr">1 / 8 — Prénom</span>
+        <h3 class="quiz-q">Comment vous appelez-vous ?</h3>
+        <input type="text" class="quiz-input" id="q-name" placeholder="Votre prénom" maxlength="30">
       </div>
 
       <div class="quiz-step" data-step="2">
-        <span class="step-ctr t" data-fr="Question 2 / 4 — Priorité" data-en="Question 2 / 4 — Priority">Question 2 / 4 — Priorité</span>
-        <h3 class="quiz-q t" data-fr="Votre priorité beauté ?" data-en="Your main skin priority?">Votre priorité beauté ?</h3>
-        <div class="quiz-opts">
-          <button class="q-opt t" onclick="qsel(this,'concern','acne')" data-fr="Acné &amp; imperfections" data-en="Acne &amp; blemishes">Acné &amp; imperfections</button>
-          <button class="q-opt t" onclick="qsel(this,'concern','pores')" data-fr="Pores dilatés" data-en="Enlarged pores">Pores dilatés</button>
-          <button class="q-opt t" onclick="qsel(this,'concern','eclat')" data-fr="Éclat &amp; teint terne" data-en="Glow &amp; dull complexion">Éclat &amp; teint terne</button>
-          <button class="q-opt t" onclick="qsel(this,'concern','taches')" data-fr="Taches &amp; hyperpigmentation" data-en="Dark spots">Taches &amp; hyperpigmentation</button>
-          <button class="q-opt t" onclick="qsel(this,'concern','rougeurs')" data-fr="Rougeurs &amp; réactivité" data-en="Redness &amp; sensitivity">Rougeurs &amp; réactivité</button>
-          <button class="q-opt t" onclick="qsel(this,'concern','hydratation')" data-fr="Hydratation &amp; confort" data-en="Hydration &amp; comfort">Hydratation &amp; confort</button>
-          <button class="q-opt t" onclick="qsel(this,'concern','seche')" data-fr="Peau sèche &amp; barrière" data-en="Dry skin &amp; barrier">Peau sèche &amp; barrière</button>
-          <button class="q-opt full t" onclick="qsel(this,'concern','antiage')" data-fr="Anti-âge &amp; fermeté" data-en="Anti-ageing &amp; firmness">Anti-âge &amp; fermeté</button>
+        <span class="step-ctr">2 / 8 — Objectifs</span>
+        <h3 class="quiz-q">Quels sont vos objectifs peau ? (plusieurs choix)</h3>
+        <div class="quiz-opts multi">
+          <button class="q-opt" onclick="qmulti(this,'goal','hydratation')">Hydratation</button>
+          <button class="q-opt" onclick="qmulti(this,'goal','eclat')">Éclat &amp; glow</button>
+          <button class="q-opt" onclick="qmulti(this,'goal','anti-age')">Anti-âge</button>
+          <button class="q-opt" onclick="qmulti(this,'goal','acne')">Acné &amp; imperfections</button>
+          <button class="q-opt" onclick="qmulti(this,'goal','pores')">Pores dilatés</button>
+          <button class="q-opt" onclick="qmulti(this,'goal','rougeurs')">Rougeurs &amp; sensibilité</button>
+          <button class="q-opt" onclick="qmulti(this,'goal','taches')">Taches &amp; hyperpigmentation</button>
+          <button class="q-opt" onclick="qmulti(this,'goal','barriere')">Réparer la barrière cutanée</button>
         </div>
       </div>
 
       <div class="quiz-step" data-step="3">
-        <span class="step-ctr t" data-fr="Question 3 / 4 — Sécurité" data-en="Question 3 / 4 — Safety">Question 3 / 4 — Sécurité</span>
-        <h3 class="quiz-q t" data-fr="Vos soins doivent-ils éviter certains actifs ?" data-en="Must your skincare avoid any actives?">Vos soins doivent-ils éviter certains actifs ?</h3>
+        <span class="step-ctr">3 / 8 — Type de peau</span>
+        <h3 class="quiz-q">Quel est votre type de peau ?</h3>
         <div class="quiz-opts">
-          <button class="q-opt t" onclick="qsel(this,'safety','none')" data-fr="Non — pas de restriction" data-en="No restrictions">Non — pas de restriction</button>
-          <button class="q-opt t" onclick="qsel(this,'safety','pregnant')" data-fr="Grossesse ou allaitement" data-en="Pregnant or breastfeeding">Grossesse ou allaitement</button>
-          <button class="q-opt t" onclick="qsel(this,'safety','retinol')" data-fr="Sensibilité au rétinol" data-en="Retinol sensitivity">Sensibilité au rétinol</button>
-          <button class="q-opt full t" onclick="qsel(this,'safety','vitamin-c')" data-fr="Sensibilité à la Vitamine C" data-en="Vitamin C sensitivity">Sensibilité à la Vitamine C</button>
+          <button class="q-opt" onclick="qsel(this,'skin_type','normale')">Normale — équilibrée</button>
+          <button class="q-opt" onclick="qsel(this,'skin_type','grasse')">Grasse — brillances, pores</button>
+          <button class="q-opt" onclick="qsel(this,'skin_type','seche')">Sèche — tiraillements</button>
+          <button class="q-opt" onclick="qsel(this,'skin_type','mixte')">Mixte — zone T grasse</button>
+          <button class="q-opt" onclick="qsel(this,'skin_type','sensible')">Sensible — réactive</button>
         </div>
-        <div id="preg-note" class="preg-note" data-fr="⚕ Sécurité grossesse : nous excluons rétinol et vitamine C oxydée. Consultez toujours votre médecin avant tout nouveau soin. contact@sonagibeauty.com" data-en="⚕ Pregnancy safety: we exclude retinol and oxidised vitamin C. Always consult your GP first. contact@sonagibeauty.com">⚕ Sécurité grossesse : actifs déconseillés exclus. Consultez votre médecin. contact@sonagibeauty.com</div>
       </div>
 
       <div class="quiz-step" data-step="4">
-        <span class="step-ctr t" data-fr="Question 4 / 4 — Budget" data-en="Question 4 / 4 — Budget">Question 4 / 4 — Budget</span>
-        <h3 class="quiz-q t" data-fr="Votre budget pour cette routine ?" data-en="Your budget for this routine?">Votre budget pour cette routine ?</h3>
+        <span class="step-ctr">4 / 8 — Ressenti</span>
+        <h3 class="quiz-q">Comment votre peau se sent en fin de journée ?</h3>
         <div class="quiz-opts">
-          <button class="q-opt t" onclick="qsel(this,'budget','low')" data-fr="Essentiel — jusqu'à 20€" data-en="Essential — up to €20">Essentiel — jusqu'à 20€</button>
-          <button class="q-opt t" onclick="qsel(this,'budget','mid')" data-fr="Équilibré — 20€ à 50€" data-en="Balanced — €20 to €50">Équilibré — 20€ à 50€</button>
-          <button class="q-opt t" onclick="qsel(this,'budget','high')" data-fr="Complet — 50€ à 100€" data-en="Complete — €50 to €100">Complet — 50€ à 100€</button>
-          <button class="q-opt full t" onclick="qsel(this,'budget','premium')" data-fr="Premium — sans limite" data-en="Premium — no limit">Premium — sans limite</button>
+          <button class="q-opt" onclick="qsel(this,'skin_feel','grasse et brillante')">Grasse et brillante</button>
+          <button class="q-opt" onclick="qsel(this,'skin_feel','seche et qui tire')">Sèche et qui tire</button>
+          <button class="q-opt" onclick="qsel(this,'skin_feel','bien globalement')">Bien globalement</button>
+          <button class="q-opt" onclick="qsel(this,'skin_feel','grasse sur la zone T, seche sur les joues')">Grasse zone T, sèche joues</button>
+          <button class="q-opt" onclick="qsel(this,'skin_feel','irritee ou reactive')">Irritée ou réactive</button>
         </div>
       </div>
 
-      <div class="quiz-step" data-step="result">
-        <p style="font-size:36px;text-align:center;margin-bottom:8px">✨</p>
-        <h3 class="result-title t" data-fr="Votre routine est prête !" data-en="Your routine is ready!">Votre routine est prête !</h3>
-        <p class="result-sub" id="result-summary"></p>
-        <div class="result-tags" id="result-tags"></div>
-        <div class="basket-section">
-          <p class="basket-title">🛒 <span class="t" data-fr="Votre panier personnalisé" data-en="Your personalised basket">Votre panier personnalisé</span></p>
-          <div class="pts-earn">★ <span id="pts-msg"></span></div>
-          <div class="basket-items" id="quiz-basket"></div>
-          <div class="basket-total">
-            <span class="basket-total-lbl t" data-fr="Total panier" data-en="Basket total">Total panier</span>
-            <span class="basket-total-amt" id="basket-total-amt">—</span>
-          </div>
-          <button class="basket-cta t" data-fr="→ Commander mon protocole" data-en="→ Order my protocol" onclick="addBasketToCart()">→ Commander mon protocole</button>
-          <p class="basket-note">⚕ En cas de conditions de santé particulières, consultez votre médecin. contact@sonagibeauty.com</p>
+      <div class="quiz-step" data-step="5">
+        <span class="step-ctr">5 / 8 — Profil</span>
+        <h3 class="quiz-q">Votre tranche d'âge ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,'age','18-24')">18–24</button>
+          <button class="q-opt" onclick="qsel(this,'age','25-34')">25–34</button>
+          <button class="q-opt" onclick="qsel(this,'age','35-44')">35–44</button>
+          <button class="q-opt" onclick="qsel(this,'age','45+')">45+</button>
         </div>
+      </div>
+
+      <div class="quiz-step" data-step="6">
+        <span class="step-ctr">6 / 8 — Mode de vie</span>
+        <h3 class="quiz-q">Votre quotidien ? (plusieurs choix)</h3>
+        <div class="quiz-opts multi">
+          <button class="q-opt" onclick="qmulti(this,'lifestyle','bureau')">Bureau / écrans</button>
+          <button class="q-opt" onclick="qmulti(this,'lifestyle','extérieur')">Beaucoup dehors</button>
+          <button class="q-opt" onclick="qmulti(this,'lifestyle','sport')">Sport régulier</button>
+          <button class="q-opt" onclick="qmulti(this,'lifestyle','stress')">Stressé(e)</button>
+          <button class="q-opt" onclick="qmulti(this,'lifestyle','sommeil')">Peu de sommeil</button>
+          <button class="q-opt" onclick="qmulti(this,'lifestyle','pollution')">Ville polluée</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="7">
+        <span class="step-ctr">7 / 8 — Routine actuelle</span>
+        <h3 class="quiz-q">Votre routine actuelle ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,'current_routine','rien du tout')">Rien du tout</button>
+          <button class="q-opt" onclick="qsel(this,'current_routine','nettoyant + crème')">Nettoyant + crème</button>
+          <button class="q-opt" onclick="qsel(this,'current_routine','routine basique 3-4 étapes')">Routine basique (3–4 étapes)</button>
+          <button class="q-opt" onclick="qsel(this,'current_routine','routine complète 5+ étapes')">Routine complète (5+ étapes)</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="8">
+        <span class="step-ctr">8 / 8 — Préférences</span>
+        <h3 class="quiz-q">Longueur de routine souhaitée ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,'routine_goal','minimaliste 3 étapes')">Minimaliste (3 étapes)</button>
+          <button class="q-opt" onclick="qsel(this,'routine_goal','équilibrée 5 étapes')">Équilibrée (5 étapes)</button>
+          <button class="q-opt" onclick="qsel(this,'routine_goal','complète 7+ étapes')">Complète (7+ étapes)</button>
+        </div>
+        <h3 class="quiz-q" style="margin-top:20px">Budget ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,'budget','moins de 30€')">Moins de 30 €</button>
+          <button class="q-opt" onclick="qsel(this,'budget','30-60€')">30–60 €</button>
+          <button class="q-opt" onclick="qsel(this,'budget','60-100€')">60–100 €</button>
+          <button class="q-opt" onclick="qsel(this,'budget','pas de limite')">Pas de limite</button>
+        </div>
+        <h3 class="quiz-q" style="margin-top:20px">Enceinte ou allaitante ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,'pregnant','non')">Non</button>
+          <button class="q-opt" onclick="qsel(this,'pregnant','oui')">Oui</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="result" id="quiz-result-step">
+        <div id="quiz-loading" style="text-align:center;padding:40px 0">
+          <div class="quiz-spinner"></div>
+          <p style="margin-top:16px;font-size:14px;color:var(--muted)">Sonagi Advisor analyse votre profil…</p>
+        </div>
+        <div id="quiz-results" style="display:none"></div>
       </div>
 
       <div class="quiz-nav-btns" id="qnav">
-        <button class="q-back t" id="q-back-btn" onclick="qBack()" style="visibility:hidden" data-fr="Retour" data-en="Back">Retour</button>
-        <button class="q-next t" id="q-next-btn" onclick="qNext()" data-fr="Continuer" data-en="Continue">Continuer</button>
+        <button class="q-back" id="q-back-btn" onclick="qBack()" style="visibility:hidden">Retour</button>
+        <button class="q-next" id="q-next-btn" onclick="qNext()">Continuer</button>
       </div>
     </div>
   </div>
@@ -1284,183 +1388,114 @@ document.addEventListener('DOMContentLoaded', function(){
   resolveImages();
 });
 
-/* ══════════════════════════════════════════════════════
-   SONAGI QUIZ v4 — 4 questions + dermatologist algorithm
-   ══════════════════════════════════════════════════════ */
+/* ══ SONAGI ADVISOR v2 — AI-powered K-beauty protocol ══ */
+var QS=1,QT=8;
+var QA={name:'',goal:[],skin_type:'',skin_feel:'',age:'',lifestyle:[],current_routine:'',routine_goal:'',budget:'',pregnant:'non'};
 
-var QS = 1, QT = 4;
-var QA = { skin:'normal', concern:'eclat', safety:'none', budget:'mid' };
+function openQuiz(){var m=document.getElementById('quiz-modal');if(!m)return;m.classList.add('open');document.body.style.overflow='hidden';QS=1;QA={name:'',goal:[],skin_type:'',skin_feel:'',age:'',lifestyle:[],current_routine:'',routine_goal:'',budget:'',pregnant:'non'};m.querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('sel')});var ni=document.getElementById('q-name');if(ni)ni.value='';var rl=document.getElementById('quiz-loading');if(rl)rl.style.display='block';var rr=document.getElementById('quiz-results');if(rr){rr.style.display='none';rr.innerHTML='';}showQS(1)}
+function closeQuiz(){var m=document.getElementById('quiz-modal');if(m)m.classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('click',function(e){var m=document.getElementById('quiz-modal');if(m&&e.target===m)closeQuiz()});
 
-function openQuiz() {
-  var m = document.getElementById('quiz-modal');
-  if (!m) return;
-  m.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  QS = 1;
-  QA = { skin:'normal', concern:'eclat', safety:'none', budget:'mid' };
-  m.querySelectorAll('.q-opt').forEach(function(o){ o.classList.remove('sel'); });
-  var pn = document.getElementById('preg-note');
-  if (pn) pn.style.display = 'none';
-  showQS(1);
-}
-function closeQuiz() {
-  var m = document.getElementById('quiz-modal');
-  if (m) m.classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('click', function(e) {
-  var m = document.getElementById('quiz-modal');
-  if (m && e.target === m) closeQuiz();
-});
+function qsel(el,key,val){el.closest('.quiz-opts').querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('sel')});el.classList.add('sel');QA[key]=val}
+function qmulti(el,key,val){el.classList.toggle('sel');if(!QA[key])QA[key]=[];var i=QA[key].indexOf(val);if(i===-1)QA[key].push(val);else QA[key].splice(i,1)}
 
-function qsel(el, key, val) {
-  el.closest('.quiz-opts').querySelectorAll('.q-opt').forEach(function(o){ o.classList.remove('sel'); });
-  el.classList.add('sel');
-  QA[key] = val;
-  var pn = document.getElementById('preg-note');
-  if (pn) pn.style.display = (key==='safety' && val==='pregnant') ? 'block' : 'none';
+function showQS(s){document.querySelectorAll('.quiz-step').forEach(function(x){x.classList.remove('active')});var t=(s==='result')?document.querySelector('[data-step="result"]'):document.querySelector('[data-step="'+s+'"]');if(t)t.classList.add('active');var pct=(s==='result')?100:(s/QT*100);var bar=document.getElementById('qpbar');if(bar)bar.style.width=pct+'%';var nav=document.getElementById('qnav');if(!nav)return;if(s==='result'){nav.style.display='none';return}nav.style.display='flex';var back=document.getElementById('q-back-btn');if(back)back.style.visibility=(s>1)?'visible':'hidden';var isLast=(s===QT);var nb=document.getElementById('q-next-btn');if(nb)nb.textContent=isLast?'Voir mon protocole →':'Continuer'}
+function qNext(){if(QS===1){var ni=document.getElementById('q-name');if(ni)QA.name=ni.value.trim()}if(QS<QT){QS++;showQS(QS)}else{showQS('result');runAdvisor()}}
+function qBack(){if(QS>1){QS--;showQS(QS)}}
+
+function buildPrompt(){
+  var a=QA,isP=a.pregnant==='oui';
+  return 'You are Sonagi\'s expert K-beauty skin advisor. You know Korean skincare deeply — the layering logic, the ingredients, the rituals. Your job is to give a protocol that feels like advice from a knowledgeable friend, not a marketing leaflet.\n\nSKIN PROFILE:\n- Name: '+a.name+'\n- Goals: '+(a.goal||[]).join(', ')+'\n- Skin type: '+a.skin_type+'\n- Skin feel end of day: '+a.skin_feel+'\n- Age: '+a.age+'\n- Lifestyle: '+(a.lifestyle||[]).join(', ')+'\n- Current routine: '+a.current_routine+'\n- Routine length preference: '+a.routine_goal+'\n- Budget: '+a.budget+'\n- Pregnant/breastfeeding: '+a.pregnant+'\n'+(isP?'\nPREGNANCY SAFETY — NEVER recommend: retinol, retinoids, salicylic acid >2%, chemical sunscreens (oxybenzone), hydroquinone, TXA in 3rd trimester/breastfeeding, essential oils (mugwort, rosemary, tea tree, cinnamon, ylang ylang).\nSAFE: niacinamide, hyaluronic acid, centella, ceramides, vitamin C, azelaic acid, panthenol, bakuchiol, peptides.\n':'')+'\nRESPONSE RULES:\n- Be direct and specific. No generic advice.\n- Never say "consult a dermatologist" unless medically necessary.\n- Product names must be real K-beauty products that exist and are available in Europe.\n- Brands: COSRX, Beauty of Joseon, Anua, Some By Mi, Laneige, Innisfree, Mixsoon, Purito, Skin1004, Numbuzin, Round Lab, Axis-Y, Torriden, Thank You Farmer, Klairs.\n- Price ranges in EUR.\n\nRespond ONLY with valid JSON, no markdown, no backticks:\n\n{"headline":"One punchy 6-8 word line that captures their skin story","diagnostic":"One sharp insightful sentence that diagnoses their skin like a professional","minimum_routine":{"label":"Your 3-step non-negotiable","description":"One sentence on why these 3 steps are enough","steps":[{"order":1,"step":"Step name","product":"Exact product name","brand":"Brand","why":"One sentence for THEIR skin","how":"One punchy K-beauty application tip","benefit":"What they will notice in 2-4 weeks","price":"€X","pregnancy_safe":true}]},"boosters":{"label":"Level up when ready","description":"One sentence framing these as upgrades","steps":[{"order":1,"step":"Step name","product":"Exact product name","brand":"Brand","why":"What this adds","how":"Application tip","benefit":"The visible result","price":"€X","pregnancy_safe":true}]},"evening_swap":{"label":"At night one change","product":"Exact product name","brand":"Brand","why":"Why nighttime works best","how":"How to use","benefit":"What they will wake up with","price":"€X","pregnancy_safe":true},"weekly_ritual":{"product":"One weekly treatment","brand":"Brand","frequency":"1-2x per week","why":"Why this weekly step amplifies everything","benefit":"Cumulative result after 1 month","pregnancy_safe":true},"hero_ingredient":"Single most powerful ingredient","hero_ingredient_why":"One sentence why","first_week_tip":"One specific practical tip for the first 7 days","total_minimum_cost":"€X-€Y","total_full_cost":"€X-€Y"}';
 }
 
-function showQS(s) {
-  document.querySelectorAll('.quiz-step').forEach(function(x){ x.classList.remove('active'); });
-  var t = (s==='result')
-    ? document.querySelector('[data-step="result"]')
-    : document.querySelector('[data-step="'+s+'"]');
-  if (t) t.classList.add('active');
-  var pct = (s==='result') ? 100 : (s/QT*100);
-  var bar = document.getElementById('qpbar');
-  if (bar) bar.style.width = pct+'%';
-  var nav = document.getElementById('qnav');
-  if (!nav) return;
-  if (s === 'result') { nav.style.display = 'none'; return; }
-  nav.style.display = 'flex';
-  var back = document.getElementById('q-back-btn');
-  if (back) back.style.visibility = (s>1) ? 'visible' : 'hidden';
-  var isLast = (s === QT);
-  var lfr = isLast ? 'Voir ma routine →' : 'Continuer';
-  var len = isLast ? 'See my routine →' : 'Continue';
-  var nb = document.getElementById('q-next-btn');
-  if (nb) { nb.setAttribute('data-fr',lfr); nb.setAttribute('data-en',len); nb.innerHTML = (LANG==='fr') ? lfr : len; }
-}
-function qNext() { if (QS < QT) { QS++; showQS(QS); } else { buildResult(); showQS('result'); } }
-function qBack() { if (QS > 1) { QS--; showQS(QS); } }
-
-// ── CATALOGUE ────────────────────────────────────────
-var CAT = [
-  {key:'P3', brand:'Beauty of Joseon', name:'Relief Sun SPF50+ PA++++',           price:18.90, cat:'spf',     concerns:['eclat','pores'],               types:['all'],            safe:true,  budget:'low'},
-  {key:'CX', brand:'COSRX',            name:'Advanced Snail 96 Mucin Essence',     price:22.50, cat:'essence', concerns:['rougeurs','seche','reparation'], types:['dry','sensitive'],safe:true,  budget:'mid'},
-  {key:'GL', brand:'Glow Recipe',      name:'Watermelon Niacinamide Dew Drops',    price:38.00, cat:'serum',   concerns:['pores','eclat','taches'],        types:['oily','mixed'],   safe:false, budget:'high'},
-  {key:'P1', brand:'Mixsoon',          name:'Bifida Ferment Essence 100ml',        price:29.00, cat:'essence', concerns:['hydratation','eclat'],           types:['all'],            safe:true,  budget:'high'},
-  {key:'P5', brand:'SKIN1004',         name:'Madagascar Centella Ampoule',         price:21.50, cat:'serum',   concerns:['rougeurs','acne','reparation'],  types:['sensitive','all'],safe:true,  budget:'mid'},
-  {key:'DR', brand:'IUNIK',            name:'Rosehip Vitamin C Serum 15ml',        price:15.90, cat:'serum',   concerns:['taches','eclat'],                types:['all'],            safe:false, budget:'low'},
-  {key:'P2', brand:'Mixsoon',          name:'Galactomyces Ferment Essence',        price:27.00, cat:'essence', concerns:['eclat','pores','taches'],        types:['oily','mixed'],   safe:true,  budget:'high'},
-  {key:'P8', brand:'Huxley',           name:'Secret of Sahara Hand Cream',         price:14.90, cat:'creme',   concerns:['hydratation'],                  types:['dry','normal'],   safe:true,  budget:'low'},
-  {key:'HA', brand:'Glow Recipe',      name:'Banana Soufflé Moisture Cream 50ml',  price:35.00, cat:'creme',   concerns:['hydratation','seche'],           types:['dry','sensitive'],safe:true,  budget:'high'},
-  {key:'P6', brand:'Mixsoon',          name:'Bean Essence 100ml',                  price:25.00, cat:'essence', concerns:['eclat','hydratation'],           types:['all'],            safe:true,  budget:'mid'},
-  {key:'P4', brand:'SKIN1004',         name:'Centella Water-Fit Sun SPF50+',       price:19.90, cat:'spf',     concerns:['acne','rougeurs'],               types:['oily','mixed'],   safe:true,  budget:'low'},
-  {key:'P7', brand:'Mixsoon',          name:'Reishi Mushroom Essence 100ml',       price:27.00, cat:'essence', concerns:['antiage','hydratation'],         types:['mature','dry'],   safe:true,  budget:'mid'}
-];
-var BMAX = {low:20, mid:50, high:100, premium:999};
-var SEC = {
-  acne:['pores','rougeurs'], pores:['eclat','acne'], eclat:['taches','pores'],
-  taches:['eclat'], rougeurs:['reparation','acne'], seche:['hydratation','reparation'],
-  hydratation:['seche'], antiage:['hydratation','eclat'], reparation:['rougeurs']
-};
-var CFR = {acne:'Acné',pores:'Pores',eclat:'Éclat',taches:'Anti-taches',rougeurs:'Peau réactive',seche:'Peau sèche',hydratation:'Hydratation',antiage:'Anti-âge',reparation:'Réparation'};
-
-function buildResult() {
-  var skin    = QA.skin    || 'normal';
-  var concern = QA.concern || 'eclat';
-  var safety  = QA.safety  || 'none';
-  var budget  = QA.budget  || 'mid';
-  var bmax    = BMAX[budget] || 50;
-  var isPreg  = (safety === 'pregnant');
-  var noVitC  = (safety === 'vitamin-c' || isPreg);
-
-  // Score each product
-  var scored = CAT.map(function(p) {
-    if (!p.safe && isPreg) return null;
-    if (noVitC && p.key === 'DR') return null;
-    if (p.price > bmax && p.cat !== 'spf') return null;
-    var score = 0;
-    if (p.types.indexOf('all') !== -1) score += 2;
-    else if (p.types.indexOf(skin) !== -1) score += 3;
-    if (p.concerns.indexOf(concern) !== -1) score += 5;
-    (SEC[concern]||[]).forEach(function(sc){ if (p.concerns.indexOf(sc)!==-1) score+=2; });
-    if (p.cat === 'spf') score += 1;
-    p._score = score;
-    return p;
-  }).filter(Boolean);
-
-  scored.sort(function(a,b){ return b._score - a._score; });
-
-  // Build basket — one per category, within budget
-  var basket = [], used = {}, total = 0;
-  ['spf','serum','essence','creme'].forEach(function(cat) {
-    var best = null, bestSc = -999;
-    scored.forEach(function(p) {
-      if (p.cat !== cat || used[p.key]) return;
-      if (total + p.price > bmax) return;
-      if (p._score > bestSc) { best = p; bestSc = p._score; }
-    });
-    if (best) { basket.push(best); used[best.key] = true; total += best.price; }
+function runAdvisor(){
+  var prompt=buildPrompt();
+  fetch('/.netlify/functions/quiz-advisor',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})})
+  .then(function(r){return r.json()})
+  .then(function(data){renderResults(data)})
+  .catch(function(err){
+    console.error('Advisor error:',err);
+    document.getElementById('quiz-loading').style.display='none';
+    var rr=document.getElementById('quiz-results');
+    rr.style.display='block';
+    rr.innerHTML='<div style="text-align:center;padding:30px"><p style="font-size:18px;margin-bottom:12px">Le service est temporairement indisponible</p><p style="font-size:13px;color:var(--muted)">Réessayez dans quelques instants ou contactez-nous à contact@sonagibeauty.com</p></div>';
   });
-  if (!basket.length) {
-    var fb = scored.slice().sort(function(a,b){ return a.price-b.price; })[0];
-    if (fb) { basket.push(fb); total = fb.price; }
-  }
-  basket = basket.slice(0,4);
-
-  // Render summary
-  var sumEl = document.getElementById('result-summary');
-  if (sumEl) sumEl.textContent = 'Routine ' + (CFR[concern]||concern) + ' · Budget ' + budget;
-
-  // Tags
-  var te = document.getElementById('result-tags');
-  if (te) {
-    te.innerHTML = '';
-    var tags = [CFR[concern]||concern];
-    if (isPreg) tags.push('✓ Safe grossesse');
-    if (budget==='low') tags.push('Budget essentiel');
-    tags.forEach(function(t){ var s=document.createElement('span'); s.className='res-tag'; s.textContent=t; te.appendChild(s); });
-  }
-
-  // Points
-  var pm = document.getElementById('pts-msg');
-  if (pm) pm.textContent = 'Vous gagnerez ' + Math.round(total) + ' points Sonagi Rewards';
-
-  // Basket items
-  var be = document.getElementById('quiz-basket');
-  if (be) {
-    be.innerHTML = '';
-    basket.forEach(function(p) {
-      var img = (window.QUIZ_IMGS && window.QUIZ_IMGS[p.key]) ? window.QUIZ_IMGS[p.key] : '';
-      var d = document.createElement('div');
-      d.className = 'basket-item';
-      d.setAttribute('data-price', p.price);
-      d.setAttribute('data-brand', p.brand);
-      d.setAttribute('data-name', p.name);
-      d.innerHTML = (img ? '<img class="basket-img" src="'+img+'" alt="" loading="lazy">' : '')
-        + '<div class="basket-info">'
-        + '<p class="basket-brand">'+p.brand+'</p>'
-        + '<p class="basket-name">'+p.name+'</p>'
-        + '<p class="basket-price">'+p.price.toFixed(2).replace('.',',')+' €</p>'
-        + '</div>'
-        + '<button class="basket-remove" onclick="this.closest(\'.basket-item\').remove();updateBasketDisplay()">×</button>';
-      be.appendChild(d);
-    });
-  }
-  updateBasketDisplay();
 }
 
-function updateBasketDisplay() {
-  var items = document.querySelectorAll('#quiz-basket .basket-item');
-  var total = 0;
-  items.forEach(function(it){ total += parseFloat(it.getAttribute('data-price')||0); });
-  var ta = document.getElementById('basket-total-amt');
-  if (ta) ta.textContent = total.toFixed(2).replace('.',',') + ' €';
+function renderStep(s){return '<div class="adv-step"><div class="adv-step-head"><span class="adv-step-num">'+s.order+'</span><span class="adv-step-name">'+s.step+'</span></div><p class="adv-product"><strong>'+s.brand+'</strong> — '+s.product+'</p><p class="adv-why">'+s.why+'</p><p class="adv-how"><em>💡 '+s.how+'</em></p><p class="adv-benefit">→ '+s.benefit+'</p><span class="adv-price">'+s.price+'</span>'+(s.pregnancy_safe?'<span class="adv-safe">✓ Safe</span>':'')+'</div>'}
+
+function renderResults(d){
+  document.getElementById('quiz-loading').style.display='none';
+  var rr=document.getElementById('quiz-results');
+  rr.style.display='block';
+  var h='';
+  h+='<h2 class="adv-headline">'+d.headline+'</h2>';
+  h+='<p class="adv-diagnostic">'+d.diagnostic+'</p>';
+  h+='<div class="adv-card essential"><span class="adv-badge essential">ESSENTIEL</span>';
+  h+='<h3>Votre routine essentielle · '+(d.minimum_routine.steps?d.minimum_routine.steps.length:3)+' étapes</h3>';
+  h+='<p class="adv-card-desc">'+d.minimum_routine.description+'</p>';
+  (d.minimum_routine.steps||[]).forEach(function(s){h+=renderStep(s)});
+  h+='</div>';
+  if(d.boosters&&d.boosters.steps&&d.boosters.steps.length){
+    h+='<div class="adv-card booster"><span class="adv-badge booster">BOOSTER</span>';
+    h+='<h3>Quand vous voulez aller plus loin</h3>';
+    h+='<p class="adv-card-desc">'+d.boosters.description+'</p>';
+    d.boosters.steps.forEach(function(s){h+=renderStep(s)});
+    h+='</div>';
+  }
+  if(d.evening_swap){
+    h+='<div class="adv-card small"><h4>🌙 Le soir, ajoutez juste ça</h4>';
+    h+='<p class="adv-product"><strong>'+d.evening_swap.brand+'</strong> — '+d.evening_swap.product+'</p>';
+    h+='<p class="adv-why">'+d.evening_swap.why+'</p>';
+    h+='<p class="adv-how"><em>💡 '+d.evening_swap.how+'</em></p>';
+    h+='<p class="adv-benefit">→ '+d.evening_swap.benefit+'</p>';
+    h+='<span class="adv-price">'+d.evening_swap.price+'</span></div>';
+  }
+  if(d.weekly_ritual){
+    h+='<div class="adv-card small"><h4>📅 Une fois par semaine</h4>';
+    h+='<p class="adv-product"><strong>'+d.weekly_ritual.brand+'</strong> — '+d.weekly_ritual.product+'</p>';
+    h+='<p class="adv-why">'+d.weekly_ritual.why+'</p>';
+    h+='<p class="adv-benefit">→ '+d.weekly_ritual.benefit+'</p></div>';
+  }
+  h+='<div class="adv-hero-pill">Votre ingrédient clé : <strong>'+d.hero_ingredient+'</strong><br><span>'+d.hero_ingredient_why+'</span></div>';
+  h+='<div class="adv-tip-box"><strong>💡 Conseil semaine 1</strong><p>'+d.first_week_tip+'</p></div>';
+  h+='<div class="adv-costs"><span>Routine essentielle : '+d.total_minimum_cost+'</span><span>Routine complète : '+d.total_full_cost+'</span></div>';
+  rr.innerHTML=h;
 }
 
+
+/* ── Stripe Checkout ── */
+function handleCheckout(){
+  var btn=document.getElementById('checkout-btn');
+  var msg=document.getElementById('checkout-msg');
+  if(!btn)return;
+  btn.disabled=true;btn.textContent='Chargement…';
+  fetch('/.netlify/functions/create-checkout',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({items:[
+      {price:'price_placeholder_1',quantity:1},
+      {price:'price_placeholder_2',quantity:1},
+      {price:'price_placeholder_3',quantity:1}
+    ]})
+  })
+  .then(function(r){return r.json()})
+  .then(function(data){
+    if(data.coming_soon){
+      if(msg){msg.style.display='block';msg.innerHTML='🌸 <strong>Bientôt disponible</strong><br>La boutique Sonagi ouvre en septembre 2026.<br>Inscrivez-vous à la newsletter pour être notifié(e) !';}
+      btn.textContent='Bientôt disponible';btn.disabled=true;
+    }else if(data.url){
+      window.location.href=data.url;
+    }else{
+      btn.textContent='Confirmer ma commande → 79,40 €';btn.disabled=false;
+      if(msg){msg.style.display='block';msg.textContent='Erreur: '+(data.error||'Réessayez');}
+    }
+  })
+  .catch(function(){
+    btn.textContent='Confirmer ma commande → 79,40 €';btn.disabled=false;
+    if(msg){msg.style.display='block';msg.textContent='Connexion impossible. Réessayez.';}
+  });
+}
 </script>
 </body>
 </html>

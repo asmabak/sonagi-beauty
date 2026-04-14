@@ -53,6 +53,21 @@ PROD_CLEAN  = 'PROD_CLEAN'
 PROD_MARBLE = 'PROD_MARBLE'
 SOC_STORY   = 'SOC_STORY'
 
+# Product photo keys (unsplash + updated visuals)
+PH_GLOW     = 'PH_GLOW'      # alexandra-tran: Glow Recipe lineup
+PH_CENT     = 'PH_CENT'      # anna-keibalo: SKIN1004 Centella
+PH_DALBA    = 'PH_DALBA'     # duong-ngan: d'Alba SPF + serum
+PH_COSRX    = 'PH_COSRX'     # elena-soroka: COSRX Snail Mucin
+PH_MIX1     = 'PH_MIX1'      # maria-lupan-0U4: Mixsoon lineup
+PH_BOJ      = 'PH_BOJ'       # maria-lupan-2gt: Beauty of Joseon
+PH_MIX2     = 'PH_MIX2'      # maria-lupan-5bP: Mixsoon on gold rocks
+PH_MIX3     = 'PH_MIX3'      # maria-lupan-OZz: Mixsoon mushroom
+PH_HUX      = 'PH_HUX'       # maria-lupan-UYJ: Huxley hand cream
+PH_MIX4     = 'PH_MIX4'      # maria-lupan-gVB: Mixsoon pink bg
+PH_BOJSUN   = 'PH_BOJSUN'    # mona-jain: Beauty of Joseon sunscreen
+BL_MEN2     = 'BL_MEN2'      # updated blog men image
+BL_ROUTINE2 = 'BL_ROUTINE2'  # updated blog routine image
+
 # Map visual keys → file paths (relative to output HTML location)
 _visuals = {
     HERO1:       '../images/visuals/sonagi-home_hero_1.png',
@@ -84,6 +99,19 @@ _visuals = {
     PROD_CLEAN:  '../images/visuals/sonagi-prod_card_clean.png',
     PROD_MARBLE: '../images/visuals/sonagi-prod_card_marble.png',
     SOC_STORY:   '../images/visuals/sonagi-social_story_face.png',
+    PH_GLOW:     '../images/visuals/alexandra-tran-zZf7RA5aSTc-unsplash.jpg',
+    PH_CENT:     '../images/visuals/anna-keibalo-4W4zySfM86k-unsplash.jpg',
+    PH_DALBA:    '../images/visuals/duong-ngan-CI5RYLUO6B4-unsplash.jpg',
+    PH_COSRX:    '../images/visuals/elena-soroka-jEsaxA6gD2c-unsplash.jpg',
+    PH_MIX1:     '../images/visuals/maria-lupan-0U4IyX7Zwhg-unsplash.jpg',
+    PH_BOJ:      '../images/visuals/maria-lupan-2gtMeWc5HBc-unsplash.jpg',
+    PH_MIX2:     '../images/visuals/maria-lupan-5bPAkTyPj7E-unsplash.jpg',
+    PH_MIX3:     '../images/visuals/maria-lupan-OZzBzjYlw3I-unsplash.jpg',
+    PH_HUX:      '../images/visuals/maria-lupan-UYJTgxZtUmk-unsplash.jpg',
+    PH_MIX4:     '../images/visuals/maria-lupan-gVB7Rjp7dZg-unsplash.jpg',
+    PH_BOJSUN:   '../images/visuals/mona-jain-VG5xt6U9hQY-unsplash.jpg',
+    BL_MEN2:     '../images/visuals/sonagi-blog_men2.png',
+    BL_ROUTINE2: '../images/visuals/sonagi-blog_routine2.png',
 }
 imgs.update(_visuals)
 
@@ -93,11 +121,213 @@ IMGS_JS = f'window.QUIZ_IMGS = {{\n  {_img_pairs}\n}};'
 
 SHARED_CSS  = t['SHARED_CSS']
 SHARED_JS   = t['SHARED_JS']
-QUIZ_JS     = t['QUIZ_JS']
+QUIZ_JS     = r'''/* ══ SONAGI ADVISOR v2 — AI-powered K-beauty protocol ══ */
+var QS=1,QT=8;
+var QA={name:'',goal:[],skin_type:'',skin_feel:'',age:'',lifestyle:[],current_routine:'',routine_goal:'',budget:'',pregnant:'non'};
+
+function openQuiz(){var m=document.getElementById('quiz-modal');if(!m)return;m.classList.add('open');document.body.style.overflow='hidden';QS=1;QA={name:'',goal:[],skin_type:'',skin_feel:'',age:'',lifestyle:[],current_routine:'',routine_goal:'',budget:'',pregnant:'non'};m.querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('sel')});var ni=document.getElementById('q-name');if(ni)ni.value='';var rl=document.getElementById('quiz-loading');if(rl)rl.style.display='block';var rr=document.getElementById('quiz-results');if(rr){rr.style.display='none';rr.innerHTML='';}showQS(1)}
+function closeQuiz(){var m=document.getElementById('quiz-modal');if(m)m.classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('click',function(e){var m=document.getElementById('quiz-modal');if(m&&e.target===m)closeQuiz()});
+
+function qsel(el,key,val){el.closest('.quiz-opts').querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('sel')});el.classList.add('sel');QA[key]=val}
+function qmulti(el,key,val){el.classList.toggle('sel');if(!QA[key])QA[key]=[];var i=QA[key].indexOf(val);if(i===-1)QA[key].push(val);else QA[key].splice(i,1)}
+
+function showQS(s){document.querySelectorAll('.quiz-step').forEach(function(x){x.classList.remove('active')});var t=(s==='result')?document.querySelector('[data-step="result"]'):document.querySelector('[data-step="'+s+'"]');if(t)t.classList.add('active');var pct=(s==='result')?100:(s/QT*100);var bar=document.getElementById('qpbar');if(bar)bar.style.width=pct+'%';var nav=document.getElementById('qnav');if(!nav)return;if(s==='result'){nav.style.display='none';return}nav.style.display='flex';var back=document.getElementById('q-back-btn');if(back)back.style.visibility=(s>1)?'visible':'hidden';var isLast=(s===QT);var nb=document.getElementById('q-next-btn');if(nb)nb.textContent=isLast?'Voir mon protocole →':'Continuer'}
+function qNext(){if(QS===1){var ni=document.getElementById('q-name');if(ni)QA.name=ni.value.trim()}if(QS<QT){QS++;showQS(QS)}else{showQS('result');runAdvisor()}}
+function qBack(){if(QS>1){QS--;showQS(QS)}}
+
+function buildPrompt(){
+  var a=QA,isP=a.pregnant==='oui';
+  return 'You are Sonagi\'s expert K-beauty skin advisor. You know Korean skincare deeply — the layering logic, the ingredients, the rituals. Your job is to give a protocol that feels like advice from a knowledgeable friend, not a marketing leaflet.\n\nSKIN PROFILE:\n- Name: '+a.name+'\n- Goals: '+(a.goal||[]).join(', ')+'\n- Skin type: '+a.skin_type+'\n- Skin feel end of day: '+a.skin_feel+'\n- Age: '+a.age+'\n- Lifestyle: '+(a.lifestyle||[]).join(', ')+'\n- Current routine: '+a.current_routine+'\n- Routine length preference: '+a.routine_goal+'\n- Budget: '+a.budget+'\n- Pregnant/breastfeeding: '+a.pregnant+'\n'+(isP?'\nPREGNANCY SAFETY — NEVER recommend: retinol, retinoids, salicylic acid >2%, chemical sunscreens (oxybenzone), hydroquinone, TXA in 3rd trimester/breastfeeding, essential oils (mugwort, rosemary, tea tree, cinnamon, ylang ylang).\nSAFE: niacinamide, hyaluronic acid, centella, ceramides, vitamin C, azelaic acid, panthenol, bakuchiol, peptides.\n':'')+'\nRESPONSE RULES:\n- Be direct and specific. No generic advice.\n- Never say "consult a dermatologist" unless medically necessary.\n- Product names must be real K-beauty products that exist and are available in Europe.\n- Brands: COSRX, Beauty of Joseon, Anua, Some By Mi, Laneige, Innisfree, Mixsoon, Purito, Skin1004, Numbuzin, Round Lab, Axis-Y, Torriden, Thank You Farmer, Klairs.\n- Price ranges in EUR.\n\nRespond ONLY with valid JSON, no markdown, no backticks:\n\n{"headline":"One punchy 6-8 word line that captures their skin story","diagnostic":"One sharp insightful sentence that diagnoses their skin like a professional","minimum_routine":{"label":"Your 3-step non-negotiable","description":"One sentence on why these 3 steps are enough","steps":[{"order":1,"step":"Step name","product":"Exact product name","brand":"Brand","why":"One sentence for THEIR skin","how":"One punchy K-beauty application tip","benefit":"What they will notice in 2-4 weeks","price":"€X","pregnancy_safe":true}]},"boosters":{"label":"Level up when ready","description":"One sentence framing these as upgrades","steps":[{"order":1,"step":"Step name","product":"Exact product name","brand":"Brand","why":"What this adds","how":"Application tip","benefit":"The visible result","price":"€X","pregnancy_safe":true}]},"evening_swap":{"label":"At night one change","product":"Exact product name","brand":"Brand","why":"Why nighttime works best","how":"How to use","benefit":"What they will wake up with","price":"€X","pregnancy_safe":true},"weekly_ritual":{"product":"One weekly treatment","brand":"Brand","frequency":"1-2x per week","why":"Why this weekly step amplifies everything","benefit":"Cumulative result after 1 month","pregnancy_safe":true},"hero_ingredient":"Single most powerful ingredient","hero_ingredient_why":"One sentence why","first_week_tip":"One specific practical tip for the first 7 days","total_minimum_cost":"€X-€Y","total_full_cost":"€X-€Y"}';
+}
+
+function runAdvisor(){
+  var prompt=buildPrompt();
+  fetch('/.netlify/functions/quiz-advisor',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})})
+  .then(function(r){return r.json()})
+  .then(function(data){renderResults(data)})
+  .catch(function(err){
+    console.error('Advisor error:',err);
+    document.getElementById('quiz-loading').style.display='none';
+    var rr=document.getElementById('quiz-results');
+    rr.style.display='block';
+    rr.innerHTML='<div style="text-align:center;padding:30px"><p style="font-size:18px;margin-bottom:12px">Le service est temporairement indisponible</p><p style="font-size:13px;color:var(--muted)">Réessayez dans quelques instants ou contactez-nous à contact@sonagibeauty.com</p></div>';
+  });
+}
+
+function renderStep(s){return '<div class="adv-step"><div class="adv-step-head"><span class="adv-step-num">'+s.order+'</span><span class="adv-step-name">'+s.step+'</span></div><p class="adv-product"><strong>'+s.brand+'</strong> — '+s.product+'</p><p class="adv-why">'+s.why+'</p><p class="adv-how"><em>💡 '+s.how+'</em></p><p class="adv-benefit">→ '+s.benefit+'</p><span class="adv-price">'+s.price+'</span>'+(s.pregnancy_safe?'<span class="adv-safe">✓ Safe</span>':'')+'</div>'}
+
+function renderResults(d){
+  document.getElementById('quiz-loading').style.display='none';
+  var rr=document.getElementById('quiz-results');
+  rr.style.display='block';
+  var h='';
+  h+='<h2 class="adv-headline">'+d.headline+'</h2>';
+  h+='<p class="adv-diagnostic">'+d.diagnostic+'</p>';
+  h+='<div class="adv-card essential"><span class="adv-badge essential">ESSENTIEL</span>';
+  h+='<h3>Votre routine essentielle · '+(d.minimum_routine.steps?d.minimum_routine.steps.length:3)+' étapes</h3>';
+  h+='<p class="adv-card-desc">'+d.minimum_routine.description+'</p>';
+  (d.minimum_routine.steps||[]).forEach(function(s){h+=renderStep(s)});
+  h+='</div>';
+  if(d.boosters&&d.boosters.steps&&d.boosters.steps.length){
+    h+='<div class="adv-card booster"><span class="adv-badge booster">BOOSTER</span>';
+    h+='<h3>Quand vous voulez aller plus loin</h3>';
+    h+='<p class="adv-card-desc">'+d.boosters.description+'</p>';
+    d.boosters.steps.forEach(function(s){h+=renderStep(s)});
+    h+='</div>';
+  }
+  if(d.evening_swap){
+    h+='<div class="adv-card small"><h4>🌙 Le soir, ajoutez juste ça</h4>';
+    h+='<p class="adv-product"><strong>'+d.evening_swap.brand+'</strong> — '+d.evening_swap.product+'</p>';
+    h+='<p class="adv-why">'+d.evening_swap.why+'</p>';
+    h+='<p class="adv-how"><em>💡 '+d.evening_swap.how+'</em></p>';
+    h+='<p class="adv-benefit">→ '+d.evening_swap.benefit+'</p>';
+    h+='<span class="adv-price">'+d.evening_swap.price+'</span></div>';
+  }
+  if(d.weekly_ritual){
+    h+='<div class="adv-card small"><h4>📅 Une fois par semaine</h4>';
+    h+='<p class="adv-product"><strong>'+d.weekly_ritual.brand+'</strong> — '+d.weekly_ritual.product+'</p>';
+    h+='<p class="adv-why">'+d.weekly_ritual.why+'</p>';
+    h+='<p class="adv-benefit">→ '+d.weekly_ritual.benefit+'</p></div>';
+  }
+  h+='<div class="adv-hero-pill">Votre ingrédient clé : <strong>'+d.hero_ingredient+'</strong><br><span>'+d.hero_ingredient_why+'</span></div>';
+  h+='<div class="adv-tip-box"><strong>💡 Conseil semaine 1</strong><p>'+d.first_week_tip+'</p></div>';
+  h+='<div class="adv-costs"><span>Routine essentielle : '+d.total_minimum_cost+'</span><span>Routine complète : '+d.total_full_cost+'</span></div>';
+  rr.innerHTML=h;
+}
+'''
 ANNOUNCE    = t['ANNOUNCE']
 FOOTER      = t['FOOTER']
 CART        = t['CART_SIDEBAR']
-QUIZ_MODAL  = t['QUIZ_MODAL']
+# Override quiz with Sonagi Advisor v2 — expanded questions + AI prompt
+QUIZ_MODAL = '''<div class="modal-overlay" id="quiz-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeQuiz()">✕</button>
+      <h2>Sonagi Advisor</h2>
+      <p>Votre protocole K-beauty sur mesure</p>
+    </div>
+    <div class="modal-body">
+      <div class="disclaimer">⚕ Questionnaire cosmétique. Consultez votre médecin en cas de condition particulière.</div>
+      <div class="qprog"><div class="qprog-bar" id="qpbar" style="width:10%"></div></div>
+
+      <div class="quiz-step active" data-step="1">
+        <span class="step-ctr">1 / 8 — Prénom</span>
+        <h3 class="quiz-q">Comment vous appelez-vous ?</h3>
+        <input type="text" class="quiz-input" id="q-name" placeholder="Votre prénom" maxlength="30">
+      </div>
+
+      <div class="quiz-step" data-step="2">
+        <span class="step-ctr">2 / 8 — Objectifs</span>
+        <h3 class="quiz-q">Quels sont vos objectifs peau ? (plusieurs choix)</h3>
+        <div class="quiz-opts multi">
+          <button class="q-opt" onclick="qmulti(this,\'goal\',\'hydratation\')">Hydratation</button>
+          <button class="q-opt" onclick="qmulti(this,\'goal\',\'eclat\')">Éclat &amp; glow</button>
+          <button class="q-opt" onclick="qmulti(this,\'goal\',\'anti-age\')">Anti-âge</button>
+          <button class="q-opt" onclick="qmulti(this,\'goal\',\'acne\')">Acné &amp; imperfections</button>
+          <button class="q-opt" onclick="qmulti(this,\'goal\',\'pores\')">Pores dilatés</button>
+          <button class="q-opt" onclick="qmulti(this,\'goal\',\'rougeurs\')">Rougeurs &amp; sensibilité</button>
+          <button class="q-opt" onclick="qmulti(this,\'goal\',\'taches\')">Taches &amp; hyperpigmentation</button>
+          <button class="q-opt" onclick="qmulti(this,\'goal\',\'barriere\')">Réparer la barrière cutanée</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="3">
+        <span class="step-ctr">3 / 8 — Type de peau</span>
+        <h3 class="quiz-q">Quel est votre type de peau ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,\'skin_type\',\'normale\')">Normale — équilibrée</button>
+          <button class="q-opt" onclick="qsel(this,\'skin_type\',\'grasse\')">Grasse — brillances, pores</button>
+          <button class="q-opt" onclick="qsel(this,\'skin_type\',\'seche\')">Sèche — tiraillements</button>
+          <button class="q-opt" onclick="qsel(this,\'skin_type\',\'mixte\')">Mixte — zone T grasse</button>
+          <button class="q-opt" onclick="qsel(this,\'skin_type\',\'sensible\')">Sensible — réactive</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="4">
+        <span class="step-ctr">4 / 8 — Ressenti</span>
+        <h3 class="quiz-q">Comment votre peau se sent en fin de journée ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,\'skin_feel\',\'grasse et brillante\')">Grasse et brillante</button>
+          <button class="q-opt" onclick="qsel(this,\'skin_feel\',\'seche et qui tire\')">Sèche et qui tire</button>
+          <button class="q-opt" onclick="qsel(this,\'skin_feel\',\'bien globalement\')">Bien globalement</button>
+          <button class="q-opt" onclick="qsel(this,\'skin_feel\',\'grasse sur la zone T, seche sur les joues\')">Grasse zone T, sèche joues</button>
+          <button class="q-opt" onclick="qsel(this,\'skin_feel\',\'irritee ou reactive\')">Irritée ou réactive</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="5">
+        <span class="step-ctr">5 / 8 — Profil</span>
+        <h3 class="quiz-q">Votre tranche d'âge ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,\'age\',\'18-24\')">18–24</button>
+          <button class="q-opt" onclick="qsel(this,\'age\',\'25-34\')">25–34</button>
+          <button class="q-opt" onclick="qsel(this,\'age\',\'35-44\')">35–44</button>
+          <button class="q-opt" onclick="qsel(this,\'age\',\'45+\')">45+</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="6">
+        <span class="step-ctr">6 / 8 — Mode de vie</span>
+        <h3 class="quiz-q">Votre quotidien ? (plusieurs choix)</h3>
+        <div class="quiz-opts multi">
+          <button class="q-opt" onclick="qmulti(this,\'lifestyle\',\'bureau\')">Bureau / écrans</button>
+          <button class="q-opt" onclick="qmulti(this,\'lifestyle\',\'extérieur\')">Beaucoup dehors</button>
+          <button class="q-opt" onclick="qmulti(this,\'lifestyle\',\'sport\')">Sport régulier</button>
+          <button class="q-opt" onclick="qmulti(this,\'lifestyle\',\'stress\')">Stressé(e)</button>
+          <button class="q-opt" onclick="qmulti(this,\'lifestyle\',\'sommeil\')">Peu de sommeil</button>
+          <button class="q-opt" onclick="qmulti(this,\'lifestyle\',\'pollution\')">Ville polluée</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="7">
+        <span class="step-ctr">7 / 8 — Routine actuelle</span>
+        <h3 class="quiz-q">Votre routine actuelle ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,\'current_routine\',\'rien du tout\')">Rien du tout</button>
+          <button class="q-opt" onclick="qsel(this,\'current_routine\',\'nettoyant + crème\')">Nettoyant + crème</button>
+          <button class="q-opt" onclick="qsel(this,\'current_routine\',\'routine basique 3-4 étapes\')">Routine basique (3–4 étapes)</button>
+          <button class="q-opt" onclick="qsel(this,\'current_routine\',\'routine complète 5+ étapes\')">Routine complète (5+ étapes)</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="8">
+        <span class="step-ctr">8 / 8 — Préférences</span>
+        <h3 class="quiz-q">Longueur de routine souhaitée ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,\'routine_goal\',\'minimaliste 3 étapes\')">Minimaliste (3 étapes)</button>
+          <button class="q-opt" onclick="qsel(this,\'routine_goal\',\'équilibrée 5 étapes\')">Équilibrée (5 étapes)</button>
+          <button class="q-opt" onclick="qsel(this,\'routine_goal\',\'complète 7+ étapes\')">Complète (7+ étapes)</button>
+        </div>
+        <h3 class="quiz-q" style="margin-top:20px">Budget ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,\'budget\',\'moins de 30€\')">Moins de 30 €</button>
+          <button class="q-opt" onclick="qsel(this,\'budget\',\'30-60€\')">30–60 €</button>
+          <button class="q-opt" onclick="qsel(this,\'budget\',\'60-100€\')">60–100 €</button>
+          <button class="q-opt" onclick="qsel(this,\'budget\',\'pas de limite\')">Pas de limite</button>
+        </div>
+        <h3 class="quiz-q" style="margin-top:20px">Enceinte ou allaitante ?</h3>
+        <div class="quiz-opts">
+          <button class="q-opt" onclick="qsel(this,\'pregnant\',\'non\')">Non</button>
+          <button class="q-opt" onclick="qsel(this,\'pregnant\',\'oui\')">Oui</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="result" id="quiz-result-step">
+        <div id="quiz-loading" style="text-align:center;padding:40px 0">
+          <div class="quiz-spinner"></div>
+          <p style="margin-top:16px;font-size:14px;color:var(--muted)">Sonagi Advisor analyse votre profil…</p>
+        </div>
+        <div id="quiz-results" style="display:none"></div>
+      </div>
+
+      <div class="quiz-nav-btns" id="qnav">
+        <button class="q-back" id="q-back-btn" onclick="qBack()" style="visibility:hidden">Retour</button>
+        <button class="q-next" id="q-next-btn" onclick="qNext()">Continuer</button>
+      </div>
+    </div>
+  </div>
+</div>'''
 
 # ── Image helper: uses data-imgkey, resolved by JS ───────────────────────────
 def imgref(key, alt='', loading='lazy', cls=''):
@@ -107,6 +337,56 @@ def imgref(key, alt='', loading='lazy', cls=''):
 
 # ── MEGA-NAV CSS ─────────────────────────────────────────────────────────────
 MEGA_NAV_CSS = """
+/* ── SONAGI ADVISOR v2 STYLES ── */
+.quiz-input{width:100%;padding:14px 18px;font-size:16px;font-family:'DM Sans',sans-serif;border:1.5px solid var(--border);border-radius:8px;outline:none;background:#fff;box-sizing:border-box;transition:border .2s}
+.quiz-input:focus{border-color:var(--navy)}
+.quiz-opts.multi .q-opt.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
+.quiz-spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--navy);border-radius:50%;margin:0 auto;animation:qspin 1s linear infinite}
+@keyframes qspin{to{transform:rotate(360deg)}}
+.adv-headline{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--navy);text-align:center;margin-bottom:8px;line-height:1.3}
+.adv-diagnostic{font-size:15px;color:#444;text-align:center;line-height:1.7;margin-bottom:24px;max-width:520px;margin-left:auto;margin-right:auto}
+.adv-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px;position:relative}
+.adv-card.small{padding:18px}
+.adv-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--navy);margin-bottom:6px}
+.adv-card h4{font-size:14px;color:var(--navy);margin-bottom:10px}
+.adv-card-desc{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+.adv-badge{display:inline-block;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.adv-badge.essential{background:#e8f5e9;color:#2e7d32}
+.adv-badge.booster{background:#fff8e1;color:#f57f17}
+.adv-step{border-top:1px solid var(--border);padding:14px 0}
+.adv-step:first-child{border-top:none}
+.adv-step-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.adv-step-num{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
+.adv-step-name{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.adv-product{font-size:14px;color:var(--navy);margin-bottom:6px}
+.adv-why{font-size:12px;color:#555;line-height:1.6;margin-bottom:4px}
+.adv-how{font-size:12px;color:var(--navy);margin-bottom:4px}
+.adv-benefit{font-size:12px;color:#2e7d32;margin-bottom:6px}
+.adv-price{font-size:13px;font-weight:500;color:var(--navy);margin-right:8px}
+.adv-safe{font-size:10px;color:#2e7d32;background:#e8f5e9;padding:2px 8px;border-radius:10px}
+.adv-hero-pill{text-align:center;background:var(--peach-l);border:1px solid var(--peach);padding:16px;border-radius:12px;margin:16px 0;font-size:14px;color:var(--navy);line-height:1.6}
+.adv-hero-pill span{font-size:12px;color:var(--muted)}
+.adv-tip-box{background:#f0f7ff;border:1px solid #c8ddf5;border-radius:12px;padding:16px;margin:16px 0;font-size:13px;color:#1a2744;line-height:1.6}
+.adv-tip-box p{margin-top:6px}
+.adv-costs{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--navy);font-weight:500;padding:16px 0;border-top:1px solid var(--border);margin-top:8px}
+
+/* ── NAV BAR OVERRIDES ── */
+.main-nav { padding: 6px 0; }
+.nav-inner { max-width: 1400px; }
+.nav-logo { font-size: 26px !important; letter-spacing: 5px !important; font-weight: 400 !important; }
+.nav-logo small { font-size: 10px !important; letter-spacing: 2px !important; }
+.nav-links > li > a, .nav-links > .nav-item > a {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 13px !important; font-weight: 500 !important;
+  letter-spacing: 1.2px !important; text-transform: uppercase !important;
+  padding: 8px 14px !important;
+}
+.nav-right .lang-btn { font-size: 11px !important; font-weight: 500 !important; letter-spacing: 1px !important; }
+.quiz-nav-btn { font-size: 11px !important; letter-spacing: 1.5px !important; padding: 8px 18px !important; }
+@media(max-width:767px) {
+  .nav-logo { font-size: 22px !important; }
+}
+
 /* ── MEGA NAV ── */
 .nav-item { position: relative; }
 .nav-item > a { display: flex; align-items: center; gap: 4px; }
@@ -534,6 +814,39 @@ def page(title, body, active_nav='', extra_css=''):
 <script>
 {SHARED_JS}
 {QUIZ_JS}
+
+/* ── Stripe Checkout ── */
+function handleCheckout(){{
+  var btn=document.getElementById('checkout-btn');
+  var msg=document.getElementById('checkout-msg');
+  if(!btn)return;
+  btn.disabled=true;btn.textContent='Chargement…';
+  fetch('/.netlify/functions/create-checkout',{{
+    method:'POST',
+    headers:{{'Content-Type':'application/json'}},
+    body:JSON.stringify({{items:[
+      {{price:'price_placeholder_1',quantity:1}},
+      {{price:'price_placeholder_2',quantity:1}},
+      {{price:'price_placeholder_3',quantity:1}}
+    ]}})
+  }})
+  .then(function(r){{return r.json()}})
+  .then(function(data){{
+    if(data.coming_soon){{
+      if(msg){{msg.style.display='block';msg.innerHTML='🌸 <strong>Bientôt disponible</strong><br>La boutique Sonagi ouvre en septembre 2026.<br>Inscrivez-vous à la newsletter pour être notifié(e) !';}}
+      btn.textContent='Bientôt disponible';btn.disabled=true;
+    }}else if(data.url){{
+      window.location.href=data.url;
+    }}else{{
+      btn.textContent='Confirmer ma commande → 79,40 €';btn.disabled=false;
+      if(msg){{msg.style.display='block';msg.textContent='Erreur: '+(data.error||'Réessayez');}}
+    }}
+  }})
+  .catch(function(){{
+    btn.textContent='Confirmer ma commande → 79,40 €';btn.disabled=false;
+    if(msg){{msg.style.display='block';msg.textContent='Connexion impossible. Réessayez.';}}
+  }});
+}}
 </script>
 </body>
 </html>'''
@@ -637,10 +950,10 @@ rev_slides = ''.join(f'''<div class="rev-slide"><div class="rev-card">
 </div></div>''' for init,name,city,stars,prod,_,quote in REVIEWS)
 
 EVENTS_DATA = [
-    ('online','Gratuit','Webinaire','10 Mai','14h00','Masterclass : Lire une étiquette INCI','Décryptez les ingrédients derrière les noms scientifiques.', P6),
-    ('inperson','45 €','Atelier physique','7 Juin','10h00','Workshop : Construire sa routine K-beauty','Diagnostic individuel + produits fournis. 12 places max.', P4),
-    ('online','12 €','Live interactif','24 Mai','15h00','Atelier Glass Skin','Routine complète en direct. Q&A inclus.', P7),
-    ('online','15 €','Expert session','21 Juin','16h00','Masterclass : Acides & Actifs','AHA, BHA, niacinamide — comment les associer.', GL),
+    ('online','Gratuit','Webinaire','10 Mai','14h00','Masterclass : Lire une étiquette INCI','Décryptez les ingrédients derrière les noms scientifiques.', PH_COSRX),
+    ('inperson','45 €','Atelier physique','7 Juin','10h00','Workshop : Construire sa routine K-beauty','Diagnostic individuel + produits fournis. 12 places max.', PH_MIX1),
+    ('online','12 €','Live interactif','24 Mai','15h00','Atelier Glass Skin','Routine complète en direct. Q&A inclus.', BL_GLASS),
+    ('online','15 €','Expert session','21 Juin','16h00','Masterclass : Acides & Actifs','AHA, BHA, niacinamide — comment les associer.', BL_ACIDS),
 ]
 evt_cards = ''.join(f'''<div class="evt-card">
   <div class="evt-img">{imgref(pimg, title)}</div>
@@ -654,9 +967,9 @@ evt_cards = ''.join(f'''<div class="evt-card">
 </div>''' for dtype,price,tag,date,time,title,desc,pimg in EVENTS_DATA)
 
 BLOG_DATA = [
-    ('Tendance','Glass Skin : le secret de la peau coréenne parfaite','12 Avr 2026','Lumineux, velouté, presque translucide — bien plus qu\'une tendance.', P4),
-    ('Routine','Double nettoyage : pourquoi c\'est non-négociable','5 Avr 2026','La base de toute routine K-beauty. Huile + mousse = peau nette en profondeur.', P6),
-    ('Ingrédients','Centella Asiatica : l\'ingrédient star','28 Mar 2026','Anti-inflammatoire, cicatrisant, apaisant — le Cica expliqué en détail.', P7),
+    ('Tendance','Glass Skin : le secret de la peau coréenne parfaite','12 Avr 2026','Lumineux, velouté, presque translucide — bien plus qu\'une tendance.', BL_GLASS),
+    ('Routine','Double nettoyage : pourquoi c\'est non-négociable','5 Avr 2026','La base de toute routine K-beauty. Huile + mousse = peau nette en profondeur.', BL_DOUBLE),
+    ('Ingrédients','Hanbang : les ingrédients ancestraux coréens','28 Mar 2026','Ginseng, centella, thé vert — les secrets de la pharmacopée coréenne.', BL_HANBANG),
 ]
 blog_cards = ''.join(f'''<div class="blog-card" onclick="window.location='journal.html'">
   <div class="blog-img">{imgref(pimg, title)}</div>
@@ -723,16 +1036,16 @@ def inf_tiktok_card(v):
 inf_cards = ''.join(inf_tiktok_card(v) for v in INF_TIKTOKS)
 
 NEW_PROD = [
-    (GL,'Glow Recipe','Watermelon Niacinamide Dew Drops','38,00','Nouveau',   ['eclat','serum','glow-recipe','nouveau','niacinamide','pores']),
-    (P3,'Beauty of Joseon','Relief Sun Rice + Probiotics SPF50+','18,90','Coup de ♥',['spf','beauty-of-joseon','bestseller','spf50','peau-sensible']),
-    (CX,'COSRX','Advanced Snail 96 Mucin Essence','22,50','',                 ['essence','cosrx','snail','hydratation','barriere']),
-    (P1,'Mixsoon','Bifida Ferment Essence 100ml','29,00','',                  ['essence','mixsoon','bifida','peau-sensible','barriere']),
-    (P5,'SKIN1004','Madagascar Centella Ampoule','21,50','',                  ['serum','skin1004','cica','centella','peau-sensible','anti-rougeurs','barriere']),
-    (DR,'IUNIK','Rosehip Vitamin C Serum 15ml','15,90','Nouveau',             ['serum','iunik','vitaminc','eclat','nouveau','hyperpigmentation']),
-    (P2,'Mixsoon','Galactomyces Ferment Essence','27,00','',                  ['essence','mixsoon','galactomyces','pores','eclat']),
-    (P8,'Huxley','Secret of Sahara Hand Cream','14,90','',                   ['creme','huxley','mains','hydratation']),
-    (HA,'Glow Recipe','Banana Soufflé Moisture Cream','35,00','Top noté',     ['creme','glow-recipe','hydratation','anti-age']),
-    (P6,'Mixsoon','Bean Essence 100ml','25,00','',                            ['essence','mixsoon','bean','anti-age','rides']),
+    (PH_GLOW,'Glow Recipe','Watermelon Niacinamide Dew Drops','38,00','Nouveau',   ['eclat','serum','glow-recipe','nouveau','niacinamide','pores']),
+    (PH_BOJSUN,'Beauty of Joseon','Relief Sun Rice + Probiotics SPF50+','18,90','Coup de ♥',['spf','beauty-of-joseon','bestseller','spf50','peau-sensible']),
+    (PH_COSRX,'COSRX','Advanced Snail 96 Mucin Essence','22,50','',                 ['essence','cosrx','snail','hydratation','barriere']),
+    (PH_MIX1,'Mixsoon','Bifida Ferment Essence 100ml','29,00','',                  ['essence','mixsoon','bifida','peau-sensible','barriere']),
+    (PH_CENT,'SKIN1004','Madagascar Centella Ampoule','21,50','',                  ['serum','skin1004','cica','centella','peau-sensible','anti-rougeurs','barriere']),
+    (PH_DALBA,'IUNIK','Rosehip Vitamin C Serum 15ml','15,90','Nouveau',             ['serum','iunik','vitaminc','eclat','nouveau','hyperpigmentation']),
+    (PH_MIX4,'Mixsoon','Galactomyces Ferment Essence','27,00','',                  ['essence','mixsoon','galactomyces','pores','eclat']),
+    (PH_HUX,'Huxley','Secret of Sahara Hand Cream','14,90','',                   ['creme','huxley','mains','hydratation']),
+    (PH_GLOW,'Glow Recipe','Banana Soufflé Moisture Cream','35,00','Top noté',     ['creme','glow-recipe','hydratation','anti-age']),
+    (PH_MIX2,'Mixsoon','Bean Essence 100ml','25,00','',                            ['essence','mixsoon','bean','anti-age','rides']),
 ]
 new_cards  = ''.join(prod_card(im,br,nm,pr,bdg,tags) for im,br,nm,pr,bdg,tags in NEW_PROD)
 best_cards = ''.join(prod_card(im,br,nm,pr,'',tags)  for im,br,nm,pr,bdg,tags in NEW_PROD[:8])
@@ -762,7 +1075,7 @@ index_body = f'''
     </div>
   </div>
   <div class="c-slide c-slide-bg-3">
-    <div class="c-slide-img">{imgref(P5,"SKIN1004 Centella","lazy")}</div>
+    <div class="c-slide-img">{imgref(PH_CENT,"SKIN1004 Centella","lazy")}</div>
     <div class="c-slide-text">
       <span class="c-tag t" data-fr="Pour peaux sensibles · SKIN1004" data-en="For sensitive skin · SKIN1004">Pour peaux sensibles · SKIN1004</span>
       <h1 class="c-title t" data-fr="Centella<br><em>Apaisante</em>" data-en="Soothing<br><em>Centella</em>">Centella<br><em>Apaisante</em></h1>
@@ -847,7 +1160,7 @@ index_body = f'''
   <span class="lbl">@sonagi.beauty</span>
   <h2 style="font-size:28px;color:var(--navy);margin-bottom:6px" class="t" data-fr="Notre communauté" data-en="Our community">Notre communauté</h2>
   <p style="font-size:13px;color:var(--muted);margin-bottom:22px">Partagez votre routine #Sonagi et gagnez 50 points Rewards</p>
-  <div class="insta-grid">{''.join(f"<div class='insta-item'>{imgref(k,'Sonagi Beauty')}</div>" for k in [SOC1,SOC2,SOC_STORY,CX,P1,DR])}</div>
+  <div class="insta-grid">{''.join(f"<div class='insta-item'>{imgref(k,'Sonagi Beauty')}</div>" for k in [SOC1,SOC2,SOC_STORY,PH_GLOW,PH_BOJ,PH_MIX4])}</div>
 </section>
 <section class="newsletter" style="background:linear-gradient(rgba(26,39,68,.55),rgba(26,39,68,.55)),url('{imgs[EMAIL_HDR]}') center/cover no-repeat;color:#fff">
   <h2 class="t" data-fr="Rejoignez la communauté" data-en="Join the community" style="color:#fff">Rejoignez la communauté</h2>
@@ -881,36 +1194,36 @@ print(f"✓ index.html — {os.path.getsize(f'{_out}/index.html')/1024:.0f} KB")
 
 # ── SKINCARE ─────────────────────────────────────────────────────────────────
 SK_PRODS = [
-    (P3,'Beauty of Joseon','Relief Sun Rice + Probiotics SPF50+','18,90','Coup de ♥',
+    (PH_BOJSUN,'Beauty of Joseon','Relief Sun Rice + Probiotics SPF50+','18,90','Coup de ♥',
      ['spf','beauty-of-joseon','bestseller','spf50','peau-sensible','peau-normale','peau-mixte']),
-    (CX,'COSRX','Advanced Snail 96 Mucin Essence','22,50','',
+    (PH_COSRX,'COSRX','Advanced Snail 96 Mucin Essence','22,50','',
      ['essence','cosrx','snail','hydratation','barriere','peau-seche','peau-sensible']),
-    (GL,'Glow Recipe','Watermelon Niacinamide Dew Drops','38,00','Nouveau',
+    (PH_GLOW,'Glow Recipe','Watermelon Niacinamide Dew Drops','38,00','Nouveau',
      ['serum','glow-recipe','niacinamide','eclat','nouveau','pores','peau-grasse','peau-mixte']),
-    (P1,'Mixsoon','Bifida Ferment Essence 100ml','29,00','',
+    (PH_MIX1,'Mixsoon','Bifida Ferment Essence 100ml','29,00','',
      ['essence','mixsoon','bifida','peau-sensible','barriere','hydratation']),
-    (P5,'SKIN1004','Madagascar Centella Ampoule','21,50','',
+    (PH_CENT,'SKIN1004','Madagascar Centella Ampoule','21,50','',
      ['serum','skin1004','cica','centella','peau-sensible','anti-rougeurs','barriere','acne']),
-    (DR,'IUNIK','Rosehip Vitamin C Serum 15ml','15,90','Nouveau',
+    (PH_DALBA,'IUNIK','Rosehip Vitamin C Serum 15ml','15,90','Nouveau',
      ['serum','iunik','vitaminc','eclat','nouveau','hyperpigmentation','peau-terne']),
-    (P2,'Mixsoon','Galactomyces Ferment Essence','27,00','',
+    (PH_MIX4,'Mixsoon','Galactomyces Ferment Essence','27,00','',
      ['essence','mixsoon','galactomyces','pores','eclat','peau-grasse','peau-mixte']),
-    (P8,'Huxley','Secret of Sahara Hand Cream','14,90','',
+    (PH_HUX,'Huxley','Secret of Sahara Hand Cream','14,90','',
      ['creme','huxley','mains','hydratation','peau-seche']),
-    (HA,'Glow Recipe','Banana Soufflé Moisture Cream 50ml','35,00','Top noté',
+    (PH_GLOW,'Glow Recipe','Banana Soufflé Moisture Cream 50ml','35,00','Top noté',
      ['creme','glow-recipe','hydratation','anti-age','rides','peau-seche','peau-normale']),
-    (P6,'Mixsoon','Bean Essence 100ml','25,00','',
+    (PH_MIX2,'Mixsoon','Bean Essence 100ml','25,00','',
      ['essence','mixsoon','bean','anti-age','rides','elasticite']),
-    (P4,'SKIN1004','Centella Water-Fit Sun SPF50+','19,90','',
+    (PH_CENT,'SKIN1004','Centella Water-Fit Sun SPF50+','19,90','',
      ['spf','skin1004','cica','centella','spf50','peau-sensible','peau-grasse']),
-    (P7,'Mixsoon','Reishi Mushroom Essence 100ml','27,00','',
+    (PH_MIX3,'Mixsoon','Reishi Mushroom Essence 100ml','27,00','',
      ['essence','mixsoon','mushroom','anti-age','rides','elasticite','peau-seche']),
 ]
 sk_hero = ''.join(cat_hero_card(img,fr,en,link=f'skincare.html?cat={tag}') for img,fr,en,tag in [
     (CAT_SPF,'Crème Solaire','Sun care','spf'),
     (CAT_SERUM,'Sérums & Essences','Serums','serum'),
     (CAT_CLEAN,'Nettoyants','Cleansers','creme'),
-    (P5,'Peaux sensibles','Sensitive','peau-sensible'),
+    (PH_CENT,'Peaux sensibles','Sensitive','peau-sensible'),
 ])
 sk_filters = filter_strip([
     ('all','Tout','All'),
@@ -942,36 +1255,36 @@ print(f"✓ skincare.html — {os.path.getsize(f'{_out}/skincare.html')/1024:.0f
 
 # ── MAQUILLAGE ───────────────────────────────────────────────────────────────
 MQ_PRODS = [
-    (P3,'Beauty of Joseon','Glaze Lip Balm — Rose Hip','12,90','Nouveau',
+    (PH_BOJ,'Beauty of Joseon','Glaze Lip Balm — Rose Hip','12,90','Nouveau',
      ['levres','baume-levres','beauty-of-joseon','soin','nouveau','teinte-nude']),
-    (GL,'Glow Recipe','Watermelon Glow Lip Pop','16,90','',
+    (PH_GLOW,'Glow Recipe','Watermelon Glow Lip Pop','16,90','',
      ['levres','gloss','glow-recipe','brillant','teinte-nude','soin']),
-    (P5,'Rom&nd','Blur Fudge Tint — Beet Red','14,50','Top noté',
+    (PH_MIX2,'Rom&nd','Blur Fudge Tint — Beet Red','14,50','Top noté',
      ['levres','tint','romand','teinte-rouge','longue-tenue']),
-    (CX,'Peripera','Ink Velvet Tint 02','11,90','',
+    (PH_COSRX,'Peripera','Ink Velvet Tint 02','11,90','',
      ['levres','tint','peripera','velours','longue-tenue']),
-    (DR,'CLIO','Waterproof Pen Liner — Black','13,90','',
+    (PH_DALBA,'CLIO','Waterproof Pen Liner — Black','13,90','',
      ['yeux','liner','clio','waterproof','longue-tenue']),
-    (P1,'Etude House','Play Color Eyes Palette — Hanami','22,00','Coup de ♥',
+    (PH_MIX1,'Etude House','Play Color Eyes Palette — Hanami','22,00','Coup de ♥',
      ['yeux','fard','etude-house','palette','coup-de-coeur']),
-    (P2,'Innisfree','No-Sebum Mineral Powder 5g','9,90','',
+    (PH_MIX4,'Innisfree','No-Sebum Mineral Powder 5g','9,90','',
      ['teint','poudre','innisfree','mat','pores']),
-    (P4,'Heimish','Dailism Blush — Peach Fog','15,90','Nouveau',
+    (PH_CENT,'Heimish','Dailism Blush — Peach Fog','15,90','Nouveau',
      ['joues','blush','heimish','nouveau']),
-    (P6,'Beauty of Joseon','Red Bean Refreshing Pore Mask','14,90','',
+    (PH_BOJ,'Beauty of Joseon','Red Bean Refreshing Pore Mask','14,90','',
      ['teint','masque','beauty-of-joseon','pores','demaquillant']),
-    (P7,'Laneige','Lip Sleeping Mask — Berry','22,90','Best-seller',
+    (PH_MIX3,'Laneige','Lip Sleeping Mask — Berry','22,90','Best-seller',
      ['levres','baume-levres','laneige','soin','nuit','bestseller']),
-    (P8,'Romand','Han All Shadow — Dusty Rose','16,50','',
+    (PH_HUX,'Romand','Han All Shadow — Dusty Rose','16,50','',
      ['yeux','fard','romand','palette']),
-    (HA,'Missha','M Signature Real Complete BB Cream SPF25','18,90','',
+    (PH_BOJSUN,'Missha','M Signature Real Complete BB Cream SPF25','18,90','',
      ['teint','cushion','missha','bb-creme','spf','couvrance']),
 ]
 mq_hero = ''.join(cat_hero_card(img,fr,en,link=f'maquillage.html?cat={tag}') for img,fr,en,tag in [
     (CAT_LIP,'Lèvres','Lips','levres'),
-    (GL,'Teint','Foundation','teint'),
+    (PH_BOJ,'Teint','Foundation','teint'),
     (CAT_EYE,'Yeux','Eyes','yeux'),
-    (P5,'Joues','Cheeks','joues'),
+    (PH_GLOW,'Joues','Cheeks','joues'),
 ])
 mq_filters = filter_strip([
     ('all','Tout','All'),
@@ -1000,36 +1313,36 @@ print(f"✓ maquillage.html — {os.path.getsize(f'{_out}/maquillage.html')/1024
 
 # ── HAIRCARE ─────────────────────────────────────────────────────────────────
 HC_PRODS = [
-    (P6,"La'dor","Argan Oil Shampoo 530ml",'19,90','Best-seller',
+    (PH_MIX2,"La'dor","Argan Oil Shampoo 530ml",'19,90','Best-seller',
      ['shampooing','lador','argan','cheveux-secs','bestseller','nutrition']),
-    (P7,'Mise En Scene','Perfect Serum Original 80ml','16,90','',
+    (PH_MIX3,'Mise En Scene','Perfect Serum Original 80ml','16,90','',
      ['serum','mise-en-scene','lissant','brillance','frisottis']),
-    (CX,'Masil','8 Seconds Salon Hair Mask 200ml','22,50','Coup de ♥',
+    (PH_COSRX,'Masil','8 Seconds Salon Hair Mask 200ml','22,50','Coup de ♥',
      ['masque','masil','nutrition','coup-de-coeur','cheveux-abimes','reparation']),
-    (P1,'Derma Factory','Scalp Clinic Shampoo 300ml','24,90','Nouveau',
+    (PH_MIX1,'Derma Factory','Scalp Clinic Shampoo 300ml','24,90','Nouveau',
      ['shampooing','derma-factory','cuir-chevelu','nouveau','pellicules']),
-    (GL,"La'dor","Tea Tree Scalp Hair Pack",'18,90','',
+    (PH_GLOW,"La'dor","Tea Tree Scalp Hair Pack",'18,90','',
      ['masque','lador','cuir-chevelu','purifiant','pellicules']),
-    (P3,'Masil','3 Salon CMC Shampoo 300ml','19,50','',
+    (PH_BOJSUN,'Masil','3 Salon CMC Shampoo 300ml','19,50','',
      ['shampooing','masil','reparation','cheveux-abimes','couleur']),
-    (DR,'Mise En Scene','Perfect Repair Treatment 200ml','15,90','',
+    (PH_DALBA,'Mise En Scene','Perfect Repair Treatment 200ml','15,90','',
      ['masque','mise-en-scene','reparation','cheveux-abimes','pointes']),
-    (P2,"La'dor","Hydro LPP Treatment 150ml",'20,90','Top noté',
+    (PH_MIX4,'La\'dor','Hydro LPP Treatment 150ml','20,90','Top noté',
      ['masque','lador','hydratation','nutrition','cheveux-secs']),
-    (P4,'Masil','6 Lactobacillus Hair Perfume Ampoule','16,50','Nouveau',
+    (PH_CENT,'Masil','6 Lactobacillus Hair Perfume Ampoule','16,50','Nouveau',
      ['serum','masil','probiotiques','nouveau','brillance','parfum']),
-    (P8,'Esthetic House','CP-1 Protein Treatment 250ml','28,90','',
+    (PH_HUX,'Esthetic House','CP-1 Protein Treatment 250ml','28,90','',
      ['masque','esthetic-house','proteine','reparation','cheveux-abimes','pointes']),
-    (HA,"La'dor","Keratin LPP Shampoo 530ml",'19,90','',
+    (PH_BOJ,"La'dor","Keratin LPP Shampoo 530ml",'19,90','',
      ['shampooing','lador','keratine','lissant','frisottis']),
-    (P5,'Masil','5 Probiotics Sealing Ampoule 15ml x8','21,90','',
+    (PH_MIX2,'Masil','5 Probiotics Sealing Ampoule 15ml x8','21,90','',
      ['serum','masil','probiotiques','brillance','protection-thermique']),
 ]
 hc_hero = ''.join(cat_hero_card(img,fr,en,link=f'haircare.html?cat={tag}') for img,fr,en,tag in [
-    (P6,'Shampooings','Shampoos','shampooing'),
+    (PH_MIX1,'Shampooings','Shampoos','shampooing'),
     (CAT_MASK,'Masques & Soins','Masks','masque'),
-    (P7,'Sérums capillaires','Hair serums','serum'),
-    (GL,'Cuir chevelu','Scalp','cuir-chevelu'),
+    (PH_MIX2,'Sérums capillaires','Hair serums','serum'),
+    (PH_GLOW,'Cuir chevelu','Scalp','cuir-chevelu'),
 ])
 hc_filters = filter_strip([
     ('all','Tout','All'),
@@ -1099,12 +1412,12 @@ prod_body = f'''<div class="prod-page">
   {breadcrumb([('Accueil','Home','index.html'),('Skincare','Skincare','skincare.html'),('Sérums','Serums',None)])}
   <div class="prod-layout">
     <div class="prod-gallery">
-      <img class="prod-main-img" id="main-img" src="" data-imgkey="GL" alt="Watermelon Glow Niacinamide Dew Drops" loading="eager">
+      <img class="prod-main-img" id="main-img" src="" data-imgkey="PH_GLOW" alt="Watermelon Glow Niacinamide Dew Drops" loading="eager">
       <div class="prod-thumbs">
-        <img class="prod-thumb active" src="" data-imgkey="GL" onclick="setMainImg(this)" alt="">
-        <img class="prod-thumb" src="" data-imgkey="P4" onclick="setMainImg(this)" alt="">
-        <img class="prod-thumb" src="" data-imgkey="DR" onclick="setMainImg(this)" alt="">
-        <img class="prod-thumb" src="" data-imgkey="P5" onclick="setMainImg(this)" alt="">
+        <img class="prod-thumb active" src="" data-imgkey="PH_GLOW" onclick="setMainImg(this)" alt="">
+        <img class="prod-thumb" src="" data-imgkey="PH_COSRX" onclick="setMainImg(this)" alt="">
+        <img class="prod-thumb" src="" data-imgkey="PH_DALBA" onclick="setMainImg(this)" alt="">
+        <img class="prod-thumb" src="" data-imgkey="PH_CENT" onclick="setMainImg(this)" alt="">
       </div>
     </div>
     <div>
@@ -1135,10 +1448,10 @@ prod_body = f'''<div class="prod-page">
 <div class="related-section">
   <h2 style="font-size:26px;color:var(--navy);margin-bottom:22px">Vous pourriez aussi aimer</h2>
   <div class="prods-grid">
-    {prod_card_s(P3,'Beauty of Joseon','Relief Sun Rice + Probiotics SPF50+','18,90')}
-    {prod_card_s(CX,'COSRX','Advanced Snail 96 Mucin Essence','22,50')}
-    {prod_card_s(P1,'Mixsoon','Bifida Ferment Essence 100ml','29,00')}
-    {prod_card_s(P5,'SKIN1004','Madagascar Centella Ampoule','21,50')}
+    {prod_card_s(PH_BOJSUN,'Beauty of Joseon','Relief Sun Rice + Probiotics SPF50+','18,90')}
+    {prod_card_s(PH_COSRX,'COSRX','Advanced Snail 96 Mucin Essence','22,50')}
+    {prod_card_s(PH_MIX1,'Mixsoon','Bifida Ferment Essence 100ml','29,00')}
+    {prod_card_s(PH_CENT,'SKIN1004','Madagascar Centella Ampoule','21,50')}
   </div>
 </div>'''
 with open(f'{_out}/produit.html','w',encoding='utf-8') as f:
@@ -1189,7 +1502,7 @@ panier_body = f'''<div class="checkout-wrap">
         <div class="qty-ctrl"><button class="qty-btn">−</button><span class="qty-val">1</span><button class="qty-btn">+</button></div>
         <p class="ci-price" style="margin-top:6px">{price} €</p></div>
       <button style="background:none;border:none;color:var(--muted);font-size:20px;line-height:1">×</button>
-    </div>""" for ik,brand,name,price in [('GL','Glow Recipe','Watermelon Glow Niacinamide Dew Drops 30ml','38,00'),('P3','Beauty of Joseon','Relief Sun Rice + Probiotics SPF50+','18,90'),('CX','COSRX','Advanced Snail 96 Mucin Power Essence 100ml','22,50')])}
+    </div>""" for ik,brand,name,price in [('PH_GLOW','Glow Recipe','Watermelon Glow Niacinamide Dew Drops 30ml','38,00'),('PH_BOJSUN','Beauty of Joseon','Relief Sun Rice + Probiotics SPF50+','18,90'),('PH_COSRX','COSRX','Advanced Snail 96 Mucin Power Essence 100ml','22,50')])}
     <div style="background:var(--peach-l);border:1px solid var(--peach);padding:12px 14px;margin-top:14px;font-size:11px;color:var(--navy)">★ Vous allez gagner 79 points Sonagi Rewards avec cette commande</div>
     <div style="margin-top:32px;padding-top:28px;border-top:1px solid var(--border)">
       <h3 style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--navy);margin-bottom:16px">Coordonnées</h3>
@@ -1208,7 +1521,8 @@ panier_body = f'''<div class="checkout-wrap">
         <div class="card-grid"><div class="card-field">MM / AA</div><div class="card-field">CVC</div></div>
         <div style="font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:6px">🔒 Paiement sécurisé via Stripe · Données chiffrées</div>
       </div>
-      <button class="checkout-btn" onclick="window.location='confirmation.html'">Confirmer ma commande → 79,40 €</button>
+      <button class="checkout-btn" id="checkout-btn" onclick="handleCheckout()">Confirmer ma commande → 79,40 €</button>
+      <div id="checkout-msg" style="display:none;text-align:center;padding:14px;margin-top:10px;background:var(--peach-l);border:1px solid var(--peach);border-radius:8px;font-size:13px;color:var(--navy)"></div>
     </div>
   </div>
   <div class="checkout-aside">
@@ -1251,7 +1565,7 @@ ARTICLES = [
     ('ingredients','Ingrédients','Hanbang : les ingrédients ancestraux coréens','28 Mar 2026','@jameswelshskin',BL_HANBANG,'Ginseng, centella, thé vert — les secrets de la pharmacopée coréenne.'),
     ('spf','SPF','SPF en K-beauty : guide complet','18 Mar 2026','@hyram',BL_SPF,'Pas de glass skin sans protection solaire. Les SPF coréens qui changent tout.'),
     ('actifs','Actifs','Acids en K-beauty : AHA, BHA, PHA décryptés','10 Mar 2026','@gothamista',BL_ACIDS,'Les exfoliants chimiques coréens. Comment les intégrer sans irriter.'),
-    ('guides','Guide','Décoder les étiquettes INCI en 5 minutes','1 Mar 2026','@labmuffin',CX,'Vous voyez des noms scientifiques incompréhensibles ? Ce guide change tout.'),
+    ('guides','Guide','Décoder les étiquettes INCI en 5 minutes','1 Mar 2026','@labmuffin',PH_COSRX,'Vous voyez des noms scientifiques incompréhensibles ? Ce guide change tout.'),
     ('routine','Routine','La routine 10 étapes : mythe ou réalité ?','20 Fév 2026','@hyram',BL_ROUTINE,'Faut-il vraiment 10 étapes ? Décryptage et version simplifiée.'),
     ('ingredients','Ingrédients','Collagène en K-beauty : tout comprendre','10 Fév 2026','@jameswelshskin',BL_COLLAGEN,'Topique ou oral ? Les formules coréennes au collagène qui fonctionnent.'),
     ('guides','Guide','K-beauty pour hommes : par où commencer','1 Fév 2026','@gothamista',BL_MEN,'Routines minimalistes, textures légères — la K-beauty au masculin.'),
@@ -1280,12 +1594,12 @@ MC_CSS = """.mc-wrap{max-width:1360px;margin:0 auto;padding:32px 16px 80px}
 @media(min-width:768px){.mc-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1024px){.mc-grid{grid-template-columns:repeat(3,1fr)}}"""
 MC_EVENTS = [
-    (P6,'online','gratuit','Webinaire','10 Mai 2026','14h00','1h30','Masterclass : Lire une étiquette INCI','Décryptez les ingrédients derrière les noms scientifiques.','Gratuit','89'),
-    (GL,'online','payant','Live interactif','24 Mai 2026','15h00','1h30','Atelier Glass Skin','Routine complète en direct : double nettoyage, essence, sérum, SPF.','12 €','45'),
-    (P7,'live','payant','Atelier physique','7 Juin 2026','10h00','3h','Workshop : Bâtir sa routine K-beauty','Atelier en petit groupe de 12. Diagnostic de peau individuel + produits fournis.','45 €','12'),
-    (P3,'online','payant','Expert session','21 Juin 2026','16h00','1h30','Masterclass : Acides & Actifs','AHA, BHA, PHA, niacinamide — comment les associer sans agresser votre peau.','15 €','60'),
-    (P4,'online','payant','Live interactif','12 Juil 2026','14h00','1h30','Routine matin vs soir','Découvrez comment adapter votre routine selon le moment de la journée.','12 €','60'),
-    (CX,'live','payant','Atelier physique','26 Juil 2026','10h00','2h30','Diagnostic de peau : atelier expert','Diagnostic personnalisé. Construction de votre routine sur mesure.','65 €','8'),
+    (PH_COSRX,'online','gratuit','Webinaire','10 Mai 2026','14h00','1h30','Masterclass : Lire une étiquette INCI','Décryptez les ingrédients derrière les noms scientifiques.','Gratuit','89'),
+    (BL_GLASS,'online','payant','Live interactif','24 Mai 2026','15h00','1h30','Atelier Glass Skin','Routine complète en direct : double nettoyage, essence, sérum, SPF.','12 €','45'),
+    (PH_MIX1,'live','payant','Atelier physique','7 Juin 2026','10h00','3h','Workshop : Bâtir sa routine K-beauty','Atelier en petit groupe de 12. Diagnostic de peau individuel + produits fournis.','45 €','12'),
+    (BL_ACIDS,'online','payant','Expert session','21 Juin 2026','16h00','1h30','Masterclass : Acides & Actifs','AHA, BHA, PHA, niacinamide — comment les associer sans agresser votre peau.','15 €','60'),
+    (PH_BOJ,'online','payant','Live interactif','12 Juil 2026','14h00','1h30','Routine matin vs soir','Découvrez comment adapter votre routine selon le moment de la journée.','12 €','60'),
+    (PH_CENT,'live','payant','Atelier physique','26 Juil 2026','10h00','2h30','Diagnostic de peau : atelier expert','Diagnostic personnalisé. Construction de votre routine sur mesure.','65 €','8'),
 ]
 mc_cards = ''.join(f'<div class="evt-full-card" data-tags="{dtype} {dfree}"><div class="evt-full-img">{imgref(img,title)}</div><div class="evt-full-body"><span class="evt-tag {"online" if dtype=="online" else "inperson"}">{tag}</span><h3 class="evt-full-title">{title}</h3><div class="evt-meta" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px"><span>📅 {date}</span><span>🕐 {time}</span><span>⏱ {dur}</span></div><p class="evt-full-desc">{desc}</p><div class="evt-full-footer"><div><span class="evt-full-price">{price}</span><span style="font-size:11px;color:var(--muted);margin-left:6px">· {spots} places</span></div><button class="evt-reserve">Réserver</button></div></div></div>' for img,dtype,dfree,tag,date,time,dur,title,desc,price,spots in MC_EVENTS)
 mc_filters = filter_strip([('all','Tous','All'),('online','En ligne','Online'),('live','En présentiel','In person'),('gratuit','Gratuits','Free')], '.evt-full-card')
