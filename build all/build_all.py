@@ -35,6 +35,8 @@ BR_COSRX    = 'BR_COSRX'
 BR_SBMI     = 'BR_SBMI'
 BR_LAN      = 'BR_LAN'
 BR_INN      = 'BR_INN'
+BR_BOJ      = 'BR_BOJ'
+BR_ANUA     = 'BR_ANUA'
 BL_GLASS    = 'BL_GLASS'
 BL_DOUBLE   = 'BL_DOUBLE'
 BL_HANBANG  = 'BL_HANBANG'
@@ -64,6 +66,8 @@ _visuals = {
     BR_SBMI:     '../images/visuals/sonagi-brand_somebymi.png',
     BR_LAN:      '../images/visuals/sonagi-brand_laneige.png',
     BR_INN:      '../images/visuals/sonagi-brand_innisfree.png',
+    BR_BOJ:      '../images/visuals/sonagi-brand_boj.png.jpg',
+    BR_ANUA:     '../images/visuals/sonagi-brand_anua.png',
     BL_GLASS:    '../images/visuals/sonagi-blog_glass.png',
     BL_DOUBLE:   '../images/visuals/sonagi-blog_double.png',
     BL_HANBANG:  '../images/visuals/sonagi-blog_hanbang.png',
@@ -1231,7 +1235,7 @@ def _brand_row(l):
 brand_rows = ''.join(_brand_row(l) for l in sorted(by_letter.keys()))
 MARQUES_CSS = '.brands-hero{text-align:center;padding:52px 20px 40px}.brands-hero h1{font-family:"Cormorant Garamond",serif;font-size:60px;font-weight:300;color:var(--navy);margin-bottom:28px}.brand-search-pill{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:40px;padding:12px 20px;background:#fff;max-width:520px;margin:0 auto 16px}.brand-search-pill input{flex:1;border:none;outline:none;font-size:14px;background:transparent}.alpha-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;max-width:600px;margin:0 auto 8px}.brand-name:hover{color:var(--navy)!important}.feat-brands{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:800px;margin:0 auto 48px;padding:0 20px}.feat-brand{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 20px;text-decoration:none;transition:transform .2s,box-shadow .2s}.feat-brand:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,39,68,.08)}.feat-brand img{width:48px;height:48px;object-fit:contain}.feat-brand span{font-family:"Cormorant Garamond",serif;font-size:20px;color:var(--navy)}@media(min-width:768px){.brands-hero h1{font-size:80px}.brand-name{width:25%!important;font-size:20px!important}.feat-brands{grid-template-columns:repeat(4,1fr)}}'
 _feat_brands = ''.join(f'<a href="skincare.html" class="feat-brand">{imgref(img,name)}<span>{name}</span></a>' for img,name in [
-    (BR_COSRX,'COSRX'),(BR_SBMI,'Some By Mi'),(BR_LAN,'Laneige'),(BR_INN,'Innisfree'),
+    (BR_COSRX,'COSRX'),(BR_BOJ,'Beauty of Joseon'),(BR_SBMI,'Some By Mi'),(BR_ANUA,'Anua'),(BR_LAN,'Laneige'),(BR_INN,'Innisfree'),
 ])
 marques_body = f'<div class="brands-hero"><h1>Marques</h1><div class="brand-search-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" placeholder="Rechercher une marque…" oninput="filterBrands(this.value)"></div><p style="font-size:12px;color:var(--muted);margin-bottom:16px">{len(BRAND_LIST)} marques</p><nav class="alpha-nav">{alpha_nav}</nav></div><div class="feat-brands">{_feat_brands}</div><div style="max-width:1200px;margin:0 auto;padding:0 20px 80px">{brand_rows}</div>'
 with open(f'{_out}/marques.html','w',encoding='utf-8') as f:
