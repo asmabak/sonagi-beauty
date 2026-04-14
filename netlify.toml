@@ -1,6 +1,6 @@
 [build]
+  command = "echo 'No build needed'"
   publish = "files"
-  functions = "netlify/functions"
 
 [build.environment]
   # SHOP_OPEN = "false"  — set to "true" in Netlify dashboard when ready to sell
