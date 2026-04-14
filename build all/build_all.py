@@ -31,6 +31,7 @@ CAT_MASK    = 'CAT_MASK'
 CAT_EYE     = 'CAT_EYE'
 CAT_LIP     = 'CAT_LIP'
 CAT_MEN     = 'CAT_MEN'
+CAT_SPF     = 'CAT_SPF'
 BR_COSRX    = 'BR_COSRX'
 BR_SBMI     = 'BR_SBMI'
 BR_LAN      = 'BR_LAN'
@@ -62,6 +63,7 @@ _visuals = {
     CAT_EYE:     '../images/visuals/sonagi-cat_eyecare.png',
     CAT_LIP:     '../images/visuals/sonagi-cat_lip.png',
     CAT_MEN:     '../images/visuals/sonagi-cat_men.png',
+    CAT_SPF:     '../images/visuals/sonagi-cat_spf.png.png',
     BR_COSRX:    '../images/visuals/sonagi-brand_cosrx.png',
     BR_SBMI:     '../images/visuals/sonagi-brand_somebymi.png',
     BR_LAN:      '../images/visuals/sonagi-brand_laneige.png',
@@ -905,7 +907,7 @@ SK_PRODS = [
      ['essence','mixsoon','mushroom','anti-age','rides','elasticite','peau-seche']),
 ]
 sk_hero = ''.join(cat_hero_card(img,fr,en,link=f'skincare.html?cat={tag}') for img,fr,en,tag in [
-    (P3,'Crème Solaire','Sun care','spf'),
+    (CAT_SPF,'Crème Solaire','Sun care','spf'),
     (CAT_SERUM,'Sérums & Essences','Serums','serum'),
     (CAT_CLEAN,'Nettoyants','Cleansers','creme'),
     (P5,'Peaux sensibles','Sensitive','peau-sensible'),
