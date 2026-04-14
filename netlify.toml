@@ -2,10 +2,4 @@
   command = "echo 'No build needed'"
   publish = "files"
 
-[build.environment]
-  # SHOP_OPEN = "false"  — set to "true" in Netlify dashboard when ready to sell
-  # STRIPE_SECRET_KEY    — set in Netlify dashboard (Environment Variables)
-  # ANTHROPIC_API_KEY    — set in Netlify dashboard (Environment Variables)
-
-
 # Images are inside files/images/ — no redirects needed
