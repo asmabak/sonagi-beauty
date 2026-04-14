@@ -4,7 +4,7 @@ SONAGI BEAUTY — Site generator v5
 Reads from template.pkl (shared CSS/JS) + extracted_imgs.pkl
 Never edit HTML files directly — always edit source and regenerate.
 """
-import pickle, os, re
+import pickle, os, re, shutil, glob
 from collections import defaultdict
 
 # ── Load assets ─────────────────────────────────────────────────────────────
@@ -12,6 +12,15 @@ _dir = os.path.dirname(os.path.abspath(__file__))
 _root = os.path.dirname(_dir)
 _out = os.path.join(_root, 'files')
 os.makedirs(_out, exist_ok=True)
+
+# Copy all visuals into the output folder so the site is self-contained
+_img_src = os.path.join(_root, 'images', 'visuals')
+_img_dst = os.path.join(_out, 'images', 'visuals')
+if os.path.isdir(_img_src):
+    os.makedirs(_img_dst, exist_ok=True)
+    for f in glob.glob(os.path.join(_img_src, '*')):
+        shutil.copy2(f, _img_dst)
+    print(f"✓ Copied {len(os.listdir(_img_dst))} images → files/images/visuals/")
 
 with open(os.path.join(_dir, 'imgs_small.pkl'), 'rb') as f:
     imgs = pickle.load(f)
@@ -70,48 +79,48 @@ BL_ROUTINE2 = 'BL_ROUTINE2'  # updated blog routine image
 
 # Map visual keys → file paths (relative to output HTML location)
 _visuals = {
-    HERO1:       '../images/visuals/sonagi-home_hero_1.png',
-    HERO2:       '../images/visuals/sonagi-home_hero2.png.jpg',
-    CAT_SERUM:   '../images/visuals/sonagi-cat_serum.png.jpg',
-    CAT_CLEAN:   '../images/visuals/sonagi-cat_cleanser.png',
-    CAT_MASK:    '../images/visuals/sonagi-cat_mask.png',
-    CAT_EYE:     '../images/visuals/sonagi-cat_eyecare.png',
-    CAT_LIP:     '../images/visuals/sonagi-cat_lip.png',
-    CAT_MEN:     '../images/visuals/sonagi-cat_men.png',
-    CAT_SPF:     '../images/visuals/sonagi-cat_spf.png.png',
-    BR_COSRX:    '../images/visuals/sonagi-brand_cosrx.png',
-    BR_SBMI:     '../images/visuals/sonagi-brand_somebymi.png',
-    BR_LAN:      '../images/visuals/sonagi-brand_laneige.png',
-    BR_INN:      '../images/visuals/sonagi-brand_innisfree.png',
-    BR_BOJ:      '../images/visuals/sonagi-brand_boj.png.jpg',
-    BR_ANUA:     '../images/visuals/sonagi-brand_anua.png',
-    BL_GLASS:    '../images/visuals/sonagi-blog_glass.png',
-    BL_DOUBLE:   '../images/visuals/sonagi-blog_double.png',
-    BL_HANBANG:  '../images/visuals/sonagi-blog_hanbang.png',
-    BL_SPF:      '../images/visuals/sonagi-blog_spf.png',
-    BL_ACIDS:    '../images/visuals/sonagi-blog_acids.png',
-    BL_COLLAGEN: '../images/visuals/sonagi-blog_collagen.png',
-    BL_ROUTINE:  '../images/visuals/sonagi-blog_routine.jpg',
-    BL_MEN:      '../images/visuals/sonagi-blog_men.jpg',
-    SOC1:        '../images/visuals/sonagi-social_feed_1.png',
-    SOC2:        '../images/visuals/sonagi-social_feed_2.png',
-    EMAIL_HDR:   '../images/visuals/sonagi-email_header.png',
-    PROD_CLEAN:  '../images/visuals/sonagi-prod_card_clean.png',
-    PROD_MARBLE: '../images/visuals/sonagi-prod_card_marble.png',
-    SOC_STORY:   '../images/visuals/sonagi-social_story_face.png',
-    PH_GLOW:     '../images/visuals/alexandra-tran-zZf7RA5aSTc-unsplash.jpg',
-    PH_CENT:     '../images/visuals/anna-keibalo-4W4zySfM86k-unsplash.jpg',
-    PH_DALBA:    '../images/visuals/duong-ngan-CI5RYLUO6B4-unsplash.jpg',
-    PH_COSRX:    '../images/visuals/elena-soroka-jEsaxA6gD2c-unsplash.jpg',
-    PH_MIX1:     '../images/visuals/maria-lupan-0U4IyX7Zwhg-unsplash.jpg',
-    PH_BOJ:      '../images/visuals/maria-lupan-2gtMeWc5HBc-unsplash.jpg',
-    PH_MIX2:     '../images/visuals/maria-lupan-5bPAkTyPj7E-unsplash.jpg',
-    PH_MIX3:     '../images/visuals/maria-lupan-OZzBzjYlw3I-unsplash.jpg',
-    PH_HUX:      '../images/visuals/maria-lupan-UYJTgxZtUmk-unsplash.jpg',
-    PH_MIX4:     '../images/visuals/maria-lupan-gVB7Rjp7dZg-unsplash.jpg',
-    PH_BOJSUN:   '../images/visuals/mona-jain-VG5xt6U9hQY-unsplash.jpg',
-    BL_MEN2:     '../images/visuals/sonagi-blog_men2.png',
-    BL_ROUTINE2: '../images/visuals/sonagi-blog_routine2.png',
+    HERO1:       'images/visuals/sonagi-home_hero_1.png',
+    HERO2:       'images/visuals/sonagi-home_hero2.png.jpg',
+    CAT_SERUM:   'images/visuals/sonagi-cat_serum.png.jpg',
+    CAT_CLEAN:   'images/visuals/sonagi-cat_cleanser.png',
+    CAT_MASK:    'images/visuals/sonagi-cat_mask.png',
+    CAT_EYE:     'images/visuals/sonagi-cat_eyecare.png',
+    CAT_LIP:     'images/visuals/sonagi-cat_lip.png',
+    CAT_MEN:     'images/visuals/sonagi-cat_men.png',
+    CAT_SPF:     'images/visuals/sonagi-cat_spf.png.png',
+    BR_COSRX:    'images/visuals/sonagi-brand_cosrx.png',
+    BR_SBMI:     'images/visuals/sonagi-brand_somebymi.png',
+    BR_LAN:      'images/visuals/sonagi-brand_laneige.png',
+    BR_INN:      'images/visuals/sonagi-brand_innisfree.png',
+    BR_BOJ:      'images/visuals/sonagi-brand_boj.png.jpg',
+    BR_ANUA:     'images/visuals/sonagi-brand_anua.png',
+    BL_GLASS:    'images/visuals/sonagi-blog_glass.png',
+    BL_DOUBLE:   'images/visuals/sonagi-blog_double.png',
+    BL_HANBANG:  'images/visuals/sonagi-blog_hanbang.png',
+    BL_SPF:      'images/visuals/sonagi-blog_spf.png',
+    BL_ACIDS:    'images/visuals/sonagi-blog_acids.png',
+    BL_COLLAGEN: 'images/visuals/sonagi-blog_collagen.png',
+    BL_ROUTINE:  'images/visuals/sonagi-blog_routine.jpg',
+    BL_MEN:      'images/visuals/sonagi-blog_men.jpg',
+    SOC1:        'images/visuals/sonagi-social_feed_1.png',
+    SOC2:        'images/visuals/sonagi-social_feed_2.png',
+    EMAIL_HDR:   'images/visuals/sonagi-email_header.png',
+    PROD_CLEAN:  'images/visuals/sonagi-prod_card_clean.png',
+    PROD_MARBLE: 'images/visuals/sonagi-prod_card_marble.png',
+    SOC_STORY:   'images/visuals/sonagi-social_story_face.png',
+    PH_GLOW:     'images/visuals/alexandra-tran-zZf7RA5aSTc-unsplash.jpg',
+    PH_CENT:     'images/visuals/anna-keibalo-4W4zySfM86k-unsplash.jpg',
+    PH_DALBA:    'images/visuals/duong-ngan-CI5RYLUO6B4-unsplash.jpg',
+    PH_COSRX:    'images/visuals/elena-soroka-jEsaxA6gD2c-unsplash.jpg',
+    PH_MIX1:     'images/visuals/maria-lupan-0U4IyX7Zwhg-unsplash.jpg',
+    PH_BOJ:      'images/visuals/maria-lupan-2gtMeWc5HBc-unsplash.jpg',
+    PH_MIX2:     'images/visuals/maria-lupan-5bPAkTyPj7E-unsplash.jpg',
+    PH_MIX3:     'images/visuals/maria-lupan-OZzBzjYlw3I-unsplash.jpg',
+    PH_HUX:      'images/visuals/maria-lupan-UYJTgxZtUmk-unsplash.jpg',
+    PH_MIX4:     'images/visuals/maria-lupan-gVB7Rjp7dZg-unsplash.jpg',
+    PH_BOJSUN:   'images/visuals/mona-jain-VG5xt6U9hQY-unsplash.jpg',
+    BL_MEN2:     'images/visuals/sonagi-blog_men2.png',
+    BL_ROUTINE2: 'images/visuals/sonagi-blog_routine2.png',
 }
 imgs.update(_visuals)
 

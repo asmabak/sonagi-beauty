@@ -7,7 +7,5 @@
   # STRIPE_SECRET_KEY    — set in Netlify dashboard (Environment Variables)
   # ANTHROPIC_API_KEY    — set in Netlify dashboard (Environment Variables)
 
-[[redirects]]
-  from = "/images/*"
-  to = "/images/:splat"
-  status = 200
+
+# Images are inside files/images/ — no redirects needed
