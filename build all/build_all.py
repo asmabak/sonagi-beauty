@@ -8,14 +8,78 @@ import pickle, os, re
 from collections import defaultdict
 
 # ── Load assets ─────────────────────────────────────────────────────────────
-with open('/home/claude/imgs_small.pkl', 'rb') as f:
+_dir = os.path.dirname(os.path.abspath(__file__))
+_root = os.path.dirname(_dir)
+_out = os.path.join(_root, 'files')
+os.makedirs(_out, exist_ok=True)
+
+with open(os.path.join(_dir, 'imgs_small.pkl'), 'rb') as f:
     imgs = pickle.load(f)
-with open('/home/claude/sonagi/template.pkl', 'rb') as f:
+with open(os.path.join(_dir, 'template.pkl'), 'rb') as f:
     t = pickle.load(f)
 
 P3='P3'; CX='CX'; GL='GL'; P1='P1'
 P5='P5'; DR='DR'; P2='P2'; P8='P8'
 HA='HA'; P6='P6'; P4='P4'; P7='P7'
+
+# ── Visual image keys (file-path references for large visuals) ──────────────
+HERO1       = 'HERO1'
+HERO2       = 'HERO2'
+CAT_SERUM   = 'CAT_SERUM'
+CAT_CLEAN   = 'CAT_CLEAN'
+CAT_MASK    = 'CAT_MASK'
+CAT_EYE     = 'CAT_EYE'
+CAT_LIP     = 'CAT_LIP'
+CAT_MEN     = 'CAT_MEN'
+BR_COSRX    = 'BR_COSRX'
+BR_SBMI     = 'BR_SBMI'
+BR_LAN      = 'BR_LAN'
+BR_INN      = 'BR_INN'
+BL_GLASS    = 'BL_GLASS'
+BL_DOUBLE   = 'BL_DOUBLE'
+BL_HANBANG  = 'BL_HANBANG'
+BL_SPF      = 'BL_SPF'
+BL_ACIDS    = 'BL_ACIDS'
+BL_COLLAGEN = 'BL_COLLAGEN'
+BL_ROUTINE  = 'BL_ROUTINE'
+BL_MEN      = 'BL_MEN'
+SOC1        = 'SOC1'
+SOC2        = 'SOC2'
+EMAIL_HDR   = 'EMAIL_HDR'
+PROD_CLEAN  = 'PROD_CLEAN'
+PROD_MARBLE = 'PROD_MARBLE'
+SOC_STORY   = 'SOC_STORY'
+
+# Map visual keys → file paths (relative to output HTML location)
+_visuals = {
+    HERO1:       '../images/visuals/sonagi-home_hero_1.png',
+    HERO2:       '../images/visuals/sonagi-home_hero2.png.jpg',
+    CAT_SERUM:   '../images/visuals/sonagi-cat_serum.png.jpg',
+    CAT_CLEAN:   '../images/visuals/sonagi-cat_cleanser.png',
+    CAT_MASK:    '../images/visuals/sonagi-cat_mask.png',
+    CAT_EYE:     '../images/visuals/sonagi-cat_eyecare.png',
+    CAT_LIP:     '../images/visuals/sonagi-cat_lip.png',
+    CAT_MEN:     '../images/visuals/sonagi-cat_men.png',
+    BR_COSRX:    '../images/visuals/sonagi-brand_cosrx.png',
+    BR_SBMI:     '../images/visuals/sonagi-brand_somebymi.png',
+    BR_LAN:      '../images/visuals/sonagi-brand_laneige.png',
+    BR_INN:      '../images/visuals/sonagi-brand_innisfree.png',
+    BL_GLASS:    '../images/visuals/sonagi-blog_glass.png',
+    BL_DOUBLE:   '../images/visuals/sonagi-blog_double.png',
+    BL_HANBANG:  '../images/visuals/sonagi-blog_hanbang.png',
+    BL_SPF:      '../images/visuals/sonagi-blog_spf.png',
+    BL_ACIDS:    '../images/visuals/sonagi-blog_acids.png',
+    BL_COLLAGEN: '../images/visuals/sonagi-blog_collagen.png',
+    BL_ROUTINE:  '../images/visuals/sonagi-blog_routine.jpg',
+    BL_MEN:      '../images/visuals/sonagi-blog_men.jpg',
+    SOC1:        '../images/visuals/sonagi-social_feed_1.png',
+    SOC2:        '../images/visuals/sonagi-social_feed_2.png',
+    EMAIL_HDR:   '../images/visuals/sonagi-email_header.png',
+    PROD_CLEAN:  '../images/visuals/sonagi-prod_card_clean.png',
+    PROD_MARBLE: '../images/visuals/sonagi-prod_card_marble.png',
+    SOC_STORY:   '../images/visuals/sonagi-social_story_face.png',
+}
+imgs.update(_visuals)
 
 # Build inline image JS - embeds all images directly in HTML
 _img_pairs = ',\n  '.join(f'"{k}": "{v}"' for k, v in imgs.items())
@@ -674,7 +738,7 @@ index_body = f'''
   <button class="c-prev" onclick="moveSlide(-1)">&#8249;</button>
   <button class="c-next" onclick="moveSlide(1)">&#8250;</button>
   <div class="c-slide active c-slide-bg-1">
-    <div class="c-slide-img">{imgref(GL,"Glow Recipe Dew Drops","eager")}</div>
+    <div class="c-slide-img">{imgref(HERO1,"Sonagi Beauty — K-beauty authentique","eager")}</div>
     <div class="c-slide-text">
       <span class="c-tag t" data-fr="Nouveauté · Glow Recipe" data-en="New arrival · Glow Recipe">Nouveauté · Glow Recipe</span>
       <h1 class="c-title t" data-fr="Watermelon<br><em>Glow</em>" data-en="Watermelon<br><em>Glow</em>">Watermelon<br><em>Glow</em></h1>
@@ -683,7 +747,7 @@ index_body = f'''
     </div>
   </div>
   <div class="c-slide c-slide-bg-2">
-    <div class="c-slide-img">{imgref(P3,"Beauty of Joseon SPF","lazy")}</div>
+    <div class="c-slide-img">{imgref(HERO2,"Sonagi Beauty — K-beauty coréenne","lazy")}</div>
     <div class="c-slide-text">
       <span class="c-tag t" data-fr="Best-seller · Beauty of Joseon" data-en="Best-seller · Beauty of Joseon">Best-seller · Beauty of Joseon</span>
       <h1 class="c-title t" data-fr="Le SPF<br><em>coréen</em>" data-en="The Korean<br><em>SPF</em>">Le SPF<br><em>coréen</em></h1>
@@ -777,10 +841,10 @@ index_body = f'''
   <span class="lbl">@sonagi.beauty</span>
   <h2 style="font-size:28px;color:var(--navy);margin-bottom:6px" class="t" data-fr="Notre communauté" data-en="Our community">Notre communauté</h2>
   <p style="font-size:13px;color:var(--muted);margin-bottom:22px">Partagez votre routine #Sonagi et gagnez 50 points Rewards</p>
-  <div class="insta-grid">{''.join(f"<div class='insta-item'>{imgref(k,'Sonagi Beauty')}</div>" for k in [GL,P3,CX,P1,P5,DR])}</div>
+  <div class="insta-grid">{''.join(f"<div class='insta-item'>{imgref(k,'Sonagi Beauty')}</div>" for k in [SOC1,SOC2,SOC_STORY,CX,P1,DR])}</div>
 </section>
-<section class="newsletter">
-  <h2 class="t" data-fr="Rejoignez la communauté" data-en="Join the community">Rejoignez la communauté</h2>
+<section class="newsletter" style="background:linear-gradient(rgba(26,39,68,.55),rgba(26,39,68,.55)),url('{imgs[EMAIL_HDR]}') center/cover no-repeat;color:#fff">
+  <h2 class="t" data-fr="Rejoignez la communauté" data-en="Join the community" style="color:#fff">Rejoignez la communauté</h2>
   <p class="t" data-fr="Nouveautés, tutoriels K-beauty et offres exclusives réservées à nos abonnés." data-en="New arrivals, K-beauty tutorials and exclusive subscriber offers.">Nouveautés, tutoriels K-beauty et offres exclusives réservées à nos abonnés.</p>
   <div class="email-form"><input type="email" placeholder="Votre email" data-fr="Votre email" data-en="Your email"><button class="t" data-fr="S'inscrire" data-en="Subscribe">S'inscrire</button></div>
 </section>
@@ -801,9 +865,9 @@ index_body = f'''
 </div></section>
 '''
 
-with open('/mnt/user-data/outputs/index.html','w',encoding='utf-8') as f:
+with open(f'{_out}/index.html','w',encoding='utf-8') as f:
     f.write(page('Sonagi Beauty — K-beauty authentique', index_body, extra_css=INDEX_CSS))
-print(f"✓ index.html — {os.path.getsize('/mnt/user-data/outputs/index.html')/1024:.0f} KB")
+print(f"✓ index.html — {os.path.getsize(f'{_out}/index.html')/1024:.0f} KB")
 
 # ════════════════════════════════════════════════════════════════════════════
 # PAGES 2-4: LISTING PAGES with comprehensive tags
@@ -838,8 +902,8 @@ SK_PRODS = [
 ]
 sk_hero = ''.join(cat_hero_card(img,fr,en,link=f'skincare.html?cat={tag}') for img,fr,en,tag in [
     (P3,'Crème Solaire','Sun care','spf'),
-    (CX,'Sérums & Essences','Serums','serum'),
-    (GL,'Hydratation','Moisturisers','creme'),
+    (CAT_SERUM,'Sérums & Essences','Serums','serum'),
+    (CAT_CLEAN,'Nettoyants','Cleansers','creme'),
     (P5,'Peaux sensibles','Sensitive','peau-sensible'),
 ])
 sk_filters = filter_strip([
@@ -866,9 +930,9 @@ sk_body = listing_page_shell(
     'Authentic products imported from South Korea',
     sk_hero, sk_filters, sk_prods_html
 )
-with open('/mnt/user-data/outputs/skincare.html','w',encoding='utf-8') as f:
+with open(f'{_out}/skincare.html','w',encoding='utf-8') as f:
     f.write(page('Skincare', sk_body, 'Skincare'))
-print(f"✓ skincare.html — {os.path.getsize('/mnt/user-data/outputs/skincare.html')/1024:.0f} KB")
+print(f"✓ skincare.html — {os.path.getsize(f'{_out}/skincare.html')/1024:.0f} KB")
 
 # ── MAQUILLAGE ───────────────────────────────────────────────────────────────
 MQ_PRODS = [
@@ -898,9 +962,9 @@ MQ_PRODS = [
      ['teint','cushion','missha','bb-creme','spf','couvrance']),
 ]
 mq_hero = ''.join(cat_hero_card(img,fr,en,link=f'maquillage.html?cat={tag}') for img,fr,en,tag in [
-    (P1,'Lèvres','Lips','levres'),
+    (CAT_LIP,'Lèvres','Lips','levres'),
     (GL,'Teint','Foundation','teint'),
-    (P6,'Yeux','Eyes','yeux'),
+    (CAT_EYE,'Yeux','Eyes','yeux'),
     (P5,'Joues','Cheeks','joues'),
 ])
 mq_filters = filter_strip([
@@ -924,9 +988,9 @@ mq_body = listing_page_shell(
     'Delicate shades, skincare-makeup formulas, innovative textures',
     mq_hero, mq_filters, mq_prods_html
 )
-with open('/mnt/user-data/outputs/maquillage.html','w',encoding='utf-8') as f:
+with open(f'{_out}/maquillage.html','w',encoding='utf-8') as f:
     f.write(page('Maquillage coréen', mq_body, 'Maquillage'))
-print(f"✓ maquillage.html — {os.path.getsize('/mnt/user-data/outputs/maquillage.html')/1024:.0f} KB")
+print(f"✓ maquillage.html — {os.path.getsize(f'{_out}/maquillage.html')/1024:.0f} KB")
 
 # ── HAIRCARE ─────────────────────────────────────────────────────────────────
 HC_PRODS = [
@@ -957,7 +1021,7 @@ HC_PRODS = [
 ]
 hc_hero = ''.join(cat_hero_card(img,fr,en,link=f'haircare.html?cat={tag}') for img,fr,en,tag in [
     (P6,'Shampooings','Shampoos','shampooing'),
-    (CX,'Masques & Soins','Masks','masque'),
+    (CAT_MASK,'Masques & Soins','Masks','masque'),
     (P7,'Sérums capillaires','Hair serums','serum'),
     (GL,'Cuir chevelu','Scalp','cuir-chevelu'),
 ])
@@ -983,9 +1047,9 @@ hc_body = listing_page_shell(
     'Korean salon-quality hair care — shampoos, masks, serums',
     hc_hero, hc_filters, hc_prods_html
 )
-with open('/mnt/user-data/outputs/haircare.html','w',encoding='utf-8') as f:
+with open(f'{_out}/haircare.html','w',encoding='utf-8') as f:
     f.write(page('Cheveux & Corps', hc_body, 'Cheveux & Corps'))
-print(f"✓ haircare.html — {os.path.getsize('/mnt/user-data/outputs/haircare.html')/1024:.0f} KB")
+print(f"✓ haircare.html — {os.path.getsize(f'{_out}/haircare.html')/1024:.0f} KB")
 
 # ════════════════════════════════════════════════════════════════════════════
 # PAGES 5-12: Produit, Panier, Marques, Journal, Masterclasses, Compte, Rewards, Confirmation
@@ -1071,9 +1135,9 @@ prod_body = f'''<div class="prod-page">
     {prod_card_s(P5,'SKIN1004','Madagascar Centella Ampoule','21,50')}
   </div>
 </div>'''
-with open('/mnt/user-data/outputs/produit.html','w',encoding='utf-8') as f:
+with open(f'{_out}/produit.html','w',encoding='utf-8') as f:
     f.write(page('Watermelon Glow Niacinamide Dew Drops', prod_body, extra_css=PROD_CSS))
-print(f"✓ produit.html — {os.path.getsize('/mnt/user-data/outputs/produit.html')/1024:.0f} KB")
+print(f"✓ produit.html — {os.path.getsize(f'{_out}/produit.html')/1024:.0f} KB")
 
 # ── PANIER ───────────────────────────────────────────────────────────────────
 PANIER_CSS = """
@@ -1152,9 +1216,9 @@ panier_body = f'''<div class="checkout-wrap">
     </div>
   </div>
 </div>'''
-with open('/mnt/user-data/outputs/panier.html','w',encoding='utf-8') as f:
+with open(f'{_out}/panier.html','w',encoding='utf-8') as f:
     f.write(page('Mon panier', panier_body, extra_css=PANIER_CSS))
-print(f"✓ panier.html — {os.path.getsize('/mnt/user-data/outputs/panier.html')/1024:.0f} KB")
+print(f"✓ panier.html — {os.path.getsize(f'{_out}/panier.html')/1024:.0f} KB")
 
 # ── MARQUES ──────────────────────────────────────────────────────────────────
 BRAND_LIST = sorted(["A'pieu","Abib","ACROPASS","Acwell","Aestura","Anua","APLB","Aprilskin","Aromatica","Axis-Y","B.Lab","Banila Co","Beauty of Joseon","Benton","Beplain","Biodance","Celimax","Centellian24","CLIO","CNP","COSRX","D'alba","Dasique","Derma:B","Dr. Ceuracle","Dr. Althea","Dr.G","Elizavecca","Etude House","Frudia","FWEE","Glow Recipe","Huxley","IUNIK","Isntree","Klairs","La'dor","Laneige","Masil","Medicube","Mise En Scene","Mixsoon","NACIFIC","Numbuzin","Peripera","Petitfée","Pyunkang Yul","Rom&nd","Round Lab","SKIN1004","Some By Mi","Tirtir","TonyMoly","VT Cosmetics"])
@@ -1165,28 +1229,34 @@ def _brand_row(l):
     links = ''.join('<a href="skincare.html" class="brand-name" style="display:block;width:50%;padding:5px 0;font-family:Cormorant Garamond,serif;font-size:18px;color:#615050;text-decoration:none">' + b + '</a>' for b in sorted(by_letter[l]))
     return '<div style="display:flex;border-top:1px solid var(--border);padding:16px 0"><span id="L' + l + '" style="font-family:\'Cormorant Garamond\',serif;font-size:20px;color:#c8cdd6;width:44px;flex-shrink:0">' + l + '</span><div style="flex:1;display:flex;flex-wrap:wrap">' + links + '</div></div>'
 brand_rows = ''.join(_brand_row(l) for l in sorted(by_letter.keys()))
-MARQUES_CSS = '.brands-hero{text-align:center;padding:52px 20px 40px}.brands-hero h1{font-family:"Cormorant Garamond",serif;font-size:60px;font-weight:300;color:var(--navy);margin-bottom:28px}.brand-search-pill{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:40px;padding:12px 20px;background:#fff;max-width:520px;margin:0 auto 16px}.brand-search-pill input{flex:1;border:none;outline:none;font-size:14px;background:transparent}.alpha-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;max-width:600px;margin:0 auto 8px}.brand-name:hover{color:var(--navy)!important}@media(min-width:768px){.brands-hero h1{font-size:80px}.brand-name{width:25%!important;font-size:20px!important}}'
-marques_body = f'<div class="brands-hero"><h1>Marques</h1><div class="brand-search-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" placeholder="Rechercher une marque…" oninput="filterBrands(this.value)"></div><p style="font-size:12px;color:var(--muted);margin-bottom:16px">{len(BRAND_LIST)} marques</p><nav class="alpha-nav">{alpha_nav}</nav></div><div style="max-width:1200px;margin:0 auto;padding:0 20px 80px">{brand_rows}</div>'
-with open('/mnt/user-data/outputs/marques.html','w',encoding='utf-8') as f:
+MARQUES_CSS = '.brands-hero{text-align:center;padding:52px 20px 40px}.brands-hero h1{font-family:"Cormorant Garamond",serif;font-size:60px;font-weight:300;color:var(--navy);margin-bottom:28px}.brand-search-pill{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:40px;padding:12px 20px;background:#fff;max-width:520px;margin:0 auto 16px}.brand-search-pill input{flex:1;border:none;outline:none;font-size:14px;background:transparent}.alpha-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;max-width:600px;margin:0 auto 8px}.brand-name:hover{color:var(--navy)!important}.feat-brands{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:800px;margin:0 auto 48px;padding:0 20px}.feat-brand{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 20px;text-decoration:none;transition:transform .2s,box-shadow .2s}.feat-brand:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,39,68,.08)}.feat-brand img{width:48px;height:48px;object-fit:contain}.feat-brand span{font-family:"Cormorant Garamond",serif;font-size:20px;color:var(--navy)}@media(min-width:768px){.brands-hero h1{font-size:80px}.brand-name{width:25%!important;font-size:20px!important}.feat-brands{grid-template-columns:repeat(4,1fr)}}'
+_feat_brands = ''.join(f'<a href="skincare.html" class="feat-brand">{imgref(img,name)}<span>{name}</span></a>' for img,name in [
+    (BR_COSRX,'COSRX'),(BR_SBMI,'Some By Mi'),(BR_LAN,'Laneige'),(BR_INN,'Innisfree'),
+])
+marques_body = f'<div class="brands-hero"><h1>Marques</h1><div class="brand-search-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" placeholder="Rechercher une marque…" oninput="filterBrands(this.value)"></div><p style="font-size:12px;color:var(--muted);margin-bottom:16px">{len(BRAND_LIST)} marques</p><nav class="alpha-nav">{alpha_nav}</nav></div><div class="feat-brands">{_feat_brands}</div><div style="max-width:1200px;margin:0 auto;padding:0 20px 80px">{brand_rows}</div>'
+with open(f'{_out}/marques.html','w',encoding='utf-8') as f:
     f.write(page('Toutes nos marques', marques_body, 'Marques', MARQUES_CSS))
-print(f"✓ marques.html — {os.path.getsize('/mnt/user-data/outputs/marques.html')/1024:.0f} KB")
+print(f"✓ marques.html — {os.path.getsize(f'{_out}/marques.html')/1024:.0f} KB")
 
 # ── JOURNAL ───────────────────────────────────────────────────────────────────
 ARTICLES = [
-    ('tendance','Tendance','Glass Skin : le secret de la peau coréenne parfaite','12 Avr 2026','@hyram',P4,'Lumineux, velouté, presque translucide — bien plus qu\'une tendance.'),
-    ('routine','Routine','Double nettoyage : pourquoi c\'est non-négociable','5 Avr 2026','@gothamista',P6,'La base de toute routine K-beauty. Huile + mousse = peau nette en profondeur.'),
-    ('ingredients','Ingrédients','Centella Asiatica : l\'ingrédient star','28 Mar 2026','@jameswelshskin',P7,'Anti-inflammatoire, cicatrisant, apaisant — le Cica expliqué en détail.'),
-    ('spf','SPF','SPF en K-beauty : guide complet','18 Mar 2026','@hyram',P3,'Pas de glass skin sans protection solaire. Les SPF coréens qui changent tout.'),
-    ('actifs','Actifs','Niacinamide vs Vitamine C : comment les associer','10 Mar 2026','@gothamista',GL,'Deux actifs stars souvent mal compris. Protocoles d\'utilisation concrets.'),
+    ('tendance','Tendance','Glass Skin : le secret de la peau coréenne parfaite','12 Avr 2026','@hyram',BL_GLASS,'Lumineux, velouté, presque translucide — bien plus qu\'une tendance.'),
+    ('routine','Routine','Double nettoyage : pourquoi c\'est non-négociable','5 Avr 2026','@gothamista',BL_DOUBLE,'La base de toute routine K-beauty. Huile + mousse = peau nette en profondeur.'),
+    ('ingredients','Ingrédients','Hanbang : les ingrédients ancestraux coréens','28 Mar 2026','@jameswelshskin',BL_HANBANG,'Ginseng, centella, thé vert — les secrets de la pharmacopée coréenne.'),
+    ('spf','SPF','SPF en K-beauty : guide complet','18 Mar 2026','@hyram',BL_SPF,'Pas de glass skin sans protection solaire. Les SPF coréens qui changent tout.'),
+    ('actifs','Actifs','Acids en K-beauty : AHA, BHA, PHA décryptés','10 Mar 2026','@gothamista',BL_ACIDS,'Les exfoliants chimiques coréens. Comment les intégrer sans irriter.'),
     ('guides','Guide','Décoder les étiquettes INCI en 5 minutes','1 Mar 2026','@labmuffin',CX,'Vous voyez des noms scientifiques incompréhensibles ? Ce guide change tout.'),
+    ('routine','Routine','La routine 10 étapes : mythe ou réalité ?','20 Fév 2026','@hyram',BL_ROUTINE,'Faut-il vraiment 10 étapes ? Décryptage et version simplifiée.'),
+    ('ingredients','Ingrédients','Collagène en K-beauty : tout comprendre','10 Fév 2026','@jameswelshskin',BL_COLLAGEN,'Topique ou oral ? Les formules coréennes au collagène qui fonctionnent.'),
+    ('guides','Guide','K-beauty pour hommes : par où commencer','1 Fév 2026','@gothamista',BL_MEN,'Routines minimalistes, textures légères — la K-beauty au masculin.'),
 ]
 JOURNAL_CSS = '.journal-wrap{max-width:1360px;margin:0 auto;padding:32px 16px 80px}.journal-grid{display:grid;grid-template-columns:1fr;gap:20px}.article-card{cursor:pointer;transition:transform .2s;background:#fff;border:1px solid var(--border)}.article-card:hover{transform:translateY(-2px)}@media(min-width:768px){.journal-grid{grid-template-columns:repeat(2,1fr)}}@media(min-width:1024px){.journal-grid{grid-template-columns:repeat(3,1fr)}}'
 j_filter = filter_strip([('all','Tout','All'),('tendance','Tendance','Trend'),('routine','Routine','Routine'),('ingredients','Ingrédients','Ingredients'),('spf','SPF','SPF'),('actifs','Actifs','Actives'),('guides','Guides','Guides')], '.article-card')
 j_articles = ''.join(f'<div class="article-card" data-tags="{cat}" onclick="window.location=\'journal.html\'"><div class="blog-img">{imgref(img,title)}</div><div style="padding:18px"><p class="blog-tag">{tag}</p><h3 class="blog-title">{title}</h3><p class="blog-excerpt">{excerpt}</p><div class="blog-meta"><span>{date}</span><span>· {author}</span></div></div></div>' for cat,tag,title,date,author,img,excerpt in ARTICLES)
 journal_body = f'<div class="journal-wrap"><h1 class="page-title">Le journal Sonagi</h1><p class="page-subtitle">Tendances, ingrédients, routines et coulisses de la K-beauty.</p>{j_filter}<div class="journal-grid">{j_articles}</div></div>'
-with open('/mnt/user-data/outputs/journal.html','w',encoding='utf-8') as f:
+with open(f'{_out}/journal.html','w',encoding='utf-8') as f:
     f.write(page('Le Journal', journal_body, 'Journal', JOURNAL_CSS))
-print(f"✓ journal.html — {os.path.getsize('/mnt/user-data/outputs/journal.html')/1024:.0f} KB")
+print(f"✓ journal.html — {os.path.getsize(f'{_out}/journal.html')/1024:.0f} KB")
 
 # ── MASTERCLASSES ─────────────────────────────────────────────────────────────
 MC_CSS = """.mc-wrap{max-width:1360px;margin:0 auto;padding:32px 16px 80px}
@@ -1214,9 +1284,9 @@ MC_EVENTS = [
 mc_cards = ''.join(f'<div class="evt-full-card" data-tags="{dtype} {dfree}"><div class="evt-full-img">{imgref(img,title)}</div><div class="evt-full-body"><span class="evt-tag {"online" if dtype=="online" else "inperson"}">{tag}</span><h3 class="evt-full-title">{title}</h3><div class="evt-meta" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px"><span>📅 {date}</span><span>🕐 {time}</span><span>⏱ {dur}</span></div><p class="evt-full-desc">{desc}</p><div class="evt-full-footer"><div><span class="evt-full-price">{price}</span><span style="font-size:11px;color:var(--muted);margin-left:6px">· {spots} places</span></div><button class="evt-reserve">Réserver</button></div></div></div>' for img,dtype,dfree,tag,date,time,dur,title,desc,price,spots in MC_EVENTS)
 mc_filters = filter_strip([('all','Tous','All'),('online','En ligne','Online'),('live','En présentiel','In person'),('gratuit','Gratuits','Free')], '.evt-full-card')
 mc_body = f'<div class="mc-wrap"><h1 class="page-title">Masterclasses & Ateliers</h1><p class="page-subtitle">En ligne et en présentiel — apprenez la K-beauty avec des expertes.</p>{mc_filters}<div class="mc-grid">{mc_cards}</div><section class="newsletter" style="margin-top:48px"><h2>Ne manquez aucun atelier</h2><p>Recevez les nouvelles sessions en avant-première.</p><div class="email-form"><input type="email" placeholder="Votre email"><button>S\'inscrire</button></div></section></div>'
-with open('/mnt/user-data/outputs/masterclasses.html','w',encoding='utf-8') as f:
+with open(f'{_out}/masterclasses.html','w',encoding='utf-8') as f:
     f.write(page('Masterclasses & Ateliers', mc_body, 'Masterclasses', MC_CSS))
-print(f"✓ masterclasses.html — {os.path.getsize('/mnt/user-data/outputs/masterclasses.html')/1024:.0f} KB")
+print(f"✓ masterclasses.html — {os.path.getsize(f'{_out}/masterclasses.html')/1024:.0f} KB")
 
 # ── COMPTE ────────────────────────────────────────────────────────────────────
 COMPTE_CSS = """
@@ -1303,9 +1373,9 @@ compte_body = '''<div id="auth-panel"><div class="auth-wrap">
   </div>
 </div></div>'''
 compte_page = page('Mon compte', compte_body, extra_css=COMPTE_CSS) + COMPTE_EXTRA_JS
-with open('/mnt/user-data/outputs/compte.html','w',encoding='utf-8') as f:
+with open(f'{_out}/compte.html','w',encoding='utf-8') as f:
     f.write(compte_page)
-print(f"✓ compte.html — {os.path.getsize('/mnt/user-data/outputs/compte.html')/1024:.0f} KB")
+print(f"✓ compte.html — {os.path.getsize(f'{_out}/compte.html')/1024:.0f} KB")
 
 # ── REWARDS ───────────────────────────────────────────────────────────────────
 RWD_CSS = """.rwd-hero{background:var(--navy);color:#fff;padding:64px 20px;text-align:center}
@@ -1359,9 +1429,9 @@ rewards_body = '''<div class="rwd-hero"><span class="lbl" style="color:var(--bor
   </div></div>
 </div>
 <section style="background:var(--navy);padding:52px 20px;text-align:center"><h2 style="font-size:32px;color:#fff;margin-bottom:10px">Prête à commencer ?</h2><p style="font-size:13px;color:var(--border);max-width:380px;margin:0 auto 22px;line-height:1.75">Créez votre compte gratuitement et commencez dès votre premier achat.</p><button class="rwd-join-btn" onclick="window.location='compte.html'">Créer mon compte</button></section>'''
-with open('/mnt/user-data/outputs/rewards.html','w',encoding='utf-8') as f:
+with open(f'{_out}/rewards.html','w',encoding='utf-8') as f:
     f.write(page('Sonagi Rewards', rewards_body, extra_css=RWD_CSS))
-print(f"✓ rewards.html — {os.path.getsize('/mnt/user-data/outputs/rewards.html')/1024:.0f} KB")
+print(f"✓ rewards.html — {os.path.getsize(f'{_out}/rewards.html')/1024:.0f} KB")
 
 # ── CONFIRMATION ─────────────────────────────────────────────────────────────
 CONF_CSS = """.conf-wrap{max-width:580px;margin:52px auto;padding:0 20px;text-align:center}
@@ -1406,15 +1476,15 @@ conf_body = '''<div style="padding:32px 16px 80px">
     <a href="skincare.html" class="next-step"><div style="font-size:22px;margin-bottom:6px">🛒</div><p style="font-size:13px;color:var(--navy);margin-bottom:3px">Découvrir la boutique</p><p style="font-size:11px;color:var(--muted)">Nouveautés K-beauty</p></a>
   </div>
 </div>'''
-with open('/mnt/user-data/outputs/confirmation.html','w',encoding='utf-8') as f:
+with open(f'{_out}/confirmation.html','w',encoding='utf-8') as f:
     f.write(page('Commande confirmée', conf_body, extra_css=CONF_CSS))
-print(f"✓ confirmation.html — {os.path.getsize('/mnt/user-data/outputs/confirmation.html')/1024:.0f} KB")
+print(f"✓ confirmation.html — {os.path.getsize(f'{_out}/confirmation.html')/1024:.0f} KB")
 
 # ── Final report ──────────────────────────────────────────────────────────────
 print("\n══ BUILD COMPLETE ══")
 total = 0
 for p in ['index','skincare','maquillage','haircare','produit','panier','marques','journal','masterclasses','compte','rewards','confirmation']:
-    sz = os.path.getsize(f'/mnt/user-data/outputs/{p}.html')
+    sz = os.path.getsize(f'{_out}/{p}.html')
     total += sz
     print(f"  {p+'.html':25} {sz/1024:5.0f} KB")
 print(f"\n  Total: {total/1024:.0f} KB")
