@@ -1,5 +1,5 @@
 {
-  "name": "sonagi-beauty-functions",
+  "name": "sonagi-beauty",
   "private": true,
   "dependencies": {
     "stripe": "^14.0.0"
