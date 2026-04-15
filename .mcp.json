@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "canva": {
+      "type": "http",
+      "url": "https://api.canva.com/rest/v1/mcp",
+      "oauth": {
+        "clientId": "OC-AZ2O6ANTWth0",
+        "callbackPort": 8080
+      }
+    }
+  }
+}

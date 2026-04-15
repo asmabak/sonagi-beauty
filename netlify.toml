@@ -1,0 +1,6 @@
+[build]
+  command = "npm install"
+  publish = "files"
+  functions = "netlify/functions"
+
+# Images are inside files/images/ — no redirects needed
