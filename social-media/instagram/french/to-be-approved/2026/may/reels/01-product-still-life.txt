@@ -1,0 +1,8 @@
+A collection of Korean skincare bottles arranged on a warm cream marble surface. Soft golden light from the left casting gentle shadows. Steam rises gently in the background. Intimate bathroom atmosphere, evening self-care mood. Close-up, shallow depth of field.
+
+---
+Resolution: 832x480
+Steps: 8
+Model: wan_1.3B (CausVid)
+Use: Reel intro, product page atmosphere, story background
+Pillar: INSPIRER

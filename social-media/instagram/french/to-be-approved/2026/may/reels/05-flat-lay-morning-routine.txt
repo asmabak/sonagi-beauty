@@ -1,0 +1,8 @@
+Top-down view of skincare products on a cream surface next to a white towel and small green plant. Soft morning light. A hand reaches in and picks up a bottle casually. Clean, warm, minimal. The feeling of starting a morning ritual.
+
+---
+Resolution: 832x480
+Steps: 8
+Model: wan_1.3B (CausVid)
+Use: Monday carousel cover, routine content, story
+Pillar: EDUQUER
