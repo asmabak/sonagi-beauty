@@ -1,0 +1,241 @@
+# Sonagi Beauty — Session State & Knowledge Base
+## Last Updated: 2026-04-16
+## READ THIS FIRST IN EVERY NEW SESSION
+
+---
+
+## WHO IS THE USER
+
+- **Name:** Asma Bakhtar
+- **Email (personal):** asma.bakhtar@gmail.com
+- **Email (business):** contact@sonagibeauty.com
+- **Role:** Founder of Sonagi Beauty, building the brand from scratch
+- **Hardware:** Windows 11, RTX 4060 Laptop 8GB VRAM, CUDA 12.9
+- **Python:** 3.11 installed at C:\Users\marou\AppData\Local\Programs\Python\Python311\
+- **Keyboard:** Does NOT have easy French accent access — always double-check accents in generated content
+
+---
+
+## WHAT IS SONAGI BEAUTY
+
+French K-beauty e-commerce brand. Curates and resells Korean skincare (COSRX, Anua, Beauty of Joseon, Mixsoon, Laneige). Educates French women 18-35 on Korean skincare methodology. Does NOT own the products — never make exaggerated product claims.
+
+**Position:** "The Provocative Educator" — more edge than Soko Glam, more intimate than Glow Recipe, character-led voice via Minjun.
+
+**Website:** sonagibeauty.com
+
+---
+
+## SOCIAL MEDIA ACCOUNTS
+
+### @sonagi.beauty (Instagram)
+- **Status:** LIVE, 4+ posts, growing
+- **Display name:** Sonagi | K-Beauty France
+- **Bio:** K-beauty direct de Seoul / Ta peau mérite mieux que ta pharmacie / Routines, ingrédients, secrets coréens / sonagibeauty.com
+- **Profile photo:** Navy circle logo with peach "sonagi" text
+- **Content strategy:** 1 carousel (12h) + 1 story set (18h) per day
+- **Email needs changing:** Currently asma.bakhtar@gmail.com, needs to be contact@sonagibeauty.com (Meta gave temporary errors, try on phone)
+
+### @sonagi.beauty (TikTok)
+- **Status:** Account created, no content yet
+- **Content strategy:** Reels cross-posted, Minjun videos when ready
+
+### @minjun.skin (separate — NOT Sonagi)
+- **Status:** Not created yet
+- **Minjun is an INDEPENDENT AI content creator**, not Sonagi's brand mascot
+- He speaks English, reviews K-beauty, eventually promotes Sonagi
+
+---
+
+## MINJUN — AI INFLUENCER
+
+- Korean male, early-mid 20s, K-pop idol beauty, Edward Zo energy
+- Speaks ENGLISH only (French was tested and dropped)
+- Needs FULL SCENARISED UGC videos (picking up products, applying, reacting)
+- Creatify is USELESS for Minjun — only does talking heads, not UGC
+- Higgsfield Seedance 2.0 is the right tool (3x15s clips stitched together)
+- Voice clip: images/2026-04-16/Minjun_script5/minjun-voice-clip.mp3
+- Face reference: images/2026-04-15/minjun-reference/hero-v4.jpg
+- Avatar created on Creatify (but Creatify is wrong tool for UGC)
+- Script 05 rewritten in casual Edward Zo style (approved)
+
+**Minjun Behaviour Prompt (approved, 698 chars):**
+Warm, expressive, playful — like FaceTiming his best friend. Eyes locked on camera, constantly alive: widening before surprises, narrowing when sharing secrets, quick side-glances then snapping back with a knowing smirk. He leans in close when making a point, pulls back when transitioning. Head tilts left and right between thoughts. One eyebrow raises often. Bites lower lip briefly when thinking. Smirks between sentences — one corner of mouth up, confident but warm. Runs his hand through his hair and reshapes it casually — a natural habit, never posed. Shoulders loose, relaxed, slightly asymmetric. One hand gestures casually for emphasis. Expression shifts every 1-2 seconds, never holds a single look. He never presents or performs — he shares, like a cool older brother who happens to have perfect skin.
+
+---
+
+## BRAND VOICE RULES (LOCKED)
+
+### Tone: Intimate, Educating, Provocatively Playful, Honest, Sensory, Warm
+### Language: French (social), English (Minjun), always "tu" never "vous"
+### The Sonagi Test: Every piece must be INTIMATE + EDUCATING + KOREAN
+
+**Always:**
+- Use proper French accents (é, è, ê, à, ç, ô, û, î) — NEVER skip them
+- Lead with tension/curiosity hooks, not titles
+- Use visceral language ("ta peau qui boit" not "hydratation optimale")
+- Soft CTAs ("Prends soin de toi" not "Achetez maintenant")
+
+**Never:**
+- Exaggerate product effects (we resell, we don't own)
+- Use "Découvrez nos produits", "Notre engagement qualité", "Anti-âge"
+- Sound like a pharmacy brochure or luxury brand
+- Use "vous" or formal French
+
+### Caption Format (LOCKED)
+- First 125 chars = hook (what shows before "more")
+- Under 100 words total
+- Structure: Hook → 2-3 value lines → Double CTA (save + share)
+- 8-10 hashtags max
+- Line breaks between every thought
+
+### Carousel Format (LOCKED — V3)
+- 1080x1080 PNG, 7 slides per carousel
+- Colors: CREAM=#faf8f5, NAVY=#1a2744, PEACH=#f5c4aa, ROSE=#8a6565
+- Slide 1: Image bg + dark overlay + big headline (60-80px)
+- Slides 2-5: Cream bg, educational, numbered lists, 30-34px body
+- Slide 6: Navy bg cheat sheet with color-coded pills
+- Slide 7: Image bg + warm CTA + @sonagibeauty
+- NO text smaller than 22px except watermark
+- ALL French text must have proper accents
+- Use stock images from sonagi-beauty/images/visuals/
+- Template script: C:\Users\marou\sonagi-carousel-v3.js
+
+---
+
+## CONTENT PRODUCED
+
+### Carousels (generated as PNG slides)
+| Content | Slides | Location | Posted? |
+|---------|--------|----------|---------|
+| La règle des 7 secondes | 7 | carousel-7-secondes-v3/ | Ready |
+| 3 produits, 3 types de peau | 7 | carousel-3-serums/ | POSTED |
+| Les 10 erreurs skincare | 10 | carousel-10-erreurs/ | POSTED |
+| Guide shopping débutantes | 7 | carousel-guide-debutante/ | POSTED |
+
+### May 2026 Full Month Content
+| Week | Location | Status |
+|------|----------|--------|
+| Week 1 (May 1-7) | may-content/week1-v3/ | Regenerating (accent fix) |
+| Week 2 (May 8-14) | may-content/week2/ | Generated (needs accent fix) |
+| Week 3 (May 15-21) | may-content/week3/ | Generated (needs accent fix) |
+| Week 4 (May 22-28) | may-content/week4/ | Generated (needs accent fix) |
+| Week 5 (May 29-31) | may-content/week5/ | Generated (needs accent fix) |
+
+### Captions
+| File | Content |
+|------|---------|
+| content/may-content/week1-captions.md | 7 captions |
+| content/may-content/week2-captions.md | 7 captions |
+| content/may-content/week3-captions.md | 7 captions |
+| content/may-content/week4-captions.md | 7 captions |
+| content/may-content/week5-captions.md | 3 captions |
+| content/may-content/all-stories.md | 31 daily story sets |
+
+### Videos
+- Minjun Script 05 (Creatify talking head — useless for UGC): images/2026-04-16/Minjun_script5/minjun-script05-creatify-v1.mp4
+- WanGP b-roll: FIRST TEST IN PROGRESS
+
+### Documents
+| Doc | Location |
+|-----|----------|
+| Brand Voice Guide (17 slides) | images/2026-04-16/SONAGI-Brand-Voice-Guide.pptx |
+| Orchestration Workflow | sonagi-beauty/ORCHESTRATION-WORKFLOW.md (on GitHub) |
+| Production Bible | higgsfield-seedance2-skills/MINJUN-PRODUCTION-BIBLE.md |
+| Character Sheet | higgsfield-seedance2-skills/MINJUN-CHARACTER-SHEET.md |
+| Script Writing Template | higgsfield-seedance2-skills/SCRIPT-WRITING-TEMPLATE.md |
+| Full Campaign Plan | sonagi-beauty/content/full-campaign-plan.md |
+| Month Plan May 2026 | sonagi-beauty/content/month-plan-may-2026.md |
+
+---
+
+## TOOLS & SETUP
+
+### Installed & Working
+- **Node.js** — for carousel generation (canvas library installed)
+- **FFmpeg** — for audio/video processing
+- **Python 3.11** — at C:\Users\marou\AppData\Local\Programs\Python\Python311\
+- **WanGP** — at C:\Users\marou\Wan2GP\ (venv at env_venv/, CUDA 12.8, Wan 1.3B model)
+  - Launch: set PATH then scripts\install.bat OR run wgp.py directly
+  - Web UI on port 7870
+  - 8GB VRAM limits to 1.3B model, 480p, ~5s clips
+- **Playwright MCP** — configured for Chrome (should be Edge to avoid conflicts)
+  - Config in .claude.json needs --browser msedge for the C:/Users/marou project
+  - Chrome must be closed before Playwright can launch
+
+### Accounts
+- **Instagram** @sonagi.beauty — logged in via Playwright/Chrome
+- **Creatify** — paid plan (80 credits remaining), Minjun avatar created, but USELESS for UGC
+- **GitHub** — asmabak/sonagi-beauty, branch claude/extract-marketing-skills-z03eL
+
+### Skills Available (51 total)
+- **36 marketing skills** in sonagi-beauty/.agents/skills/ (copywriting, social-content, ad-creative, content-strategy, marketing-psychology, etc.)
+- **15 Seedance video skills** in higgsfield-seedance2-skills/skills/ (cinematic, ecommerce-ad, social-hook, brand-story, product-360, etc.)
+- **3 templates:** SCRIPT-WRITING-TEMPLATE.md, SEEDANCE-PROMPT-GUIDE.md, UGC-CHARACTER-BIBLE-TEMPLATE.md
+
+---
+
+## WHAT NEEDS TO HAPPEN NEXT (PRIORITY ORDER)
+
+### Immediate
+1. **Fix French accents** on ALL existing carousel content (Weeks 2-5)
+2. **Complete WanGP test video** — first b-roll reel for quality check
+3. **Set up posting scheduler** — automated daily posting via Meta Business Suite
+4. **Post carousel #1** "La règle des 7 secondes" (ready but not posted)
+
+### Short Term
+5. **TikTok content** — cross-post carousels + create TikTok-specific content
+6. **Reels production** — once WanGP b-roll quality confirmed, produce reels
+7. **Change Instagram email** to contact@sonagibeauty.com (try on phone, Meta web gave errors)
+8. **Switch Instagram to Professional/Business account** for analytics + contact button
+
+### Medium Term
+9. **Minjun UGC videos** — needs Higgsfield Seedance 2.0 (not Creatify)
+10. **Website integration** — link Instagram to sonagibeauty.com shop
+11. **Paid ads** — once organic content establishes baseline engagement
+
+---
+
+## CRITICAL RULES (NEVER BREAK)
+
+1. Minjun speaks ENGLISH only
+2. ALL French content must have proper accents (é, è, ê, à, ç, ô, û, î)
+3. NEVER exaggerate product effects — Sonagi resells, doesn't own products
+4. NEVER pay for anything without explicit user approval
+5. Save ALL outputs to images/YYYY-MM-DD/ with clean filenames
+6. Edward Zo energy for Minjun — casual, intimate, never scripted
+7. Carousel format V3 is LOCKED — same colors, same structure
+8. Caption format is LOCKED — hook first, under 100 words, double CTA
+9. Minjun is SEPARATE from Sonagi — independent creator, own account
+10. Always save work and session state before ending
+
+---
+
+## FILE PATHS REFERENCE
+
+```
+C:\Users\marou\
+├── sonagi-beauty\                    # Main project repo (GitHub)
+│   ├── ORCHESTRATION-WORKFLOW.md     # Master production playbook
+│   ├── SESSION-STATE.md              # THIS FILE — read first every session
+│   ├── content\
+│   │   ├── full-campaign-plan.md     # 4-week campaign structure
+│   │   ├── month-plan-may-2026.md    # May daily calendar
+│   │   ├── may-content\              # All captions + stories
+│   │   └── week1-content-ready\      # Original week 1 content files
+│   ├── .agents\skills\               # 36 marketing skills
+│   └── images\visuals\               # Stock images for carousels
+├── higgsfield-seedance2-skills\      # Video skills + Minjun docs
+├── Wan2GP\                           # WanGP video generator
+│   └── env_venv\                     # Python venv with CUDA 12.8
+├── images\2026-04-16\                # Today's outputs
+│   ├── may-content\week1-v3\         # Latest carousel slides
+│   ├── carousel-7-secondes-v3\       # Approved carousel
+│   ├── carousel-3-serums\            # Approved carousel
+│   ├── carousel-10-erreurs\          # Approved carousel
+│   ├── carousel-guide-debutante\     # Approved carousel
+│   ├── Minjun_script5\              # Minjun video + voice + prompts
+│   ├── wangp-sonagi-queue\          # 7 video prompt files
+│   └── SONAGI-Brand-Voice-Guide.pptx
+└── .claude\projects\C--Users-marou\memory\  # Claude auto-memory
+```
