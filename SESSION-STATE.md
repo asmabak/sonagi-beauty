@@ -159,6 +159,7 @@ Warm, expressive, playful — like FaceTiming his best friend. Eyes locked on ca
   - Launch: set PATH then scripts\install.bat OR run wgp.py directly
   - Web UI on port 7870
   - 8GB VRAM limits to 1.3B model, 480p, ~5s clips
+  - ⚠️ **GPU SEQUENCING REQUIRED:** NEVER run WanGP while Kling/Higgsfield/Hailuo/Pika browser studios are open. RTX 4060 crashes ("GPU is lost") and needs full reboot. Sequence: browser tests → close → WanGP → wait → close → browser. Check `nvidia-smi` between phases. See `feedback_gpu_sequencing.md`.
 - **Playwright MCP** — configured for Chrome (should be Edge to avoid conflicts)
   - Config in .claude.json needs --browser msedge for the C:/Users/marou project
   - Chrome must be closed before Playwright can launch
@@ -234,6 +235,7 @@ NEVER use a text-file symlink fallback (Windows fake-symlink bug). `mklink /J` a
 8. Caption format is LOCKED — hook first, under 100 words, double CTA
 9. Minjun is SEPARATE from Sonagi — independent creator, own account
 10. Always save work and session state before ending
+11. **GPU sequencing (mandatory):** NEVER run local GPU work (WanGP) while browser AI studios (Kling/Higgsfield/Hailuo/Pika/Runway/Sora) are open. Sequence in phases — close browser AI tabs before starting WanGP, kill WanGP processes before opening browser AI. Crashes the GPU and forces reboot otherwise.
 
 ---
 
