@@ -227,7 +227,7 @@ NEVER use a text-file symlink fallback (Windows fake-symlink bug). `mklink /J` a
 1. Minjun speaks ENGLISH only
 2. ALL French content must have proper accents (é, è, ê, à, ç, ô, û, î)
 3. NEVER exaggerate product effects — Sonagi resells, doesn't own products
-4. NEVER pay for anything without explicit user approval
+4. **NEVER pay for anything. Period.** No subscriptions, no credits, no upgrades, no premium features, no paid APIs, no auto-charging free trials. Free tier ONLY. Approval for one purchase does not generalize. See `~/.claude/projects/.../memory/feedback_never_pay.md` for full rule.
 5. Save ALL outputs to images/YYYY-MM-DD/ with clean filenames
 6. Edward Zo energy for Minjun — casual, intimate, never scripted
 7. Carousel format V3 is LOCKED — same colors, same structure
