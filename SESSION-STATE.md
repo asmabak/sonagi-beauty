@@ -168,10 +168,26 @@ Warm, expressive, playful — like FaceTiming his best friend. Eyes locked on ca
 - **Creatify** — paid plan (80 credits remaining), Minjun avatar created, but USELESS for UGC
 - **GitHub** — asmabak/sonagi-beauty, branch claude/extract-marketing-skills-z03eL
 
-### Skills Available (51 total)
-- **36 marketing skills** in sonagi-beauty/.agents/skills/ (copywriting, social-content, ad-creative, content-strategy, marketing-psychology, etc.)
-- **15 Seedance video skills** in higgsfield-seedance2-skills/skills/ (cinematic, ecommerce-ad, social-hook, brand-story, product-360, etc.)
+### Skills Available (70 skills + 108 agents + 88 commands — auto-load via junctions)
+- **36 marketing skills** in `sonagi-beauty/.agents/skills/` (junctioned to `~/.claude/skills/marketing/`)
+  - SEO×5, Content/Copy×6, Brand×7, CRO×6, Paid×2, Growth×6, Measurement×2, RevOps×2
+- **15 Seedance video skills** in `higgsfield-seedance2-skills/skills/` (junctioned to `~/.claude/skills/seedance/`)
+- **19 ads skills** in `claude-ads/skills/` (junctioned to `~/.claude/skills/ads/`)
+  - ads-meta, ads-google, ads-tiktok, ads-youtube, ads-linkedin, ads-apple, ads-microsoft, ads-creative, ads-budget, ads-audit, ads-competitor, ads-create, ads-dna, ads-generate, ads-landing, ads-math, ads-photoshoot, ads-plan, ads-test
+- **98 custom agents** in `sonagi-beauty/.claude/agents/` (sparc, hive-mind, swarm, flow-nexus, dual-mode, github, etc.) + **10 ads-audit agents** in `.claude/agents/ads/`
+- **88 slash commands** in `sonagi-beauty/.claude/commands/` (sparc, automation, hooks, monitoring, etc.)
 - **3 templates:** SCRIPT-WRITING-TEMPLATE.md, SEEDANCE-PROMPT-GUIDE.md, UGC-CHARACTER-BIBLE-TEMPLATE.md
+- **Plugin marketplaces:** EveryInc/compound-engineering-plugin
+
+**If skills disappear** → the Windows symlink bug re-occurred. Recreate junctions:
+```
+cmd /c mklink /J C:\Users\marou\.claude\skills\marketing C:\Users\marou\sonagi-beauty\.agents\skills
+cmd /c mklink /J C:\Users\marou\.claude\skills\seedance C:\Users\marou\higgsfield-seedance2-skills\skills
+cmd /c mklink /J C:\Users\marou\.claude\skills\ads C:\Users\marou\claude-ads\skills
+cmd /c mklink /J C:\Users\marou\sonagi-beauty\.claude\skills C:\Users\marou\sonagi-beauty\.agents\skills
+cmd /c mklink /J C:\Users\marou\sonagi-beauty\.claude\agents\ads C:\Users\marou\claude-ads\agents
+```
+NEVER use a text-file symlink fallback (Windows fake-symlink bug). `mklink /J` always works without admin.
 
 ---
 
