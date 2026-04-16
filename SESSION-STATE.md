@@ -177,22 +177,31 @@ Warm, expressive, playful — like FaceTiming his best friend. Eyes locked on ca
 
 ## WHAT NEEDS TO HAPPEN NEXT (PRIORITY ORDER)
 
-### Immediate
-1. **Fix French accents** on ALL existing carousel content (Weeks 2-5)
-2. **Complete WanGP test video** — first b-roll reel for quality check
-3. **Set up posting scheduler** — automated daily posting via Meta Business Suite
-4. **Post carousel #1** "La règle des 7 secondes" (ready but not posted)
+### Immediate — Website (sonagibeauty.com)
+1. **Fix SSL/domain** — sonagibeauty.com has certificate mismatch (ERR_CERT_COMMON_NAME_INVALID). Configure custom domain in Netlify dashboard. Current Netlify URL: sonagibeautyskimdiagnosis.netlify.app
+2. **Fix mobile overflow** — page wider than phone screen, menu gets cut off
+3. **Full website design review** — expert front-end audit and improvements
+4. **Enable Stripe payments** — e-commerce functionality
+5. **Add video section** — "La K-beauty expliquée par des experts" on homepage with content creator videos
+6. **SEO audit** — compare with top K-beauty sites, improve visibility
+
+### Immediate — Content & Social
+7. **WanGP test video** — RESTART COMPUTER FIRST (CUDA corrupted after killing processes), then run generate_video.py
+8. **Review & approve Week 1 carousels** — all in social-media/instagram/french/to-be-approved/2026/may/week1/
+9. **Translate approved French content to English** — for @sonagi.beauty.int
+10. **Set up Windows Task Scheduler** for automated posting (scheduler/ is ready)
+11. **Post remaining carousel** "La règle des 7 secondes" on Instagram
 
 ### Short Term
-5. **TikTok content** — cross-post carousels + create TikTok-specific content
-6. **Reels production** — once WanGP b-roll quality confirmed, produce reels
-7. **Change Instagram email** to contact@sonagibeauty.com (try on phone, Meta web gave errors)
-8. **Switch Instagram to Professional/Business account** for analytics + contact button
+12. **Change Instagram email** to contact@sonagibeauty.com (try on phone app)
+13. **Switch Instagram to Professional/Business account** for analytics
+14. **Create TikTok account** @sonagi.beauty and start posting
+15. **Test Kling AI 3.0** with Minjun face for UGC quality comparison (free daily credits)
 
 ### Medium Term
-9. **Minjun UGC videos** — needs Higgsfield Seedance 2.0 (not Creatify)
-10. **Website integration** — link Instagram to sonagibeauty.com shop
-11. **Paid ads** — once organic content establishes baseline engagement
+16. **Minjun UGC videos** — Seedance 2.0 or Kling 3.0 for scenarised content
+17. **Italian + Spanish content** — language expansion
+18. **Paid ads** — once organic content baseline established
 
 ---
 
