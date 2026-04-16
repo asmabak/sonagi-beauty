@@ -177,7 +177,8 @@ Warm, expressive, playful — like FaceTiming his best friend. Eyes locked on ca
 - **98 custom agents** in `sonagi-beauty/.claude/agents/` (sparc, hive-mind, swarm, flow-nexus, dual-mode, github, etc.) + **10 ads-audit agents** in `.claude/agents/ads/`
 - **88 slash commands** in `sonagi-beauty/.claude/commands/` (sparc, automation, hooks, monitoring, etc.)
 - **3 templates:** SCRIPT-WRITING-TEMPLATE.md, SEEDANCE-PROMPT-GUIDE.md, UGC-CHARACTER-BIBLE-TEMPLATE.md
-- **Plugin marketplaces:** EveryInc/compound-engineering-plugin
+- **Plugin marketplaces:** EveryInc/compound-engineering-plugin, thedotmack/claude-mem
+- **claude-mem (auto memory):** worker on port 37777, SQLite + Chroma at `~/.claude-mem/`. Auto-captures sessions, AI-compresses context, injects into new sessions. Use `/mem-search` for queries, http://localhost:37777 for web viewer, `<private>` tags to exclude content. Restart worker: `npx claude-mem start` (needs bun.exe at `C:\Users\marou\AppData\Roaming\npm\bun.exe`).
 
 **If skills disappear** → the Windows symlink bug re-occurred. Recreate junctions:
 ```
