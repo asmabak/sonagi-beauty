@@ -4,10 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="color-scheme" content="only light">
-<meta name="theme-color" content="#faf8f5">
 <title>Le Journal — Sonagi Beauty</title>
+<meta name="description" content="Le Journal Sonagi — guides K-beauty, ingrédients, rituels coréens. Tout ce que tu dois savoir avant de construire ta routine.">
+<link rel="canonical" href="https://sonagibeauty.com/journal.html">
+<link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.svg">
+<link rel="mask-icon" href="brand/sonagi-mark.svg" color="#1a2744">
+<meta name="theme-color" content="#1a2744">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sonagi Beauty">
+<meta property="og:title" content="Le Journal Sonagi · guides K-beauty">
+<meta property="og:description" content="Le Journal Sonagi — guides K-beauty, ingrédients, rituels coréens. Tout ce que tu dois savoir avant de construire ta routine.">
+<meta property="og:image" content="https://sonagibeauty.com/images/visuals/sonagi-home_hero_1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://sonagibeauty.com/journal.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Le Journal Sonagi · guides K-beauty">
+<meta name="twitter:description" content="Le Journal Sonagi — guides K-beauty, ingrédients, rituels coréens. Tout ce que tu dois savoir avant de construire ta routine.">
+<meta name="twitter:image" content="https://sonagibeauty.com/images/visuals/sonagi-home_hero_1.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Le Journal Sonagi",
+  "description": "Guides K-beauty, ingrédients, rituels coréens.",
+  "url": "https://sonagibeauty.com/journal.html",
+  "publisher": { "@type": "Organization", "name": "Sonagi Beauty" },
+  "inLanguage": "fr-FR"
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/sonagi.css">
 <style>
 .journal-wrap{max-width:1360px;margin:0 auto;padding:32px 16px 80px}.journal-grid{display:grid;grid-template-columns:1fr;gap:20px}.article-card{cursor:pointer;transition:transform .2s;background:#fff;border:1px solid var(--border)}.article-card:hover{transform:translateY(-2px)}@media(min-width:768px){.journal-grid{grid-template-columns:repeat(2,1fr)}}@media(min-width:1024px){.journal-grid{grid-template-columns:repeat(3,1fr)}}
@@ -15,8 +44,16 @@
 <script src="js/sonagi-quiz-imgs.js" defer></script>
 <script src="js/sonagi-catalog.js" defer></script>
 <script src="js/sonagi-cart.js" defer></script>
+<script src="js/sonagi-app.js" defer></script>
+<script src="js/sonagi-quiz.js" defer></script>
 </head>
 <body style="background:#faf8f5;color:#2c2c2c">
+<div class="prelaunch-banner">
+  <div class="prelaunch-inner">
+    <span class="prelaunch-msg">🌸 Lancement bientôt — <strong>15% de bienvenue</strong> sur ta première commande</span>
+    <a href="#newsletter" class="prelaunch-cta">Sois prévenue</a>
+  </div>
+</div>
 <div class="announce">
   <button class="ann-arr" onclick="rotateAnn(-1)">&#8249;</button>
   <span class="ann-msg t" data-fr="Livraison offerte dès 50€ · Expédition sous 24h" data-en="Free shipping from €50 · Dispatched within 24h">Livraison offerte dès 50€ · Expédition sous 24h</span>
@@ -24,7 +61,9 @@
 </div>
 <nav class="main-nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">SONAGI<small>소나기 · K-Beauty</small></a>
+    <a href="/" class="nav-logo" aria-label="Sonagi Beauty — Accueil">
+      <img src="brand/sonagi-wordmark.svg" alt="Sonagi Beauty" width="180" height="40" loading="eager" decoding="async">
+    </a>
     <ul class="nav-links"><li class="nav-item has-drop"><a href="skincare.html" data-fr="Skincare" data-en="Skincare">Skincare</a><div class="nav-dropdown">
       <a href="skincare.html">Best Sellers</a>
       <div class="nd-sep"></div>
@@ -317,7 +356,7 @@
       <p>Votre protocole K-beauty sur mesure</p>
     </div>
     <div class="modal-body">
-      <div class="disclaimer">⚕ Questionnaire cosmétique. Consultez votre médecin en cas de condition particulière.</div>
+      <div class="disclaimer">⚕ 5 questions, 60 secondes — protocole envoyé par email. Consultez votre médecin en cas de condition particulière.</div>
       <div class="qprog"><div class="qprog-bar" id="qpbar" style="width:10%"></div></div>
 
       <div class="quiz-step active" data-step="1">
@@ -437,86 +476,5 @@
     </div>
   </div>
 </div>
-<script src="js/sonagi-app.js" defer></script>
-<script>
-/* ══ SONAGI ADVISOR v2 — AI-powered K-beauty protocol ══ */
-var QS=1,QT=8;
-var QA={name:'',goal:[],skin_type:'',skin_feel:'',age:'',lifestyle:[],current_routine:'',routine_goal:'',budget:'',pregnant:'non'};
-
-function openQuiz(){var m=document.getElementById('quiz-modal');if(!m)return;m.classList.add('open');document.body.style.overflow='hidden';QS=1;QA={name:'',goal:[],skin_type:'',skin_feel:'',age:'',lifestyle:[],current_routine:'',routine_goal:'',budget:'',pregnant:'non'};m.querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('sel')});var ni=document.getElementById('q-name');if(ni)ni.value='';var rl=document.getElementById('quiz-loading');if(rl)rl.style.display='block';var rr=document.getElementById('quiz-results');if(rr){rr.style.display='none';rr.innerHTML='';}showQS(1)}
-function closeQuiz(){var m=document.getElementById('quiz-modal');if(m)m.classList.remove('open');document.body.style.overflow=''}
-document.addEventListener('click',function(e){var m=document.getElementById('quiz-modal');if(m&&e.target===m)closeQuiz()});
-
-function qsel(el,key,val){el.closest('.quiz-opts').querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('sel')});el.classList.add('sel');QA[key]=val}
-function qmulti(el,key,val){el.classList.toggle('sel');if(!QA[key])QA[key]=[];var i=QA[key].indexOf(val);if(i===-1)QA[key].push(val);else QA[key].splice(i,1)}
-
-function showQS(s){document.querySelectorAll('.quiz-step').forEach(function(x){x.classList.remove('active')});var t=(s==='result')?document.querySelector('[data-step="result"]'):document.querySelector('[data-step="'+s+'"]');if(t)t.classList.add('active');var pct=(s==='result')?100:(s/QT*100);var bar=document.getElementById('qpbar');if(bar)bar.style.width=pct+'%';var nav=document.getElementById('qnav');if(!nav)return;if(s==='result'){nav.style.display='none';return}nav.style.display='flex';var back=document.getElementById('q-back-btn');if(back)back.style.visibility=(s>1)?'visible':'hidden';var isLast=(s===QT);var nb=document.getElementById('q-next-btn');if(nb)nb.textContent=isLast?'Voir mon protocole →':'Continuer'}
-function qNext(){if(QS===1){var ni=document.getElementById('q-name');if(ni)QA.name=ni.value.trim()}if(QS<QT){QS++;showQS(QS)}else{showQS('result');runAdvisor()}}
-function qBack(){if(QS>1){QS--;showQS(QS)}}
-
-function buildPrompt(){
-  var a=QA,isP=a.pregnant==='oui';
-  return 'You are Sonagi\'s expert K-beauty skin advisor. You know Korean skincare deeply — the layering logic, the ingredients, the rituals. Your job is to give a protocol that feels like advice from a knowledgeable friend, not a marketing leaflet.\n\nSKIN PROFILE:\n- Name: '+a.name+'\n- Goals: '+(a.goal||[]).join(', ')+'\n- Skin type: '+a.skin_type+'\n- Skin feel end of day: '+a.skin_feel+'\n- Age: '+a.age+'\n- Lifestyle: '+(a.lifestyle||[]).join(', ')+'\n- Current routine: '+a.current_routine+'\n- Routine length preference: '+a.routine_goal+'\n- Budget: '+a.budget+'\n- Pregnant/breastfeeding: '+a.pregnant+'\n'+(isP?'\nPREGNANCY SAFETY — NEVER recommend: retinol, retinoids, salicylic acid >2%, chemical sunscreens (oxybenzone), hydroquinone, TXA in 3rd trimester/breastfeeding, essential oils (mugwort, rosemary, tea tree, cinnamon, ylang ylang).\nSAFE: niacinamide, hyaluronic acid, centella, ceramides, vitamin C, azelaic acid, panthenol, bakuchiol, peptides.\n':'')+'\nRESPONSE RULES:\n- Be direct and specific. No generic advice.\n- Never say "consult a dermatologist" unless medically necessary.\n- Product names must be real K-beauty products that exist and are available in Europe.\n- Brands: COSRX, Beauty of Joseon, Anua, Some By Mi, Laneige, Innisfree, Mixsoon, Purito, Skin1004, Numbuzin, Round Lab, Axis-Y, Torriden, Thank You Farmer, Klairs.\n- Price ranges in EUR.\n\nRespond ONLY with valid JSON, no markdown, no backticks:\n\n{"headline":"One punchy 6-8 word line that captures their skin story","diagnostic":"One sharp insightful sentence that diagnoses their skin like a professional","minimum_routine":{"label":"Your 3-step non-negotiable","description":"One sentence on why these 3 steps are enough","steps":[{"order":1,"step":"Step name","product":"Exact product name","brand":"Brand","why":"One sentence for THEIR skin","how":"One punchy K-beauty application tip","benefit":"What they will notice in 2-4 weeks","price":"€X","pregnancy_safe":true}]},"boosters":{"label":"Level up when ready","description":"One sentence framing these as upgrades","steps":[{"order":1,"step":"Step name","product":"Exact product name","brand":"Brand","why":"What this adds","how":"Application tip","benefit":"The visible result","price":"€X","pregnancy_safe":true}]},"evening_swap":{"label":"At night one change","product":"Exact product name","brand":"Brand","why":"Why nighttime works best","how":"How to use","benefit":"What they will wake up with","price":"€X","pregnancy_safe":true},"weekly_ritual":{"product":"One weekly treatment","brand":"Brand","frequency":"1-2x per week","why":"Why this weekly step amplifies everything","benefit":"Cumulative result after 1 month","pregnancy_safe":true},"hero_ingredient":"Single most powerful ingredient","hero_ingredient_why":"One sentence why","first_week_tip":"One specific practical tip for the first 7 days","total_minimum_cost":"€X-€Y","total_full_cost":"€X-€Y"}';
-}
-
-function runAdvisor(){
-  var prompt=buildPrompt();
-  fetch('/.netlify/functions/quiz-advisor',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})})
-  .then(function(r){return r.json()})
-  .then(function(data){renderResults(data)})
-  .catch(function(err){
-    console.error('Advisor error:',err);
-    document.getElementById('quiz-loading').style.display='none';
-    var rr=document.getElementById('quiz-results');
-    rr.style.display='block';
-    rr.innerHTML='<div style="text-align:center;padding:30px"><p style="font-size:18px;margin-bottom:12px">Le service est temporairement indisponible</p><p style="font-size:13px;color:var(--muted)">Réessayez dans quelques instants ou contactez-nous à contact@sonagibeauty.com</p></div>';
-  });
-}
-
-function renderStep(s){return '<div class="adv-step"><div class="adv-step-head"><span class="adv-step-num">'+s.order+'</span><span class="adv-step-name">'+s.step+'</span></div><p class="adv-product"><strong>'+s.brand+'</strong> — '+s.product+'</p><p class="adv-why">'+s.why+'</p><p class="adv-how"><em>💡 '+s.how+'</em></p><p class="adv-benefit">→ '+s.benefit+'</p><span class="adv-price">'+s.price+'</span>'+(s.pregnancy_safe?'<span class="adv-safe">✓ Safe</span>':'')+'</div>'}
-
-function renderResults(d){
-  document.getElementById('quiz-loading').style.display='none';
-  var rr=document.getElementById('quiz-results');
-  rr.style.display='block';
-  var h='';
-  h+='<h2 class="adv-headline">'+d.headline+'</h2>';
-  h+='<p class="adv-diagnostic">'+d.diagnostic+'</p>';
-  h+='<div class="adv-card essential"><span class="adv-badge essential">ESSENTIEL</span>';
-  h+='<h3>Votre routine essentielle · '+(d.minimum_routine.steps?d.minimum_routine.steps.length:3)+' étapes</h3>';
-  h+='<p class="adv-card-desc">'+d.minimum_routine.description+'</p>';
-  (d.minimum_routine.steps||[]).forEach(function(s){h+=renderStep(s)});
-  h+='</div>';
-  if(d.boosters&&d.boosters.steps&&d.boosters.steps.length){
-    h+='<div class="adv-card booster"><span class="adv-badge booster">BOOSTER</span>';
-    h+='<h3>Quand vous voulez aller plus loin</h3>';
-    h+='<p class="adv-card-desc">'+d.boosters.description+'</p>';
-    d.boosters.steps.forEach(function(s){h+=renderStep(s)});
-    h+='</div>';
-  }
-  if(d.evening_swap){
-    h+='<div class="adv-card small"><h4>🌙 Le soir, ajoutez juste ça</h4>';
-    h+='<p class="adv-product"><strong>'+d.evening_swap.brand+'</strong> — '+d.evening_swap.product+'</p>';
-    h+='<p class="adv-why">'+d.evening_swap.why+'</p>';
-    h+='<p class="adv-how"><em>💡 '+d.evening_swap.how+'</em></p>';
-    h+='<p class="adv-benefit">→ '+d.evening_swap.benefit+'</p>';
-    h+='<span class="adv-price">'+d.evening_swap.price+'</span></div>';
-  }
-  if(d.weekly_ritual){
-    h+='<div class="adv-card small"><h4>📅 Une fois par semaine</h4>';
-    h+='<p class="adv-product"><strong>'+d.weekly_ritual.brand+'</strong> — '+d.weekly_ritual.product+'</p>';
-    h+='<p class="adv-why">'+d.weekly_ritual.why+'</p>';
-    h+='<p class="adv-benefit">→ '+d.weekly_ritual.benefit+'</p></div>';
-  }
-  h+='<div class="adv-hero-pill">Votre ingrédient clé : <strong>'+d.hero_ingredient+'</strong><br><span>'+d.hero_ingredient_why+'</span></div>';
-  h+='<div class="adv-tip-box"><strong>💡 Conseil semaine 1</strong><p>'+d.first_week_tip+'</p></div>';
-  h+='<div class="adv-costs"><span>Routine essentielle : '+d.total_minimum_cost+'</span><span>Routine complète : '+d.total_full_cost+'</span></div>';
-  rr.innerHTML=h;
-}
-
-
-/* ── Stripe Checkout ── */
-/* handleCheckout is provided by sonagi-cart.js — reads real cart from localStorage */
-</script>
 </body>
 </html>

@@ -4,10 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="color-scheme" content="only light">
-<meta name="theme-color" content="#faf8f5">
 <title>Mon compte — Sonagi Beauty</title>
+<meta name="description" content="Ton compte Sonagi — diagnostic peau, commandes, points de fidélité K-beauty.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://sonagibeauty.com/compte.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sonagi Beauty">
+<meta property="og:title" content="Ton compte Sonagi">
+<meta property="og:description" content="Ton compte Sonagi — diagnostic peau, commandes, points de fidélité K-beauty.">
+<meta property="og:image" content="https://sonagibeauty.com/images/visuals/sonagi-home_hero_1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://sonagibeauty.com/compte.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ton compte Sonagi">
+<meta name="twitter:description" content="Ton compte Sonagi — diagnostic peau, commandes, points de fidélité K-beauty.">
+<meta name="twitter:image" content="https://sonagibeauty.com/images/visuals/sonagi-home_hero_1.png">
+<link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.svg">
+<link rel="mask-icon" href="brand/sonagi-mark.svg" color="#1a2744">
+<meta name="theme-color" content="#1a2744">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/sonagi.css">
 <style>
 .auth-wrap{max-width:440px;margin:60px auto;padding:0 20px}
@@ -39,8 +58,25 @@
 <script src="js/sonagi-quiz-imgs.js" defer></script>
 <script src="js/sonagi-catalog.js" defer></script>
 <script src="js/sonagi-cart.js" defer></script>
+<script src="js/sonagi-quiz.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Ton compte Sonagi",
+  "url": "https://sonagibeauty.com/compte.html",
+  "isPartOf": { "@type": "WebSite", "@id": "https://sonagibeauty.com/#site" },
+  "inLanguage": "fr-FR"
+}
+</script>
 </head>
 <body style="background:#faf8f5;color:#2c2c2c">
+<div class="prelaunch-banner">
+  <div class="prelaunch-inner">
+    <span class="prelaunch-msg">🌸 Lancement bientôt — <strong>15% de bienvenue</strong> sur ta première commande</span>
+    <a href="#newsletter" class="prelaunch-cta">Sois prévenue</a>
+  </div>
+</div>
 <div class="announce">
   <button class="ann-arr" onclick="rotateAnn(-1)">&#8249;</button>
   <span class="ann-msg t" data-fr="Livraison offerte dès 50€ · Expédition sous 24h" data-en="Free shipping from €50 · Dispatched within 24h">Livraison offerte dès 50€ · Expédition sous 24h</span>
@@ -48,7 +84,9 @@
 </div>
 <nav class="main-nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">SONAGI<small>소나기 · K-Beauty</small></a>
+    <a href="/" class="nav-logo" aria-label="Sonagi Beauty — Accueil">
+      <img src="brand/sonagi-wordmark.svg" alt="Sonagi Beauty" width="180" height="40" loading="eager" decoding="async">
+    </a>
     <ul class="nav-links"><li class="nav-item has-drop"><a href="skincare.html" data-fr="Skincare" data-en="Skincare">Skincare</a><div class="nav-dropdown">
       <a href="skincare.html">Best Sellers</a>
       <div class="nd-sep"></div>
@@ -277,6 +315,7 @@
 
 <div id="auth-panel"><div class="auth-wrap">
   <h1 class="page-title" style="text-align:center">Mon compte</h1>
+  <p style="text-align:center;font-size:13px;color:var(--muted);margin:0 0 20px;">Crée ton compte dès maintenant pour recevoir ton diagnostic peau et ton bonus de bienvenue.</p>
   <div class="auth-tabs-bar">
     <button class="auth-tab active" onclick="switchAuthTab(this,'login')">Se connecter</button>
     <button class="auth-tab" onclick="switchAuthTab(this,'register')">Créer un compte</button>
@@ -289,7 +328,9 @@
     </div>
     <div class="auth-or">ou</div>
     <button class="social-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      <span style="background:#fff;border-radius:50%;display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      </span>
       Continuer avec Google
     </button>
   </div>
@@ -513,86 +554,6 @@
   </div>
 </div>
 <script src="js/sonagi-app.js" defer></script>
-<script>
-/* ══ SONAGI ADVISOR v2 — AI-powered K-beauty protocol ══ */
-var QS=1,QT=8;
-var QA={name:'',goal:[],skin_type:'',skin_feel:'',age:'',lifestyle:[],current_routine:'',routine_goal:'',budget:'',pregnant:'non'};
-
-function openQuiz(){var m=document.getElementById('quiz-modal');if(!m)return;m.classList.add('open');document.body.style.overflow='hidden';QS=1;QA={name:'',goal:[],skin_type:'',skin_feel:'',age:'',lifestyle:[],current_routine:'',routine_goal:'',budget:'',pregnant:'non'};m.querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('sel')});var ni=document.getElementById('q-name');if(ni)ni.value='';var rl=document.getElementById('quiz-loading');if(rl)rl.style.display='block';var rr=document.getElementById('quiz-results');if(rr){rr.style.display='none';rr.innerHTML='';}showQS(1)}
-function closeQuiz(){var m=document.getElementById('quiz-modal');if(m)m.classList.remove('open');document.body.style.overflow=''}
-document.addEventListener('click',function(e){var m=document.getElementById('quiz-modal');if(m&&e.target===m)closeQuiz()});
-
-function qsel(el,key,val){el.closest('.quiz-opts').querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('sel')});el.classList.add('sel');QA[key]=val}
-function qmulti(el,key,val){el.classList.toggle('sel');if(!QA[key])QA[key]=[];var i=QA[key].indexOf(val);if(i===-1)QA[key].push(val);else QA[key].splice(i,1)}
-
-function showQS(s){document.querySelectorAll('.quiz-step').forEach(function(x){x.classList.remove('active')});var t=(s==='result')?document.querySelector('[data-step="result"]'):document.querySelector('[data-step="'+s+'"]');if(t)t.classList.add('active');var pct=(s==='result')?100:(s/QT*100);var bar=document.getElementById('qpbar');if(bar)bar.style.width=pct+'%';var nav=document.getElementById('qnav');if(!nav)return;if(s==='result'){nav.style.display='none';return}nav.style.display='flex';var back=document.getElementById('q-back-btn');if(back)back.style.visibility=(s>1)?'visible':'hidden';var isLast=(s===QT);var nb=document.getElementById('q-next-btn');if(nb)nb.textContent=isLast?'Voir mon protocole →':'Continuer'}
-function qNext(){if(QS===1){var ni=document.getElementById('q-name');if(ni)QA.name=ni.value.trim()}if(QS<QT){QS++;showQS(QS)}else{showQS('result');runAdvisor()}}
-function qBack(){if(QS>1){QS--;showQS(QS)}}
-
-function buildPrompt(){
-  var a=QA,isP=a.pregnant==='oui';
-  return 'You are Sonagi\'s expert K-beauty skin advisor. You know Korean skincare deeply — the layering logic, the ingredients, the rituals. Your job is to give a protocol that feels like advice from a knowledgeable friend, not a marketing leaflet.\n\nSKIN PROFILE:\n- Name: '+a.name+'\n- Goals: '+(a.goal||[]).join(', ')+'\n- Skin type: '+a.skin_type+'\n- Skin feel end of day: '+a.skin_feel+'\n- Age: '+a.age+'\n- Lifestyle: '+(a.lifestyle||[]).join(', ')+'\n- Current routine: '+a.current_routine+'\n- Routine length preference: '+a.routine_goal+'\n- Budget: '+a.budget+'\n- Pregnant/breastfeeding: '+a.pregnant+'\n'+(isP?'\nPREGNANCY SAFETY — NEVER recommend: retinol, retinoids, salicylic acid >2%, chemical sunscreens (oxybenzone), hydroquinone, TXA in 3rd trimester/breastfeeding, essential oils (mugwort, rosemary, tea tree, cinnamon, ylang ylang).\nSAFE: niacinamide, hyaluronic acid, centella, ceramides, vitamin C, azelaic acid, panthenol, bakuchiol, peptides.\n':'')+'\nRESPONSE RULES:\n- Be direct and specific. No generic advice.\n- Never say "consult a dermatologist" unless medically necessary.\n- Product names must be real K-beauty products that exist and are available in Europe.\n- Brands: COSRX, Beauty of Joseon, Anua, Some By Mi, Laneige, Innisfree, Mixsoon, Purito, Skin1004, Numbuzin, Round Lab, Axis-Y, Torriden, Thank You Farmer, Klairs.\n- Price ranges in EUR.\n\nRespond ONLY with valid JSON, no markdown, no backticks:\n\n{"headline":"One punchy 6-8 word line that captures their skin story","diagnostic":"One sharp insightful sentence that diagnoses their skin like a professional","minimum_routine":{"label":"Your 3-step non-negotiable","description":"One sentence on why these 3 steps are enough","steps":[{"order":1,"step":"Step name","product":"Exact product name","brand":"Brand","why":"One sentence for THEIR skin","how":"One punchy K-beauty application tip","benefit":"What they will notice in 2-4 weeks","price":"€X","pregnancy_safe":true}]},"boosters":{"label":"Level up when ready","description":"One sentence framing these as upgrades","steps":[{"order":1,"step":"Step name","product":"Exact product name","brand":"Brand","why":"What this adds","how":"Application tip","benefit":"The visible result","price":"€X","pregnancy_safe":true}]},"evening_swap":{"label":"At night one change","product":"Exact product name","brand":"Brand","why":"Why nighttime works best","how":"How to use","benefit":"What they will wake up with","price":"€X","pregnancy_safe":true},"weekly_ritual":{"product":"One weekly treatment","brand":"Brand","frequency":"1-2x per week","why":"Why this weekly step amplifies everything","benefit":"Cumulative result after 1 month","pregnancy_safe":true},"hero_ingredient":"Single most powerful ingredient","hero_ingredient_why":"One sentence why","first_week_tip":"One specific practical tip for the first 7 days","total_minimum_cost":"€X-€Y","total_full_cost":"€X-€Y"}';
-}
-
-function runAdvisor(){
-  var prompt=buildPrompt();
-  fetch('/.netlify/functions/quiz-advisor',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})})
-  .then(function(r){return r.json()})
-  .then(function(data){renderResults(data)})
-  .catch(function(err){
-    console.error('Advisor error:',err);
-    document.getElementById('quiz-loading').style.display='none';
-    var rr=document.getElementById('quiz-results');
-    rr.style.display='block';
-    rr.innerHTML='<div style="text-align:center;padding:30px"><p style="font-size:18px;margin-bottom:12px">Le service est temporairement indisponible</p><p style="font-size:13px;color:var(--muted)">Réessayez dans quelques instants ou contactez-nous à contact@sonagibeauty.com</p></div>';
-  });
-}
-
-function renderStep(s){return '<div class="adv-step"><div class="adv-step-head"><span class="adv-step-num">'+s.order+'</span><span class="adv-step-name">'+s.step+'</span></div><p class="adv-product"><strong>'+s.brand+'</strong> — '+s.product+'</p><p class="adv-why">'+s.why+'</p><p class="adv-how"><em>💡 '+s.how+'</em></p><p class="adv-benefit">→ '+s.benefit+'</p><span class="adv-price">'+s.price+'</span>'+(s.pregnancy_safe?'<span class="adv-safe">✓ Safe</span>':'')+'</div>'}
-
-function renderResults(d){
-  document.getElementById('quiz-loading').style.display='none';
-  var rr=document.getElementById('quiz-results');
-  rr.style.display='block';
-  var h='';
-  h+='<h2 class="adv-headline">'+d.headline+'</h2>';
-  h+='<p class="adv-diagnostic">'+d.diagnostic+'</p>';
-  h+='<div class="adv-card essential"><span class="adv-badge essential">ESSENTIEL</span>';
-  h+='<h3>Votre routine essentielle · '+(d.minimum_routine.steps?d.minimum_routine.steps.length:3)+' étapes</h3>';
-  h+='<p class="adv-card-desc">'+d.minimum_routine.description+'</p>';
-  (d.minimum_routine.steps||[]).forEach(function(s){h+=renderStep(s)});
-  h+='</div>';
-  if(d.boosters&&d.boosters.steps&&d.boosters.steps.length){
-    h+='<div class="adv-card booster"><span class="adv-badge booster">BOOSTER</span>';
-    h+='<h3>Quand vous voulez aller plus loin</h3>';
-    h+='<p class="adv-card-desc">'+d.boosters.description+'</p>';
-    d.boosters.steps.forEach(function(s){h+=renderStep(s)});
-    h+='</div>';
-  }
-  if(d.evening_swap){
-    h+='<div class="adv-card small"><h4>🌙 Le soir, ajoutez juste ça</h4>';
-    h+='<p class="adv-product"><strong>'+d.evening_swap.brand+'</strong> — '+d.evening_swap.product+'</p>';
-    h+='<p class="adv-why">'+d.evening_swap.why+'</p>';
-    h+='<p class="adv-how"><em>💡 '+d.evening_swap.how+'</em></p>';
-    h+='<p class="adv-benefit">→ '+d.evening_swap.benefit+'</p>';
-    h+='<span class="adv-price">'+d.evening_swap.price+'</span></div>';
-  }
-  if(d.weekly_ritual){
-    h+='<div class="adv-card small"><h4>📅 Une fois par semaine</h4>';
-    h+='<p class="adv-product"><strong>'+d.weekly_ritual.brand+'</strong> — '+d.weekly_ritual.product+'</p>';
-    h+='<p class="adv-why">'+d.weekly_ritual.why+'</p>';
-    h+='<p class="adv-benefit">→ '+d.weekly_ritual.benefit+'</p></div>';
-  }
-  h+='<div class="adv-hero-pill">Votre ingrédient clé : <strong>'+d.hero_ingredient+'</strong><br><span>'+d.hero_ingredient_why+'</span></div>';
-  h+='<div class="adv-tip-box"><strong>💡 Conseil semaine 1</strong><p>'+d.first_week_tip+'</p></div>';
-  h+='<div class="adv-costs"><span>Routine essentielle : '+d.total_minimum_cost+'</span><span>Routine complète : '+d.total_full_cost+'</span></div>';
-  rr.innerHTML=h;
-}
-
-
-/* ── Stripe Checkout ── */
-/* handleCheckout is provided by sonagi-cart.js — reads real cart from localStorage */
-</script>
 </body>
 </html><script>
 function switchAuthTab(btn,id){document.querySelectorAll('.auth-tab').forEach(function(t){t.classList.remove('active')});btn.classList.add('active');document.getElementById('auth-login').style.display=id==='login'?'block':'none';document.getElementById('auth-register').style.display=id==='register'?'block':'none';}
