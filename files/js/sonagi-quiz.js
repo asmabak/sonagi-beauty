@@ -158,6 +158,7 @@
         <span class="step-ctr">5 / ${QT} — Budget &amp; rituel</span>
         <h3 class="quiz-q">Ton budget pour cette routine ?</h3>
         <div class="quiz-opts" data-group="budget">
+          <button type="button" class="q-opt" data-val="moins-30">Moins de 30 €</button>
           <button type="button" class="q-opt" data-val="30-50">30–50 €</button>
           <button type="button" class="q-opt" data-val="50-90">50–90 €</button>
           <button type="button" class="q-opt" data-val="90-150">90–150 €</button>
@@ -341,10 +342,11 @@
       ? "minimaliste 3 étapes"
       : "complète 5-7 étapes";
     const budget_label = ({
-      "30-50":  "30-50€",
-      "50-90":  "50-90€",
-      "90-150": "90-150€",
-      "150+":   "150€ et plus"
+      "moins-30": "moins de 30€ — essentiels uniquement",
+      "30-50":    "30-50€",
+      "50-90":    "50-90€",
+      "90-150":   "90-150€",
+      "150+":     "150€ et plus"
     })[QA.budget] || QA.budget;
 
     return [
