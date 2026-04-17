@@ -35,7 +35,7 @@ exports.handler = async (event) => {
       headers,
       body: JSON.stringify({
         coming_soon: true,
-        message: "La boutique ouvre en septembre 2026. Inscrivez-vous pour etre notifie(e) !",
+        message: "La boutique ouvre prochainement. Inscris-toi à la newsletter pour être notifiée.",
       }),
     };
   }

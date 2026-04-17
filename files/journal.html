@@ -543,6 +543,20 @@ footer { background: #1a2744; background: var(--navy); color: #ede8e2; color: va
 @media(max-width:767px) {
   .nav-logo { font-size: 22px !important; }
 }
+/* ── MOBILE NAV TIGHTENING (≤430px) — fixes hamburger off-screen ── */
+@media(max-width:430px){
+  .nav-inner { gap: 4px !important; padding: 0 10px !important; }
+  .nav-logo { font-size: 18px !important; letter-spacing: 2px !important; }
+  .nav-logo small { font-size: 7px !important; letter-spacing: 1.5px !important; }
+  .nav-right { gap: 4px !important; }
+  .nav-right .lang-btn { font-size: 9px !important; padding: 4px 6px !important; letter-spacing: 0.5px !important; }
+  .quiz-nav-btn { font-size: 9px !important; letter-spacing: 0.5px !important; padding: 6px 8px !important; }
+  .nav-icon { padding: 6px !important; }
+  .hamburger { padding: 6px !important; }
+}
+@media(max-width:380px){
+  .quiz-nav-btn { display: none !important; }
+}
 
 /* ── MEGA NAV ── */
 .nav-item { position: relative; }
@@ -669,6 +683,8 @@ window.QUIZ_IMGS = {
   "BL_ROUTINE2": "images/visuals/sonagi-blog_routine2.png"
 };
 </script>
+<script src="js/sonagi-catalog.js" defer></script>
+<script src="js/sonagi-cart.js" defer></script>
 </head>
 <body style="background:#faf8f5;color:#2c2c2c">
 <div class="announce">
@@ -1465,37 +1481,7 @@ function renderResults(d){
 
 
 /* ── Stripe Checkout ── */
-function handleCheckout(){
-  var btn=document.getElementById('checkout-btn');
-  var msg=document.getElementById('checkout-msg');
-  if(!btn)return;
-  btn.disabled=true;btn.textContent='Chargement…';
-  fetch('/.netlify/functions/create-checkout',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({items:[
-      {price:'price_placeholder_1',quantity:1},
-      {price:'price_placeholder_2',quantity:1},
-      {price:'price_placeholder_3',quantity:1}
-    ]})
-  })
-  .then(function(r){return r.json()})
-  .then(function(data){
-    if(data.coming_soon){
-      if(msg){msg.style.display='block';msg.innerHTML='🌸 <strong>Bientôt disponible</strong><br>La boutique Sonagi ouvre en septembre 2026.<br>Inscrivez-vous à la newsletter pour être notifié(e) !';}
-      btn.textContent='Bientôt disponible';btn.disabled=true;
-    }else if(data.url){
-      window.location.href=data.url;
-    }else{
-      btn.textContent='Confirmer ma commande → 79,40 €';btn.disabled=false;
-      if(msg){msg.style.display='block';msg.textContent='Erreur: '+(data.error||'Réessayez');}
-    }
-  })
-  .catch(function(){
-    btn.textContent='Confirmer ma commande → 79,40 €';btn.disabled=false;
-    if(msg){msg.style.display='block';msg.textContent='Connexion impossible. Réessayez.';}
-  });
-}
+/* handleCheckout is provided by sonagi-cart.js — reads real cart from localStorage */
 </script>
 </body>
 </html>
