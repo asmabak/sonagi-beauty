@@ -2,6 +2,8 @@
   "name": "sonagi-beauty",
   "private": true,
   "dependencies": {
+    "canvas": "^3.2.3",
+    "resend": "^3.0.0",
     "stripe": "^14.0.0"
   }
 }

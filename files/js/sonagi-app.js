@@ -253,17 +253,15 @@ function renderCart() {
   if (foot) foot.style.display = 'block';
   if (badge) badge.textContent = cartItems.length;
 }
+// ── addBasketToCart() removed — moved into sonagi-quiz.js (basket logic
+//    is now built from the AI advisor JSON, not from a #quiz-basket DOM
+//    that the new quiz module no longer renders). Kept as a no-op shim
+//    so any stray inline onclick="addBasketToCart()" doesn't throw.
 function addBasketToCart() {
-  document.querySelectorAll('#quiz-basket .basket-item').forEach(function(it){
-    cartItems.push({
-      brand: it.getAttribute('data-brand') || '',
-      name:  it.getAttribute('data-name')  || '',
-      price: it.querySelector('.basket-price') ? it.querySelector('.basket-price').textContent : '0 €'
-    });
-  });
-  renderCart();
-  closeQuiz();
-  setTimeout(function(){ toggleCart(); }, 250);
+  if (window.SonagiQuiz && typeof window.SonagiQuiz.open === 'function') {
+    // Old call sites probably want to re-open the quiz to use the new baskets
+    window.SonagiQuiz.open();
+  }
 }
 
 // ── TOUCH — show add button on mobile tap ─────────────
