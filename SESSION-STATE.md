@@ -193,15 +193,42 @@ NEVER use a text-file symlink fallback (Windows fake-symlink bug). `mklink /J` a
 
 ---
 
+## WEBSITE — POST-OVERHAUL STATE (2026-04-17)
+
+The site got a full architectural overhaul on 2026-04-17. Read these for context:
+- `website/AUDIT-2026-04-17.md` — original 30-finding expert audit (deliverable, not a TODO list)
+- `STRIPE-SETUP.md` — Stripe wiring + how to flip live when wholesalers ready
+- `EMAIL-SETUP.md` — Resend transactional email + DNS records
+- `files/brand/BRAND-MARKS-README.md` — wordmark usage rules + v2 roadmap
+
+### Architecture (single source of truth)
+- `files/css/sonagi.css` (60 KB) — shared CSS, Fraunces typography, all components
+- `files/js/sonagi-app.js` (13 KB) — shared client JS (nav, cart sidebar, language)
+- `files/js/sonagi-quiz.js` (33.8 KB) — 5-question advisor module
+- `files/js/sonagi-cart.js` + `sonagi-catalog.js` — Stripe persistent cart
+- `files/js/sonagi-quiz-imgs.js` (515 KB) — base64 product visuals (cached once)
+- `files/brand/sonagi-wordmark.svg` + 4 variants — logo system
+- `netlify/functions/send-protocol.js` + `files/email/protocol-template.js` — dermatology-grade protocol email
+
+### Page weight
+- Per-page HTML: 34-65 KB (was 620+ KB → -93%)
+- Total HTML payload: 500 KB (was 7.3 MB → -93%)
+- First-visit downloaded once: ~660 KB (HTML + all shared assets)
+- Subsequent navigation: ~30-65 KB per page (shared assets cached)
+
+### Backups
+- `files-backup-2026-04-17/` (7.3 MB) — original HTMLs preserved
+- `netlify-backup-2026-04-17/` — original functions preserved
+- Git checkpoints: `e4f48c1` (pre-refactor), `445e6a7` (Phase 1), `2548379` (Phase 3)
+
 ## WHAT NEEDS TO HAPPEN NEXT (PRIORITY ORDER)
 
-### Immediate — Website (sonagibeauty.com)
-1. **Fix SSL/domain** — sonagibeauty.com has certificate mismatch (ERR_CERT_COMMON_NAME_INVALID). Configure custom domain in Netlify dashboard. Current Netlify URL: sonagibeautyskimdiagnosis.netlify.app
-2. **Fix mobile overflow** — page wider than phone screen, menu gets cut off
-3. **Full website design review** — expert front-end audit and improvements
-4. **Enable Stripe payments** — e-commerce functionality
-5. **Add video section** — "La K-beauty expliquée par des experts" on homepage with content creator videos
-6. **SEO audit** — compare with top K-beauty sites, improve visibility
+### Immediate — Website (still pending)
+1. **Fix SSL/domain** — sonagibeauty.com cert mismatch (ERR_CERT_COMMON_NAME_INVALID). Configure custom domain in Netlify dashboard. Current Netlify URL: sonagibeautyskimdiagnosis.netlify.app
+2. **Set Netlify env vars** when ready to test integrations: `STRIPE_SECRET_KEY` (test mode), `SHOP_OPEN=false` (stays false until launch), `SITE_URL=https://sonagibeauty.com`, `RESEND_API_KEY` (after Resend signup), `ANTHROPIC_API_KEY` (already set, used by quiz-advisor)
+3. **Sign up for Resend** (free tier, no card) and add SPF/DKIM/DMARC records per `EMAIL-SETUP.md`
+4. **Deploy + smoke-test** the new site: visit /panier.html → notify CTA shows; visit / → quiz opens, completes 5 questions, basket prefills, email sends (if Resend configured)
+5. **Information architecture cleanup** (deferred from Phase 3) — group Masterclasses + Journal under a "Communauté" mega-nav item; demote from primary nav
 
 ### Immediate — Content & Social
 7. **WanGP test video** — RESTART COMPUTER FIRST (CUDA corrupted after killing processes), then run generate_video.py
