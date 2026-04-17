@@ -215,6 +215,17 @@ body:has(.prelaunch-banner) nav.main-nav { top: var(--prelaunch-h, 40px); }
 .c-title em { font-style: italic; color: var(--peach); }
 .c-sub { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 360px; margin-bottom: 24px; }
 .c-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.c-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 14px 32px;
+  background: var(--navy); color: #fff;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;
+  border: none; border-radius: 2px;
+  transition: background .2s, transform .2s;
+  white-space: nowrap; cursor: pointer;
+}
+.c-cta:hover { background: #2a3a60; transform: translateY(-1px); }
+.c-cta:focus-visible { outline: 2px solid var(--peach); outline-offset: 3px; }
 .carousel-dots { display: flex; gap: 4px; justify-content: center; padding: 8px 0; background: var(--cream); }
 /* Dots wrapped in 44px hit area for accessibility — visual dot kept small */
 .c-dot {
