@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 90" role="img" aria-label="Sonagi Beauty">
+  <title>Sonagi Beauty (reverse)</title>
+  <!-- Reverse variant: cream type for navy backgrounds (announcement bar, footer) -->
+  <text x="180" y="46"
+        text-anchor="middle"
+        font-family="Fraunces, 'Cormorant Garamond', Georgia, serif"
+        font-weight="300"
+        font-size="38"
+        letter-spacing="6.8"
+        fill="#faf8f5">SONAGI</text>
+
+  <line x1="92" y1="56" x2="268" y2="56"
+        stroke="#faf8f5" stroke-width="0.6" opacity="0.55"/>
+
+  <text x="180" y="72"
+        text-anchor="middle"
+        font-family="'DM Sans', 'Helvetica Neue', system-ui, sans-serif"
+        font-weight="400"
+        font-size="9"
+        letter-spacing="5.2"
+        fill="#faf8f5">BEAUTY</text>
+
+  <!-- Peach 소나기 stays peach against navy — still legible, retains brand accent -->
+  <text x="332" y="48"
+        text-anchor="start"
+        font-family="'Noto Serif KR', 'Noto Sans KR', serif"
+        font-weight="300"
+        font-size="15"
+        letter-spacing="0.5"
+        fill="#f5c4aa">소나기</text>
+</svg>

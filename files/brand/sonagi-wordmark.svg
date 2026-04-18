@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 90" role="img" aria-label="Sonagi Beauty">
+  <title>Sonagi Beauty</title>
+  <!-- Display wordmark: SONAGI in tracked-out Fraunces ExtraLight serif caps -->
+  <text x="180" y="46"
+        text-anchor="middle"
+        font-family="Fraunces, 'Cormorant Garamond', Georgia, serif"
+        font-weight="300"
+        font-size="38"
+        letter-spacing="6.8"
+        fill="#1a2744">SONAGI</text>
+
+  <!-- Editorial hairline beneath SONAGI -->
+  <line x1="92" y1="56" x2="268" y2="56"
+        stroke="#1a2744" stroke-width="0.6" opacity="0.55"/>
+
+  <!-- Subtitle: BEAUTY in light sans, widely tracked -->
+  <text x="180" y="72"
+        text-anchor="middle"
+        font-family="'DM Sans', 'Helvetica Neue', system-ui, sans-serif"
+        font-weight="400"
+        font-size="9"
+        letter-spacing="5.2"
+        fill="#1a2744">BEAUTY</text>
+
+  <!-- Korean glyph 소나기 in peach, balanced to the right of the wordmark -->
+  <text x="332" y="48"
+        text-anchor="start"
+        font-family="'Noto Serif KR', 'Noto Sans KR', serif"
+        font-weight="300"
+        font-size="15"
+        letter-spacing="0.5"
+        fill="#f5c4aa">소나기</text>
+</svg>

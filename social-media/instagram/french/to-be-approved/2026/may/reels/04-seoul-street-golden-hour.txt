@@ -1,0 +1,8 @@
+A Seoul street at golden hour with Korean shop signs and storefronts. People walking past. Warm light, slight lens flare, handheld feel. Shallow depth of field, busy city life in background. Authentic, not glamorized.
+
+---
+Resolution: 832x480
+Steps: 8
+Model: wan_1.3B (CausVid)
+Use: "Direct de Seoul" branding, reel intro, origin story content
+Pillar: INSPIRER

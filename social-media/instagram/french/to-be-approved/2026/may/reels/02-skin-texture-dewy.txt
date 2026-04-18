@@ -1,0 +1,8 @@
+Macro close-up of hydrated skin on a cheek. Morning light catches tiny water droplets on the skin surface. Natural, real skin texture. Slow gentle camera movement. Warm soft lighting, bokeh background.
+
+---
+Resolution: 832x480
+Steps: 8
+Model: wan_1.3B (CausVid)
+Use: Reel transition, carousel cover, glass skin aesthetic
+Pillar: INSPIRER

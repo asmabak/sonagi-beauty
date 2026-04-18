@@ -1,0 +1,8 @@
+Close-up of fresh green heart-shaped leaves with morning dew. Natural sunlight filtering through. Gentle breeze, leaves sway slightly. Botanical, calming, natural. Clean background.
+
+---
+Resolution: 832x480
+Steps: 8
+Model: wan_1.3B (CausVid)
+Use: Ingredient education, carousel slide, story
+Pillar: EDUQUER

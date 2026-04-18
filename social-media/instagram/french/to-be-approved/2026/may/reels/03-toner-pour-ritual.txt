@@ -1,0 +1,8 @@
+Clear liquid being poured slowly from a small bottle into a cupped palm. The liquid pools and catches warm light. Close-up of hands, warm bathroom lighting. Gentle, meditative pace. Minimal clean background.
+
+---
+Resolution: 832x480
+Steps: 8
+Model: wan_1.3B (CausVid)
+Use: ASMR Friday content, product demo intro, TikTok satisfying hook
+Pillar: MONTRER

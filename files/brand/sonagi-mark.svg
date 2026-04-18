@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Sonagi monogram">
+  <title>Sonagi monogram</title>
+
+  <!-- Peach raindrop above the S — referencing 소나기 (sudden summer rain).
+       Drop shape: classic teardrop, ~10% canvas, sits above S apex. -->
+  <path d="M 50 12
+           C 50 12, 44 20, 44 25
+           C 44 28.3, 46.7 31, 50 31
+           C 53.3 31, 56 28.3, 56 25
+           C 56 20, 50 12, 50 12 Z"
+        fill="#f5c4aa"/>
+
+  <!-- Italic S in Fraunces 300 italic, tightly placed.
+       Using <text> here so it inherits the editorial font when available;
+       falls back to Georgia italic, which still reads as the same letter. -->
+  <text x="50" y="82"
+        text-anchor="middle"
+        font-family="Fraunces, 'Cormorant Garamond', Georgia, serif"
+        font-weight="300"
+        font-style="italic"
+        font-size="76"
+        fill="#1a2744">S</text>
+</svg>
