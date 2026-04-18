@@ -1,0 +1,51 @@
+name: Daily engagement briefing
+
+on:
+  schedule:
+    # 06:30 UTC daily = 07:30 Paris (CET) / 08:30 Paris (CEST/summer)
+    - cron: "30 6 * * *"
+  workflow_dispatch:  # Manual trigger from GitHub UI for testing
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate briefing HTML
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        working-directory: scripts/engagement-brief
+        run: node run.js
+
+      - name: Read briefing metadata
+        id: meta
+        working-directory: scripts/engagement-brief
+        run: |
+          SUBJECT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('brief-meta.json','utf8')).subject)")
+          FILE=$(ls brief-*.html | head -1)
+          echo "subject=${SUBJECT}" >> $GITHUB_OUTPUT
+          echo "file=scripts/engagement-brief/${FILE}" >> $GITHUB_OUTPUT
+
+      - name: Send briefing by email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.SMTP_USER }}
+          password: ${{ secrets.SMTP_PASS }}
+          from: "Sonagi Engagement Bot <${{ secrets.SMTP_USER }}>"
+          to: ${{ secrets.EMAIL_TO }}
+          subject: ${{ steps.meta.outputs.subject }}
+          html_body: file://${{ steps.meta.outputs.file }}
+          ignore_cert: false
+          convert_markdown: false
+          priority: normal

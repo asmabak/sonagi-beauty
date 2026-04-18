@@ -1,0 +1,14 @@
+{
+  "name": "sonagi-engagement-brief",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Daily engagement briefing — fetches K-beauty/beauty posts via RSSHub, drafts Sonagi-voice comments via Claude API, publishes HTML brief.",
+  "main": "run.js",
+  "scripts": {
+    "build": "node run.js",
+    "preview": "node run.js && open files/daily/index.html"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

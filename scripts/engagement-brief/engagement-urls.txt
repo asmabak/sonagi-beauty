@@ -1,0 +1,11 @@
+# SONAGI ENGAGEMENT — manual URL queue
+# Paste IG / TikTok / YouTube post URLs here, one per line.
+# Lines starting with # are ignored.
+# The next morning's briefing will fetch each URL's caption + draft 4 comment options.
+# After the brief publishes, you can clear/replace this file.
+#
+# Examples (delete these and add your own):
+#   https://www.instagram.com/p/CXXXXXXX/
+#   https://www.tiktok.com/@arale.san/video/7400000000000000000
+#   https://www.instagram.com/reel/DXXXXXXX/
+
