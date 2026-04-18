@@ -64,8 +64,14 @@ Sauvegarde ces corrections. Partage avec une amie.
 
 ## May 7 — Toner : à quoi ça sert vraiment ?
 
-Ce n'est PAS juste de l'eau parfumée. Le toner équilibre le pH, prépare la peau aux actifs et apporte une première hydratation. Hydratant pour peau sèche, exfoliant pour peau grasse, apaisant pour peau sensible. Sur peau mouillée, tapote 2-3 couches.
+Tu crois que le toner, c'est de l'eau parfumée. C'est une clé.
 
-Sauvegarde ce guide. Choisis ton toner ce soir.
+Ta peau sort du nettoyage à pH 9. Trop basique. Tendue, poreuse, paumée. Sans toner, tes sérums glissent sur une peau qui ne sait plus quoi absorber.
 
-#kbeauty #sonagibeauty #toner #tonervisage #beautecoreenne #routinevisage #skincaretips #glassskin #hydratation #peauparfaite
+Les Coréennes tapotent leur toner sur peau encore mouillée. Il ramène le pH à 5,5. Il ouvre les canaux. Il pose la première couche d'eau avant tout le reste.
+
+Peau sèche ? Toner hydratant. Peau grasse ? Toner exfoliant doux. Peau réactive ? Toner apaisant. Deux, trois couches tapotées. Jamais de coton.
+
+Sauvegarde. Teste ce soir. Tu sentiras la différence dès le sérum suivant.
+
+#toner #kbeauty #sonagibeauty #tonervisage #beautecoreenne #routinevisage #glassskin #hydratation #skincaretips #peauparfaite

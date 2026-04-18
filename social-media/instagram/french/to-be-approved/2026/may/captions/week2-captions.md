@@ -4,67 +4,55 @@
 
 ## May 8 — Centella : le guide complet
 
-L'ingredient n°1 en Coree. Personne en France ne le connait.
+Tu caches tes rougeurs sous du fond de teint. Elles reviennent le lendemain.
 
-La Centella Asiatica — aussi appelee "herbe du tigre" — est l'ingredient le plus utilise en K-beauty. Et pour une bonne raison.
+Une peau qui rougit, c'est une barrière qui demande pardon. Les crèmes lourdes l'étouffent. Les actifs forts l'achèvent.
 
-Elle apaise les rougeurs. Elle repare la barriere cutanee. Elle accelere la cicatrisation. Et elle calme toutes les irritations.
+En Corée, on sort la centella. Herbe du tigre, parce que les tigres blessés s'y roulaient pour cicatriser. C'est l'ingrédient que les dermatos coréennes posent en premier sur une peau à vif.
 
-Si tu as la peau sensible, reactive, ou a tendance acneique : c'est TON ingredient.
+Elle calme l'inflammation. Elle reconstruit la barrière. Elle encaisse à la place de ta peau.
 
-Comment l'utiliser :
-- Toner a la Centella en premiere couche
-- Serum concentre pour cibler
-- Creme pour sceller
-- Masque 2x/semaine en boost
+Toner centella d'abord. Sérum ciblé sur les zones rouges. Crème par-dessus pour sceller. Deux semaines, et tu arrêtes de camoufler.
 
-Sauvegarde ce post. Teste la Centella. Reviens me dire.
+Sauvegarde. Teste. Reviens me dire quand ton miroir a changé.
 
-#centella #centellaasiatica #kbeauty #kbeautyfrance #skincareroutine #soinscoreen #peausensible #herbedutigre #sonagibeauty #skincarefr
+#centella #centellaasiatica #kbeauty #sonagibeauty #peausensible #herbedutigre #beautecoreenne #rougeurs #skincareroutine #kbeautyfrance
 
 ---
 
 ## May 9 — Niacinamide vs Retinol
 
-Arrete le retinol. Essaie ca.
+Tu crois que rétinol = résultats. T'as juste cramé ta barrière.
 
-Le retinol, c'est puissant. Mais c'est aussi : secheresse, irritation, desquamation, et sensibilite au soleil. Pas adapte a tout le monde.
+Le rétinol, ça pique, ça pèle, ça rend la peau photosensible. Efficace, mais violent. Et pas pour tout le monde.
 
-La niacinamide ? Zero irritation. Anti-taches. Eclat. Regulation du sebum. Renforcement de la barriere cutanee.
+La niacinamide bosse autrement. Elle resserre les pores, éclaircit les taches, régule le sébum, renforce la barrière. Sans sécheresse. Sans rougeurs. Utilisable matin ET soir.
 
-Qui devrait utiliser quoi :
-- Peau sensible → Niacinamide
-- Anti-age intensif → Retinol
-- Debutant → Niacinamide
-- Rides profondes → Retinol (soir uniquement)
+La règle coréenne : niacinamide pour 80% des peaux. Rétinol seulement si tu vises des rides déjà marquées, et uniquement le soir, 2-3 fois par semaine.
 
-Le combo parfait : Niacinamide le matin + SPF. Retinol le soir (2-3x/semaine).
+Le combo qui marche : niacinamide + SPF le matin. Rétinol le soir, si vraiment tu en as besoin.
 
-Sauvegarde ce post. Essaie la niacinamide. Reviens me dire.
+Sauvegarde. Commence par la niacinamide. Reviens me dire dans quinze jours.
 
-#niacinamide #retinol #niacinamidevretinol #skincarefr #kbeauty #kbeautyfrance #soinsvisage #antiage #peausensible #sonagibeauty
+#niacinamide #retinol #kbeauty #sonagibeauty #skincarefr #antiage #peausensible #soinsvisage #kbeautyfrance #barrierecutanee
 
 ---
 
 ## May 10 — Snail Mucin : pourquoi ca marche
 
-Oui c'est de la bave d'escargot. Et oui ca marche.
+Tu trouves la bave d'escargot dégueu. T'as jamais lu ce qu'il y a dedans.
 
-A l'interieur : glycoproteines reparatrices, acide hyaluronique naturel, acide glycolique doux, peptides anti-age.
+Glycoprotéines qui réparent. Acide hyaluronique naturel. Acide glycolique doux. Peptides. L'escargot fabrique tout ça pour réparer sa propre coquille en une nuit. Ta peau, c'est le même principe.
 
-Ce que ca fait :
-- Hydratation profonde
-- Reparation cellulaire
-- Anti-rides naturel
-- Eclat instantane
+Les Coréennes l'utilisent depuis 20 ans. Pas pour le folklore. Parce que ça marche sur les cicatrices d'acné, la déshydratation, le teint fatigué.
 
-La texture ? Gel transparent, leger, absorbe en 30 secondes. Pas de film gras. Odeur neutre.
+La texture te surprendra. Gel transparent, absorbé en 30 secondes. Zéro film gras. Zéro odeur.
 
-Comment appliquer : apres le toner, sur peau humide, tapote (ne frotte pas), et scelle avec une creme.
+Après le toner, sur peau humide. Tapote, ne frotte pas. Scelle avec ta crème.
 
-Sauvegarde ce post. Teste le snail mucin. Reviens me dire.
+Sauvegarde. Teste deux semaines. Tu ne diras plus "dégueu".
 
-#snailmucin #baveescargot #mucine #kbeauty #kbeautyfrance #skincareroutine #hydratation #soinscoreen #cosrx #sonagibeauty
+#snailmucin #baveescargot #mucine #kbeauty #sonagibeauty #kbeautyfrance #hydratation #cicatricesacne #soinscoreen #glassskin
 
 ---
 
@@ -113,42 +101,38 @@ Dans 6 mois, tout le monde en parlera. Toi tu sais deja.
 
 ## May 13 — Bakuchiol vs Retinol
 
-Le retinol naturel. Sans les effets secondaires.
+Tu crois qu'il faut souffrir pour bien vieillir. Tu souffres pour rien.
 
-Le bakuchiol, c'est un extrait de la plante Babchi. Utilise en Ayurveda depuis des siecles. Et les etudes montrent : memes resultats anti-rides que le retinol.
+Le rétinol marche. Il brûle aussi. Rougeurs, desquamation, peau qui pèle, interdit enceinte, interdit le matin. Beaucoup abandonnent avant d'en voir les résultats.
 
-La difference :
-- Zero irritation
-- Utilisable le matin
-- OK pendant la grossesse
-- Meme action anti-rides
+Le bakuchiol vient d'une plante, le babchi. L'Ayurveda l'utilise depuis des siècles. Une étude de 2019 dans le British Journal of Dermatology a comparé les deux sur 12 semaines : résultats anti-rides équivalents. Irritation rétinol 60%. Irritation bakuchiol 0%.
 
-Qui devrait switcher : si le retinol te brule, si tu veux de l'anti-age doux, si tu es enceinte/allaitante, ou si tu veux simplifier ta routine.
+Utilisable matin ET soir. OK pendant la grossesse. OK peau sensible. Zéro photosensibilité.
 
-Efficacite equivalente (etudes 2019). Irritation : Bakuchiol 0% vs Retinol 60%. Utilisable matin ET soir.
+Les Coréennes l'ont déjà intégré dans les sérums "baby skin". Efficacité sans violence.
 
-Pas besoin de souffrir. La nature suffit.
+Sauvegarde. Teste huit semaines. La nature tient ses promesses.
 
-#bakuchiol #bakuchiolvretinol #retinolnaturel #kbeauty #kbeautyfrance #antiage #skincarenaturel #peausensible #sonagibeauty
+#bakuchiol #retinolnaturel #kbeauty #sonagibeauty #antiage #peausensible #skincarenaturel #kbeautyfrance #grossesse #soinsvisage
 
 ---
 
 ## May 14 — Les 5 ingredients K-beauty essentiels
 
-5 ingredients. C'est tout ce que ta peau a besoin.
+Tu empiles 12 produits. Les Coréennes en utilisent 5.
 
-Pas 50. Pas 20. Juste 5.
+Pas par minimalisme. Parce qu'elles ont testé le reste. Ces 5 ingrédients font 90% du travail. Le reste, c'est du marketing.
 
-1. CENTELLA ASIATICA — Apaise, repare, protege. Pour les peaux sensibles, reactives, acneiques.
+Centella. Elle apaise et reconstruit. Pour tout ce qui rougit, tiraille, réagit.
 
-2. SNAIL MUCIN — Hydratation profonde + reparation cellulaire. Pour les peaux seches, matures, fatiguees.
+Snail mucin. Il hydrate en profondeur et répare. Pour les peaux fatiguées, sèches, marquées.
 
-3. NIACINAMIDE — Eclat + regulation du sebum. Pour les peaux grasses, taches, teint terne.
+Niacinamide. Elle resserre les pores et efface les taches. Pour les peaux grasses et les teints ternes.
 
-4. ACIDE HYALURONIQUE — Hydratation multi-couche. Pour les peaux deshydratees, rides fines.
+Acide hyaluronique. Il retient l'eau sur plusieurs couches. Pour toutes les peaux déshydratées.
 
-5. EAU DE RIZ — Illumine le teint. Vitamines B + E. Le secret des geishas, parfait en toner.
+Eau de riz. Elle illumine. Vitamines B, E, antioxydants. Le secret des grands-mères coréennes bien avant les labos.
 
-Sauvegarde ce post. Construis ta routine avec ces 5 ingredients. Reviens me dire.
+Sauvegarde. Construis ta routine autour de ces 5. Jette le reste.
 
-#kbeauty #kbeautyfrance #5ingredients #skincareroutine #centella #snailmucin #niacinamide #acidehyaluronique #eauderiz #sonagibeauty
+#kbeauty #sonagibeauty #kbeautyfrance #5ingredients #centella #snailmucin #niacinamide #acidehyaluronique #eauderiz #skincareroutine
