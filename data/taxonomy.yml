@@ -1,0 +1,154 @@
+# Sonagi Beauty taxonomy — single source of truth for all tags.
+# Components reference tags by ID, never by string.
+# Schema source: sonagiclaudecodespec.md "Taxonomy" section.
+# Last updated: 2026-05-08
+
+content_types:
+  - product
+  - brand
+  - ingredient
+  - korean-concept
+  - clinical-procedure
+  - routine
+  - concern
+  - category
+  - article
+  - masterclass
+  - review
+  - rituel-bundle
+
+skin_types:
+  - peau-grasse
+  - peau-seche
+  - peau-mixte
+  - peau-normale
+  - peau-sensible
+
+concerns:
+  - acne
+  - pores
+  - eclat
+  - hydratation
+  - anti-age
+  - rougeurs
+  - barriere
+  - taches
+  - sebum
+  - premieres-rides
+
+# 12 of 159 ingredients populated. Remaining 147 to be added incrementally — see spec line 132.
+ingredients:
+  - id: niacinamide
+    name_fr: Niacinamide
+    name_en: Niacinamide
+    inci: Niacinamide
+    slug: niacinamide
+  - id: acide-hyaluronique
+    name_fr: Acide hyaluronique
+    name_en: Hyaluronic acid
+    inci: Sodium Hyaluronate
+    slug: acide-hyaluronique
+  - id: ceramides
+    name_fr: Céramides
+    name_en: Ceramides
+    inci: Ceramide NP
+    slug: ceramides
+  - id: vitamine-c
+    name_fr: Vitamine C
+    name_en: Vitamin C
+    inci: Ascorbic Acid
+    slug: vitamine-c
+  - id: retinol
+    name_fr: Rétinol
+    name_en: Retinol
+    inci: Retinol
+    slug: retinol
+  - id: retinal
+    name_fr: Rétinal
+    name_en: Retinaldehyde
+    inci: Retinal
+    slug: retinal
+  - id: peptides
+    name_fr: Peptides
+    name_en: Peptides
+    inci: Palmitoyl Tripeptide-1
+    slug: peptides
+  - id: bakuchiol
+    name_fr: Bakuchiol
+    name_en: Bakuchiol
+    inci: Bakuchiol
+    slug: bakuchiol
+  - id: centella
+    name_fr: Centella asiatica
+    name_en: Centella asiatica (Cica)
+    inci: Centella Asiatica Extract
+    slug: centella-asiatica
+  - id: snail-mucin
+    name_fr: Mucine d'escargot
+    name_en: Snail mucin
+    inci: Snail Secretion Filtrate
+    slug: snail-mucin
+  - id: panthenol
+    name_fr: Panthénol
+    name_en: Panthenol
+    inci: Panthenol
+    slug: panthenol
+  - id: tranexamic-acid
+    name_fr: Acide tranexamique
+    name_en: Tranexamic acid
+    inci: Tranexamic Acid
+    slug: tranexamic-acid
+
+korean_concepts:
+  - glass-skin
+  - mool-gwang
+  - chok-chok
+  - hanbang
+  - dohwasaek
+  - sok-su-bun
+
+routine_stages:
+  - nettoyage
+  - tonification
+  - traitement
+  - hydratation
+  - protection
+
+ingredient_families:
+  - hydratation
+  - anti-age
+  - eclaircissants
+  - apaisants
+  - exfoliants
+  - antioxydants
+
+price_tiers:
+  - essentiel
+  - intermediaire
+  - premium
+
+personas:
+  - curieuse
+  - strategique
+  - connaisseuse
+  - clinique
+  - reguliere
+
+flags:
+  - best-seller
+  - new-arrival
+  - trending
+  - seoul-validated
+  - coup-de-coeur
+  - limited-edition
+  - exclusive-sonagi
+
+article_types:
+  - guide
+  - tendance
+  - ingredient
+  - brand-story
+  - routine
+  - comparison
+  - review
+  - clinical

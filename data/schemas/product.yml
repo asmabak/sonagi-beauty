@@ -1,0 +1,110 @@
+# Sonagi Beauty Product schema — the contract every product must match.
+# Source of truth: sonagiclaudecodespec.md "Data Schema → Product" section.
+# Used for placeholder catalogue today; will absorb MY-KARE Pro feed without breaking changes.
+# Last updated: 2026-05-08
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Identity
+# ──────────────────────────────────────────────────────────────────────────────
+sku: string                          # primary key, immutable
+slug_fr: string                      # URL slug FR
+slug_en: string                      # URL slug EN
+brand_id: string                     # FK to brand
+name_fr: string
+name_en: string
+name_korean: string                  # original Korean name (한글)
+volume: string                       # e.g. "50ml", "30ml"
+volume_unit: enum                    # ml | g | piece
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Classification — these tags drive filtering, schema, internal linking
+# All enum values must reference /data/taxonomy.yml — never raw strings.
+# ──────────────────────────────────────────────────────────────────────────────
+content_type: "product"
+categories: [string]                 # primary + optional secondary
+skin_types: [enum]                   # peau-grasse | peau-seche | peau-mixte | peau-normale | peau-sensible
+concerns: [enum]                     # acne | pores | eclat | hydratation | anti-age | rougeurs | barriere | taches | sebum | premieres-rides
+ingredients_active: [string]         # FK to ingredient encyclopedia entries
+ingredients_inci_full: [string]      # complete INCI list
+korean_concepts: [enum]              # glass-skin | mool-gwang | chok-chok | hanbang | dohwasaek
+routine_stage: enum                  # nettoyage | tonification | traitement | hydratation | protection
+ingredient_family: [enum]            # hydratation | anti-age | eclaircissants | apaisants | exfoliants | antioxydants
+price_tier: enum                     # essentiel | intermediaire | premium
+personas: [enum]                     # curieuse | strategique | connaisseuse | clinique | reguliere
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Commerce
+# ──────────────────────────────────────────────────────────────────────────────
+price_eur: decimal
+price_eur_original: decimal | null   # for showing discount
+stock_status: enum                   # in-stock | low-stock | out-of-stock | preorder
+stock_quantity: integer | null
+sample_available: boolean
+sample_price_eur: decimal | null     # default 2.00
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Flags — surfaced as badges and used by ranking/filtering logic
+# ──────────────────────────────────────────────────────────────────────────────
+flag_best_seller: boolean
+flag_new_arrival: boolean
+flag_trending: boolean
+flag_seoul_validated: boolean
+flag_coup_de_coeur: boolean
+flag_limited_edition: boolean
+flag_exclusive_sonagi: boolean
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Content blocks
+# ──────────────────────────────────────────────────────────────────────────────
+description_short: string            # < 80 chars, used in cards
+description_long: string             # full marketing copy
+hero_ingredient: string              # the headline active (e.g. "5% niacinamide")
+hero_ingredient_id: string           # FK to encyclopedia
+founder_verdict_fr: string           # 2-3 sentences in Asma's voice
+founder_verdict_en: string
+suitable_for: string                 # "Pour qui c'est"
+not_suitable_for: string             # "Pour qui ça ne marche pas" — honesty signal
+how_to_use_fr: string                # routine integration text
+how_to_use_en: string
+frequency: enum                      # daily | 3-per-week | 2-per-week | weekly | as-needed
+am_pm: enum                          # am | pm | both
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Relationships — power compatibility matrix, bundles, alternatives
+# ──────────────────────────────────────────────────────────────────────────────
+pairs_well_with: [sku]               # other products that combine
+avoid_pairing_with: [sku]            # ingredient or product conflicts
+part_of_rituels: [string]            # FK to rituels
+alternatives: [sku]                  # similar products at different price tiers
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Media
+# ──────────────────────────────────────────────────────────────────────────────
+images: [{url, alt, type}]           # type: hero | lifestyle | swatch | texture | packaging
+video_url: string | null
+video_poster_url: string | null
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Reviews aggregate — populated from review subsystem
+# ──────────────────────────────────────────────────────────────────────────────
+reviews_count: integer
+reviews_avg: decimal                 # 1-5
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Compliance
+# ──────────────────────────────────────────────────────────────────────────────
+cpnp_compliant: boolean
+cpnp_notification_id: string | null
+hs_code: string                      # for export
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Meta
+# ──────────────────────────────────────────────────────────────────────────────
+date_added: timestamp
+last_updated: timestamp
+wholesaler_id: string | null         # MY-KARE Pro SKU when linked
+wholesaler_cost_eur: decimal | null  # internal only
+margin_pct: decimal                  # computed
+missing_fields_warning: [string]     # auto-flag fields requiring enrichment
+
+# Schema enforcement: products with missing_fields_warning populated land in /admin/enrichment-queue/ and are blocked from publishing.
