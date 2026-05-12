@@ -1,8 +1,15 @@
+---
+name: sonagi-orchestration
+description: Sonagi Beauty content production master playbook. Invoke when planning or producing content (Minjun videos, Instagram carousels, weekly batches, product launches, monthly strategy reviews) — covers idea→research→script→production→post-prod→publish→analyze stages with skill-mapping at each step. Use when the user mentions "content workflow", "Minjun video", "weekly batch", "carousel production", "campaign orchestration", "what skill should I use for X", or "how do I produce this content". Heads up — parts of this doc predate the 2026-04-25 brand pivot; always cross-check daily cadence and pillar names against brand-strategy/brand-identity/sonagi-strategic-pillars.md (the locked source of truth).
+---
+
 # Sonagi Beauty -- Content Production Orchestration Workflow
 ## Master Playbook for All Content Types
 
-**Last updated:** 2026-04-16
+**Last updated:** 2026-04-16 (skill-ified 2026-05-10)
 **Open this document at the start of every work session.**
+
+> ⚠️ **Hybrid-stale notice (2026-05-10):** The production *steps* in this playbook (script → render → post-prod → publish) are still correct. The strategic *cadence* (Eduquer/Montrer/Inspirer/Vendre pillars, 12h/18h posting times) was superseded by the **2026-04-25 boardroom pivot** to the 06:47 / 12:30 / 19:30 slot rhythm and the *Le Petit Rituel* / Minjun bathroom format. When this doc and `brand-strategy/brand-identity/sonagi-strategic-pillars.md` disagree, the pillars doc wins. Stale references to `content/full-campaign-plan.md` and `content/may-content/` should be ignored — those files were quarantined to `brand-strategy/_DO-NOT-USE-pre-2026-04-25/`.
 
 ---
 

@@ -89,17 +89,23 @@ Warm, expressive, playful — like FaceTiming his best friend. Eyes locked on ca
 - 8-10 hashtags max
 - Line breaks between every thought
 
-### Carousel Format (LOCKED — V3)
-- 1080x1080 PNG, 7 slides per carousel
-- Colors: CREAM=#faf8f5, NAVY=#1a2744, PEACH=#f5c4aa, ROSE=#8a6565
-- Slide 1: Image bg + dark overlay + big headline (60-80px)
-- Slides 2-5: Cream bg, educational, numbered lists, 30-34px body
-- Slide 6: Navy bg cheat sheet with color-coded pills
-- Slide 7: Image bg + warm CTA + @sonagibeauty
-- NO text smaller than 22px except watermark
-- ALL French text must have proper accents
-- Use stock images from sonagi-beauty/images/visuals/
-- Template script: C:\Users\marou\sonagi-carousel-v3.js
+### Brand identity (LOCKED 2026-04-25, reaffirmed 2026-04-27 — see brand-strategy/brand-identity/sonagi-strategic-pillars.md)
+
+**Palette (consumer):** banana `#F7D84C` (education), hot pink `#FF3E9D` (scroll-stop), peach `#F5C4AA` (dreamy), mint `#A8D9B9` (calm), cream `#FAF8F5` (canvas).
+**NEVER use:** black, navy, grey, charcoal, brown.
+
+**Typography:** Pacifico for hero callouts and the wordmark. Body in a clean French sans (DM Sans / Inter / Manrope — never Arial).
+
+**Banned voice words:** *deserving / earning / finally / treat yourself / tu mérites / parfaite / miracle / magie*.
+
+**Earlier doc note:** A prior carousel V3 spec used Navy `#1a2744` / Rose `#8a6565` and Cormorant Garamond — that palette is RETIRED. The old spec is quarantined in `brand-strategy/_DO-NOT-USE-pre-2026-04-25/canva-specs.md`.
+
+### Locked source files (do not edit elsewhere)
+- `brand-strategy/boardroom-2026-04-25/STRATEGY-LOCKED.md` — strategic source of truth
+- `brand-strategy/boardroom-2026-04-25/REVOLUTIONARY-STRATEGY.md` — full 36-month roadmap
+- `brand-strategy/brand-identity/sonagi-strategic-pillars.md` — palette + voice + rules
+- `brand-strategy/voice-guide/SONAGI-Brand-Voice-Guide.pptx`
+- `.claude/skills/sonagi-orchestration/SKILL.md` — content production playbook (callable skill)
 
 ---
 
