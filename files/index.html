@@ -22,8 +22,8 @@
 <meta name="twitter:image" content="https://sonagibeauty.com/images/visuals/sonagi-home_hero_1.png">
 <link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
 <link rel="apple-touch-icon" href="brand/apple-touch-icon.svg">
-<link rel="mask-icon" href="brand/sonagi-mark.svg" color="#1a2744">
-<meta name="theme-color" content="#1a2744">
+<link rel="mask-icon" href="brand/sonagi-mark.svg" color="#FF3E9D">
+<meta name="theme-color" content="#FF3E9D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/sonagi.css">
@@ -317,7 +317,7 @@
       <span class="c-tag t" data-fr="Nouveauté · Glow Recipe" data-en="New arrival · Glow Recipe">Nouveauté · Glow Recipe</span>
       <h1 class="c-title t" data-fr="Watermelon<br><em>Glow</em>" data-en="Watermelon<br><em>Glow</em>">Watermelon<br><em>Glow</em></h1>
       <p class="c-sub t" data-fr="Niacinamide 5% · Éclat immédiat · Pores affinés." data-en="Niacinamide 5% · Instant glow · Refined pores.">Niacinamide 5% · Éclat immédiat · Pores affinés.</p>
-      <div class="c-btns"><a href="#" onclick="openQuiz();return false;" class="c-cta t" data-fr="Diagnostique ma peau →" data-en="Diagnose my skin →">Diagnostique ma peau →</a><button class="btn-outline t" data-fr="Ma routine" data-en="My routine" onclick="openQuiz()">Ma routine</button></div>
+      <div class="c-btns"><a href="#quiz" onclick="openQuiz();return false;" class="c-cta t" data-fr="Diagnostique ma peau →" data-en="Diagnose my skin →">Diagnostique ma peau →</a><button class="btn-outline t" data-fr="Ma routine" data-en="My routine" onclick="openQuiz()">Ma routine</button></div>
     </div>
   </div>
   <div class="c-slide c-slide-bg-2">
@@ -352,37 +352,6 @@
   <span>IUNIK <span class="dot">✦</span></span><span>Anua <span class="dot">✦</span></span>
   <span>Round Lab <span class="dot">✦</span></span><span>Laneige <span class="dot">✦</span></span>
 </div></div>
-
-<!-- ── TROUVE PAR PRÉOCCUPATION — concern-led entry path ── -->
-<style>
-.concerns-wrap{padding:56px 16px 64px;background:var(--cream);text-align:center}
-.concerns-wrap .lbl{margin-bottom:10px}
-.concerns-wrap h2{font-family:'Fraunces',serif;font-size:32px;color:var(--navy);font-weight:300;letter-spacing:-0.01em;margin-bottom:8px}
-.concerns-wrap .concerns-sub{font-size:14px;color:var(--muted);max-width:520px;margin:0 auto 32px;line-height:1.6}
-.concerns-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:1100px;margin:0 auto;padding:0 4px}
-.concern-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 16px;min-height:128px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,border-color .2s}
-.concern-tile:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,39,68,.08);border-color:var(--peach)}
-.concern-kr{font-family:'Noto Sans KR','Fraunces',serif;font-size:22px;color:var(--peach);font-weight:300;letter-spacing:1px;line-height:1}
-.concern-fr{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--navy);font-weight:500;letter-spacing:.3px;line-height:1.3;text-align:center}
-.concern-tile:hover .concern-fr{color:var(--rose)}
-@media(min-width:640px){.concerns-grid{grid-template-columns:repeat(4,1fr);gap:14px}.concerns-wrap h2{font-size:40px}.concerns-wrap{padding:72px 24px 80px}}
-@media(min-width:1024px){.concerns-grid{grid-template-columns:repeat(8,1fr);gap:14px}.concern-tile{min-height:148px;padding:28px 12px}.concern-kr{font-size:26px}}
-</style>
-<section class="concerns-wrap">
-  <span class="lbl">Trouve par préoccupation</span>
-  <h2>Comment est <em style="font-style:italic;color:var(--peach)">ta peau</em> aujourd'hui ?</h2>
-  <p class="concerns-sub">Choisis ce qui te parle. On te montre la routine coréenne qui répond — du nettoyant à la crème de nuit.</p>
-  <div class="concerns-grid">
-    <a class="concern-tile" href="skincare.html?concern=pores"><span class="concern-kr">모공</span><span class="concern-fr">Pores dilatés</span></a>
-    <a class="concern-tile" href="skincare.html?concern=hydratation"><span class="concern-kr">수분</span><span class="concern-fr">Déshydratation</span></a>
-    <a class="concern-tile" href="skincare.html?concern=eclat"><span class="concern-kr">광채</span><span class="concern-fr">Teint terne</span></a>
-    <a class="concern-tile" href="skincare.html?concern=taches"><span class="concern-kr">잡티</span><span class="concern-fr">Taches &amp; post-acné</span></a>
-    <a class="concern-tile" href="skincare.html?concern=acne"><span class="concern-kr">트러블</span><span class="concern-fr">Acné active</span></a>
-    <a class="concern-tile" href="skincare.html?concern=sensibilite"><span class="concern-kr">진정</span><span class="concern-fr">Sensibilité &amp; rougeurs</span></a>
-    <a class="concern-tile" href="skincare.html?concern=rides"><span class="concern-kr">탄력</span><span class="concern-fr">Premières rides</span></a>
-    <a class="concern-tile" href="skincare.html?concern=sebum"><span class="concern-kr">피지</span><span class="concern-fr">Excès de sébum</span></a>
-  </div>
-</section>
 
 <div class="section-wrap" style="background:#faf8f5">
   <div class="section-head">
@@ -578,6 +547,36 @@
     <span class="brand-logo">Round Lab</span><span class="brand-logo serif">Laneige</span>
   </div></div>
   <div class="belt-cta"><a href="marques.html" class="btn-marques t" data-fr="Toutes nos marques →" data-en="All our brands →">Toutes nos marques →</a></div>
+</section>
+<!-- ── TROUVE PAR PRÉOCCUPATION — concern-led entry path ── -->
+<style>
+.concerns-wrap{padding:56px 16px 64px;background:var(--cream);text-align:center}
+.concerns-wrap .lbl{margin-bottom:10px}
+.concerns-wrap h2{font-family:'Fraunces',serif;font-size:32px;color:var(--navy);font-weight:300;letter-spacing:-0.01em;margin-bottom:8px}
+.concerns-wrap .concerns-sub{font-size:14px;color:var(--muted);max-width:520px;margin:0 auto 32px;line-height:1.6}
+.concerns-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:1100px;margin:0 auto;padding:0 4px}
+.concern-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 16px;min-height:128px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,border-color .2s}
+.concern-tile:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,39,68,.08);border-color:var(--peach)}
+.concern-kr{font-family:'Noto Sans KR','Fraunces',serif;font-size:22px;color:var(--peach);font-weight:300;letter-spacing:1px;line-height:1}
+.concern-fr{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--navy);font-weight:500;letter-spacing:.3px;line-height:1.3;text-align:center}
+.concern-tile:hover .concern-fr{color:var(--rose)}
+@media(min-width:640px){.concerns-grid{grid-template-columns:repeat(4,1fr);gap:14px}.concerns-wrap h2{font-size:40px}.concerns-wrap{padding:72px 24px 80px}}
+@media(min-width:1024px){.concerns-grid{grid-template-columns:repeat(8,1fr);gap:14px}.concern-tile{min-height:148px;padding:28px 12px}.concern-kr{font-size:26px}}
+</style>
+<section class="concerns-wrap">
+  <span class="lbl">Trouve par préoccupation</span>
+  <h2>Comment est <em style="font-style:italic;color:var(--peach)">ta peau</em> aujourd'hui ?</h2>
+  <p class="concerns-sub">Choisis ce qui te parle. On te montre la routine coréenne qui répond — du nettoyant à la crème de nuit.</p>
+  <div class="concerns-grid">
+    <a class="concern-tile" href="skincare.html?concern=pores"><span class="concern-kr">모공</span><span class="concern-fr">Pores dilatés</span></a>
+    <a class="concern-tile" href="skincare.html?concern=hydratation"><span class="concern-kr">수분</span><span class="concern-fr">Déshydratation</span></a>
+    <a class="concern-tile" href="skincare.html?concern=eclat"><span class="concern-kr">광채</span><span class="concern-fr">Teint terne</span></a>
+    <a class="concern-tile" href="skincare.html?concern=taches"><span class="concern-kr">잡티</span><span class="concern-fr">Taches &amp; post-acné</span></a>
+    <a class="concern-tile" href="skincare.html?concern=acne"><span class="concern-kr">트러블</span><span class="concern-fr">Acné active</span></a>
+    <a class="concern-tile" href="skincare.html?concern=sensibilite"><span class="concern-kr">진정</span><span class="concern-fr">Sensibilité &amp; rougeurs</span></a>
+    <a class="concern-tile" href="skincare.html?concern=rides"><span class="concern-kr">탄력</span><span class="concern-fr">Premières rides</span></a>
+    <a class="concern-tile" href="skincare.html?concern=sebum"><span class="concern-kr">피지</span><span class="concern-fr">Excès de sébum</span></a>
+  </div>
 </section>
 <div class="reviews-section" style="background:#faf8f5">
   <div class="rating-row" style="margin-bottom:24px">
