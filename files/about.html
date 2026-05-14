@@ -443,7 +443,12 @@
 <section class="ab-hero">
   <div class="ab-hero-inner">
     <div class="ab-video-wrap" aria-label="Sonagi marshmallow ritual reel">
-      <video src="videos/sonagi-marshmallow.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
+      <video class="ab-hero-video" autoplay muted loop playsinline preload="metadata" poster="videos/sonagi-marshmallow-poster.jpg">
+        <source src="videos/sonagi-marshmallow-web.webm" type="video/webm">
+        <source src="videos/sonagi-marshmallow-web.mp4" type="video/mp4">
+        <!-- 34 MB original kept as last-resort fallback for older browsers -->
+        <source src="videos/sonagi-marshmallow.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="ab-id">
       <span class="ab-tag t" data-fr="Sonagi · 소나기" data-en="Sonagi · 소나기">Sonagi · 소나기</span>
