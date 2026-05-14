@@ -2634,7 +2634,8 @@ function renderResult (c) {
   const d = new Date();
   document.getElementById('result-date').textContent = r.date + ' · ' + d.getDate() + ' ' + r.months[d.getMonth()] + ' ' + d.getFullYear();
 
-  // "what we noticed" — elaborated, professional skin-analysis layout
+  // "what we noticed" — original single-paragraph narrative
+  // (Reverted from the structured 5-row layout per founder direction 2026-05-14.)
   document.getElementById('noticed-eyebrow').textContent = r.noticedEyebrow;
   const nb = r.noticedBuilder;
   const skinKeyMap = { combo: 'combo', combo_sens: 'combo_sens', oily: 'oily', dry: 'dry', sensitive: 'sensitive', normal: 'balanced' };
@@ -2643,110 +2644,12 @@ function renderResult (c) {
   const concernPart = top && nb.concernPhrases[top] ? nb.concernPhrases[top] : '';
   const envKeyMap = { city: 'city', coast: 'coastal', sea: 'coastal', coastal: 'coastal', altitude: 'altitude', indoor: 'indoor', indoors: 'indoor', mixed: 'mixed' };
   const envPart = c.envKey && nb.envPhrases[envKeyMap[c.envKey]] ? nb.envPhrases[envKeyMap[c.envKey]] : '';
-
-  // Build a structured analysis: profile / photo / metrics / priority / narrative.
-  // Bilingual labels (no JSON edit needed — keeps the COPY structure intact).
-  const isEN = LANG === 'en';
-  const L = {
-    profile:    isEN ? 'Profile'         : 'Profil',
-    photo:      isEN ? 'Photo analysis'  : 'Analyse photo',
-    photoNone:  isEN ? 'No photo · analysis based on your answers only' : 'Sans photo · analyse basée sur tes réponses uniquement',
-    zonesRead:  isEN ? 'zones read'      : 'zones lues',
-    metrics:    isEN ? 'Skin metrics'    : 'Indicateurs peau',
-    hydration:  isEN ? 'Hydration'       : 'Hydratation',
-    barrier:    isEN ? 'Barrier'         : 'Barrière',
-    priority:   isEN ? 'Priority focus'  : 'Priorité',
-    reading:    isEN ? 'Our reading'     : 'Notre lecture',
-    bandLow:    isEN ? 'low — needs a humectant push' : 'basse — besoin d\'un boost humectant',
-    bandMid:    isEN ? 'mid — keep what you do, dial it in' : 'correcte — affine ce que tu fais',
-    bandGood:   isEN ? 'good — protect what works' : 'bonne — préserve ce qui marche',
-    sansActifs: isEN ? 'no actives to avoid' : 'aucun actif à éviter'
-  };
-  const bandLabel = function (k) { return k === 'low' ? L.bandLow : k === 'mid' ? L.bandMid : L.bandGood; };
-
-  // env display
-  const envDisplay = {
-    city:      isEN ? 'city dweller'        : 'vit en ville',
-    coast:     isEN ? 'coastal climate'     : 'climat côtier',
-    sea:       isEN ? 'coastal climate'     : 'climat côtier',
-    coastal:   isEN ? 'coastal climate'     : 'climat côtier',
-    altitude:  isEN ? 'mountain / altitude' : 'montagne / altitude',
-    indoor:    isEN ? 'mostly indoors'      : 'surtout en intérieur',
-    indoors:   isEN ? 'mostly indoors'      : 'surtout en intérieur',
-    mixed:     isEN ? 'mixed environment'   : 'environnement mixte'
-  }[c.envKey] || '';
-
-  // skin type display (from answer key)
-  const skinDisplay = {
-    oily:      isEN ? 'oily skin'          : 'peau grasse',
-    dry:       isEN ? 'dry skin'           : 'peau sèche',
-    combo:     isEN ? 'combination skin'   : 'peau mixte',
-    normal:    isEN ? 'normal / balanced skin' : 'peau normale',
-    sensitive: isEN ? 'sensitive skin'     : 'peau sensible'
-  }[c.skinKey] || (isEN ? 'your skin' : 'ta peau');
-
-  // exclusions display
-  const exc = (state.answers.exclusions || []);
-  const excDisplay = exc.length
-    ? (isEN ? 'avoiding: ' : 'évite : ') + exc.join(', ')
-    : L.sansActifs;
-
-  // zones display (uses already-localised facialZones map)
-  const zoneNames = (c.zones || [])
-    .map(function (zk) { return r.facialZones[zk] && r.facialZones[zk].area; })
-    .filter(Boolean);
-  const photoLine = c.photo
-    ? L.photo + ' · ' + (c.zones.length) + ' ' + L.zonesRead + ' — ' + zoneNames.slice(0, 4).join(', ')
-    : L.photoNone;
-
-  // priority focus — first concern + its mapped intent
-  const focusMap = {
-    dehydration: isEN ? 'deep hydration (essence layering + humectant cream)' : 'hydratation profonde (couches d\'essence + crème humectante)',
-    barrier:     isEN ? 'barrier repair (panthenol, centella, no exfoliants)' : 'réparation barrière (panthénol, centella, pas d\'exfoliants)',
-    redness:     isEN ? 'calming inflammation (centella, niacinamide low %)' : 'apaisement (centella, niacinamide faible %)',
-    pores:       isEN ? 'pore refinement (BHA 1-2× / week + niacinamide)'    : 'affinement des pores (BHA 1-2×/sem + niacinamide)',
-    acne:        isEN ? 'breakout management (gentle BHA, no over-cleansing)' : 'gestion des imperfections (BHA doux, pas de sur-nettoyage)',
-    aging:       isEN ? 'fine line care (peptides AM, retinal PM if tolerated)' : 'soin rides fines (peptides matin, rétinal soir si toléré)',
-    radiance:    isEN ? 'radiance boost (vitamin C AM + niacinamide)' : 'éclat (vitamine C matin + niacinamide)'
-  };
-  const priorityText = top && focusMap[top]
-    ? focusMap[top]
-    : (isEN ? 'maintenance — keep your barrier strong' : 'entretien — garde ta barrière forte');
-
-  // metrics (hydra + barrier %)
-  const metricsLine =
-    L.hydration + ' ' + c.hydra.range[0] + '–' + c.hydra.range[1] + '% (' + bandLabel(c.hydra.bandKey) + ') · ' +
-    L.barrier + ' ' + c.barrier.range[0] + '–' + c.barrier.range[1] + '% (' + bandLabel(c.barrier.bandKey) + ')';
-
-  // narrative (the original composed paragraph)
-  const narrative = [
+  const composed = [
     skinPart + (concernPart ? ', ' + concernPart : '') + '.',
     envPart,
     nb.outro
   ].filter(Boolean).join(' ');
-
-  function row (icon, label, body) {
-    return ''
-      + '<div style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line-soft, #F1ECE3)">'
-      +   '<span style="flex:0 0 22px;font-size:14px;line-height:1.2;padding-top:1px">' + icon + '</span>'
-      +   '<span style="flex:1;font-size:13px;line-height:1.45;color:var(--ink)">'
-      +     '<strong style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:2px">' + label + '</strong>'
-      +     body
-      +   '</span>'
-      + '</div>';
-  }
-  const html = ''
-    + row('👤', L.profile,  skinDisplay + (envDisplay ? ' · ' + envDisplay : '') + ' · ' + excDisplay)
-    + row('📷', L.photo,    photoLine)
-    + row('💧', L.metrics,  metricsLine)
-    + row('🎯', L.priority, priorityText)
-    + '<div style="padding:12px 0 4px;font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.5;color:var(--ink)">'
-    +   '<span style="font-family:var(--mono);font-style:normal;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:6px">' + L.reading + '</span>'
-    +   narrative
-    + '</div>';
-
-  const $body = document.getElementById('noticed-body');
-  $body.innerHTML = html;
+  document.getElementById('noticed-body').textContent = composed;
 
   // section headers (i18n)
   document.querySelector('[data-i18n="sec-fm"]').textContent = r.sections.fm;

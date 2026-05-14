@@ -1616,8 +1616,10 @@ footer { background: var(--footer-bg); color: var(--border); padding: 48px 16px 
   .ab-code-card h3 { font-size: 16px !important; line-height: 1.25 !important; margin-bottom: 6px !important; }
   .ab-code-card p { font-size: 12px !important; line-height: 1.45 !important; }
   .ab-code-card .num { font-size: 11px !important; }
-  /* 5th card spans full so 5-into-2-col doesn't dangle */
-  .ab-code-card:nth-child(5) { grid-column: 1 / -1; }
+  /* 3rd card spans full width so the layout doesn't dangle a
+     lone half-width card next to the full-width app card below it.
+     (Was 5 cards, now 4 after founder removed "ton rituel pas notre dogme".) */
+  .ab-code-card:nth-child(3) { grid-column: 1 / -1; }
   /* App card stays full-width (has a CTA, deserves the room) */
   .ab-code-card-app { grid-column: 1 / -1 !important; }
 
