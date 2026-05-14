@@ -2776,16 +2776,63 @@ function renderResult (c) {
   document.getElementById('disclaimer').textContent = r.disclaimer;
 }
 
+/* ── cart bridge ─────────────────────────────────────────
+   sonagi-cart.js stores items in localStorage["sonagi_cart_v1"]
+   as JSON array of {sku, brand, name, price, qty}. The consultation
+   page is self-contained (doesn't load sonagi-cart.js to stay light),
+   so we write to that same key directly. /panier.html reads from it. */
+const CART_KEY = 'sonagi_cart_v1';
+function _slugify (s) {
+  return String(s || '').toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 48);
+}
+function cartItemFromSlot (slot, ritual, r) {
+  const p = ritual && ritual[slot];
+  if (!p || typeof p.price !== 'number') return null;
+  return {
+    sku: 'consult_' + slot + '_' + _slugify(p.name),
+    brand: p.brand || '',
+    name: p.name || '',
+    price: p.price.toFixed(2).replace('.', ',') + ' €',
+    image: p.image || '',
+    qty: 1,
+    _source: 'consultation',
+    _slot: slot,
+    _slotRole: r && r.slotRoles ? (r.slotRoles[slot] || '') : ''
+  };
+}
+function readCart () {
+  try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]') || []; }
+  catch (_) { return []; }
+}
+function writeCart (items) {
+  try { localStorage.setItem(CART_KEY, JSON.stringify(items || [])); } catch (_) {}
+}
+
 function buyRoutine (which, slots, ritual) {
-  // Placeholder: in production this would create a checkout session with the ritual items.
+  const r = copy().result;
+  // Build incremental cart: keep anything already in there, add this routine's items (dedup by sku).
+  const existing = readCart();
+  const bySku = new Map(existing.map(it => [it.sku, it]));
+  slots.forEach(slot => {
+    const item = cartItemFromSlot(slot, ritual, r);
+    if (item && !bySku.has(item.sku)) bySku.set(item.sku, item);
+  });
+  writeCart(Array.from(bySku.values()));
+
   const btn = document.getElementById('r-' + which + '-buy');
   if (!btn) return;
   const prior = btn.querySelector('.routine-buy-label').textContent;
   btn.querySelector('.routine-buy-label').textContent = LANG === 'en' ? 'added to basket ✓' : 'ajouté au panier ✓';
-  btn.style.background = 'var(--navy)';
+  btn.style.background = 'var(--mint-sat, #B5D9B0)';
+  btn.style.color = 'var(--brown-warm, #382518)';
   setTimeout(() => {
     btn.querySelector('.routine-buy-label').textContent = prior;
     btn.style.background = '';
+    btn.style.color = '';
   }, 1800);
 }
 
@@ -2839,19 +2886,24 @@ function renderBasket (amSlots, pmSlots, ritual, r) {
     }
   });
 
-  // checkout button placeholder
+  // Checkout: replace cart with exactly what the user has checked,
+  // persist, and hand off to /panier.html where SonagiCart picks it up.
   const $checkout = document.getElementById('basket-checkout');
   const freshCheckout = $checkout.cloneNode(true);
   $checkout.parentNode.replaceChild(freshCheckout, $checkout);
   freshCheckout.addEventListener('click', () => {
     if (selected.size === 0) return;
-    const prior = freshCheckout.querySelector('.basket-checkout-lbl').textContent;
-    freshCheckout.querySelector('.basket-checkout-lbl').textContent = LANG === 'en' ? 'redirecting to checkout ✓' : 'redirection vers le paiement ✓';
-    freshCheckout.style.background = 'var(--navy)';
-    setTimeout(() => {
-      freshCheckout.querySelector('.basket-checkout-lbl').textContent = prior;
-      freshCheckout.style.background = '';
-    }, 1800);
+    const items = [];
+    selected.forEach(slot => {
+      const it = cartItemFromSlot(slot, ritual, r);
+      if (it) items.push(it);
+    });
+    writeCart(items);
+    freshCheckout.querySelector('.basket-checkout-lbl').textContent =
+      LANG === 'en' ? 'opening your basket ✓' : 'ouverture de ton panier ✓';
+    freshCheckout.style.background = 'var(--mint-sat, #B5D9B0)';
+    freshCheckout.style.color = 'var(--brown-warm, #382518)';
+    setTimeout(() => { window.location.href = '/panier.html'; }, 500);
   });
 }
 
