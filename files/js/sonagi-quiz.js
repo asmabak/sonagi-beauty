@@ -1,15 +1,15 @@
 /* ══════════════════════════════════════════════════════
-   SONAGI ADVISOR QUIZ — v3 (5 questions, basket hand-off)
+   SONAGI ADVISOR QUIZ · v3 (5 questions, basket hand-off)
    ──────────────────────────────────────────────────────
    Replaces the inline quiz logic that used to live in every
    HTML page. Mounts into the existing #quiz-modal shell and
    rebuilds the body with 5 streamlined questions.
 
    Public API (window.SonagiQuiz):
-     init()   — wires the modal + global aliases
-     open()   — opens the modal, resets state, shows step 1
-     close()  — closes the modal
-     state()  — returns current QA snapshot (for debugging)
+     init()   : wires the modal + global aliases
+     open()   : opens the modal, resets state, shows step 1
+     close()  : closes the modal
+     state()  : returns current QA snapshot (for debugging)
 
    Backwards-compat globals (so existing onclick="openQuiz()"
    buttons in HTML keep working):
@@ -19,7 +19,7 @@
   "use strict";
 
   // ── CONFIG ─────────────────────────────────────────────
-  const QT = 5; // total questions — must match banner copy
+  const QT = 5; // total questions: must match banner copy
   const ENDPOINT_ADVISOR = "/.netlify/functions/quiz-advisor";
   const ENDPOINT_EMAIL   = "/.netlify/functions/send-protocol";
   const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -82,9 +82,9 @@
       <div class="disclaimer">⚕ Questionnaire cosmétique. Consultez votre médecin en cas de condition particulière.</div>
       <div class="qprog"><div class="qprog-bar" id="qpbar" style="width:${(1/QT)*100}%"></div></div>
 
-      <!-- Q1 — Name + email -->
+      <!-- Q1: Name + email -->
       <div class="quiz-step active" data-step="1">
-        <span class="step-ctr">1 / ${QT} — Toi</span>
+        <span class="step-ctr">1 / ${QT} · Toi</span>
         <h3 class="quiz-q">On commence par toi</h3>
         <p class="quiz-sub">Pour t'envoyer ton protocole personnalisé, signé Sonagi Advisor.</p>
         <input type="text" class="quiz-input" id="sq-name" placeholder="Ton prénom" maxlength="40" autocomplete="given-name">
@@ -93,15 +93,15 @@
         <p class="quiz-fineprint" style="margin-top:10px;font-size:11px;color:var(--muted,#888)">On t'envoie uniquement ton protocole et quelques rituels K-beauty. Désinscription en un clic.</p>
       </div>
 
-      <!-- Q2 — Skin type + sensitivity + pregnancy -->
+      <!-- Q2: Skin type + sensitivity + pregnancy -->
       <div class="quiz-step" data-step="2">
-        <span class="step-ctr">2 / ${QT} — Ta peau</span>
+        <span class="step-ctr">2 / ${QT} · Ta peau</span>
         <h3 class="quiz-q">Quel est ton type de peau ?</h3>
         <div class="quiz-opts" data-group="skin_type">
-          <button type="button" class="q-opt" data-val="grasse">Grasse — brillances, pores</button>
-          <button type="button" class="q-opt" data-val="seche">Sèche — tiraillements</button>
-          <button type="button" class="q-opt" data-val="mixte">Mixte — zone T grasse</button>
-          <button type="button" class="q-opt" data-val="normale">Normale — équilibrée</button>
+          <button type="button" class="q-opt" data-val="grasse">Grasse · brillances, pores</button>
+          <button type="button" class="q-opt" data-val="seche">Sèche · tiraillements</button>
+          <button type="button" class="q-opt" data-val="mixte">Mixte · zone T grasse</button>
+          <button type="button" class="q-opt" data-val="normale">Normale · équilibrée</button>
         </div>
         <div class="quiz-toggle-row" style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
           <label class="quiz-toggle" style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px">
@@ -114,11 +114,11 @@
         <p class="quiz-err" id="sq-err-2" style="display:none;color:#c0392b;font-size:12px;margin-top:8px"></p>
       </div>
 
-      <!-- Q3 — Top 2 concerns -->
+      <!-- Q3: Top 2 concerns -->
       <div class="quiz-step" data-step="3">
-        <span class="step-ctr">3 / ${QT} — Priorités</span>
+        <span class="step-ctr">3 / ${QT} · Priorités</span>
         <h3 class="quiz-q">Tes 2 priorités peau ?</h3>
-        <p class="quiz-sub">Choisis-en deux maximum — on construit ton protocole autour.</p>
+        <p class="quiz-sub">Choisis-en deux maximum, on construit ton protocole autour.</p>
         <div class="quiz-opts multi" data-group="concerns" data-max="2">
           <button type="button" class="q-opt" data-val="pores">Pores dilatés</button>
           <button type="button" class="q-opt" data-val="deshydratation">Déshydratation</button>
@@ -129,18 +129,18 @@
           <button type="button" class="q-opt" data-val="rougeurs">Rougeurs</button>
           <button type="button" class="q-opt" data-val="zone-t-grasse">Zone T grasse</button>
         </div>
-        <p class="quiz-note" id="sq-note-3" style="display:none;font-size:12px;color:var(--muted,#888);margin-top:8px">Maximum 2 — on a remplacé ta plus ancienne sélection.</p>
+        <p class="quiz-note" id="sq-note-3" style="display:none;font-size:12px;color:var(--muted,#888);margin-top:8px">Maximum 2 : on a remplacé ta plus ancienne sélection.</p>
         <p class="quiz-err" id="sq-err-3" style="display:none;color:#c0392b;font-size:12px;margin-top:8px"></p>
       </div>
 
-      <!-- Q4 — Age + lifestyle -->
+      <!-- Q4: Age + lifestyle -->
       <div class="quiz-step" data-step="4">
-        <span class="step-ctr">4 / ${QT} — Ton quotidien</span>
+        <span class="step-ctr">4 / ${QT} · Ton quotidien</span>
         <h3 class="quiz-q">Ta tranche d'âge ?</h3>
         <div class="quiz-opts" data-group="age">
-          <button type="button" class="q-opt" data-val="18-25">18–25</button>
-          <button type="button" class="q-opt" data-val="26-32">26–32</button>
-          <button type="button" class="q-opt" data-val="33-40">33–40</button>
+          <button type="button" class="q-opt" data-val="18-25">18 à 25</button>
+          <button type="button" class="q-opt" data-val="26-32">26 à 32</button>
+          <button type="button" class="q-opt" data-val="33-40">33 à 40</button>
           <button type="button" class="q-opt" data-val="40+">40+</button>
         </div>
         <h3 class="quiz-q" style="margin-top:20px">Ce qui décrit le mieux ton mode de vie ?</h3>
@@ -153,21 +153,21 @@
         <p class="quiz-err" id="sq-err-4" style="display:none;color:#c0392b;font-size:12px;margin-top:8px"></p>
       </div>
 
-      <!-- Q5 — Budget + ambition -->
+      <!-- Q5: Budget + ambition -->
       <div class="quiz-step" data-step="5">
-        <span class="step-ctr">5 / ${QT} — Budget &amp; rituel</span>
+        <span class="step-ctr">5 / ${QT} · Budget &amp; rituel</span>
         <h3 class="quiz-q">Ton budget pour cette routine ?</h3>
         <div class="quiz-opts" data-group="budget">
           <button type="button" class="q-opt" data-val="moins-30">Moins de 30 €</button>
-          <button type="button" class="q-opt" data-val="30-50">30–50 €</button>
-          <button type="button" class="q-opt" data-val="50-90">50–90 €</button>
-          <button type="button" class="q-opt" data-val="90-150">90–150 €</button>
+          <button type="button" class="q-opt" data-val="30-50">30 à 50 €</button>
+          <button type="button" class="q-opt" data-val="50-90">50 à 90 €</button>
+          <button type="button" class="q-opt" data-val="90-150">90 à 150 €</button>
           <button type="button" class="q-opt" data-val="150+">150 € et +</button>
         </div>
         <h3 class="quiz-q" style="margin-top:20px">Ton ambition ?</h3>
         <div class="quiz-opts" data-group="routine_goal">
-          <button type="button" class="q-opt" data-val="minimum-efficace">Minimum efficace — 3 produits</button>
-          <button type="button" class="q-opt" data-val="rituel-complet">Rituel complet — 5 à 7 produits</button>
+          <button type="button" class="q-opt" data-val="minimum-efficace">Minimum efficace · 3 produits</button>
+          <button type="button" class="q-opt" data-val="rituel-complet">Rituel complet · 5 à 7 produits</button>
         </div>
         <p class="quiz-err" id="sq-err-5" style="display:none;color:#c0392b;font-size:12px;margin-top:8px"></p>
       </div>
@@ -206,7 +206,7 @@
       });
     });
 
-    // Multi-select with max (Q3 concerns, max 2 — drop oldest when exceeding)
+    // Multi-select with max (Q3 concerns, max 2: drop oldest when exceeding)
     $$(".quiz-opts.multi", modal).forEach((group) => {
       const key = group.getAttribute("data-group");
       const max = parseInt(group.getAttribute("data-max") || "0", 10) || 0;
@@ -223,7 +223,7 @@
           }
           QA[key].push(val);
           btn.classList.add("sel");
-          // Enforce max — drop oldest
+          // Enforce max: drop oldest
           if (max > 0 && QA[key].length > max) {
             const dropped = QA[key].shift();
             const oldBtn = $$(".q-opt", group).find((b) => b.getAttribute("data-val") === dropped);
@@ -337,12 +337,12 @@
     const skin_feel = inferSkinFeel(QA);
     const goal = QA.concerns.join(", ");
     const lifestyle = QA.lifestyle;
-    const current_routine = "(non demandé — supposer routine basique)";
+    const current_routine = "(non demandé : supposer routine basique)";
     const routine_goal = QA.routine_goal === "minimum-efficace"
       ? "minimaliste 3 étapes"
       : "complète 5-7 étapes";
     const budget_label = ({
-      "moins-30": "moins de 30€ — essentiels uniquement",
+      "moins-30": "moins de 30€ : essentiels uniquement",
       "30-50":    "30-50€",
       "50-90":    "50-90€",
       "90-150":   "90-150€",
@@ -352,7 +352,7 @@
     return [
       "You are Sonagi's expert K-beauty skin advisor and a trained dermatologist + cosmetic chemist.",
       "Your job is to give a protocol that feels like advice from a knowledgeable friend, not a marketing leaflet.",
-      "STRICTLY respect the budget given — total_minimum_cost MUST fit inside the budget range.",
+      "STRICTLY respect the budget given: total_minimum_cost MUST fit inside the budget range.",
       "",
       "SKIN PROFILE:",
       "- Name: " + QA.name,
@@ -367,7 +367,7 @@
       "- Pregnant/breastfeeding: " + QA.pregnant,
       "",
       isP
-        ? "PREGNANCY SAFETY — NEVER recommend: retinol, retinoids, salicylic acid >2%, chemical sunscreens (oxybenzone), hydroquinone, TXA in 3rd trimester/breastfeeding, essential oils (mugwort, rosemary, tea tree, cinnamon, ylang ylang).\nSAFE: niacinamide, hyaluronic acid, centella, ceramides, vitamin C, azelaic acid, panthenol, bakuchiol, peptides.\n"
+        ? "PREGNANCY SAFETY: NEVER recommend retinol, retinoids, salicylic acid >2%, chemical sunscreens (oxybenzone), hydroquinone, TXA in 3rd trimester/breastfeeding, essential oils (mugwort, rosemary, tea tree, cinnamon, ylang ylang).\nSAFE: niacinamide, hyaluronic acid, centella, ceramides, vitamin C, azelaic acid, panthenol, bakuchiol, peptides.\n"
         : "",
       "RESPONSE RULES:",
       "- Be direct and specific. No generic advice.",
@@ -429,7 +429,7 @@
     rr.innerHTML = `
       <div style="text-align:center;padding:30px">
         <p style="font-size:18px;margin-bottom:12px">Le service est temporairement indisponible</p>
-        <p style="font-size:13px;color:var(--muted,#888);margin-bottom:18px">Réessaie dans quelques instants — ou écris-nous à contact@sonagibeauty.com.</p>
+        <p style="font-size:13px;color:var(--muted,#888);margin-bottom:18px">Réessaie dans quelques instants, ou écris-nous à contact@sonagibeauty.com.</p>
         <button type="button" class="btn-primary" id="sq-retry">Réessayer</button>
       </div>`;
     const btn = document.getElementById("sq-retry");
@@ -445,7 +445,7 @@
           <span class="adv-step-num">${escapeHtml(s.order)}</span>
           <span class="adv-step-name">${escapeHtml(s.step)}</span>
         </div>
-        <p class="adv-product"><strong>${escapeHtml(s.brand)}</strong> — ${escapeHtml(s.product)}</p>
+        <p class="adv-product"><strong>${escapeHtml(s.brand)}</strong> · ${escapeHtml(s.product)}</p>
         <p class="adv-why">${escapeHtml(s.why)}</p>
         <p class="adv-how"><em>💡 ${escapeHtml(s.how)}</em></p>
         <p class="adv-benefit">→ ${escapeHtml(s.benefit)}</p>
@@ -485,7 +485,7 @@
     // Evening swap
     if (d.evening_swap) {
       h += `<div class="adv-card small"><h4>🌙 Le soir, ajoute juste ça</h4>`;
-      h += `<p class="adv-product"><strong>${escapeHtml(d.evening_swap.brand)}</strong> — ${escapeHtml(d.evening_swap.product)}</p>`;
+      h += `<p class="adv-product"><strong>${escapeHtml(d.evening_swap.brand)}</strong> · ${escapeHtml(d.evening_swap.product)}</p>`;
       h += `<p class="adv-why">${escapeHtml(d.evening_swap.why)}</p>`;
       h += `<p class="adv-how"><em>💡 ${escapeHtml(d.evening_swap.how)}</em></p>`;
       h += `<p class="adv-benefit">→ ${escapeHtml(d.evening_swap.benefit)}</p>`;
@@ -495,7 +495,7 @@
     // Weekly ritual
     if (d.weekly_ritual) {
       h += `<div class="adv-card small"><h4>📅 Une fois par semaine</h4>`;
-      h += `<p class="adv-product"><strong>${escapeHtml(d.weekly_ritual.brand)}</strong> — ${escapeHtml(d.weekly_ritual.product)}</p>`;
+      h += `<p class="adv-product"><strong>${escapeHtml(d.weekly_ritual.brand)}</strong> · ${escapeHtml(d.weekly_ritual.product)}</p>`;
       h += `<p class="adv-why">${escapeHtml(d.weekly_ritual.why)}</p>`;
       h += `<p class="adv-benefit">→ ${escapeHtml(d.weekly_ritual.benefit)}</p></div>`;
     }
@@ -510,20 +510,20 @@
         <div class="adv-basket adv-basket--min" style="border:1px solid var(--border,#e5e0d8);border-radius:14px;padding:18px;background:#fffaf3">
           <p style="font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy,#1f2a44);font-weight:600">Panier prêt</p>
           <h3 style="margin:6px 0 4px;font-size:18px">Ton panier minimum efficace</h3>
-          <p style="font-size:13px;color:var(--muted,#888);margin-bottom:10px">3 produits — l'essentiel de ton protocole.</p>
-          <p style="font-size:14px;color:var(--navy,#1f2a44);font-weight:500;margin-bottom:14px">Total estimé : ${escapeHtml(d.total_minimum_cost || '—')}</p>
+          <p style="font-size:13px;color:var(--muted,#888);margin-bottom:10px">3 produits : l'essentiel de ton protocole.</p>
+          <p style="font-size:14px;color:var(--navy,#1f2a44);font-weight:500;margin-bottom:14px">Total estimé : ${escapeHtml(d.total_minimum_cost || '…')}</p>
           <button type="button" class="btn-primary" id="sq-add-min" style="width:100%">Ajouter mon panier minimum</button>
         </div>
         <div class="adv-basket adv-basket--full" style="border:1px solid var(--border,#e5e0d8);border-radius:14px;padding:18px;background:#fff">
           <p style="font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy,#1f2a44);font-weight:600">Aller plus loin</p>
           <h3 style="margin:6px 0 4px;font-size:18px">Rituel complet</h3>
-          <p style="font-size:13px;color:var(--muted,#888);margin-bottom:10px">5 à 7 produits — essentiel + boosters + soir + hebdo.</p>
-          <p style="font-size:14px;color:var(--navy,#1f2a44);font-weight:500;margin-bottom:14px">Total estimé : ${escapeHtml(d.total_full_cost || '—')}</p>
+          <p style="font-size:13px;color:var(--muted,#888);margin-bottom:10px">5 à 7 produits : essentiel + boosters + soir + hebdo.</p>
+          <p style="font-size:14px;color:var(--navy,#1f2a44);font-weight:500;margin-bottom:14px">Total estimé : ${escapeHtml(d.total_full_cost || '…')}</p>
           <button type="button" class="btn-outline" id="sq-add-full" style="width:100%">Ajouter le rituel complet</button>
         </div>
       </div>`;
 
-    h += `<div class="adv-costs" style="margin-top:14px"><span>Routine essentielle : ${escapeHtml(d.total_minimum_cost || '—')}</span><span>Routine complète : ${escapeHtml(d.total_full_cost || '—')}</span></div>`;
+    h += `<div class="adv-costs" style="margin-top:14px"><span>Routine essentielle : ${escapeHtml(d.total_minimum_cost || '…')}</span><span>Routine complète : ${escapeHtml(d.total_full_cost || '…')}</span></div>`;
     h += `<p style="margin-top:16px;font-size:12px;color:var(--muted,#888);text-align:center">Ton protocole détaillé et le mode d'emploi sont en route vers ${escapeHtml(QA.email)}.</p>`;
 
     rr.innerHTML = h;
@@ -577,7 +577,7 @@
     if (cart && typeof cart.add === "function") {
       items.forEach((it) => cart.add(it));
     } else {
-      // Legacy fallback — push into in-memory array if SonagiCart isn't loaded
+      // Legacy fallback: push into in-memory array if SonagiCart isn't loaded
       window.cartItems = window.cartItems || [];
       items.forEach((it) => window.cartItems.push(it));
       if (typeof window.renderCart === "function") { try { window.renderCart(); } catch (e) {} }
@@ -665,8 +665,20 @@
         qNext();
       }
     });
-    // Backwards-compat globals so existing inline onclick="openQuiz()" works
-    window.openQuiz  = open;
+    // Backwards-compat globals so existing inline onclick="openQuiz()" works.
+    // 2026-05-14: openQuiz now navigates to the standalone consultation page
+    // (files/consultation.html). The legacy modal flow defined above stays
+    // available via SonagiQuiz.open() for any code that needs it.
+    window.openQuiz  = function () {
+      try { if (typeof closeMobileMenu === "function") closeMobileMenu(); } catch (_) {}
+      var u = "/consultation.html";
+      // preserve current language via query so the consultation page boots in FR/EN
+      try {
+        var lang = (document.documentElement.getAttribute("lang") || "fr").slice(0, 2).toLowerCase();
+        if (lang === "en") u += "?lang=en";
+      } catch (_) {}
+      window.location.href = u;
+    };
     window.closeQuiz = close;
   }
 
