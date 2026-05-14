@@ -1,0 +1,174 @@
+/* ══════════════════════════════════════════════════════
+   SONAGI CONSENT · cookie banner styles
+   Note: actual banner styles are injected by sonagi-consent.js
+   to keep them isolated and avoid conflicts with sonagi.css.
+   This file is intentionally minimal: it exists so legal
+   pages can reference shared utility classes if needed.
+   ══════════════════════════════════════════════════════ */
+
+/* Yellow disclaimer banner used at the top of all 4 legal pages */
+.legal-disclaimer{
+  background:#FFF4C2;
+  border-left:4px solid #F7D84C;
+  padding:14px 18px;
+  margin:0 auto 28px;
+  max-width:760px;
+  font-size:13px;
+  line-height:1.6;
+  color:#4a4036;
+  border-radius:4px;
+}
+.legal-disclaimer strong{color:#2c2c2c}
+
+/* Pre-launch ribbon used at top of CGV */
+.legal-prelaunch{
+  background:#fdeee5;
+  border-left:4px solid #FF3E9D;
+  padding:14px 18px;
+  margin:0 auto 28px;
+  max-width:760px;
+  font-size:13px;
+  line-height:1.6;
+  color:#4a4036;
+  border-radius:4px;
+}
+
+/* Long-form legal page layout */
+.legal-page{
+  background:#FAF8F5;
+  padding:60px 16px 80px;
+  min-height:60vh;
+}
+.legal-wrap{
+  max-width:760px;
+  margin:0 auto;
+  background:#fff;
+  padding:48px 32px;
+  border-radius:8px;
+  box-shadow:0 2px 12px rgba(0,0,0,.04);
+}
+.legal-wrap h1{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:300;
+  font-size:36px;
+  line-height:1.2;
+  color:#2c2c2c;
+  letter-spacing:-.01em;
+  margin:0 0 12px;
+}
+.legal-wrap .legal-meta{
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#6b5e4a;
+  margin:0 0 32px;
+}
+.legal-wrap h2{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:400;
+  font-size:24px;
+  color:#2c2c2c;
+  margin:48px 0 14px;
+  letter-spacing:-.01em;
+  scroll-margin-top:80px;
+}
+.legal-wrap h3{
+  font-family:'DM Sans',sans-serif;
+  font-weight:500;
+  font-size:16px;
+  color:#2c2c2c;
+  margin:24px 0 10px;
+}
+.legal-wrap p,
+.legal-wrap li{
+  font-size:15px;
+  line-height:1.7;
+  color:#3a342d;
+  margin:0 0 14px;
+}
+.legal-wrap ul,
+.legal-wrap ol{
+  padding-left:22px;
+  margin:0 0 18px;
+}
+.legal-wrap li{margin-bottom:6px}
+.legal-wrap a{color:#FF3E9D;text-decoration:underline}
+.legal-wrap a:hover{color:#e23588}
+
+/* Table of contents */
+.legal-toc{
+  background:#FAF8F5;
+  border-radius:6px;
+  padding:20px 24px;
+  margin:0 0 40px;
+}
+.legal-toc h2{
+  font-size:14px !important;
+  font-family:'DM Sans',sans-serif !important;
+  font-weight:500 !important;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#6b5e4a;
+  margin:0 0 12px !important;
+}
+.legal-toc ol{
+  margin:0;
+  padding-left:20px;
+  list-style:decimal;
+}
+.legal-toc li{
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:4px;
+}
+.legal-toc a{
+  color:#3a342d;
+  text-decoration:none;
+}
+.legal-toc a:hover{
+  color:#FF3E9D;
+  text-decoration:underline;
+}
+
+/* Tables (used in cookies.html) */
+.legal-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 0 24px;
+  font-size:13px;
+}
+.legal-table th,
+.legal-table td{
+  text-align:left;
+  padding:12px 10px;
+  border-bottom:1px solid #ede8e2;
+  vertical-align:top;
+  line-height:1.55;
+}
+.legal-table th{
+  background:#FAF8F5;
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#6b5e4a;
+}
+.legal-table tr:last-child td{border-bottom:0}
+.legal-table-wrap{overflow-x:auto;margin:0 -8px 24px}
+
+@media(min-width:640px){
+  .legal-page{padding:80px 24px 100px}
+  .legal-wrap{padding:64px 56px}
+  .legal-wrap h1{font-size:44px}
+}
+
+/* Manage cookies link in footer */
+.legal-cookie-link{
+  background:none;
+  border:0;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+  text-decoration:underline;
+  padding:0;
+}

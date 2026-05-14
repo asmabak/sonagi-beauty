@@ -1543,3 +1543,101 @@ footer { background: var(--footer-bg); color: var(--border); padding: 48px 16px 
   .trust-row { scroll-behavior: auto; }
 }
 
+/* ════════════════════════════════════════════════════════════
+   ADDITIONAL MOBILE OVERRIDES — 2026-05-14 (preview pass 2)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* JOURNAL section — same single-card swipe as Masterclasses */
+  .blog-grid {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px;
+    padding: 4px 16px 14px;
+    margin: 0 -16px;
+    max-width: 100vw;
+    grid-template-columns: none !important;
+  }
+  .blog-grid::-webkit-scrollbar { display: none; }
+  .blog-card {
+    flex: 0 0 calc(100% - 32px);
+    max-width: calc(100% - 32px);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  /* ABOUT PAGE — ritual cards (5 products / 7 minutes) → 2 per row.
+     The .ab-step cards are large on phones; this packs them tighter
+     so visitors see the whole sequence without scrolling forever. */
+  .ab-steps {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  .ab-step {
+    padding: 16px 12px !important;
+    text-align: center;
+  }
+  .ab-step h3 { font-size: 16px !important; margin: 4px 0 !important; }
+  .ab-step p { font-size: 12px !important; line-height: 1.4 !important; }
+  .ab-step-num { font-size: 11px !important; }
+  .ab-step-time { font-size: 10px !important; }
+  /* 5th card (odd one out) spans full width so layout doesn't end on
+     an awkward half-row */
+  .ab-step:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   NEWSLETTER form — GDPR layout (all viewports)
+   ════════════════════════════════════════════════════════════ */
+.newsletter-form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; max-width: 480px; margin: 0 auto; }
+.newsletter-form input[type="email"] {
+  flex: 1 1 220px; min-width: 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,.4);
+  background: rgba(255,255,255,.95);
+  color: #1a2744;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+}
+.newsletter-form input[type="email"]:focus {
+  outline: 2px solid var(--pink, #FF3E9D);
+  outline-offset: 1px;
+}
+.newsletter-form button {
+  padding: 12px 22px;
+  background: var(--pink, #FF3E9D);
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s;
+}
+.newsletter-form button:hover { background: #e1378a; }
+.newsletter-consent { cursor: pointer; }
+.newsletter-consent input[type="checkbox"] { accent-color: var(--pink, #FF3E9D); }
+
+/* ════════════════════════════════════════════════════════════
+   NAV — sign-in icon (added 2026-05-14)
+   Style the new <a class="nav-icon"> identically to the existing
+   cart .nav-icon so they line up.
+   ════════════════════════════════════════════════════════════ */
+a.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+}
+a.nav-icon:hover { color: var(--pink, #FF3E9D); }
+

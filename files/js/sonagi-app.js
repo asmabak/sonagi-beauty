@@ -1,17 +1,67 @@
 /* ══════════════════════════════════════════════════════
-   SONAGI APP — shared client JS (nav, cart sidebar, language, init)
+   SONAGI APP · shared client JS (nav, cart sidebar, language, init)
    Single source of truth. Page-specific JS stays inline.
    ══════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════
-   SONAGI BEAUTY — SHARED JS v4 (clean rebuild)
+   SONAGI BEAUTY · SHARED JS v4 (clean rebuild)
    All page interactions. No quiz here (quiz.js is separate).
    ══════════════════════════════════════════════════════ */
 
 // ── LANGUAGE ──────────────────────────────────────────
-var LANG = 'fr';
-function setLang(l) {
+// Detection precedence (per Asma 2026-05-06):
+//   1. Manual cookie override (sonagi_lang): sticks once user clicks FR/EN
+//   2. Geo header: Cloudflare CF-IPCountry is unavailable on Netlify, so we
+//      use navigator.language as the closest client-side proxy. Francophone
+//      locales (FR, BE, LU, CH, MC, MA, TN, DZ, SN, CI, CM, …) → fr.
+//   3. Default → en
+var FRANCOPHONE = /^(fr|wo)(-|$)|-(?:FR|BE|LU|CH|MC|MA|TN|DZ|SN|CI|CM|GA|GN|ML|NE|TG|BF|BJ|MG|MR|RW|TD|HT|VU|SC|KM|DJ|CD|CG|CF|QC|CA)\b/i;
+var FR_COUNTRIES = ['FR','BE','LU','CH','MC','MA','TN','DZ','SN','CI','CM','GA','GN','ML','NE','TG','BF','BJ','MG','MR','RW','TD','HT','VU','SC','KM','CD','CG','CF'];
+function _readCookie(name){
+  try {
+    var m = document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]+)'));
+    return m ? decodeURIComponent(m[1]) : null;
+  } catch(e){ return null; }
+}
+function _writeCookie(name, val){
+  try { document.cookie = name+'='+encodeURIComponent(val)+'; path=/; max-age=31536000; SameSite=Lax'; } catch(e){}
+}
+function _detectLang(){
+  // 1. User's explicit choice (cookie or localStorage) wins forever
+  var stored = _readCookie('sonagi_lang');
+  if (!stored) { try { stored = localStorage.getItem('sonagi_lang'); } catch(e){} }
+  if (stored === 'fr' || stored === 'en') return stored;
+  // 2. Geo via Netlify Edge / Cloudflare header injected as <meta name="x-country">
+  //    (set by netlify/edge-functions/geo.js when present; falls back to undefined)
+  var meta = document.querySelector('meta[name="x-country"]');
+  if (meta) {
+    var cc = (meta.getAttribute('content') || '').toUpperCase();
+    if (cc && FR_COUNTRIES.indexOf(cc) !== -1) return 'fr';
+    if (cc) return 'en';
+  }
+  // 3. navigator.language proxy
+  var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+  for (var i=0; i<langs.length; i++){
+    if (FRANCOPHONE.test(langs[i] || '')) return 'fr';
+  }
+  return 'en';
+}
+var LANG = _detectLang();
+function setLang(l, _userAction) {
   LANG = l;
-  document.querySelectorAll('[id^="btn-"][id$="-fr"],[id^="btn-"][id$="-en"]').forEach(function(b){
+  // Persist user's manual choice (cookie + localStorage). Geo is auto-only.
+  if (_userAction !== false) {
+    _writeCookie('sonagi_lang', l);
+    try { localStorage.setItem('sonagi_lang', l); } catch(e){}
+  }
+  // Update <html lang> for a11y / SEO
+  try { document.documentElement.setAttribute('lang', l); } catch(e){}
+  // Toggle active class on every FR/EN button we know about:
+  // nav (btn-fr/btn-en), mobile menu (mbtn-fr/mbtn-en),
+  // footer (fbtn-fr/fbtn-en), floating pill (flbtn-fr/flbtn-en).
+  document.querySelectorAll(
+    '[id^="btn-"][id$="-fr"],[id^="btn-"][id$="-en"],' +
+    '[id^="mbtn-"],[id^="fbtn-"],[id^="flbtn-"]'
+  ).forEach(function(b){
     b.classList.toggle('active', b.id.endsWith('-'+l));
   });
   document.querySelectorAll('[data-fr]').forEach(function(el) {
@@ -24,18 +74,40 @@ function setLang(l) {
   });
 }
 
+// ── NAV COLLAPSE (single Shop entry) ──────────────────
+// Asma 2026-05-06: collapse desktop nav to Shop / Masterclasses / Journal /
+// Glossaire: no mega-menu, no per-category dropdowns. Runs on every page so
+// the legacy nav-with-dropdowns markup in skincare.html / maquillage.html /
+// haircare.html / marques.html / produit.html / panier.html / compte.html /
+// confirmation.html / journal.html / masterclasses.html doesn't need to be
+// hand-rewritten.
+function collapseNav(){
+  // Disabled 2026-05-06 (see callsite for context). Function kept as no-op so
+  // any external caller does not error.
+  return;
+}
+
 // ── ANNOUNCE BAR ──────────────────────────────────────
-var ANN_MSGS = [
-  'Livraison offerte dès 50€ · Expédition sous 24h (lun–ven)',
-  'Gagnez des points avec chaque achat — Sonagi Rewards',
-  'Publiez votre routine #Sonagi et gagnez +50 points',
-  'Masterclasses K-beauty en ligne et en présentiel → Réservez'
-];
+var ANN_MSGS = {
+  fr: [
+    'Livraison offerte dès 50€ · Expédition sous 24h (lun-ven)',
+    'Gagnez des points avec chaque achat · Sonagi Rewards',
+    'Publie ta routine #Sonagi et gagne +50 points',
+    'Masterclasses K-beauty en ligne et en présentiel · Réserve'
+  ],
+  en: [
+    'Free shipping over €50 · Dispatched within 24h (Mon-Fri)',
+    'Earn points with every purchase · Sonagi Rewards',
+    'Post your routine #Sonagi and earn +50 points',
+    'K-beauty masterclasses online and in person · Book now'
+  ]
+};
 var annIdx = 0;
 function rotateAnn(d) {
-  annIdx = (annIdx + d + ANN_MSGS.length) % ANN_MSGS.length;
+  var arr = (ANN_MSGS[LANG] || ANN_MSGS.fr);
+  annIdx = (annIdx + d + arr.length) % arr.length;
   var el = document.querySelector('.ann-msg');
-  if (el) el.textContent = ANN_MSGS[annIdx];
+  if (el) el.textContent = arr[annIdx];
 }
 setInterval(function(){ rotateAnn(1); }, 4500);
 
@@ -253,7 +325,7 @@ function renderCart() {
   if (foot) foot.style.display = 'block';
   if (badge) badge.textContent = cartItems.length;
 }
-// ── addBasketToCart() removed — moved into sonagi-quiz.js (basket logic
+// addBasketToCart() removed: moved into sonagi-quiz.js (basket logic
 //    is now built from the AI advisor JSON, not from a #quiz-basket DOM
 //    that the new quiz module no longer renders). Kept as a no-op shim
 //    so any stray inline onclick="addBasketToCart()" doesn't throw.
@@ -264,7 +336,7 @@ function addBasketToCart() {
   }
 }
 
-// ── TOUCH — show add button on mobile tap ─────────────
+// TOUCH: show add button on mobile tap
 function initTouch() {
   document.querySelectorAll('.prod-card').forEach(function(card){
     card.addEventListener('touchstart', function(){
@@ -284,11 +356,15 @@ function resolveImages() {
     if (imgs[k]) el.src = imgs[k];
   });
 }
-// QUIZ_IMGS is inline so call immediately — no waiting needed
+// QUIZ_IMGS is inline so call immediately: no waiting needed
 resolveImages();
 window.addEventListener('load', resolveImages);
 
 document.addEventListener('DOMContentLoaded', function(){
+  // collapseNav() disabled 2026-05-06: Asma asked for the full Shop dropdown back
+  // with Skincare / Maquillage / Cheveux & Corps / Marques as sub-items. The static
+  // HTML markup from each page is now the source of truth. See feedback_no_hyphen.md
+  // and the nav-restructure.py script in scripts/.
   initCarousel();
   initFilters();
   initReviews();
@@ -296,11 +372,16 @@ document.addEventListener('DOMContentLoaded', function(){
   resolveImages();
   initSearch();
   injectFooterLang();
+  // injectFloatingLang() disabled 2026-05-06: Asma asked to remove the top-right FR/EN pill
+  // (it was sticky and "moved with the page"). Language switch lives in the footer + mobile menu only.
+  // Apply detected language (geo / nav.language / cookie). _userAction=false
+  // means "don't overwrite the cookie if no manual choice was made yet".
+  setLang(LANG, false);
 });
 
 // ── GLOBAL SEARCH ────────────────────────────────────
 // Editorial overlay search across products, brands, concerns, journal, pages.
-// Lightweight client-side fuzzy match. Pre-launch friendly — no backend needed.
+// Lightweight client-side fuzzy match. Pre-launch friendly: no backend needed.
 
 var SONAGI_SEARCH_INDEX = [
   // ── Concerns (entry path to filtered category)
@@ -336,7 +417,7 @@ var SONAGI_SEARCH_INDEX = [
   { type:'product', brand:'Huxley',            label:"Secret of Sahara Toner Extract It",     url:'produit.html', kw:'huxley secret sahara toner cactus prickly pear' },
   { type:'product', brand:'IUNIK',             label:"Centella Calming Daily Sun Cream",      url:'produit.html', kw:'iunik centella calming sun cream apaisant solaire' },
 
-  // ── Brands (top 30 most-asked — pulled from marques.html catalog)
+  // Brands (top 30 most-asked, pulled from marques.html catalog)
   { type:'brand', label:"COSRX",            url:'marques.html#LC', kw:'cosrx coréen snail mucin' },
   { type:'brand', label:"Beauty of Joseon", url:'marques.html#LB', kw:'beauty of joseon boj propolis riz spf' },
   { type:'brand', label:"Anua",             url:'marques.html#LA', kw:'anua heartleaf toner peeling' },
@@ -549,4 +630,28 @@ function injectFooterLang() {
     '<span class="footer-lang-sep">·</span>' +
     '<button class="footer-lang-btn ' + (LANG === 'en' ? 'active' : '') + '" id="fbtn-en" onclick="setLang(\'en\')">English</button>';
   footer.appendChild(fl);
+}
+
+// ── FLOATING FR/EN TOGGLE ────────────────────────
+// Top-right pill, visible on all viewports. Replaces the in-nav
+// lang buttons (those are hidden by CSS but kept in DOM so setLang()
+// still finds #btn-fr/#btn-en to toggle .active classes). This
+// creates parallel floating buttons with ids flbtn-fr / flbtn-en.
+function injectFloatingLang() {
+  // Hard no-op: keeps the function defined so any external caller doesn't error,
+  // but never injects the pill. Removal of the existing pill happens once on load.
+  var existing = document.querySelector('.lang-float');
+  if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+  return;
+  // legacy code below (unreachable):
+  if (document.querySelector('.lang-float')) return;
+  var fl = document.createElement('div');
+  fl.className = 'lang-float';
+  fl.setAttribute('role', 'group');
+  fl.setAttribute('aria-label', 'Language · Langue');
+  fl.innerHTML =
+    '<button id="flbtn-fr" class="' + (LANG === 'fr' ? 'active' : '') + '" aria-label="Français" onclick="setLang(\'fr\')">FR</button>' +
+    '<span class="lang-sep" aria-hidden="true">/</span>' +
+    '<button id="flbtn-en" class="' + (LANG === 'en' ? 'active' : '') + '" aria-label="English" onclick="setLang(\'en\')">EN</button>';
+  document.body.appendChild(fl);
 }

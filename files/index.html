@@ -189,6 +189,7 @@
     </ul>
     <div class="nav-right">
       <button class="quiz-nav-btn t" data-fr="Ma routine" data-en="My routine" onclick="openQuiz()">Ma routine</button>
+      <a class="nav-icon" href="compte.html" aria-label="Mon compte" data-aria-en="My account"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></a>
       <button class="nav-icon" onclick="toggleCart()" aria-label="Panier" data-aria-en="Basket">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="cart-badge" id="cart-badge" style="display:none">0</span>
@@ -1103,7 +1104,18 @@
 <section class="newsletter" id="newsletter" style="background:linear-gradient(rgba(26,39,68,.55),rgba(26,39,68,.55)),url('images/visuals/sonagi-email_header.png') center/cover no-repeat;color:#fff">
   <h2 class="t" data-fr="Rejoignez la communauté" data-en="Join the community" style="color:#fff">Rejoignez la communauté</h2>
   <p class="t" data-fr="Nouveautés, tutoriels K-beauty et offres exclusives réservées à nos abonnés." data-en="New arrivals, K-beauty tutorials and exclusive subscriber offers.">Nouveautés, tutoriels K-beauty et offres exclusives réservées à nos abonnés.</p>
-  <div class="email-form"><input type="email" placeholder="Votre email" data-fr="Votre email" data-en="Your email"><button class="t" data-fr="S'inscrire" data-en="Subscribe">S'inscrire</button></div>
+  <form name="sonagi-newsletter" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/?subscribed=true" class="email-form newsletter-form" onsubmit="try{localStorage.setItem('sonagi_newsletter_consent_ts',new Date().toISOString())}catch(_){}">
+    <input type="hidden" name="form-name" value="sonagi-newsletter">
+    <input type="hidden" name="source" value="homepage-newsletter">
+    <input type="hidden" name="consent_ts" id="consent_ts" value="">
+    <p class="hp-field" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+    <input type="email" name="email" required placeholder="Votre email" data-fr="Votre email" data-en="Your email" autocomplete="email">
+    <button type="submit" class="t" data-fr="S'inscrire" data-en="Subscribe">S'inscrire</button>
+  </form>
+  <label class="newsletter-consent" style="display:block;max-width:560px;margin:14px auto 0;font-size:11px;line-height:1.55;color:rgba(255,255,255,.85);text-align:center">
+    <input type="checkbox" required style="vertical-align:middle;margin-right:6px" onchange="document.getElementById('consent_ts').value=this.checked?new Date().toISOString():''">
+    <span class="t" data-fr="J'accepte de recevoir les emails Sonagi. Mes données restent privées, jamais revendues, et je peux me désinscrire à tout moment via le lien dans chaque email. <a href='/politique-confidentialite.html' style='color:#fff;text-decoration:underline'>Politique de confidentialité</a>" data-en="I agree to receive Sonagi emails. My data stays private, never sold, and I can unsubscribe anytime via the link in every email. <a href='/politique-confidentialite.html' style='color:#fff;text-decoration:underline'>Privacy policy</a>">J'accepte de recevoir les emails Sonagi. Mes données restent privées, jamais revendues, et je peux me désinscrire à tout moment via le lien dans chaque email. <a href='/politique-confidentialite.html' style='color:#fff;text-decoration:underline'>Politique de confidentialité</a></span>
+  </label>
 </section>
 <section class="points-section"><div class="points-inner">
   <div style="text-align:center;margin-bottom:8px">

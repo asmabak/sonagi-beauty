@@ -1609,9 +1609,12 @@ const COPY = {
         { key: 'photo', label: 'step 5 of 5', q: 'your consultation is better with a photo.', sub: 'takes 5 seconds. your photo stays on your device.', required: false, type: 'photo' }
       ],
       continue: 'continue', seeResult: 'see my consultation', back: '← back', skip: 'skip',
-      photoLabel: 'add a photo (optional)',
-      photoHint: 'soft daylight · no makeup if possible',
-      photoChange: 'change',
+      photoLabel: 'Upload your photo',
+      photoSub: 'optional — helps us read your skin map',
+      photoHint: 'tip: soft daylight · no makeup if possible',
+      photoCameraBtn: '📷 Take a photo',
+      photoUploadBtn: '📁 Choose from gallery',
+      photoChange: 'change photo',
       consent: 'your photo stays in your browser, just for this session. we don\'t save it.'
     },
     loading: { t: 'reading what you\'ve told us', sub: 'a few seconds, time to do it right.' },
@@ -1872,9 +1875,12 @@ const COPY = {
         { key: 'photo', label: 'étape 5 sur 5', q: 'ta consultation sera meilleure avec une photo.', sub: 'ça prend 5 secondes. ta photo reste sur ton appareil.', required: false, type: 'photo' }
       ],
       continue: 'continuer', seeResult: 'voir ma consultation', back: '← retour', skip: 'passer',
-      photoLabel: 'ajouter une photo (optionnel)',
-      photoHint: 'lumière naturelle douce · sans maquillage si possible',
-      photoChange: 'changer',
+      photoLabel: 'Télécharge ta photo',
+      photoSub: 'optionnel — aide à lire ta carte peau',
+      photoHint: 'astuce : lumière du jour douce · sans maquillage si possible',
+      photoCameraBtn: '📷 Prendre une photo',
+      photoUploadBtn: '📁 Choisir depuis la galerie',
+      photoChange: 'changer la photo',
       consent: 'ta photo reste dans ton navigateur, le temps de cette session. on ne la sauvegarde pas.'
     },
     loading: { t: 'on lit ce que tu nous as dit', sub: 'quelques secondes, le temps de bien faire.' },
@@ -2181,29 +2187,78 @@ function renderOpts (s) {
 
 function renderPhoto () {
   const c = copy().quiz;
-  const zone = document.createElement('label');
-  zone.className = 'photo-zone'; zone.htmlFor = 'photo-in';
+  const wrap = document.createElement('div');
+  wrap.className = 'photo-zone';
+  wrap.style.cursor = 'default';
+
+  // Two shared file inputs: one with capture="user" (front camera on mobile),
+  // one plain file picker (gallery). Both reuse the same onload handler.
+  function makeInput (id, capture) {
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.id = id; inp.accept = 'image/jpeg,image/png';
+    if (capture) inp.setAttribute('capture', capture);
+    inp.style.display = 'none';
+    inp.addEventListener('change', e => {
+      const f = e.target.files[0]; if (!f) return;
+      const r = new FileReader();
+      r.onload = ev => { state.photo = ev.target.result; renderStep(); };
+      r.readAsDataURL(f);
+    });
+    return inp;
+  }
+  const inpCam = makeInput('photo-in-cam', 'user');
+  const inpGal = makeInput('photo-in-gal', null);
+
   if (state.photo) {
+    // Preview state — show the uploaded photo + a "change" link
     const p = document.createElement('div'); p.className = 'photo-preview';
     const img = document.createElement('img'); img.src = state.photo; p.appendChild(img);
-    zone.appendChild(p);
-    const h = document.createElement('div'); h.className = 'photo-hint'; h.style.marginTop = '8px'; h.textContent = c.photoChange; zone.appendChild(h);
+    wrap.appendChild(p);
+    const change = document.createElement('button');
+    change.type = 'button';
+    change.style.cssText = 'background:none;border:0;color:var(--pink);font-family:inherit;font-size:var(--t-mini);letter-spacing:.04em;cursor:pointer;margin-top:8px;padding:4px 8px;text-decoration:underline';
+    change.textContent = c.photoChange;
+    change.addEventListener('click', () => inpGal.click());
+    wrap.appendChild(change);
   } else {
+    // Empty state — explicit "Upload your photo" header + 2 clear action buttons
     const i = document.createElement('div'); i.className = 'photo-icon';
     i.innerHTML = '<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="13" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M 5 28 C 5 22, 27 22, 27 28" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>';
-    zone.appendChild(i);
-    const l = document.createElement('div'); l.className = 'photo-label'; l.textContent = c.photoLabel; zone.appendChild(l);
-    const h = document.createElement('div'); h.className = 'photo-hint'; h.textContent = c.photoHint; zone.appendChild(h);
+    wrap.appendChild(i);
+
+    const l = document.createElement('div'); l.className = 'photo-label'; l.textContent = c.photoLabel; l.style.fontWeight = '500'; wrap.appendChild(l);
+    if (c.photoSub) {
+      const sub = document.createElement('div'); sub.className = 'photo-hint'; sub.style.marginBottom = '14px'; sub.textContent = c.photoSub; wrap.appendChild(sub);
+    }
+
+    // Two-button row
+    const btnRow = document.createElement('div');
+    btnRow.style.cssText = 'display:flex;flex-direction:column;gap:8px;align-items:center;margin:6px 0 10px';
+
+    const camBtn = document.createElement('button');
+    camBtn.type = 'button';
+    camBtn.className = 'photo-action-btn';
+    camBtn.style.cssText = 'background:var(--pink);color:#fff;border:0;border-radius:var(--r-pill);padding:10px 22px;font-family:inherit;font-size:var(--t-body);font-weight:500;cursor:pointer;min-width:200px';
+    camBtn.textContent = c.photoCameraBtn || '📷 Take a photo';
+    camBtn.addEventListener('click', () => inpCam.click());
+
+    const galBtn = document.createElement('button');
+    galBtn.type = 'button';
+    galBtn.className = 'photo-action-btn';
+    galBtn.style.cssText = 'background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:var(--r-pill);padding:10px 22px;font-family:inherit;font-size:var(--t-body);font-weight:500;cursor:pointer;min-width:200px';
+    galBtn.textContent = c.photoUploadBtn || '📁 Choose from gallery';
+    galBtn.addEventListener('click', () => inpGal.click());
+
+    btnRow.appendChild(camBtn);
+    btnRow.appendChild(galBtn);
+    wrap.appendChild(btnRow);
+
+    const h = document.createElement('div'); h.className = 'photo-hint'; h.textContent = c.photoHint; wrap.appendChild(h);
   }
-  const inp = document.createElement('input'); inp.type = 'file'; inp.id = 'photo-in'; inp.accept = 'image/jpeg,image/png';
-  inp.addEventListener('change', e => {
-    const f = e.target.files[0]; if (!f) return;
-    const r = new FileReader();
-    r.onload = ev => { state.photo = ev.target.result; renderStep(); };
-    r.readAsDataURL(f);
-  });
-  zone.appendChild(inp);
-  $mount.appendChild(zone);
+  // Both file inputs need to be in the DOM for .click() to trigger the picker
+  wrap.appendChild(inpCam);
+  wrap.appendChild(inpGal);
+  $mount.appendChild(wrap);
   const cs = document.createElement('p'); cs.className = 'consent'; cs.textContent = c.consent;
   $mount.appendChild(cs);
 }

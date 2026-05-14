@@ -16,7 +16,7 @@
  *   const { subject, html, text } = renderProtocolEmail(payload);
  *
  * Brand palette (locked):
- *   navy   #1a2744
+ *   navy   #FF3E9D
  *   cream  #faf8f5
  *   peach  #f5c4aa
  *   ink    #2a2a2a
@@ -242,7 +242,7 @@ function budgetNote(budgetAnswer, totalMin, totalFull) {
  * ----------------------------------------------------------------- */
 
 function renderStepCard(step, opts = {}) {
-  const { stepNum, accent = "#1a2744" } = opts;
+  const { stepNum, accent = "#FF3E9D" } = opts;
   const expert = pickExpertDepth(step.product, step.why);
   const how = step.how || "";
   const safe = step.pregnancy_safe;
@@ -258,19 +258,19 @@ function renderStepCard(step, opts = {}) {
         </table>
       </td>
       <td valign="top" style="font-family:Arial,Helvetica,sans-serif;color:#2a2a2a;">
-        <div style="font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:1.3;color:#1a2744;margin:0 0 4px 0;">${esc(step.step || "")}</div>
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:1.3;color:#FF3E9D;margin:0 0 4px 0;">${esc(step.step || "")}</div>
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#6b6b6b;margin:0 0 14px 0;">
-          <strong style="color:#1a2744;">${esc(step.product || "")}</strong>${step.brand ? ` &middot; ${esc(step.brand)}` : ""}${step.price ? ` &middot; <span style="color:#1a2744;font-weight:bold;">${esc(step.price)}</span>` : ""}
+          <strong style="color:#FF3E9D;">${esc(step.product || "")}</strong>${step.brand ? ` &middot; ${esc(step.brand)}` : ""}${step.price ? ` &middot; <span style="color:#FF3E9D;font-weight:bold;">${esc(step.price)}</span>` : ""}
         </div>
 
         ${step.why ? `
         <div style="margin:0 0 12px 0;">
-          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.2px;color:#1a2744;text-transform:uppercase;margin:0 0 4px 0;font-weight:bold;">Pourquoi ce produit pour toi</div>
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.2px;color:#FF3E9D;text-transform:uppercase;margin:0 0 4px 0;font-weight:bold;">Pourquoi ce produit pour toi</div>
           <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#2a2a2a;">${esc(step.why)}</div>
         </div>` : ""}
 
         <div style="margin:0 0 12px 0;">
-          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.2px;color:#1a2744;text-transform:uppercase;margin:0 0 4px 0;font-weight:bold;">Comment l'appliquer</div>
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.2px;color:#FF3E9D;text-transform:uppercase;margin:0 0 4px 0;font-weight:bold;">Comment l'appliquer</div>
           <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#2a2a2a;">
             ${how ? `<div style="margin:0 0 6px 0;">${esc(how)}</div>` : ""}
             <div style="margin:0 0 4px 0;"><em style="color:#6b6b6b;">Mécanisme —</em> ${esc(expert.mechanism)}</div>
@@ -281,7 +281,7 @@ function renderStepCard(step, opts = {}) {
 
         ${step.benefit ? `
         <div style="margin:0 0 8px 0;">
-          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.2px;color:#1a2744;text-transform:uppercase;margin:0 0 4px 0;font-weight:bold;">Bénéfice en 2 à 4 semaines</div>
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.2px;color:#FF3E9D;text-transform:uppercase;margin:0 0 4px 0;font-weight:bold;">Bénéfice en 2 à 4 semaines</div>
           <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#2a2a2a;">${esc(step.benefit)}</div>
         </div>` : ""}
 
@@ -299,9 +299,9 @@ function renderBoosterCard(step) {
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 16px 0;background-color:#faf8f5;border:1px solid #e6e1d8;">
     <tr>
       <td style="padding:18px 20px;font-family:Arial,Helvetica,sans-serif;color:#2a2a2a;">
-        <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.3;color:#1a2744;margin:0 0 4px 0;">${esc(step.step || "")}</div>
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.3;color:#FF3E9D;margin:0 0 4px 0;">${esc(step.step || "")}</div>
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6b6b;margin:0 0 10px 0;">
-          <strong style="color:#1a2744;">${esc(step.product || "")}</strong>${step.brand ? ` &middot; ${esc(step.brand)}` : ""}${step.price ? ` &middot; <span style="color:#1a2744;font-weight:bold;">${esc(step.price)}</span>` : ""}
+          <strong style="color:#FF3E9D;">${esc(step.product || "")}</strong>${step.brand ? ` &middot; ${esc(step.brand)}` : ""}${step.price ? ` &middot; <span style="color:#FF3E9D;font-weight:bold;">${esc(step.price)}</span>` : ""}
         </div>
         ${step.why ? `<div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.55;color:#2a2a2a;margin:0 0 6px 0;">${esc(step.why)}</div>` : ""}
         ${step.benefit ? `<div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.55;color:#6b6b6b;font-style:italic;">${esc(step.benefit)}</div>` : ""}
@@ -466,7 +466,7 @@ function renderProtocolEmail(payload) {
       .sg-h1        { font-size:28px !important; line-height:1.2 !important; }
       .sg-quote     { font-size:22px !important; line-height:1.35 !important; }
     }
-    a { color:#1a2744; }
+    a { color:#FF3E9D; }
     img { border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; }
     body, table, td { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
     body { margin:0; padding:0; width:100% !important; }
@@ -482,7 +482,7 @@ function renderProtocolEmail(payload) {
 
   /* ---- Hero block ---- */
   const hero = `
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="sg-navy" style="background-color:#1a2744;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="sg-navy" style="background-color:#FF3E9D;">
     <tr>
       <td align="center" class="sg-pad" style="padding:48px 40px 44px 40px;">
         <div style="font-family:Georgia,'Times New Roman',serif;font-size:14px;letter-spacing:6px;color:#f5c4aa;text-transform:uppercase;margin:0 0 12px 0;">SONAGI</div>
@@ -497,7 +497,7 @@ function renderProtocolEmail(payload) {
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
     <tr>
       <td class="sg-pad sg-card" style="padding:40px 40px 8px 40px;background-color:#faf8f5;">
-        ${d.headline ? `<div class="sg-quote sg-ink" style="font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.35;color:#1a2744;margin:0 0 18px 0;">&laquo; ${esc(d.headline)} &raquo;</div>` : ""}
+        ${d.headline ? `<div class="sg-quote sg-ink" style="font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.35;color:#FF3E9D;margin:0 0 18px 0;">&laquo; ${esc(d.headline)} &raquo;</div>` : ""}
         ${d.diagnostic ? `<div class="sg-ink" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.7;color:#2a2a2a;margin:0 0 8px 0;">${esc(d.diagnostic)}</div>` : ""}
       </td>
     </tr>
@@ -511,8 +511,8 @@ function renderProtocolEmail(payload) {
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="sg-peach" style="background-color:#f5c4aa;border-radius:6px;">
           <tr>
             <td style="padding:24px 26px;">
-              <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;color:#1a2744;text-transform:uppercase;margin:0 0 6px 0;font-weight:bold;">Ton ingrédient clé</div>
-              <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1.3;color:#1a2744;margin:0 0 10px 0;">${esc(d.hero_ingredient || "")}</div>
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;color:#FF3E9D;text-transform:uppercase;margin:0 0 6px 0;font-weight:bold;">Ton ingrédient clé</div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1.3;color:#FF3E9D;margin:0 0 10px 0;">${esc(d.hero_ingredient || "")}</div>
               ${d.hero_ingredient_why ? `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#2a2a2a;">${esc(d.hero_ingredient_why)}</div>` : ""}
             </td>
           </tr>
@@ -528,7 +528,7 @@ function renderProtocolEmail(payload) {
       <tr>
         <td class="sg-pad sg-card" style="padding:32px 40px 8px 40px;background-color:#faf8f5;">
           <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;color:#d4a373;text-transform:uppercase;margin:0 0 8px 0;font-weight:bold;">${esc(eyebrow)}</div>
-          <div class="sg-ink" style="font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1.3;color:#1a2744;margin:0 0 ${lead ? "12" : "20"}px 0;">${esc(title)}</div>
+          <div class="sg-ink" style="font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1.3;color:#FF3E9D;margin:0 0 ${lead ? "12" : "20"}px 0;">${esc(title)}</div>
           ${lead ? `<div class="sg-ink" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.65;color:#2a2a2a;margin:0 0 20px 0;">${esc(lead)}</div>` : ""}
         </td>
       </tr>
@@ -541,7 +541,7 @@ function renderProtocolEmail(payload) {
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
     <tr>
       <td class="sg-pad sg-card" style="padding:0 40px 16px 40px;background-color:#faf8f5;">
-        ${minSteps.map((s, i) => renderStepCard(s, { stepNum: s.order || (i + 1), accent: "#1a2744" })).join("")}
+        ${minSteps.map((s, i) => renderStepCard(s, { stepNum: s.order || (i + 1), accent: "#FF3E9D" })).join("")}
       </td>
     </tr>
   </table>`;
@@ -555,9 +555,9 @@ function renderProtocolEmail(payload) {
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#fbf3eb;border-left:4px solid #d4a373;">
           <tr>
             <td style="padding:22px 24px;">
-              <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.3;color:#1a2744;margin:0 0 6px 0;">${esc(eveningSwap.product || "")}</div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.3;color:#FF3E9D;margin:0 0 6px 0;">${esc(eveningSwap.product || "")}</div>
               <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6b6b;margin:0 0 12px 0;">
-                ${eveningSwap.brand ? `<strong style="color:#1a2744;">${esc(eveningSwap.brand)}</strong>` : ""}${eveningSwap.price ? ` &middot; <span style="color:#1a2744;font-weight:bold;">${esc(eveningSwap.price)}</span>` : ""}
+                ${eveningSwap.brand ? `<strong style="color:#FF3E9D;">${esc(eveningSwap.brand)}</strong>` : ""}${eveningSwap.price ? ` &middot; <span style="color:#FF3E9D;font-weight:bold;">${esc(eveningSwap.price)}</span>` : ""}
               </div>
               ${eveningSwap.why ? `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#2a2a2a;margin:0 0 10px 0;">${esc(eveningSwap.why)}</div>` : ""}
               ${eveningSwap.how ? `<div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:#2a2a2a;margin:0 0 8px 0;"><em style="color:#6b6b6b;">Application —</em> ${esc(eveningSwap.how)}</div>` : ""}
@@ -578,9 +578,9 @@ function renderProtocolEmail(payload) {
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#ffffff;border:1px solid #e6e1d8;">
           <tr>
             <td style="padding:22px 24px;">
-              <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.3;color:#1a2744;margin:0 0 6px 0;">${esc(weekly.product || "")}</div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.3;color:#FF3E9D;margin:0 0 6px 0;">${esc(weekly.product || "")}</div>
               <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6b6b;margin:0 0 12px 0;">
-                ${weekly.brand ? `<strong style="color:#1a2744;">${esc(weekly.brand)}</strong>` : ""}${weekly.frequency ? ` &middot; ${esc(weekly.frequency)}` : ""}
+                ${weekly.brand ? `<strong style="color:#FF3E9D;">${esc(weekly.brand)}</strong>` : ""}${weekly.frequency ? ` &middot; ${esc(weekly.frequency)}` : ""}
               </div>
               ${weekly.why ? `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#2a2a2a;margin:0 0 10px 0;">${esc(weekly.why)}</div>` : ""}
               ${weekly.benefit ? `<div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:#6b6b6b;font-style:italic;">${esc(weekly.benefit)}</div>` : ""}
@@ -614,7 +614,7 @@ function renderProtocolEmail(payload) {
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                   <td style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#2a2a2a;">Routine essentielle</td>
-                  <td align="right" style="font-family:Georgia,'Times New Roman',serif;font-size:18px;color:#1a2744;font-weight:bold;">${esc(d.total_minimum_cost || "—")}</td>
+                  <td align="right" style="font-family:Georgia,'Times New Roman',serif;font-size:18px;color:#FF3E9D;font-weight:bold;">${esc(d.total_minimum_cost || "—")}</td>
                 </tr>
               </table>
             </td>
@@ -624,7 +624,7 @@ function renderProtocolEmail(payload) {
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                   <td style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#2a2a2a;">Rituel complet (essentielle + boosters)</td>
-                  <td align="right" style="font-family:Georgia,'Times New Roman',serif;font-size:18px;color:#1a2744;font-weight:bold;">${esc(d.total_full_cost || "—")}</td>
+                  <td align="right" style="font-family:Georgia,'Times New Roman',serif;font-size:18px;color:#FF3E9D;font-weight:bold;">${esc(d.total_full_cost || "—")}</td>
                 </tr>
               </table>
             </td>
@@ -640,7 +640,7 @@ function renderProtocolEmail(payload) {
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
     <tr>
       <td class="sg-pad sg-card" style="padding:24px 40px 16px 40px;background-color:#faf8f5;">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1a2744;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#FF3E9D;">
           <tr>
             <td style="padding:24px 26px;">
               <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;color:#f5c4aa;text-transform:uppercase;margin:0 0 8px 0;font-weight:bold;">Ton conseil semaine 1</div>
@@ -676,14 +676,14 @@ function renderProtocolEmail(payload) {
     <tr>
       <td class="sg-pad sg-card" style="padding:32px 40px 40px 40px;background-color:#faf8f5;">
         <div class="sg-ink" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.7;color:#2a2a2a;margin:0 0 12px 0;">Une routine, ce n'est pas une promesse — c'est une habitude. Sois douce avec toi : 14 jours pour voir les premiers résultats, 28 jours pour les ancrer. On est là si tu as la moindre question.</div>
-        <div style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:18px;line-height:1.5;color:#1a2744;margin:18px 0 0 0;">Prends soin de toi,<br>&mdash; Sonagi</div>
+        <div style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:18px;line-height:1.5;color:#FF3E9D;margin:18px 0 0 0;">Prends soin de toi,<br>&mdash; Sonagi</div>
       </td>
     </tr>
   </table>`;
 
   /* ---- Footer ---- */
   const footer = `
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1a2744;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#FF3E9D;">
     <tr>
       <td align="center" class="sg-pad" style="padding:32px 40px;">
         <div style="font-family:Georgia,'Times New Roman',serif;font-size:14px;letter-spacing:6px;color:#f5c4aa;text-transform:uppercase;margin:0 0 14px 0;">SONAGI</div>

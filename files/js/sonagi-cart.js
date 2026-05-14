@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════
-   SONAGI CART + CHECKOUT — single source of truth
+   SONAGI CART + CHECKOUT · single source of truth
    ──────────────────────────────────────────────────────
    Persists cart in localStorage so it survives page navigation.
    Backwards compatible: if a page already has a `cartItems` global
@@ -131,7 +131,7 @@
   };
 
   window.SonagiCart = SonagiCart;
-  // Legacy compatibility — preserves any pre-existing handleCheckout call sites
+  // Legacy compatibility: preserves any pre-existing handleCheckout call sites
   window.handleCheckout = function () { SonagiCart.checkout(); };
 
   document.addEventListener("DOMContentLoaded", function () {
