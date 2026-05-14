@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════
-   SONAGI BEAUTY — shared CSS v6
+   SONAGI BEAUTY · shared CSS v6
    Single source of truth for all 12 pages.
    Page-specific styles stay in a small inline <style> per page.
    v6 changelog: Fraunces typography upgrade, mobile a11y fixes,
@@ -30,18 +30,31 @@ img { display: block; max-width: 100%; height: auto; }
 a { text-decoration: none; color: inherit; }
 button { cursor: pointer; font-family: inherit; }
 
-/* ── TOKENS ── */
+/* ── TOKENS ──
+   Sonagi brand palette (locked 2026-04-21):
+     banana  #F7D84C   (mint legacy → now banana)   hot-pink #FF3E9D
+     peach   #F5C4AA   peach-deep #F6AA8C
+     brown   #FF3E9D   cream #FAF8F5
+   Legacy --navy kept as alias for --brown so downstream code (JS,
+   inline styles, SVGs) keeps working. Same for --gold (→ banana)
+   and --rose (→ peach-deep). Only use the new token names in NEW code. */
 :root {
-  --navy:   #1a2744;
-  --cream:  #faf8f5;
-  --white:  #ffffff;
-  --peach:  #f5c4aa;
-  --peach-l:#fdeee5;
-  --muted:  #8a8a8a;
-  --border: #ede8e2;
-  --text:   #2c2c2c;
-  --rose:   #8a6565;
-  --gold:   #f5a623;
+  --brown:      #1F3A2A;             /* deep mint, readable body text */
+  --navy:       #FF3E9D;             /* pink pop, brand accents, buttons, CTAs */
+  --cream:      #FAF8F5;
+  --white:      #ffffff;
+  --peach:      #F5C4AA;
+  --peach-deep: #F6AA8C;
+  --peach-l:    #fdeee5;             /* soft peach (background tint) */
+  --banana:     #F7D84C;
+  --mint:       #F7D84C;             /* alias → banana (mint retired 2026-05-06) */
+  --pink:       #FF3E9D;
+  --muted:      #6b5e4a;             /* warm taupe, secondary text on banana bg */
+  --border:     #ede8e2;
+  --text:       #2c2c2c;             /* near-black body text, readable on banana */
+  --rose:       #F6AA8C;             /* alias → peach-deep */
+  --gold:       #F7D84C;             /* alias → banana */
+  --footer-bg:  #1A2744;             /* reserved: footer bottom section only */
   /* Heights for sticky overlap math (Phase 3 markup uses these) */
   --prelaunch-h: 40px;
   --announce-h: 40px;
@@ -53,19 +66,25 @@ button { cursor: pointer; font-family: inherit; }
 /* ── FORCE LIGHT MODE (prevents dark-mode black backgrounds on mobile) ── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --navy:   #1a2744;
-    --cream:  #faf8f5;
-    --white:  #ffffff;
-    --peach:  #f5c4aa;
-    --peach-l:#fdeee5;
-    --muted:  #8a8a8a;
-    --border: #ede8e2;
-    --text:   #2c2c2c;
-    --rose:   #8a6565;
-    --gold:   #f5a623;
+    --brown:      #1F3A2A;
+    --navy:       #FF3E9D;
+    --cream:      #FAF8F5;
+    --white:      #ffffff;
+    --peach:      #F5C4AA;
+    --peach-deep: #F6AA8C;
+    --peach-l:    #fdeee5;
+    --banana:     #F7D84C;
+    --mint:       #F7D84C;
+    --pink:       #FF3E9D;
+    --muted:      #6b5e4a;
+    --border:     #ede8e2;
+    --text:       #2c2c2c;
+    --rose:       #F6AA8C;
+    --gold:       #F7D84C;
+    --footer-bg:  #1A2744;
     color-scheme: only light;
   }
-  /* Structural backgrounds must stay overridden — iOS otherwise paints dark behind them */
+  /* Structural backgrounds must stay overridden: iOS otherwise paints dark behind them */
   html  { background: #faf8f5 !important; color: #2c2c2c !important; }
   body  { background: #faf8f5 !important; color: #2c2c2c !important; }
   .section-wrap, .page-hero, .reviews-section, .journal-wrap,
@@ -77,7 +96,7 @@ button { cursor: pointer; font-family: inherit; }
   .prod-img-wrap, .nav-inner { background: #ffffff !important; }
   /* Mobile menu must match cream page bg, not stark white */
   .mobile-menu { background: var(--cream) !important; }
-  /* Selectors below use specificity instead of !important — cleaner cascade */
+  /* Selectors below use specificity instead of !important: cleaner cascade */
   html[data-theme] .mob-cat-link,
   html[data-theme] .mob-item-link { color: var(--text); background: transparent; }
 }
@@ -97,7 +116,7 @@ h1, h2, h3, h4, h5, h6 {
 h1, h2 { letter-spacing: -0.01em; }
 .lbl { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 10px; }
 
-/* Brand-display wordmark — for Phase 3 to apply on the header logo */
+/* Brand-display wordmark: for Phase 3 to apply on the header logo */
 .brand-mark {
   font-family: 'Fraunces', 'Cormorant Garamond', serif;
   font-weight: 300;
@@ -121,12 +140,12 @@ h1, h2 { letter-spacing: -0.01em; }
 
 /* ── BUTTONS ── */
 .btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; background: var(--navy); color: #fff; border: none; padding: 14px 28px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: background .2s; white-space: nowrap; }
-.btn-primary:hover { background: #2a3a60; }
+.btn-primary:hover { background: #3a241a; }
 .btn-outline  { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; background: transparent; color: var(--navy); border: 1.5px solid var(--navy); padding: 13px 28px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: all .2s; white-space: nowrap; }
 .btn-outline:hover { background: var(--navy); color: #fff; }
 .voir-tout { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); border-bottom: 1px solid var(--navy); padding-bottom: 2px; white-space: nowrap; }
 
-/* "Notify me" — peach pill replacement for "Add to cart" while shop is closed */
+/* "Notify me": peach pill replacement for "Add to cart" while shop is closed */
 .btn-notify {
   display: inline-flex; align-items: center; justify-content: center;
   gap: 8px;
@@ -150,7 +169,7 @@ h1, h2 { letter-spacing: -0.01em; }
 .btn-notify.full { width: 100%; }
 
 /* ── ANNOUNCE ── */
-.announce { background: var(--navy); color: #fff; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: var(--announce-h); }
+.announce { background: var(--mint); color: var(--text); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: var(--announce-h); }
 .ann-msg { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; text-align: center; flex: 1; }
 .ann-arr { background: none; border: none; color: #fff; opacity: .7; font-size: 18px; padding: 0 4px; min-height: 44px; min-width: 44px; }
 .ann-arr:hover { opacity: 1; }
@@ -161,7 +180,10 @@ nav.main-nav { background: #fff; border-bottom: 1px solid var(--border); positio
 .nav-logo { font-family: 'Fraunces', 'Cormorant Garamond', serif; font-size: 20px; letter-spacing: 4px; color: var(--navy); font-weight: 300; flex-shrink: 0; line-height: 1; display: inline-flex; align-items: center; }
 .nav-logo small { display: block; font-size: 8px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; font-family: 'DM Sans', sans-serif; margin-top: 3px; }
 .nav-logo img { height: 48px; width: auto; display: block; }
-@media (min-width: 768px) { .nav-logo img { height: 56px; } nav.main-nav .nav-inner { height: 76px; } }
+.nav-logo { gap: 12px; }
+.nav-logo-kr { font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif; font-size: 22px; color: var(--peach); font-weight: 500; letter-spacing: 2px; line-height: 1; }
+@media (min-width: 768px) { .nav-logo img { height: 56px; } nav.main-nav .nav-inner { height: 76px; } .nav-logo-kr { font-size: 26px; } }
+@media (max-width: 767px) { .nav-logo-kr { font-size: 18px; } }
 .nav-links { display: none; /* mobile: hidden */ }
 .nav-right { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
 .lang-btn { background: none; border: 1px solid var(--border); padding: 4px 10px; min-height: 44px; min-width: 44px; font-size: 10px; letter-spacing: 1.5px; color: var(--muted); transition: all .2s; }
@@ -199,10 +221,10 @@ body:has(.prelaunch-banner) nav.main-nav { top: var(--prelaunch-h, 40px); }
 .mob-quiz-btn { width: 100%; background: var(--navy); color: #fff; border: none; padding: 15px; min-height: 48px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
 
 /* ── MARQUEE ── */
-.marquee-wrap { background: var(--navy); padding: 11px 0; overflow: hidden; white-space: nowrap; }
+.marquee-wrap { background: var(--banana); padding: 11px 0; overflow: hidden; white-space: nowrap; }
 .marquee-inner { display: inline-block; animation: mq 24s linear infinite; }
-.marquee-inner span { color: var(--border); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; padding: 0 28px; }
-.marquee-inner .dot { color: var(--peach); padding: 0 4px; }
+.marquee-inner span { color: var(--text); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; padding: 0 28px; }
+.marquee-inner .dot { color: var(--peach-deep); padding: 0 4px; }
 @keyframes mq { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
 /* ── HERO CAROUSEL ── */
@@ -226,10 +248,10 @@ body:has(.prelaunch-banner) nav.main-nav { top: var(--prelaunch-h, 40px); }
   transition: background .2s, transform .2s;
   white-space: nowrap; cursor: pointer;
 }
-.c-cta:hover { background: #2a3a60; transform: translateY(-1px); }
+.c-cta:hover { background: #3a241a; transform: translateY(-1px); }
 .c-cta:focus-visible { outline: 2px solid var(--peach); outline-offset: 3px; }
 .carousel-dots { display: flex; gap: 4px; justify-content: center; padding: 8px 0; background: var(--cream); }
-/* Dots wrapped in 44px hit area for accessibility — visual dot kept small */
+/* Dots wrapped in 44px hit area for accessibility, visual dot kept small */
 .c-dot {
   background: none; border: none; padding: 0;
   width: 44px; height: 44px;
@@ -270,7 +292,7 @@ body:has(.prelaunch-banner) nav.main-nav { top: var(--prelaunch-h, 40px); }
 .prod-price { font-size: 13px; color: var(--navy); font-weight: 500; }
 .prod-old-price { font-size: 11px; color: var(--muted); text-decoration: line-through; margin-left: 6px; }
 
-/* Product page main image — prevent CLS, cap on desktop */
+/* Product page main image: prevent CLS, cap on desktop */
 .prod-main-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .prod-gallery { width: 100%; }
 
@@ -320,7 +342,7 @@ body:has(.prelaunch-banner) nav.main-nav { top: var(--prelaunch-h, 40px); }
 .filter-pill:hover:not(.active), .filt-btn:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
 .facet-count { font-size: 10px; color: var(--muted); margin-left: 4px; }
 
-/* "Filtres" toggle button (mobile) — opens the bottom-sheet drawer */
+/* "Filtres" toggle button (mobile): opens the bottom-sheet drawer */
 .filter-drawer-toggle {
   display: inline-flex;
   align-items: center;
@@ -481,7 +503,8 @@ body:has(.prelaunch-banner) nav.main-nav { top: var(--prelaunch-h, 40px); }
 .blog-meta a { color: var(--navy); border-bottom: 1px solid var(--navy); font-size: 10px; }
 
 /* ── INFLUENCERS ── */
-.inf-section { padding: 52px 16px; background: var(--navy); }
+.inf-section { padding: 52px 16px; background: var(--mint); color: var(--text); }
+.inf-section h2, .inf-section h3, .inf-section .lbl { color: var(--text) !important; }
 .inf-inner { max-width: 1360px; margin: 0 auto; }
 .inf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
 .inf-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); padding: 18px; text-decoration: none; display: block; transition: background .2s; }
@@ -548,18 +571,23 @@ body:has(.prelaunch-banner) nav.main-nav { top: var(--prelaunch-h, 40px); }
 }
 
 /* ── POINTS SECTION ── */
-.points-section { background: var(--navy); color: #fff; padding: 56px 16px; }
+.points-section { background: var(--banana); color: #2c2c2c; padding: 56px 16px; }
+.points-section h3 { color: #2c2c2c !important; }
 .points-inner { max-width: 1360px; margin: 0 auto; }
 .pts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
-.pt-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); padding: 20px; transition: background .2s; }
-.pt-card:hover { background: rgba(255,255,255,.12); }
-.pt-icon { font-size: 24px; margin-bottom: 10px; }
-.pt-title { font-family: 'Fraunces', 'Cormorant Garamond', serif; font-size: 18px; color: #fff; margin-bottom: 6px; }
+.pt-card { background: #ffffff; border: 1px solid rgba(0,0,0,.06); border-radius: 12px; padding: 22px 20px; transition: transform .2s ease, box-shadow .2s ease; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.pt-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+.pt-icon { font-size: 26px; margin-bottom: 10px; }
+.pt-title { font-family: 'Fraunces', 'Cormorant Garamond', serif; font-size: 20px; color: #2c2c2c; margin-bottom: 6px; font-weight: 500; }
+.pt-card .pt-desc { font-size: 13px; color: #4a4036; line-height: 1.5; margin-bottom: 10px; }
+.pt-card .pt-pts { font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--pink); font-weight: 500; }
+.points-section h2, .points-section .lbl { color: #2c2c2c !important; }
+.points-section .lbl { color: #6b5e4a !important; }
 .pt-desc { font-size: 11px; color: var(--border); line-height: 1.7; opacity: .85; }
 .pt-pts { display: inline-block; background: var(--peach); color: var(--navy); font-size: 10px; letter-spacing: 1px; padding: 3px 10px; margin-top: 10px; font-weight: 600; }
 
 /* ── FOOTER ── */
-footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px; }
+footer { background: var(--footer-bg); color: var(--border); padding: 48px 16px 24px; }
 .footer-inner { max-width: 1360px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px; }
 .footer-logo { font-family: 'Fraunces', 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 4px; color: #fff; font-weight: 300; margin-bottom: 12px; display: block; }
@@ -684,7 +712,7 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
   .modal { max-width: 620px; border-radius: 0; max-height: 88vh; }
   .quiz-opts { grid-template-columns: 1fr 1fr; }
   .page-hero { padding: 56px 40px 40px; }
-  /* Product page main image — capped width on desktop, 4:5 portrait */
+  /* Product page main image: capped width on desktop, 4:5 portrait */
   .prod-gallery { max-width: 480px; }
   .prod-main-img { aspect-ratio: 4 / 5; }
 }
@@ -716,14 +744,14 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
   .modal-header { padding: 20px 16px; }
 }
 
-/* Tiny phones — hide overflowing decorative watermark, stack cart form */
+/* Tiny phones: hide overflowing decorative watermark, stack cart form */
 @media(max-width:480px){
   .quiz-banner::before { display: none; }
   .cart-form-row, .cart-sidebar form .row { grid-template-columns: 1fr !important; flex-direction: column !important; }
   .cart-sidebar .form-row, .cart-sidebar .field-row { display: flex; flex-direction: column; gap: 10px; }
 }
 
-/* Tiny screens — quiz-nav-btn iOS readability fix (was 9px, now 11px) */
+/* Tiny screens: quiz-nav-btn iOS readability fix (was 9px, now 11px) */
 @media(max-width:380px){
   .quiz-nav-btn { font-size: 11px; }
 }
@@ -772,7 +800,7 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
 .nav-logo small { font-size: 10px; letter-spacing: 2px; }
 .nav-links > li > a, .nav-links > .nav-item > a {
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px; font-weight: 500;
+  font-size: 13px; font-weight: 700;
   letter-spacing: 1.2px; text-transform: uppercase;
   padding: 8px 14px;
   min-height: 44px;
@@ -783,7 +811,7 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
 @media(max-width:767px) {
   .nav-logo { font-size: 22px; }
 }
-/* ── MOBILE NAV TIGHTENING (≤430px) — fixes hamburger off-screen ── */
+/* MOBILE NAV TIGHTENING (≤430px): fixes hamburger off-screen */
 @media(max-width:430px){
   .nav-inner { gap: 4px; padding: 0 10px; }
   .nav-logo { font-size: 18px; letter-spacing: 2px; }
@@ -800,15 +828,17 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
    ══════════════════════════════════════════════════════ */
 .nav-item { position: relative; }
 .nav-item > a { display: flex; align-items: center; gap: 4px; }
-.nav-item.has-drop > a::after { content: ' ▾'; font-size: 9px; opacity: .6; }
+.nav-item.has-drop > a::after { content: ' ▾'; font-size: 9px; opacity: .55; font-weight: 400; margin-left: 2px; }
 .nav-dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff;
   border-radius: 12px; box-shadow: 0 8px 32px rgba(26,39,68,.12); min-width: 220px;
   padding: 10px 0; z-index: 300; }
 @media(min-width:768px) {
-  .nav-item:hover .nav-dropdown,
-  .nav-item:focus-within .nav-dropdown { display: flex; flex-direction: column; }
-  .nd-sub:hover .nd-sub-panel,
-  .nd-sub:focus-within .nd-sub-panel { display: flex; flex-direction: column; }
+  .nav-item:hover > .nav-dropdown,
+  .nav-item:focus-within > .nav-dropdown { display: flex; flex-direction: column; }
+  /* Direct-child combinator only: hovering the OUTER .nd-sub must NOT open
+     its grandchildren panels. Each level reveals only when its own .nd-sub is hovered. */
+  .nd-sub:hover > .nd-sub-panel,
+  .nd-sub:focus-within > .nd-sub-panel { display: flex; flex-direction: column; }
 }
 .nav-dropdown a, .nav-dropdown button.nd-link {
   display: flex; align-items: center; justify-content: space-between;
@@ -818,6 +848,8 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
 }
 .nav-dropdown a:hover, .nav-dropdown button.nd-link:hover { background: var(--cream); color: var(--navy); }
 .nd-sep { height: 1px; background: var(--border); margin: 6px 12px; }
+.nav-item.glossary-2line > a { line-height: 1.05; padding-top: 4px; padding-bottom: 4px; text-align: center; font-size: 11px; letter-spacing: 1px; }
+.nav-item.glossary-2line > a br { display: block; }
 .nd-sub { position: relative; }
 .nd-sub > button.nd-link::after { content: '›'; font-size: 14px; opacity: .5; }
 .nd-sub-panel { display: none; position: absolute; left: 100%; top: 0;
@@ -871,7 +903,7 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
    Phase 3 markup:
      <div class="prelaunch-banner">
        <div class="prelaunch-inner">
-         <span class="prelaunch-msg">🌸 Lancement bientôt — <strong>15% de bienvenue</strong> sur ta première commande</span>
+         <span class="prelaunch-msg">🌸 Lancement bientôt · <strong>15% de bienvenue</strong> sur ta première commande</span>
          <a href="#newsletter" class="prelaunch-cta">Sois prévenue</a>
        </div>
      </div>
@@ -941,7 +973,7 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
   .prelaunch-cta { font-size: 9px; padding: 6px 12px; letter-spacing: 1.4px; }
 }
 @media(max-width:380px){
-  /* Truncate gracefully — strip lead emoji and ellipsis is too aggressive,
+  /* Truncate gracefully: strip lead emoji and ellipsis is too aggressive,
      instead stack the CTA below */
   .prelaunch-inner { flex-direction: column; gap: 6px; padding: 6px 10px; }
 }
@@ -1021,7 +1053,7 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
 .sbb-cta:active { transform: scale(.98); }
 
 /* ══════════════════════════════════════════════════════
-   ── ALPHABET NAV (marques page) — accessibility ──
+   ALPHABET NAV (marques page): accessibility
    ══════════════════════════════════════════════════════ */
 .alpha-nav a, .alphabet-nav a, .alpha-link {
   display: inline-flex;
@@ -1151,4 +1183,363 @@ footer { background: var(--navy); color: var(--border); padding: 48px 16px 24px;
 .footer-lang-btn:hover { color: var(--navy); }
 .footer-lang-btn.active { color: var(--navy); font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }
 .footer-lang-sep { color: var(--border); font-size: 10px; }
+
+/* ══════════════════════════════════════════════════════
+   v7.1 (2026-04-21): Pacifico hero callout, hero video,
+   floating EN/FR toggle, mobile menu fix.
+   ══════════════════════════════════════════════════════ */
+
+/* Self-hosted Pacifico for brand accent callouts
+   (e.g. "moment sonagi" in French). */
+@font-face {
+  font-family: 'Pacifico';
+  src: url('../fonts/Pacifico-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.brand-accent,
+.brand-moment,
+.sonagi-script {
+  font-family: 'Pacifico', 'Fraunces', cursive;
+  font-weight: 400;
+  color: var(--pink);
+  -webkit-text-stroke: 0.5px var(--cream);
+  letter-spacing: 0;
+}
+
+/* ── HERO VIDEO ─────────────────────────────────────────
+   Replaces the .c-slide-img <img> on slide 1 when a
+   <video class="hero-video"> is rendered. The <video>
+   takes the slot of the image; CSS inherits sizing. */
+.c-slide-img video.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+  background: var(--cream);
+}
+/* On narrow mobile, the portrait 9:16 source still fills its 4/3 slot
+   nicely via object-fit: cover. On desktop the slide becomes landscape
+   (50% width, 56vh tall): the portrait video is cropped to the center.
+   For a slightly taller hero on desktop let the video slide stretch. */
+@media (min-width: 768px) {
+  .c-slide.has-video .c-slide-img { width: 50%; min-height: 520px; }
+}
+
+/* ── FLOATING LANGUAGE TOGGLE ────────────────────────
+   Small pill top-right, stays above the sticky pre-launch banner
+   and the nav. Lives OUTSIDE the nav so it never clips behind
+   the mobile hamburger. */
+.lang-float {
+  position: fixed;
+  top: calc(var(--prelaunch-h, 40px) + 8px);
+  left: 14px;
+  right: auto;
+  z-index: 260;
+  display: inline-flex;
+  align-items: center;
+  background: var(--cream);
+  border: 1px solid var(--peach);
+  border-radius: 999px;
+  padding: 3px;
+  box-shadow: 0 2px 8px rgba(74,46,31,.08);
+  font-family: 'DM Sans', sans-serif;
+}
+.lang-float button {
+  background: none;
+  border: 0;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: var(--brown);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  min-width: 32px;
+}
+.lang-float button:hover { background: var(--peach-l); }
+.lang-float button.active {
+  background: var(--brown);
+  color: var(--cream);
+}
+.lang-float .lang-sep {
+  color: var(--border);
+  font-size: 10px;
+  padding: 0 2px;
+}
+@media (min-width: 768px) {
+  .lang-float { top: calc(var(--prelaunch-h, 40px) + 14px); left: 22px; right: auto; }
+  .lang-float button { padding: 6px 12px; font-size: 11px; }
+}
+
+/* Hide the in-nav FR/EN buttons everywhere now that we have
+   the floating toggle. (Earlier rule hid them only on desktop.) */
+.nav-right > .lang-btn { display: none !important; }
+
+/* ── MOBILE MENU OVERFLOW FIX ───────────────────────
+   Earlier CSS set html { overflow-x:hidden } and body { overflow-x:hidden }.
+   On iOS Safari, that combo can cause `position:fixed` children (the mobile
+   menu drawer) to be clipped if a parent opens a new stacking context.
+   Also, when the mobile menu opens we set body.overflow='hidden', that
+   collapses the 100vh viewport. Force the menu to stretch the full
+   viewport height and sit above every other sticky element. */
+.mobile-menu {
+  height: 100vh;
+  height: 100dvh; /* dynamic viewport: handles mobile URL bar */
+  max-height: 100vh;
+  max-height: 100dvh;
+  z-index: 700; /* above search overlay (600) + banner (250) */
+}
+.mob-backdrop { z-index: 699; }
+/* Keep the mobile menu foot visible even when content scrolls */
+.mobile-menu-foot { position: sticky; bottom: 0; background: var(--white); z-index: 2; }
+/* Ensure the menu panel can always scroll the inner content */
+.mob-panel { max-height: 100%; }
+
+/* On narrow screens the floating lang pill should stay clear of
+   the mobile hamburger (hamburger is 44px, fits in nav-right). */
+@media (max-width: 380px) {
+  .lang-float { top: calc(var(--prelaunch-h, 40px) + 6px); left: 10px; right: auto; }
+  .lang-float button { padding: 4px 8px; font-size: 9px; min-width: 28px; }
+}
+
+/* Mobile nav overflow hard-fix (≤767px):
+   On narrow viewports, nav-right had 4 buttons totalling ~220px, plus
+   the ~140px wordmark logo: the hamburger was getting pushed off-screen.
+   Hide "Ma routine" here (it's duplicated in the hamburger drawer footer
+   + in the hero CTA), and shrink the logo img so everything fits. */
+@media (max-width: 767px) {
+  .nav-right .quiz-nav-btn { display: none; }
+  .nav-logo img { height: 36px; }
+}
+@media (max-width: 430px) {
+  .nav-logo img { height: 32px; }
+  .nav-inner { gap: 2px; padding: 0 8px; }
+  .nav-right { gap: 2px; }
+}
+
+/* ══════════════════════════════════════════════════════
+   ── TRUST BADGE ROW (under hero) ──
+   Honest pre-launch claims only. No fabricated shipping
+   times, certifications, or community sizes. Inline SVG
+   icons (no CDN). Palette = locked Sonagi Story tokens.
+   Body text #2c2c2c on cream #FAF8F5 = 13.7:1 (WCAG AAA).
+   ══════════════════════════════════════════════════════ */
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.trust-cell {
+  flex: 1 1 calc(50% - 0px);
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 18px 16px;
+  text-align: left;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  box-sizing: border-box;
+}
+.trust-cell:nth-child(2n) { border-right: none; }
+.trust-cell:nth-last-child(-n+2) { border-bottom: none; }
+.trust-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.trust-icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+.trust-text {
+  display: block;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 12px;
+  color: #2c2c2c;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: .1px;
+}
+.trust-text strong {
+  display: block;
+  font-family: 'Fraunces', 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 13.5px;
+  color: #2c2c2c;
+  margin-bottom: 2px;
+  letter-spacing: 0;
+}
+@media (min-width: 768px) {
+  .trust-row { flex-wrap: nowrap; }
+  .trust-cell {
+    flex: 1 1 0;
+    padding: 22px 20px;
+    border-bottom: none;
+    justify-content: center;
+  }
+  .trust-cell:nth-child(2n) { border-right: 1px solid var(--border); }
+  .trust-cell:last-child { border-right: none; }
+  .trust-text { font-size: 12.5px; }
+  .trust-text strong { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .trust-cell { padding: 14px 12px; gap: 10px; }
+  .trust-text { font-size: 11.5px; }
+  .trust-text strong { font-size: 12.5px; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE OVERRIDES — founder request 2026-05-12
+   Tightens vertical space on phones so visitors reach products
+   in the first scroll. Desktop layout must NOT change; every
+   rule below is gated by max-width 767 (mobile) or 768-1023
+   (tablet) to leave desktop ≥1024 untouched.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* 1. SOCIAL PROOF (.trust-row) — was 5 cells stacked 2-wide
+     (~350px tall). Now: auto-scrolling horizontal conveyor that
+     loops the 5 promises. Re-uses the marquee animation pattern.
+     The .trust-row needs no HTML change because we animate the
+     direct children via a sliding pseudo-element approach: cells
+     stay in flex flow, the wrapper scrolls. */
+  .trust-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    gap: 0;
+    /* Subtle gradient hint that there's more to scroll */
+    background:
+      linear-gradient(to right, var(--cream) 0%, transparent 8%, transparent 92%, var(--cream) 100%),
+      var(--cream);
+  }
+  .trust-row::-webkit-scrollbar { display: none; }
+  .trust-cell {
+    flex: 0 0 78%;
+    min-width: unset;
+    max-width: 320px;
+    scroll-snap-align: start;
+    border-bottom: none !important;
+    border-right: 1px solid var(--border);
+    padding: 14px 16px;
+  }
+  .trust-cell:last-child { border-right: none; }
+
+  /* 2. DECORATIVE BRAND CONVEYOR (.marquee-wrap) — purely
+     decorative on mobile (no CTA, duplicates brand-belt-section
+     which still appears later in the page with the "Toutes nos
+     marques" CTA). Hide to shorten path to products. */
+  .marquee-wrap { display: none !important; }
+
+  /* 3. "Comment est ta peau" — 2 rows × 2 visible cards in a
+     horizontal swipe carousel. 8 tiles total → 4 columns, of
+     which 2 are visible at any moment. */
+  .concerns-grid {
+    grid-template-columns: repeat(4, calc(50% - 6px)) !important;
+    grid-template-rows: repeat(2, auto) !important;
+    grid-auto-flow: column !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 10px !important;
+    padding: 0 16px 8px !important;
+    margin: 0 -16px;
+    max-width: 100vw;
+  }
+  .concerns-grid::-webkit-scrollbar { display: none; }
+  /* Snap on every odd item = top of each column = stable swipe */
+  .concerns-grid > :nth-child(odd) { scroll-snap-align: start; }
+
+  /* 4. BEST SELLERS / NEW ARRIVALS — same 2×2 swipe pattern.
+     .prods-grid normally renders all product cards in a wrap
+     grid; on mobile we convert to a 2-row column-flow carousel.
+     Affects both #pn (Nouveautés) and #pb (Best-Sellers) tabs. */
+  .prods-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, calc(50% - 6px)) !important;
+    grid-template-rows: repeat(2, auto) !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: calc(50% - 6px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px !important;
+    padding: 0 16px 12px !important;
+    margin: 0 -16px;
+    max-width: 100vw;
+  }
+  .prods-grid::-webkit-scrollbar { display: none; }
+  .prods-grid > .prod-card:nth-child(odd) { scroll-snap-align: start; }
+
+  /* 5. MASTERCLASSES & ATELIERS — single-card carousel.
+     One full-width card visible at a time, swipe to advance.
+     .evt-grid is normally a multi-col grid; mobile becomes
+     horizontal flex strip with full-card snap. */
+  .evt-grid {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px;
+    padding: 4px 16px 12px;
+    margin: 0 -16px;
+    max-width: 100vw;
+  }
+  .evt-grid::-webkit-scrollbar { display: none; }
+  .evt-card {
+    flex: 0 0 calc(100% - 32px);
+    max-width: calc(100% - 32px);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+}
+
+/* Mid-mobile fine-tune: at 480px and below, trust-row cell
+   should fit closer to the viewport edge so visitors can see
+   the second cell peeking. */
+@media (max-width: 480px) {
+  .trust-cell {
+    flex-basis: 82% !important;
+    padding: 12px 14px !important;
+  }
+  .evt-card {
+    flex-basis: calc(100% - 24px) !important;
+    max-width: calc(100% - 24px) !important;
+  }
+}
+
+/* Reduced motion: respect user preference. Auto-scrolling
+   marquees pause, swipe carousels stay swipeable. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-inner { animation: none !important; }
+  .trust-row { scroll-behavior: auto; }
+}
 
