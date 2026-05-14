@@ -1415,38 +1415,48 @@ footer { background: var(--footer-bg); color: var(--border); padding: 48px 16px 
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 767px) {
 
-  /* 1. SOCIAL PROOF (.trust-row) — was 5 cells stacked 2-wide
-     (~350px tall). Now: auto-scrolling horizontal conveyor that
-     loops the 5 promises. Re-uses the marquee animation pattern.
-     The .trust-row needs no HTML change because we animate the
-     direct children via a sliding pseudo-element approach: cells
-     stay in flex flow, the wrapper scrolls. */
+  /* 1. SOCIAL PROOF (.trust-row) — AUTO-SCROLLING conveyor.
+     Cells are duplicated inline at runtime (see inline script in
+     index.html) so the row holds 2× the content; we then animate
+     translateX from 0 to -50% over 28s, producing a seamless loop. */
   .trust-row {
     flex-wrap: nowrap !important;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    overflow: hidden;
     border-bottom: 1px solid var(--border);
     padding: 0;
     gap: 0;
-    /* Subtle gradient hint that there's more to scroll */
-    background:
-      linear-gradient(to right, var(--cream) 0%, transparent 8%, transparent 92%, var(--cream) 100%),
-      var(--cream);
+    background: var(--cream);
+    position: relative;
   }
-  .trust-row::-webkit-scrollbar { display: none; }
+  .trust-row::after {
+    /* Edge fade so cells slide into/out of view smoothly */
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to right, var(--cream) 0%, transparent 6%, transparent 94%, var(--cream) 100%);
+  }
+  /* The .trust-track is a wrapper around the cells that gets
+     created at runtime (see inline script after the trust-row in
+     index.html). It contains the original 5 cells + a duplicate
+     set, so animating translateX from 0 to -50% loops seamlessly. */
+  .trust-row .trust-track {
+    display: flex;
+    width: max-content;
+    animation: trust-marquee 28s linear infinite;
+  }
+  .trust-row:hover .trust-track { animation-play-state: paused; }
   .trust-cell {
-    flex: 0 0 78%;
-    min-width: unset;
+    flex: 0 0 auto;
+    min-width: 240px;
     max-width: 320px;
-    scroll-snap-align: start;
     border-bottom: none !important;
     border-right: 1px solid var(--border);
     padding: 14px 16px;
   }
-  .trust-cell:last-child { border-right: none; }
+  @keyframes trust-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
 
   /* 2. DECORATIVE BRAND CONVEYOR (.marquee-wrap) — purely
      decorative on mobile (no CTA, duplicates brand-belt-section
@@ -1478,17 +1488,19 @@ footer { background: var(--footer-bg); color: var(--border); padding: 48px 16px 
      .prods-grid normally renders all product cards in a wrap
      grid; on mobile we convert to a 2-row column-flow carousel.
      Affects both #pn (Nouveautés) and #pb (Best-Sellers) tabs. */
+  /* NOTE: do NOT use display:grid !important — the hidden tab uses
+     inline style="display:none" and !important would defeat the
+     tab switcher (both Nouveautés + Best-Sellers would render). */
   .prods-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, calc(50% - 6px)) !important;
+    grid-template-columns: none !important;
     grid-template-rows: repeat(2, auto) !important;
     grid-auto-flow: column !important;
-    grid-auto-columns: calc(50% - 6px);
+    grid-auto-columns: calc(50% - 8px) !important;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    gap: 12px !important;
+    gap: 14px !important;
     padding: 0 16px 12px !important;
     margin: 0 -16px;
     max-width: 100vw;
@@ -1591,6 +1603,37 @@ footer { background: var(--footer-bg); color: var(--border); padding: 48px 16px 
   .ab-step:nth-child(5) {
     grid-column: 1 / -1;
   }
+
+  /* "Le sentiment Sonagi" (.ab-code-grid) — 2 per row on mobile,
+     smaller, punchier. Was single-column stack. */
+  .ab-code-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  .ab-code-card {
+    padding: 16px 12px !important;
+  }
+  .ab-code-card h3 { font-size: 16px !important; line-height: 1.25 !important; margin-bottom: 6px !important; }
+  .ab-code-card p { font-size: 12px !important; line-height: 1.45 !important; }
+  .ab-code-card .num { font-size: 11px !important; }
+  /* 5th card spans full so 5-into-2-col doesn't dangle */
+  .ab-code-card:nth-child(5) { grid-column: 1 / -1; }
+  /* App card stays full-width (has a CTA, deserves the room) */
+  .ab-code-card-app { grid-column: 1 / -1 !important; }
+
+  /* "Pourquoi Sonagi" (.ab-manifesto-grid) — 2 per row + 3rd
+     card spans full width on mobile. Text is already tightened
+     in HTML (commit 2026-05-14). */
+  .ab-manifesto-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  .ab-mani-card {
+    padding: 18px 14px !important;
+  }
+  .ab-mani-card h3 { font-size: 16px !important; line-height: 1.25 !important; margin-bottom: 6px !important; }
+  .ab-mani-card p { font-size: 12px !important; line-height: 1.45 !important; }
+  .ab-mani-card:nth-child(3) { grid-column: 1 / -1; }
 }
 
 /* ════════════════════════════════════════════════════════════
