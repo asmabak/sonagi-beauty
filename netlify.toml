@@ -2,5 +2,13 @@
   command = "npm install"
   publish = "files"
   functions = "netlify/functions"
+  edge_functions = "netlify/edge-functions"
 
 # Images are inside files/images/ — no redirects needed
+
+# Geo language autodetect — injects <meta name="x-country"> into HTML so the
+# client-side language picker can default to FR for francophone countries.
+# Manual FR/EN cookie always overrides geo.
+[[edge_functions]]
+  path = "/*"
+  function = "geo"
