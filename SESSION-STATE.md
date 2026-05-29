@@ -1,6 +1,29 @@
 # Sonagi Beauty — Session State & Knowledge Base
-## Last Updated: 2026-04-16
+## Last Updated: 2026-05-29 (laptop migration)
 ## READ THIS FIRST IN EVERY NEW SESSION
+
+---
+
+## 📍 WHERE DOCUMENTS LIVE (read this if you are on the NEW laptop)
+
+Asma migrated laptops on 2026-05-29. The username and paths are the same (`C:\Users\marou\...`), so all absolute paths in this file and in CLAUDE.md still work, AS LONG AS the new machine was restored per the migration bundle.
+
+**Two backup channels exist:**
+1. **GitHub** (code + git history): `asmabak/sonagi-beauty` and `asmabak/sonagi-reference`. Pre-migration work-in-progress was pushed to the branch `migration-snapshot-2026-05-29` in both repos. Five extra sonagi-beauty branches were also pushed (great-chaum, hungry-chatelet, infallible-pike, laughing-dijkstra, suspicious-bhabha).
+2. **OneDrive** (everything, including files never in git):
+   - `C:\Users\marou\OneDrive\sonagi-beauty` = full mirror of the working folder (5.5 GB).
+   - `C:\Users\marou\OneDrive\laptop-migration-2026-05-29\` = migration bundle: `NEW-LAPTOP-SETUP.md` (step-by-step), `dotclaude\` (memory + settings), `dotagents\` (skill sources), `higgsfield-seedance2-skills\` (full repo, had unpushed commits), `rebuild-junctions.bat` (recreates the 30 skill junctions), `gitconfig.txt`, `global-CLAUDE.md`.
+
+**⚠️ A fresh `git clone` is NOT enough.** On `live-baseline` (the deployed-site branch) these folders are deleted or were never committed, so they exist ONLY in the OneDrive mirror:
+   - `brand-strategy\` (boardroom strategy, brand-identity, voice-guide, research, competitor-research, campaign-plans) ← the "Locked source files" listed below are HERE and are untracked.
+   - `content\`, `media\`, `images\2026-05-06\`, `images\2026-05-16\`, plus most `.docx` / `.xlsx` / `.pdf` strategy files.
+   To get them on the new laptop, copy them from `C:\Users\marou\OneDrive\sonagi-beauty` into the working clone, OR just use the OneDrive folder as the working folder.
+
+**Cross-repo locations (separate repos, not inside sonagi-beauty):**
+   - Minjun docs: `C:\Users\marou\higgsfield-seedance2-skills\MINJUN-CHARACTER-SHEET.md` and `MINJUN-PRODUCTION-BIBLE.md` (restore this repo from the migration bundle, do NOT re-clone, it had unpushed commits).
+   - Sonagi Reference encyclopedia: `C:\Users\marou\sonagi-reference\` (clone from `asmabak/sonagi-reference`, then `git checkout migration-snapshot-2026-05-29` for the latest edito + EDITORIAL-BIBLE work).
+
+**Branch note:** the older startup docs `ORCHESTRATION-WORKFLOW.md`, `content/full-campaign-plan.md`, `brand-strategy/brand-identity/canva-specs.md`, and `brand-strategy/campaign-plans/month-plan-may-2026.md` were removed from `live-baseline`. They still exist on the `great-chaum` / `hungry-chatelet` branches and in the OneDrive mirror if needed.
 
 ---
 
