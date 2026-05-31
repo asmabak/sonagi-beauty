@@ -14,3 +14,23 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# --- Sonagi working content: canonical mirror is OneDrive, intentionally untracked (CLAUDE.md) ---
+brand-strategy/
+content/
+media/
+images/
+board-meetings/
+*.docx
+*.xlsx
+~$*
+
+# External skill repos junctioned in from other repos (not part of sonagi-beauty)
+.agents/skills/
+.claude/skills/
+# Local temp/backup, never committed
+.tmp-ozempic-backup/
+# Root strategy/research working folders (OneDrive-only, same policy as brand-strategy/)
+Founder story/
+MCP connectors/
+marketing inspiration/
