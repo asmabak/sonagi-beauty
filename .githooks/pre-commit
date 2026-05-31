@@ -1,0 +1,10 @@
+#!/bin/sh
+# Pre-commit gate: block commits that introduce banned em-dash characters.
+# Enable in any clone with:  git config core.hooksPath .githooks
+python evals/em_dash_lint.py --staged
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "commit blocked: remove the banned character(s) above, then commit again."
+  echo "(this gate is evals/em_dash_lint.py, run via .githooks/pre-commit)"
+  exit 1
+fi

@@ -4,5 +4,17 @@
       "Read(./.env)",
       "Read(./.env.*)"
     ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python scripts/update_project_map.py"
+          }
+        ]
+      }
+    ]
   }
 }
