@@ -72,7 +72,12 @@ def staged_files() -> list[Path]:
         ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM"],
         capture_output=True, text=True,
     ).stdout.splitlines()
-    return [Path(p) for p in out if Path(p).suffix.lower() in CONTENT_SUFFIXES and Path(p).exists()]
+    # Skip harness config under .claude/ (command/agent/skill DEFINITIONS are operational,
+    # not content writing), same spirit as skipping code: the em-dash ban is for prose.
+    return [Path(p) for p in out
+            if Path(p).suffix.lower() in CONTENT_SUFFIXES
+            and ".claude" not in Path(p).parts
+            and Path(p).exists()]
 
 
 def selftest() -> int:
