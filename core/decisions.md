@@ -23,6 +23,13 @@
 - **Implication:** the pre-commit gate (`evals/em_dash_lint.py --staged`) scans prose file types only (.md, .mdx, .txt, .html) and skips code. Explicit-file linting still scans anything passed.
 - **Owner:** Asma.
 
+## 2026-06-01: The old no-mirror principle is RETIRED
+- **Decision:** the 2026-05-12 "no-mirror" rule (Notion is the ONLY source; any on-disk file duplicating Notion content is stale by definition and gets deleted, not reconciled) is retired.
+- **Reason:** superseded by the two-brains model. Notion is the human brain; Git (the repo plus `~/.claude/`) is the machine brain. A running agent loads executable definitions, indexes, and maps from files on disk, so those legitimately live in git, not only in Notion.
+- **Implication:** version-controlled mirrors that FOLLOW A MASTER are allowed and expected (the `core/` caches, the laptop and cloud clones, the `~/.claude/agents` runtime cache of the Notion roster). Do NOT delete on-disk code/definitions just because related content exists in Notion.
+- **Surviving rule:** one canonical home per item; mirrors only follow their master; never hand-edit a second copy. Recorded on the AI Ops page decision log + Charter section 2.
+- **Owner:** Asma.
+
 ## 2026-06-01: Bias to skills over agents; a review standard is a skill
 - **Decision:** default new capabilities to skills; create an agent only when it names a distinct look-decide-act loop an existing agent plus a skill cannot do. Do not create persona/celebrity-named agents.
 - **Reason:** v4 "few agents, many shared skills" and "deprecate the dead"; the ownable artifact of a review is its rubric, not a persona.
