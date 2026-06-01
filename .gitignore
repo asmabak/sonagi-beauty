@@ -36,3 +36,27 @@ state/_checkpoint/
 Founder story/
 MCP connectors/
 marketing inspiration/
+team training/
+Stock and SKU/
+research/
+claude-sonagi.bat
+.claude/worktrees/
+# Website working content: the LIVE site is website/html-css-js/ (tracked). These
+# are OneDrive working notes, an old design archive, and heavy artifacts, not the site.
+website/arch/
+website/unzipped/
+website/Sonagi-reference/
+website/*.txt
+website/*.pdf
+website/*.crdownload
+website/encyclopedia_*.png
+website/MASTER-BRIEF-claude-code.md
+website/sonagi-claude-code-spec.md
+website/pinterest-automation-runbook.md
+website/reddit-engine-runbook.md
+# Superseded architecture draft (v4 is the live one, OS/AI_ORCHESTRATION_PRINCIPLES_4.md)
+OS/AI_ORCHESTRATION_PRINCIPLES_3.md
+# One-off brand-doc generator (outputs a gitignored .docx; brand text lives in Notion)
+scripts/build_brand_identity_docx.py
+# Dated engagement-brief OUTPUT artifacts (the engine code is tracked; outputs are not)
+scripts/engagement-brief/brief-*.md
