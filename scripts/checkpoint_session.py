@@ -25,13 +25,16 @@ Usage: invoked by the Stop and UserPromptSubmit hooks. Manual: echo '{}' | pytho
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-CKPT_DIR = REPO / "state" / "_checkpoint"
+# The checkpoint dir is overridable so the eval can point at a tempdir and never
+# touch real session state. Default is the per-machine, gitignored state dir.
+CKPT_DIR = Path(os.environ.get("SONAGI_CKPT_DIR", REPO / "state" / "_checkpoint"))
 RECENT_TOOLS = 10  # how many of the most recent tool calls to record
 
 
@@ -71,6 +74,8 @@ def parse_transcript(path_str: str) -> dict:
     if not p.exists():
         return out
     tools: list[str] = []
+    lp_record = ""       # the authoritative 'last-prompt' value, if present
+    last_user_text = ""  # most recent plain user message, as a fallback
     try:
         with p.open(encoding="utf-8", errors="replace") as fh:
             for line in fh:
@@ -84,12 +89,12 @@ def parse_transcript(path_str: str) -> dict:
                 t = rec.get("type")
                 # Claude Code stores the verbatim latest user prompt in 'last-prompt'.
                 if t == "last-prompt" and rec.get("lastPrompt"):
-                    out["last_prompt"] = str(rec["lastPrompt"])
+                    lp_record = str(rec["lastPrompt"])
                 elif t == "user":
                     txt = _text_from_content(rec.get("message", {}).get("content"))
-                    # Skip slash-command wrappers and empty tool-result turns.
+                    # Skip slash-command wrappers and empty tool-result turns; keep the LATEST.
                     if txt and not txt.lstrip().startswith("<command-"):
-                        out["last_prompt"] = out["last_prompt"] or txt
+                        last_user_text = txt
                 elif t == "assistant":
                     for block in rec.get("message", {}).get("content") or []:
                         if not isinstance(block, dict):
@@ -100,6 +105,8 @@ def parse_transcript(path_str: str) -> dict:
                             out["last_assistant"] = block["text"].strip()
     except OSError:
         return out
+    # Precedence: the explicit last-prompt record wins, else the latest user text.
+    out["last_prompt"] = lp_record or last_user_text
     out["recent_tools"] = tools[-RECENT_TOOLS:]
     return out
 
@@ -137,9 +144,12 @@ def main() -> int:
         }
 
         CKPT_DIR.mkdir(parents=True, exist_ok=True)
-        (CKPT_DIR / "latest.json").write_text(
-            json.dumps(snap, ensure_ascii=False, indent=2), encoding="utf-8"
-        )
+        # Atomic write: a kill mid-write must never leave a truncated latest.json
+        # (that is the exact crash this feature exists to survive). Write a temp
+        # file, then os.replace, which is atomic on both Windows and macOS.
+        tmp = CKPT_DIR / "latest.json.tmp"
+        tmp.write_text(json.dumps(snap, ensure_ascii=False, indent=2), encoding="utf-8")
+        os.replace(tmp, CKPT_DIR / "latest.json")
 
         tools_line = ", ".join(snap["recent_tools"]) or "(none recorded)"
         md = (

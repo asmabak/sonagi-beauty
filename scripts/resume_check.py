@@ -20,11 +20,28 @@ Usage: invoked by the SessionStart hook. Manual: echo '{}' | python3 scripts/res
 from __future__ import annotations
 
 import json
+import os
 import sys
+from datetime import datetime
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-LATEST = REPO / "state" / "_checkpoint" / "latest.json"
+CKPT_DIR = Path(os.environ.get("SONAGI_CKPT_DIR", REPO / "state" / "_checkpoint"))
+LATEST = CKPT_DIR / "latest.json"
+
+
+def _age_hint(saved_at: str) -> str:
+    """A human age like '3h ago' so a stale checkpoint is obviously stale."""
+    try:
+        delta = datetime.now() - datetime.fromisoformat(saved_at)
+        secs = int(delta.total_seconds())
+        if secs < 3600:
+            return f"{secs // 60}m ago"
+        if secs < 86400:
+            return f"{secs // 3600}h ago"
+        return f"{secs // 86400}d ago"
+    except Exception:
+        return "unknown age"
 
 
 def main() -> int:
@@ -51,7 +68,7 @@ def main() -> int:
           "SessionEnd), so its checkpoint survived. This is where it was. Confirm with "
           "Asma before assuming the work is still wanted; do not blindly redo committed work.")
     print()
-    print(f"- Saved at: {snap.get('saved_at', '(unknown)')}")
+    print(f"- Saved at: {snap.get('saved_at', '(unknown)')} ({_age_hint(snap.get('saved_at', ''))})")
     print(f"- Branch: {snap.get('branch', '(unknown)')}")
     print(f"- HEAD: {snap.get('head', '(unknown)')}")
     print(f"- Uncommitted files at crash: {snap.get('dirty_files', '?')}")

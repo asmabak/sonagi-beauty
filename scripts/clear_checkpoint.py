@@ -14,13 +14,15 @@ Usage: invoked by the SessionEnd hook. Manual: python3 scripts/clear_checkpoint.
 """
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
-CKPT_DIR = Path(__file__).resolve().parent.parent / "state" / "_checkpoint"
+CKPT_DIR = Path(os.environ.get(
+    "SONAGI_CKPT_DIR", Path(__file__).resolve().parent.parent / "state" / "_checkpoint"))
 
 
 def main() -> int:
-    for name in ("latest.json", "latest.md"):
+    for name in ("latest.json", "latest.md", "latest.json.tmp"):
         try:
             (CKPT_DIR / name).unlink(missing_ok=True)
         except Exception:
