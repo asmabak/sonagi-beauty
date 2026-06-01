@@ -16,7 +16,8 @@ Insight has no value without effort. Do the work, not the look of the work. Veri
 ## Non-negotiables
 - No em dashes. Use periods, commas, colons, parentheses. (Enforced: `evals/em_dash_lint.py`.)
 - Define every technical, medical, or jargon term on first use.
-- Human gate on anything that publishes, spends, or deletes. Route it to Asma.
+- Code lives in git, never OneDrive (OneDrive corrupts git working trees). Always push after you commit; never leave unpushed commits (they are lost on a fresh clone or new laptop). A private-backup push is part of saving, not a publish.
+- Human gate on anything that publishes to production, spends, deletes, or is customer-facing. A private git push (backup) is not this gate. Route gated items to Asma.
 - Never spend money. The user decides every purchase.
 
 ## Autonomy
