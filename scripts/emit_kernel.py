@@ -30,7 +30,7 @@ CORE = Path(__file__).resolve().parent.parent / "core"
 
 # Order is priority. Rules first (pinned at the top of context), then who exists,
 # then where the code and the Notion pages live.
-KERNEL_FILES = ["charter.md", "decisions.md", "agent_chart.md", "PROJECT_MAP.md", "WORKSPACE_MAP.md"]
+KERNEL_FILES = ["charter.md", "agent_chart.md", "PROJECT_MAP.md", "WORKSPACE_MAP.md"]
 
 
 def main() -> int:
@@ -51,8 +51,11 @@ def main() -> int:
     print(body)
     print()
     print("</sonagi-kernel>")
-    print("Note: skills_index.md and full Notion pages are NOT in this kernel. "
-          "Page them in just-in-time by ID only when a task needs them.")
+    print("Note: skills_index.md, the standing decision log (core/decisions.md), and "
+          "full Notion pages are NOT in this kernel by design. Page them in "
+          "just-in-time only when a task needs them. In particular, before you question "
+          "or change a settled choice (repo visibility, a rule, a tool), read "
+          "core/decisions.md first, the background is there.")
     return 0
 
 

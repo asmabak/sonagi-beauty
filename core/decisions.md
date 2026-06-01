@@ -1,8 +1,10 @@
 # decisions.md: standing decisions (do not re-litigate)
 
 > Append-only log of deliberate choices that a fresh session (or a reviewer) might
-> otherwise question and accidentally reverse, causing a regression. Loaded at token
-> zero via the kernel, so the background travels with every session. Each entry: the
+> otherwise question and accidentally reverse, causing a regression. NOT loaded into
+> every session (that would bloat token zero); the kernel just carries a pointer here,
+> and you read this file on demand, before questioning or changing a settled choice.
+> Each entry: the
 > decision, the reason (the background you need before flagging it), the implication,
 > and the owner. If you think a decision is wrong, raise it with Asma; do NOT silently
 > undo it. Canonical human-brain copy lives in the Notion decisions log; this is the
