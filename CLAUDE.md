@@ -1,4 +1,4 @@
-# Sonagi Beauty — Project Configuration
+# Sonagi Beauty: Project Configuration
 
 > RuFlo V3 (the claude-flow orchestration framework) was removed on 2026-05-31, executing the decision Asma took on 2026-05-12 ("strip RuFlo, use plain Claude Code"). This repo now runs on native Claude Code: subagents via the Agent tool, deterministic orchestration via Workflow, and ownable file-based agents and skills. The target architecture for the whole AI operating system lives in `OS/AI_ORCHESTRATION_PRINCIPLES_4.md`.
 
@@ -10,14 +10,16 @@
 - NEVER proactively create documentation or README files unless explicitly requested.
 - NEVER save working files, notes, or tests to the repo root. Use the correct folder below.
 - NEVER commit secrets, credentials, or `.env` files.
-- Pause for human approval before anything that publishes, spends, or deletes.
+- Code lives in **git + GitHub**, never OneDrive. OneDrive corrupts git working trees (sync races the `.git` folder); it is for heavy binaries only. There is no "commit on OneDrive": commits are a git mechanism (history, diff, rollback) that OneDrive does not have.
+- **Always push after you commit.** Every git commit is local first; `push` uploads it to GitHub. Never end a session, or switch repos, with unpushed commits, that work exists only on one machine and is lost on a fresh clone or laptop migration. Pushing a private repo to its GitHub backup is part of saving, NOT a gated publish.
+- Pause for human approval before anything that publishes to production, spends money, deletes, or is customer-facing (live site deploys, paid actions, public posts). A private-backup `git push` is not this gate.
 
 ## Where things live
 
-- `OS/` — the AI operating-system architecture. Source of truth for how this agent system is meant to run.
-- `images/YYYY-MM-DD/` — all generated assets, one dated folder per day (see the asset protocol in the global `~/.claude/CLAUDE.md`).
-- `website/`, `netlify/` — the site and its deploy configuration.
-- `brand-strategy/`, `content/`, `media/` — working docs. Largely untracked here; the backup mirror is `OneDrive/sonagi-beauty`.
+- `OS/`: the AI operating-system architecture. Source of truth for how this agent system is meant to run.
+- `images/YYYY-MM-DD/`: all generated assets, one dated folder per day (see the asset protocol in the global `~/.claude/CLAUDE.md`).
+- `website/`, `netlify/`: the site and its deploy configuration.
+- `brand-strategy/`, `content/`, `media/`: working docs. Largely untracked here; the backup mirror is `OneDrive/sonagi-beauty`.
 - Most Sonagi context (brand voice, session state, the Minjun character, production pipelines) lives in the global `~/.claude/CLAUDE.md` and in Notion, not in this file.
 
 ## Agents and skills
