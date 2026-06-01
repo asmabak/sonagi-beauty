@@ -1,37 +1,49 @@
 ---
 name: sonagi-diagram-branding
-description: Exact visual branding for Sonagi explainer/infographic diagrams (the hand-drawn cream-and-pastel "WHY WE DO THIS" doodle style). Use whenever generating, regenerating, or critiquing a Sonagi concept diagram so every output matches the established brand exactly. Build the image prompt from the Locked Spec below; best tool is nano_banana_pro at 4:3.
+description: Exact visual branding for Sonagi explainer/teaching diagrams (the warm-cream fine-liner "WHY WE DO THIS" editorial style). Use whenever generating, regenerating, or critiquing a Sonagi concept diagram so every output matches the established brand exactly. Build the image prompt from the Recipe below; best tool is nano_banana_pro at 4:3.
 ---
 
 # Sonagi Diagram Branding
 
-Summary: the locked visual identity for Sonagi's hand-drawn explainer diagrams (architecture, concept, and how-it-works infographics for LinkedIn and decks). Apply this spec verbatim to every diagram so the set looks like one hand. When to touch: only Asma changes the brand; everyone else copies it.
+Summary: the locked visual identity for Sonagi's hand-lettered teaching diagrams (architecture, concept, how-it-works infographics for LinkedIn and decks). Apply this recipe verbatim so the set looks like one hand. When to touch: only Asma changes the brand; everyone else copies it.
 
 ## Index
-- When to use
-- Locked spec (paste into every prompt)
+- The look in one line
+- Hard style rules (the negatives matter most)
+- Prompt recipe (paste and fill)
 - Content rules
-- Exact-match upgrade (reference image)
 
-## When to use
-Any time you generate, regenerate, or critique a Sonagi diagram or infographic. Build the prompt from the Locked Spec. Tool: `nano_banana_pro` (Gemini 3 Pro Image) for accurate text rendering. Aspect ratio: `4:3`.
+## The look in one line
+Delicate editorial line-art teaching diagram, fine-liner technical illustration on warm cream paper, drawn with warmth and friendly detail, very clear and very simple, easy enough for a child to follow at a glance. Thin precise DARK-INK line-drawing icons, each with a SUBTLE soft pastel accent. Crisp legible hand-lettered all-capitals, magazine quality.
 
-## Locked spec (paste into every prompt)
-- **Medium:** hand-drawn doodle / line-art editorial illustration. Thin, slightly sketchy charcoal-navy outlines with a warm hand-drawn quality (NOT crisp flat vector). Tiny decorative hand-drawn sparkle and swirl accents float near some icons.
-- **Background:** warm cream / ivory (about #F6EFDF), uniform, no gradient.
-- **Fill palette** (soft desaturated pastels, used as flat partial fills INSIDE the black linework, sparingly, with lots of cream negative space): sage / eucalyptus green (#A9C4A0), dusty rose / mauve (#C9A1A6), soft peach / apricot (#EFC39C), muted terracotta / clay (#D69A78).
-- **Ink and text colour:** soft dark navy / charcoal (#2C2C44).
-- **Typography:** ALL CAPS throughout. Title = bold rounded geometric sans, large, centered. Subtitle = smaller, regular weight, centered, may use small dot separators or an underline accent on key words. Labels and the numbered body = medium-weight caps. Always legible, spelled exactly as written.
-- **Status checks (when a layout uses them):** a soft pastel CIRCLE (alternate green / pink / peach / green) behind a hand-drawn check mark, one above each item.
-- **"WHY WE DO THIS" box:** a rounded-rectangle with a thin navy outline across the bottom, with a small centered PILL-shaped tab on its top edge reading `WHY WE DO THIS`. Numbered lines inside, caps, navy.
-- **Icons:** simple but characterful line-art with pastel fills: cute smiling robots, a safe/vault with a dial, a floppy disk, labeled file folders, a shield, an ID badge on a lanyard, an open padlock joined to a plug, a NOW sticky note, a vault of CORE/RECALL/ARCHIVAL drawers, a cracked monitor, a disc with a calendar, a gauge with a dollar sign, stacked layers with a recycle arrow.
-- **Layouts:** (a) a four-icon row with checks; (b) two columns CHALLENGE -> SOLUTION with arrows; (c) a descending staircase with a SAVINGS arrow down the left. Generous whitespace, calm, balanced.
-- **Mood:** warm, friendly, premium but approachable, editorial. Never corporate-flat, never neon, never busy.
+## Hard style rules (the negatives matter most)
+- **Ink:** thin precise DARK INK line drawing (charcoal/black). NOT navy.
+- **Accents:** subtle soft pastel accents only, used SPARINGLY: sage green, dusty rose, peach.
+- **Background:** warm cream paper ground.
+- **Lettering:** hand-lettered ALL CAPITALS, crisp, legible, magazine quality, identical fine-liner sketchbook style.
+- **Layout:** organised, airy, lots of cream space. A bottom thin rounded-rectangle box headed `WHY WE DO THIS` with short numbered lines.
+- **NEVER:** no solid fills, no navy, no grey, no white anywhere, no flat-vector look, no busy clutter.
+- Always end the prompt by enumerating the EXACT text strings ("The text in the image is exactly these strings, spelled exactly, and nothing else: ...") so nothing garbles or gets invented.
+- Tool: `nano_banana_pro`. Aspect ratio `4:3`.
+
+## Prompt recipe (paste and fill)
+```
+Delicate editorial line-art teaching diagram on a warm cream paper background, no white anywhere, fine-liner technical illustration style, drawn with warmth and friendly detail, very clear and very simple, easy enough for a child to follow at a glance. Thin precise dark-ink line-drawing icons, each with a subtle soft pastel accent (sage green, dusty rose, or peach). Short hand-lettered all-capitals labels. Crisp legible lettering, magazine quality, identical fine-liner sketchbook style.
+
+At the very top, centered, a hand-lettered all-capitals title on one line: {TITLE}
+Directly under the title, one smaller hand-lettered line: {SUBTITLE}
+
+{BODY: a clean layout, e.g. a descending five-step staircase with a SAVINGS arrow, OR a four-icon row, OR two columns CHALLENGE -> SOLUTION with arrows. Each item = one small dark-ink line-art icon with a subtle pastel accent and a short hand-lettered caps label.}
+
+At the bottom, inside one thin rounded rectangle box spanning the width, a small hand-lettered header WHY WE DO THIS, then {N} short numbered lines in small neat hand-lettering:
+{NUMBERED LINES}
+
+The text in the image is exactly these strings, spelled exactly, and nothing else: {ENUMERATE EVERY STRING}. No other words.
+
+Soft sage-green, dusty-rose and peach accents used sparingly. Warm cream ground, organised airy layout, refined minimal fine-line editorial illustration, clean legible hand-lettered capitals. No solid fills, no navy, no grey background, no white.
+```
 
 ## Content rules
 - No em dashes anywhere (Sonagi rule). Use commas, periods, colons, parentheses.
 - Proper technical vocabulary, but every term carries enough plain context for a non-technical LinkedIn reader.
-- When showing choices, separate `WE CHOSE` (full colour) from `WE SKIPPED (FOR NOW)` (greyed, dashed, small X). These are deliberate design choices, not a build-status tracker.
-
-## Exact-match upgrade (reference image)
-For a pixel-faithful match, pass an original Sonagi diagram to `nano_banana_pro` as a reference image (`medias` role=reference) alongside the prompt. Chat-attached images cannot be written to disk directly, so Asma drops the originals into `media/reference visuals/` first, then they are uploaded via `media_upload` and referenced.
+- When showing intentional choices for our size, separate `WE CHOSE` (icons carry the pastel accent + a small check) from `WE SKIPPED (FOR NOW)` (same dark-ink fine-line, drawn with a dashed outline and a small hand-drawn X, NO pastel accent). These are deliberate choices, not a build-status tracker. Do NOT use grey to show "skipped" (grey is banned); use the dashed outline + X instead.
