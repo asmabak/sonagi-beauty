@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import os
 import re
+import subprocess
 from datetime import date
 from pathlib import Path
 
@@ -115,18 +116,38 @@ def first_tier(text: str) -> str:
 # ---------------------------------------------------------------------------
 # PROJECT_MAP.md: top-level repo folders, file counts, key entry files.
 # ---------------------------------------------------------------------------
+def ignored_names(repo: Path, names: list[str]) -> set[str]:
+    """Top-level names that git ignores, via one check-ignore call. So the
+    token-zero map does not list working content/binaries (node_modules, media,
+    brand-strategy) that .gitignore already excludes. Empty set on any failure,
+    so a git hiccup degrades to the old full listing rather than crashing."""
+    if not names:
+        return set()
+    try:
+        r = subprocess.run(
+            ["git", "-C", str(repo), "check-ignore", "--", *names],
+            capture_output=True, text=True,
+        )
+    except OSError:
+        return set()
+    return {line.strip().strip("/").split("/")[0] for line in r.stdout.splitlines() if line.strip()}
+
+
 def gen_project_map() -> str:
-    rows = []
-    for child in sorted(REPO.iterdir(), key=lambda p: p.name.lower()):
-        if child.name == ".git":
+    dirs = [c for c in sorted(REPO.iterdir(), key=lambda p: p.name.lower())
+            if c.is_dir() and c.name != ".git"]
+    ignored = ignored_names(REPO, [c.name for c in dirs])
+    rows, hidden = [], 0
+    for child in dirs:
+        if child.name in ignored:
+            hidden += 1
             continue
-        if child.is_dir():
-            try:
-                n = sum(1 for _ in child.rglob("*") if _.is_file())
-            except OSError:
-                n = 0
-            purpose = FOLDER_PURPOSE.get(child.name, "(undocumented)")
-            rows.append(f"| `{child.name}/` | {n} | {purpose} |")
+        try:
+            n = sum(1 for _ in child.rglob("*") if _.is_file())
+        except OSError:
+            n = 0
+        purpose = FOLDER_PURPOSE.get(child.name, "(undocumented)")
+        rows.append(f"| `{child.name}/` | {n} | {purpose} |")
     key_files = [
         f for f in ("CLAUDE.md", "AGENTS.md", "README.md", "netlify.toml", "package.json", "deno.lock")
         if (REPO / f).exists()
@@ -140,6 +161,8 @@ def gen_project_map() -> str:
         "| Folder | Files | Purpose |",
         "| --- | --- | --- |",
         *rows,
+        (f"\n_{hidden} git-ignored folders hidden (working content + binaries, see .gitignore)._"
+         if hidden else ""),
         "\n## Key root files\n",
         ", ".join(f"`{f}`" for f in key_files) if key_files else "(none)",
         "",
