@@ -16,6 +16,20 @@
           {
             "type": "command",
             "command": "python3 scripts/emit_kernel.py"
+          },
+          {
+            "type": "command",
+            "command": "python3 scripts/resume_check.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/checkpoint_session.py"
           }
         ]
       }
@@ -25,7 +39,21 @@
         "hooks": [
           {
             "type": "command",
+            "command": "python3 scripts/checkpoint_session.py"
+          },
+          {
+            "type": "command",
             "command": "python3 scripts/push_repo.py"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/clear_checkpoint.py"
           }
         ]
       }

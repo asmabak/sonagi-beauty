@@ -15,21 +15,23 @@ Summary: every top-level folder of the sonagi-beauty repo, its file count, and i
 | `.claude/` | 898 | Project-local Claude config: repo agents, skills junctions, commands |
 | `.githooks/` | 1 | (undocumented) |
 | `.github/` | 1 | (undocumented) |
-| `brand-strategy/` | 144 | Working brand docs (largely untracked; OneDrive mirror is backup) |
+| `brand-strategy/` | 148 | Working brand docs (largely untracked; OneDrive mirror is backup) |
 | `build all/` | 3 | (undocumented) |
 | `core/` | 6 | Generated read-only cache loaded at token zero: maps, roster, skills index, charter |
 | `docs/` | 1 | Project documentation |
-| `evals/` | 1 | Machine (binary + cost) and content (lint + human gate) tests |
+| `evals/` | 2 | Machine (binary + cost) and content (lint + human gate) tests |
 | `files/` | 105 | (undocumented) |
 | `files-backup-2026-04-17/` | 60 | (undocumented) |
-| `images/` | 94 | Dated asset folders (images/YYYY-MM-DD) |
+| `images/` | 109 | Dated asset folders (images/YYYY-MM-DD) |
 | `netlify/` | 4 | Netlify deploy config and edge functions |
 | `netlify-backup-2026-04-17/` | 2 | (undocumented) |
 | `OS/` | 3 | AI operating-system architecture docs (source of truth for how the agent system runs) |
 | `research/` | 0 | (undocumented) |
 | `scheduler/` | 4 | (undocumented) |
-| `scripts/` | 25 | Build and maintenance scripts, incl. this map generator |
+| `scripts/` | 29 | Build and maintenance scripts, incl. this map generator |
+| `skills/` | 1 | (undocumented) |
 | `social-media/` | 262 | (undocumented) |
+| `state/` | 1 | (undocumented) |
 | `Stock and SKU/` | 1 | (undocumented) |
 | `team training/` | 13 | (undocumented) |
 | `website/` | 231 | The sonagibeauty site source |

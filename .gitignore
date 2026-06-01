@@ -30,6 +30,8 @@ board-meetings/
 .claude/skills/
 # Local temp/backup, never committed
 .tmp-ozempic-backup/
+# Transient per-machine crash-resume checkpoint (rewritten every turn; not history)
+state/_checkpoint/
 # Root strategy/research working folders (OneDrive-only, same policy as brand-strategy/)
 Founder story/
 MCP connectors/
