@@ -60,3 +60,5 @@ OS/AI_ORCHESTRATION_PRINCIPLES_3.md
 scripts/build_brand_identity_docx.py
 # Dated engagement-brief OUTPUT artifacts (the engine code is tracked; outputs are not)
 scripts/engagement-brief/brief-*.md
+__pycache__/
+*.pyc
