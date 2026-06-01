@@ -9,7 +9,9 @@ never ends with unpushed commits.
 
 Safe by design: it ONLY pushes commits that already exist. It never runs
 `git add` or `git commit`, so it cannot sweep in junk, untracked files, or
-secrets. A private-backup push is part of saving, not a gated publish (charter).
+secrets. Note: this repo is PUBLIC on purpose (Netlify publishing, see
+core/decisions.md), so the push publishes publicly. That is accepted; the hard
+rule that follows is NEVER commit secrets and keep working content gitignored.
 
 Path-agnostic: resolves the repo from this file's location, so it works on
 Windows, macOS, or a cloud clone unchanged. Run manually: python3 scripts/push_repo.py

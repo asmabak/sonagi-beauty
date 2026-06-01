@@ -30,7 +30,7 @@ CORE = Path(__file__).resolve().parent.parent / "core"
 
 # Order is priority. Rules first (pinned at the top of context), then who exists,
 # then where the code and the Notion pages live.
-KERNEL_FILES = ["charter.md", "agent_chart.md", "PROJECT_MAP.md", "WORKSPACE_MAP.md"]
+KERNEL_FILES = ["charter.md", "decisions.md", "agent_chart.md", "PROJECT_MAP.md", "WORKSPACE_MAP.md"]
 
 
 def main() -> int:
