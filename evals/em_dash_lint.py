@@ -41,7 +41,11 @@ BANNED = {
     BAR: "horizontal bar (em-dash lookalike). Banned, same rule.",
 }
 
-TEXT_SUFFIXES = {".md", ".txt", ".mdx", ".html", ".json", ".yml", ".yaml", ".py", ".js", ".ts"}
+# The em-dash ban is for CONTENT WRITING only, not code (Asma, 2026-06-01). So the
+# auto-gate over staged files scans prose file types and deliberately skips code and
+# config (.py .js .ts .json .yml etc.). You can still lint any file by passing it
+# explicitly on the command line; only the --staged commit gate is scoped to content.
+CONTENT_SUFFIXES = {".md", ".mdx", ".txt", ".html"}
 
 
 def scan_text(name: str, text: str) -> list[str]:
@@ -68,7 +72,7 @@ def staged_files() -> list[Path]:
         ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM"],
         capture_output=True, text=True,
     ).stdout.splitlines()
-    return [Path(p) for p in out if Path(p).suffix.lower() in TEXT_SUFFIXES and Path(p).exists()]
+    return [Path(p) for p in out if Path(p).suffix.lower() in CONTENT_SUFFIXES and Path(p).exists()]
 
 
 def selftest() -> int:
