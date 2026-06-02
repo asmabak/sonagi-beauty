@@ -42,3 +42,19 @@
 - **Implication:** `lets-start-sonagi.md` is universal (byte-identical everywhere) and propagated verbatim. `wrapup.md` has DIVERGED between the two repos (sonagi-beauty 182 lines incl. Build Chart/Manifest/Charter ids; sonagi-reference 161 lines) and was NOT unified, each repo's own version sits on its own default branch. Whether wrapup should be one universal command or legitimately per-repo is an OPEN decision for Asma. The third-party skill packs (~200, junctioned from ~20 external repos) are explicitly deferred, not portable to cloud in v1.
 - **Open follow-ups:** (1) reconcile or formally split `wrapup.md`. (2) R1 cleanup later: both repos' default branches are stray/near-empty (`claude/extract-marketing-skills-z03eL`; `main` is just an initial commit) and only safe to repoint after confirming Netlify's production branch in the dashboard. (3) wire the manual mirror-refresh step into `/wrapup` once wrapup is reconciled. (4) version-control `~/.claude/commands/` before the Mac move.
 - **Owner:** Asma.
+
+## 2026-06-02: wrapup unified on one universal master (follow-up #1 above, DONE)
+- **Decision:** `wrapup.md` is ONE universal command, mastered in `sonagi-beauty/.claude/commands/wrapup.md`. The reference repo's older copy was drift, not legitimate per-repo difference (it lacked the Build-Chart step and the crash-checkpoint clear). Resolved by adopting the newer sonagi-beauty version everywhere; step 9 now degrades gracefully (no-op) when the crash-resume script is absent, so the same file is correct in the reference repo.
+- **Implication:** mirrored to `~/.claude/commands/`, both repos' working branches, and both default branches. `lets-start-sonagi.md` was already universal (byte-identical). Closes the wrapup-divergence follow-up.
+- **Owner:** Asma.
+
+## 2026-06-02: agents-repo auto-push stays ON (queue item H, resolved)
+- **Decision:** the SessionStart `pull` + Stop `push` hooks that sync the `sonagi-agents` machine-brain repo stay enabled (unattended). A backup push is saving, not a gated publish (consistent with the 2026-06-01 public-repo decision). Asma chose "keep auto-saving" on 2026-06-02.
+- **Reason:** the hooks had a broken Windows backslash path (`C:\Users\...`) that the hook shell mangled, so they silently failed with a "script missing" error every session stop. Fixed by switching to forward slashes in `~/.claude/settings.json`. With the path fixed the backup works again.
+- **Implication:** queue item H (gate the auto-push) is resolved as "leave it on." To disable later, remove the Stop `push` hook from the global settings.
+- **Owner:** Asma.
+
+## 2026-06-02: em-dash ban is for reader-facing CONTENT only (clarified, refines the 2026-06-01 entry)
+- **Decision (Asma's words 2026-06-02):** "I do not care about em-dashes in the code but just in the content that is written for me. The code can have em dashes." Em dashes are banned ONLY in content written for a reader: articles, copy, captions, emails, social posts, the newsletter, anything published to an audience. They are ALLOWED in code, config, scripts, command/agent/skill definitions, AND internal operational/OS docs (OS/, core/, state/, handoffs, decision logs). Do not spend effort stripping em dashes from internal or operational files.
+- **Implication:** the commit gate already skips code and `.claude/` definitions. The gate still scans other `.md` (e.g. OS/, core/) as a conservative net; that is acceptable, but a future tweak may narrow it to reader-facing content paths only. Never treat an em dash in an internal doc as a defect.
+- **Owner:** Asma.
