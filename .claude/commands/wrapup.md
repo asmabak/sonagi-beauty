@@ -161,13 +161,13 @@ DO NOT print the full handover prompt block in chat anymore. The Notion page IS 
 
 ## 9. Clear the crash checkpoint, then stop
 
-This session ended cleanly, so its continuity lives in the daily handoff and the Notion row above, NOT in the emergency crash banner. Clear the checkpoint so the next session does not falsely think this one crashed:
+This session ended cleanly, so its continuity lives in the daily handoff and the Notion row above, NOT in the emergency crash banner. If this repo carries the crash-resume scripts (sonagi-beauty), clear the checkpoint so the next session does not falsely think this one crashed. If the script is absent (for example the reference repo), skip this step, there is nothing to clear:
 
 ```bash
-python3 scripts/clear_checkpoint.py
+[ -f scripts/clear_checkpoint.py ] && python3 scripts/clear_checkpoint.py || echo "no crash-resume script in this repo; nothing to clear"
 ```
 
-(SessionEnd also does this automatically; running it here guarantees a wrapped session never nags the next one with a stale resume banner.)
+(SessionEnd also does this automatically where the hook is configured; running it here guarantees a wrapped session never nags the next one with a stale resume banner.)
 
 Do not start new work. Do not run "one more thing." The session ends here.
 
