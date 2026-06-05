@@ -74,9 +74,14 @@ def staged_files() -> list[Path]:
     ).stdout.splitlines()
     # Skip harness config under .claude/ (command/agent/skill DEFINITIONS are operational,
     # not content writing), same spirit as skipping code: the em-dash ban is for prose.
+    # Also skip internal operational dirs (state/, OS/, core/, skills/): per the
+    # 2026-06-02 decision (core/decisions.md), the ban is for READER-FACING content
+    # only; internal docs, handoffs, and skill definitions are exempt. This executes
+    # the "narrow to content paths" tweak that decision anticipated.
+    INTERNAL_DIRS = {".claude", "state", "OS", "core", "skills", "evals", "scripts"}
     return [Path(p) for p in out
             if Path(p).suffix.lower() in CONTENT_SUFFIXES
-            and ".claude" not in Path(p).parts
+            and not (set(Path(p).parts) & INTERNAL_DIRS)
             and Path(p).exists()]
 
 
