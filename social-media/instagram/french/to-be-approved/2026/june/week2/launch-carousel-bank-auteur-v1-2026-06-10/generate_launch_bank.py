@@ -123,10 +123,10 @@ def paste_diagram(canvas, path):
     if "/diagrams/" not in src_path:
         return
     src = Image.open(path).convert("RGBA")
-    src.thumbnail((520, 330), Image.LANCZOS)
+    src.thumbnail((660, 420), Image.LANCZOS)
     box_w, box_h = src.width + 30, src.height + 30
     x = (W - box_w) // 2
-    y = 790
+    y = 750
     veil = Image.new("RGBA", (box_w, box_h), (248, 241, 230, 210))
     veil.alpha_composite(src, (15, 15))
     canvas.paste(veil, (x, y), veil)
@@ -135,20 +135,14 @@ def paste_diagram(canvas, path):
 def draw_cta_bar(draw, deck, i, s):
     if i == 6:
         draw.rectangle((52, 1184, 1028, 1294), fill=(28, 24, 21, 158))
-        draw.text((74, 1198), deck["shop_cta"], font=F["cta"], fill=CREAM)
-        draw.text((74, 1228), f"Quiz routine : {deck['quiz_url']}", font=F["cta_sm"], fill=CREAM)
-        draw.text((74, 1252), f"Article complet : {deck['article_url']}", font=F["cta_sm"], fill=CREAM)
+        draw.text((74, 1198), "Boutique : tag IG/TikTok Shop à connecter.", font=F["cta"], fill=CREAM)
+        draw.text((74, 1228), f"Quiz routine : {deck['quiz_url']} / lien en bio", font=F["cta_sm"], fill=CREAM)
+        draw.text((74, 1252), f"Article complet : {deck['article_url']} / Sonagi Reference", font=F["cta_sm"], fill=CREAM)
         draw.text((884, 1252), "sonagi", font=F["cta"], fill=PEACH)
         return
 
     draw.rectangle((52, 1222, 1028, 1270), fill=(28, 24, 21, 142))
-    cta = s["cta"]
-    if len(cta) > 58 and " : " in cta:
-        lead, slug = cta.split(" : ", 1)
-        draw.text((74, 1228), f"{lead} :", font=F["micro"], fill=CREAM)
-        draw.text((74, 1249), slug, font=F["micro"], fill=CREAM)
-    else:
-        draw.text((74, 1234), cta, font=F["cta"], fill=CREAM)
+    draw.text((74, 1234), "Sauvegarde ce guide · routine + références dans le profil Sonagi", font=F["cta_sm"], fill=CREAM)
     draw.text((878, 1234), "sonagi", font=F["cta"], fill=PEACH)
 
 
@@ -218,7 +212,7 @@ decks = [
             {"bg": IMG/"techniques/double-cleansing-hero.webp", "kicker": "Le piège", "title": "Plus ça mousse, plus ça peut décaper.", "body": "La sensation de propre peut cacher une barrière déplacée vers le basique pendant plusieurs heures.", "cta": "Ne confonds pas propre et déstabilisé."},
             {"bg": IMG/"routines/routine-homme-body-3.webp", "kicker": "La règle", "title": "Cherche pH bas, pas peau qui crisse.", "body": "Les nettoyants K-beauty doux vivent souvent autour de pH 5 à 6. C'est la logique, pas le folklore.", "cta": "Le bon nettoyant laisse la peau souple."},
             {"bg": IMG/"basics/reparer-barriere-hero.webp", "kicker": "Le signal", "title": "Si ça tire après le rinçage, ce n'est pas normal.", "body": "Tiraillement, rougeur, picotement: la peau te dit souvent que le nettoyage a été trop haut ou trop fort.", "cta": "Change le geste avant d'ajouter un sérum."},
-            {"bg": IMG/"sections/routine-hero.webp", "kicker": "Le choix", "title": "La routine commence par respecter le pH.", "body": "Baume ou huile le soir si SPF, puis nettoyant doux. Le reste marche mieux quand la barrière n'est pas contrariée.", "cta": "Dernière slide: les liens utiles."},
+            {"bg": IMG/"sections/routine-hero.webp", "kicker": "Le choix", "title": "La routine commence par respecter le pH.", "body": "Baume ou huile le soir si SPF, puis nettoyant doux. Le reste marche mieux quand la barrière n'est pas contrariée.", "cta": "Routine + références dans le profil Sonagi."},
             {"bg": IMG/"cta/cta-diagnostic.webp", "kicker": "À faire", "title": "Commence par le nettoyant, pas par dix actifs.", "body": "Le bon pH rend la routine plus tolérable, surtout si ta peau rougit ou tire.", "cta": "Placeholder shop + quiz + article."},
         ],
     },
@@ -254,7 +248,7 @@ decks = [
             {"bg": IMG/"basics/reparer-barriere-hero.webp", "kicker": "Barrière", "title": "Elle aide la peau à refaire ses lipides.", "body": "C'est pour ça qu'elle parle aux peaux ternes, grasses, tachées ou un peu irritables.", "visual": DIA/"niacinamide-mechanism.webp", "cta": "La barrière est souvent le vrai sujet."},
             {"bg": IMG/"basics/hormones-phase-6-real.webp", "kicker": "Sébum", "title": "Elle ne supprime pas le sébum. Elle le module.", "body": "Le but n'est pas d'assécher. Le but est d'obtenir une brillance moins chaotique.", "cta": "La peau grasse aussi a besoin de douceur."},
             {"bg": IMG/"techniques/glass-skin-2.webp", "kicker": "Taches", "title": "Elle agit aussi sur le transfert du pigment.", "body": "Pas comme un peeling brutal. Plutôt comme une correction lente et mieux tolérée.", "cta": "La patience fait partie de la formule."},
-            {"bg": IMG/"sections/ingredient-hero.webp", "kicker": "Routine", "title": "Après toner, avant crème et SPF.", "body": "Le matin, elle se place bien sous protection solaire. Le soir, elle soutient la barrière.", "cta": "Dernière slide: choisir sans forcer."},
+            {"bg": IMG/"sections/ingredient-hero.webp", "kicker": "Routine", "title": "Après toner, avant crème et SPF.", "body": "Le matin, elle se place bien sous protection solaire. Le soir, elle soutient la barrière.", "cta": "Routine + références dans le profil Sonagi."},
             {"bg": IMG/"cta/cta-diagnostic.webp", "kicker": "À faire", "title": "Choisis la niacinamide si ta peau doit se stabiliser.", "body": "Pas si tu veux décaper. Oui si tu veux réguler, éclaircir doucement et renforcer.", "cta": "Placeholder shop + quiz + article."},
         ],
     },

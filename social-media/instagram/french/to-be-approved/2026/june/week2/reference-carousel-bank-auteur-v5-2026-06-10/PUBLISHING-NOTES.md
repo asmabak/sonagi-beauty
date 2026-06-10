@@ -29,3 +29,7 @@ The final slide should still include:
 - Shop placeholder or live shop tag route.
 - Quiz link: `sonagibeauty.com/consultation.html`.
 - Full article link on Sonagi Reference.
+
+Normal slides should not say "next slide", "dernière slide", or repeat outbound URLs. Use a lighter platform-native footer:
+
+`Sauvegarde ce guide · routine + références dans le profil Sonagi`

@@ -123,10 +123,10 @@ def paste_diagram(canvas, path):
     if "/diagrams/" not in src_path:
         return
     src = Image.open(path).convert("RGBA")
-    src.thumbnail((520, 330), Image.LANCZOS)
+    src.thumbnail((660, 420), Image.LANCZOS)
     box_w, box_h = src.width + 30, src.height + 30
     x = (W - box_w) // 2
-    y = 790
+    y = 750
     veil = Image.new("RGBA", (box_w, box_h), (248, 241, 230, 210))
     veil.alpha_composite(src, (15, 15))
     canvas.paste(veil, (x, y), veil)
@@ -135,20 +135,14 @@ def paste_diagram(canvas, path):
 def draw_cta_bar(draw, deck, i, s):
     if i == 6:
         draw.rectangle((52, 1184, 1028, 1294), fill=(28, 24, 21, 158))
-        draw.text((74, 1198), deck["shop_cta"], font=F["cta"], fill=CREAM)
-        draw.text((74, 1228), f"Quiz routine : {deck['quiz_url']}", font=F["cta_sm"], fill=CREAM)
-        draw.text((74, 1252), f"Article complet : {deck['article_url']}", font=F["cta_sm"], fill=CREAM)
+        draw.text((74, 1198), "Boutique : tag IG/TikTok Shop à connecter.", font=F["cta"], fill=CREAM)
+        draw.text((74, 1228), f"Quiz routine : {deck['quiz_url']} / lien en bio", font=F["cta_sm"], fill=CREAM)
+        draw.text((74, 1252), f"Article complet : {deck['article_url']} / Sonagi Reference", font=F["cta_sm"], fill=CREAM)
         draw.text((884, 1252), "sonagi", font=F["cta"], fill=PEACH)
         return
 
     draw.rectangle((52, 1222, 1028, 1270), fill=(28, 24, 21, 142))
-    cta = s["cta"]
-    if len(cta) > 58 and " : " in cta:
-        lead, slug = cta.split(" : ", 1)
-        draw.text((74, 1228), f"{lead} :", font=F["micro"], fill=CREAM)
-        draw.text((74, 1249), slug, font=F["micro"], fill=CREAM)
-    else:
-        draw.text((74, 1234), cta, font=F["cta"], fill=CREAM)
+    draw.text((74, 1234), "Sauvegarde ce guide · routine + références dans le profil Sonagi", font=F["cta_sm"], fill=CREAM)
     draw.text((878, 1234), "sonagi", font=F["cta"], fill=PEACH)
 
 
@@ -213,11 +207,11 @@ decks = [
         "article_url": "sonagibeauty.com/ref/techniques/fr/skin-flooding/",
         "slides": [
             {"bg": IMG/"_prompt-library/outputs/022-skin-flooding-body-v1.webp", "kicker": "Tendance", "title": "Tu appelles ça skin flooding. En Corée, c'était déjà une méthode.", "body": "Le buzz n'est pas nouveau. Ce qui compte, c'est pourquoi ta peau boit mieux quand elle reste humide.", "cta": "Sauvegarde avant d'empiler sept couches au hasard."},
-            {"bg": IMG/"techniques/slugging-body.webp", "kicker": "Le besoin", "title": "Ta peau ne manque pas toujours de crème.", "body": "Souvent, elle manque d'eau retenue au bon moment. Une couche aqueuse sur peau humide limite l'évaporation.", "visual": DIA/"skin-flooding-mechanism.webp", "cta": "Slide suivante : le geste qui change tout.", "anchor": "center"},
+            {"bg": IMG/"techniques/slugging-body.webp", "kicker": "Le besoin", "title": "Ta peau ne manque pas toujours de crème.", "body": "Souvent, elle manque d'eau retenue au bon moment. Une couche aqueuse sur peau humide limite l'évaporation.", "visual": DIA/"skin-flooding-mechanism.webp", "cta": "Sauvegarde ce guide.", "anchor": "center"},
             {"bg": IMG/"techniques/glass-skin-2.webp", "kicker": "La règle", "title": "Ne laisse pas sécher entre les couches.", "body": "Dix à vingt secondes. Pas plus. Si la peau sèche, tu perds l'effet d'occlusion humectante.", "cta": "Teste trois couches avant d'en faire sept.", "anchor": "right"},
             {"bg": IMG/"basics/ppm-hero.webp", "kicker": "Le piège", "title": "Le mauvais toner ruine la méthode.", "body": "Pas d'alcool, pas d'astringent agressif, pas de parfum qui pique. Le toner doit être aqueux, doux, empilable.", "cta": "Cherche une texture qui disparaît, pas qui colle.", "anchor": "center"},
             {"bg": IMG/"basics/hormones-age-hero.webp", "kicker": "Pour qui", "title": "Peau qui tire, avion, chauffage, stress.", "body": "Le skin flooding parle surtout aux peaux déshydratées. Une peau grasse peut aussi manquer d'eau.", "visual": DIA/"skin-flooding-mechanism.webp", "cta": "Si ta peau brille et tire, garde cette slide."},
-            {"bg": IMG/"ingredients/heartleaf-body-1.webp", "kicker": "Le choix", "title": "Prends un toner qui calme autant qu'il hydrate.", "body": "Heartleaf aide les peaux réactives à tolérer le geste. C'est pour ça que l'Anua 77 est devenu un standard.", "visual": IMG/"products/anua/anua-heartleaf-77-soothing-toner.webp", "visual_mode": "product", "cta": "Dernière slide : le lien direct.", "anchor": "right"},
+            {"bg": IMG/"ingredients/heartleaf-body-1.webp", "kicker": "Le choix", "title": "Prends un toner qui calme autant qu'il hydrate.", "body": "Heartleaf aide les peaux réactives à tolérer le geste. C'est pour ça que l'Anua 77 est devenu un standard.", "visual": IMG/"products/anua/anua-heartleaf-77-soothing-toner.webp", "visual_mode": "product", "cta": "Routine + références dans le profil Sonagi.", "anchor": "right"},
             {"bg": IMG/"sections/ingredient-hero.webp", "kicker": "CTA", "title": "Le produit pivot : Anua Heartleaf 77 Toner.", "body": "À utiliser après le nettoyage, sur peau encore humide, avant sérum et crème.", "visual": IMG/"products/anua/anua-heartleaf-77-soothing-toner.webp", "visual_mode": "product", "cta": "Va au produit : /produits/anua-heartleaf-77-toner", "anchor": "center"},
         ],
     },
@@ -235,7 +229,7 @@ decks = [
             {"bg": IMG/"routines/routine-homme-body-4.webp", "kicker": "Étape 1", "title": "Le baume dissout le gras sans décaper.", "body": "Sur peau sèche, il fond avec les paumes et soulève SPF, sébum et maquillage longue tenue.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-radiance-cleansing-balm.webp", "visual_mode": "product", "cta": "Le bon baume fait le travail mécanique.", "anchor": "left"},
             {"bg": IMG/"routines/routine-homme-body-3.webp", "kicker": "Étape 2", "title": "La mousse douce retire l'émulsion.", "body": "Le second geste doit respecter le pH de la peau. L'eau brûlante et le savon classique cassent l'intérêt du rituel.", "visual": DIA/"double-cleansing-mechanism.webp", "cta": "Double nettoyage ne veut pas dire double agression.", "anchor": "right"},
             {"bg": IMG/"sections/routine-hero.webp", "kicker": "Pour qui", "title": "Pas tous les matins. Surtout les soirs de SPF.", "body": "Le matin, inutile. Le soir, essentiel si tu as porté protection solaire, pollution urbaine ou maquillage.", "cta": "Si ta peau tire après, le geste 2 est trop fort."},
-            {"bg": IMG/"_prompt-library/outputs/020-beauty-of-joseon-body-v1.webp", "kicker": "Le choix", "title": "Commence par un baume qui émulsionne proprement.", "body": "Le Beauty of Joseon Radiance Cleansing Balm est le geste 1 Sonagi : il fond, masse, puis se rince au lait.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-radiance-cleansing-balm.webp", "visual_mode": "product", "cta": "Dernière slide : le lien direct."},
+            {"bg": IMG/"_prompt-library/outputs/020-beauty-of-joseon-body-v1.webp", "kicker": "Le choix", "title": "Commence par un baume qui émulsionne proprement.", "body": "Le Beauty of Joseon Radiance Cleansing Balm est le geste 1 Sonagi : il fond, masse, puis se rince au lait.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-radiance-cleansing-balm.webp", "visual_mode": "product", "cta": "Routine + références dans le profil Sonagi."},
             {"bg": IMG/"cta/cta-diagnostic.webp", "kicker": "CTA", "title": "Le geste 1 : Beauty of Joseon Radiance Balm.", "body": "À utiliser le soir, sur peau sèche, avant ton nettoyant à pH bas.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-radiance-cleansing-balm.webp", "visual_mode": "product", "cta": "Va au produit : /produits/beauty-of-joseon-radiance-cleansing-balm", "anchor": "right"},
         ],
     },
@@ -253,7 +247,7 @@ decks = [
             {"bg": IMG/"basics/reparer-barriere-hero.webp", "kicker": "Le piège", "title": "Acides + rétinol + gommage : le mur prend tout.", "body": "La barrière abîmée ne tolère plus ce qu'elle supportait avant. Ce n'est pas une faiblesse, c'est un signal.", "cta": "Deux semaines simples valent mieux qu'un placard plein."},
             {"bg": IMG/"ingredients/snail-mucin-body-1.webp", "kicker": "Ce qu'elle veut", "title": "Calmer d'abord. Sceller ensuite.", "body": "Toner doux, ampoule apaisante, crème. Le minimum assez longtemps pour que le ciment se refasse.", "visual": DIA/"reparer-la-barriere-cutanee-mechanism.webp", "cta": "Si ça chauffe, enlève une étape."},
             {"bg": IMG/"ingredients/centella-asiatica-hero.webp", "kicker": "Pourquoi centella", "title": "Parce que la peau rouge veut du calme.", "body": "La centella est le réflexe K-beauty quand la peau réagit vite : peu d'ingrédients, beaucoup de tolérance.", "visual": IMG/"products/skin1004/skin1004-madagascar-centella-ampoule.webp", "visual_mode": "product", "cta": "Garde la formule courte."},
-            {"bg": IMG/"ingredients/centella-asiatica-1.webp", "kicker": "Le choix", "title": "Une ampoule, pas une punition.", "body": "Skin1004 Madagascar Centella Ampoule : un geste simple pour remettre la routine au calme.", "visual": IMG/"products/skin1004/skin1004-madagascar-centella-ampoule.webp", "visual_mode": "product", "cta": "Dernière slide : le lien direct."},
+            {"bg": IMG/"ingredients/centella-asiatica-1.webp", "kicker": "Le choix", "title": "Une ampoule, pas une punition.", "body": "Skin1004 Madagascar Centella Ampoule : un geste simple pour remettre la routine au calme.", "visual": IMG/"products/skin1004/skin1004-madagascar-centella-ampoule.webp", "visual_mode": "product", "cta": "Routine + références dans le profil Sonagi."},
             {"bg": IMG/"sections/ingredient-hero.webp", "kicker": "CTA", "title": "Le produit calme : Skin1004 Centella Ampoule.", "body": "À poser après nettoyage, avant crème, surtout quand la peau devient rouge ou inconfortable.", "visual": IMG/"products/skin1004/skin1004-madagascar-centella-ampoule.webp", "visual_mode": "product", "cta": "Va au produit : /produits/skin1004-madagascar-centella-ampoule"},
         ],
     },
@@ -271,7 +265,7 @@ decks = [
             {"bg": IMG/"ingredients/niacinamide-hero.webp", "kicker": "Le cercle", "title": "Trop laver peut relancer la brillance.", "body": "Eau chaude, savon alcalin, exfoliation quotidienne : la surface sèche, la peau compense.", "cta": "Ne confonds pas propre et décapé."},
             {"bg": IMG/"ingredients/heartleaf-body-1.webp", "kicker": "Ce qu'elle veut", "title": "Un actif qui calme pendant qu'il régule.", "body": "Heartleaf vise rougeurs, inconfort et excès de sébum sans transformer la routine en traitement brutal.", "visual": DIA/"heartleaf-mechanism.webp", "cta": "La peau grasse aussi a besoin de douceur."},
             {"bg": IMG/"sections/ingredient-hero.webp", "kicker": "Le dosage", "title": "77 %, ce n'est pas une décoration d'étiquette.", "body": "Anua a fait de l'herbe-cœur le cœur de la formule. Texture aqueuse, facile à placer matin ou soir.", "visual": IMG/"products/anua/anua-heartleaf-77-soothing-toner.webp", "visual_mode": "product", "cta": "Commence par réguler le premier geste après nettoyage.", "anchor": "right"},
-            {"bg": IMG/"basics/reparer-barriere-hero.webp", "kicker": "Le choix", "title": "Toner d'équilibre, pas lotion décapante.", "body": "Utilise-le quand la peau brille, rougit ou réagit. Si ça pique, ce n'est pas le bon produit pour toi.", "visual": IMG/"products/anua/anua-heartleaf-77-soothing-toner.webp", "visual_mode": "product", "cta": "Dernière slide : le lien direct.", "anchor": "right"},
+            {"bg": IMG/"basics/reparer-barriere-hero.webp", "kicker": "Le choix", "title": "Toner d'équilibre, pas lotion décapante.", "body": "Utilise-le quand la peau brille, rougit ou réagit. Si ça pique, ce n'est pas le bon produit pour toi.", "visual": IMG/"products/anua/anua-heartleaf-77-soothing-toner.webp", "visual_mode": "product", "cta": "Routine + références dans le profil Sonagi.", "anchor": "right"},
             {"bg": IMG/"basics/ppm-hero.webp", "kicker": "CTA", "title": "Le toner équilibre : Anua Heartleaf 77.", "body": "À appliquer après nettoyage, avant sérum.", "visual": IMG/"products/anua/anua-heartleaf-77-soothing-toner.webp", "visual_mode": "product", "cta": "Va au produit : /produits/anua-heartleaf-77-toner"},
         ],
     },
@@ -289,7 +283,7 @@ decks = [
             {"bg": IMG/"sections/basic-hero.webp", "kicker": "Le vrai risque", "title": "Trop d'actifs, trop tôt.", "body": "Acides, rétinol, parfums, routines longues : plus de points de friction sur une barrière encore sensible.", "cta": "Une routine d'enfant doit être courte."},
             {"bg": IMG/"sections/routine-hero.webp", "kicker": "Ce qu'elle veut", "title": "Un nettoyant doux. Une crème. Un SPF.", "body": "Pas une performance devant le miroir. Pas douze étapes. Pas une peur de vieillir.", "cta": "Le meilleur soin, c'est parfois d'en enlever."},
             {"bg": IMG/"cta/cta-newsletter.webp", "kicker": "Le paradoxe", "title": "Le seul vrai anti-âge est souvent absent.", "body": "Dans les routines virales d'enfants, l'écran solaire manque trop souvent. C'est pourtant le geste le plus utile.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-relief-sun-rice-probiotics.webp", "visual_mode": "product", "cta": "On remplace la peur par la protection."},
-            {"bg": IMG/"cta/cta-diagnostic.webp", "kicker": "Le choix", "title": "Un SPF confortable est celui qu'on remet.", "body": "Beauty of Joseon Relief Sun a cette texture crème légère qui rend la protection moins punitive.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-relief-sun-rice-probiotics.webp", "visual_mode": "product", "cta": "Dernière slide : le lien direct."},
+            {"bg": IMG/"cta/cta-diagnostic.webp", "kicker": "Le choix", "title": "Un SPF confortable est celui qu'on remet.", "body": "Beauty of Joseon Relief Sun a cette texture crème légère qui rend la protection moins punitive.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-relief-sun-rice-probiotics.webp", "visual_mode": "product", "cta": "Routine + références dans le profil Sonagi."},
             {"bg": IMG/"cta/cta-community.webp", "kicker": "CTA", "title": "Le vrai geste utile : Beauty of Joseon Relief Sun.", "body": "À utiliser le matin, dernière étape, et à renouveler selon exposition.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-relief-sun-rice-probiotics.webp", "visual_mode": "product", "cta": "Va au produit : /produits/beauty-of-joseon-relief-sun"},
         ],
     },

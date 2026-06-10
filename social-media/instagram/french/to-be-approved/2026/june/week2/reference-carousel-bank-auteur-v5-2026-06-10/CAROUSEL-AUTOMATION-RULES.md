@@ -147,7 +147,9 @@ Reject the image and ask Iris/image lab when:
   - Quiz route: `sonagibeauty.com/consultation.html`.
   - Article route: the full Sonagi Reference article URL.
 - If Instagram Shop or TikTok Shop is not connected yet, write "via le tag boutique IG/TikTok Shop" as the operational placeholder.
-- Normal slides can use save/read CTAs, but the final slide must be concrete and action-oriented.
+- Normal slides must not say "next slide", "dernière slide", or push people out of the platform repeatedly.
+- Normal-slide footer should be native and light: save/profile/link-in-bio/reference language.
+- Final slide is the only slide that should carry the full quiz/article URL pattern unless a specific platform format supports clickable links.
 
 ## Slide Structure
 
