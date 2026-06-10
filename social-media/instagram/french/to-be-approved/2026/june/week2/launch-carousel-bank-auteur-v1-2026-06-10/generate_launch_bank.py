@@ -55,18 +55,23 @@ def assert_background_ok(path):
         raise ValueError(f"Product packshot cannot be used as slide background; use it as a lower-half insert: {path}")
 
 
-def cover(path, anchor="center"):
+def cover(path, anchor="center", wide_ok=False):
     assert_background_ok(path)
     img = Image.open(path).convert("RGB")
     img = ImageOps.autocontrast(img)
     ratio = img.width / img.height
-    if not (0.70 <= ratio <= 1.20):
+    if not wide_ok and not (0.70 <= ratio <= 1.20):
         raise ValueError(f"Background aspect ratio is unsafe for full-bleed 4:5 slide ({ratio:.2f}): {path}")
 
     scale = max(W / img.width, H / img.height)
     bg = img.resize((math.ceil(img.width * scale), math.ceil(img.height * scale)), Image.LANCZOS)
     # Auteur-style slides need one centered photo, not improvised left/right crops.
-    left = (bg.width - W) // 2
+    if anchor == "left":
+        left = 0
+    elif anchor == "right":
+        left = bg.width - W
+    else:
+        left = (bg.width - W) // 2
     top = max(0, (bg.height - H) // 2)
     return bg.crop((left, top, left + W, top + H))
 
@@ -147,7 +152,7 @@ def draw_cta_bar(draw, deck, i, s):
 
 
 def render_slide(deck, i, s):
-    img = cover(s["bg"])
+    img = cover(s["bg"], s.get("anchor", "center"), s.get("wide_ok", False))
     img = gradient(img, "top", 54)
     img = gradient(img, "left", s.get("left_alpha", 170))
     img = gradient(img, "bottom", 112)
@@ -212,7 +217,7 @@ decks = [
             {"bg": IMG/"techniques/double-cleansing-hero.webp", "kicker": "Le piège", "title": "Plus ça mousse, plus ça peut décaper.", "body": "La sensation de propre peut cacher une barrière déplacée vers le basique pendant plusieurs heures.", "cta": "Ne confonds pas propre et déstabilisé."},
             {"bg": IMG/"routines/routine-homme-body-3.webp", "kicker": "La règle", "title": "Cherche pH bas, pas peau qui crisse.", "body": "Les nettoyants K-beauty doux vivent souvent autour de pH 5 à 6. C'est la logique, pas le folklore.", "cta": "Le bon nettoyant laisse la peau souple."},
             {"bg": IMG/"basics/reparer-barriere-hero.webp", "kicker": "Le signal", "title": "Si ça tire après le rinçage, ce n'est pas normal.", "body": "Tiraillement, rougeur, picotement: la peau te dit souvent que le nettoyage a été trop haut ou trop fort.", "cta": "Change le geste avant d'ajouter un sérum."},
-            {"bg": IMG/"sections/routine-hero.webp", "kicker": "Le choix", "title": "La routine commence par respecter le pH.", "body": "Baume ou huile le soir si SPF, puis nettoyant doux. Le reste marche mieux quand la barrière n'est pas contrariée.", "cta": "Routine + références dans le profil Sonagi."},
+            {"bg": IRIS/"020-beauty-of-joseon-body-v1.webp", "kicker": "Le choix", "title": "La routine commence par respecter le pH.", "body": "Baume ou huile le soir si SPF, puis nettoyant doux. Le reste marche mieux quand la barrière n'est pas contrariée.", "cta": "Routine + références dans le profil Sonagi."},
             {"bg": IMG/"cta/cta-diagnostic.webp", "kicker": "À faire", "title": "Commence par le nettoyant, pas par dix actifs.", "body": "Le bon pH rend la routine plus tolérable, surtout si ta peau rougit ou tire.", "cta": "Placeholder shop + quiz + article."},
         ],
     },
@@ -228,7 +233,7 @@ decks = [
             {"bg": IMG/"sections/comprendre-hero.webp", "kicker": "Mécanisme", "title": "Ta peau se défend avec de l'acidité.", "body": "Pas une acidité qui brûle. Une acidité fine, biologique, qui garde la surface stable.", "cta": "Garde cette slide si ta peau réagit à tout."},
             {"bg": IMG/"basics/_originals/skin-ph-asma.png", "kicker": "La zone", "title": "4,5 à 5,5 : c'est la plage utile.", "body": "Dans cette zone, la couche cornée fonctionne mieux et la barrière se répare plus proprement.", "visual": DIA/"le-ph-de-la-peau.webp", "cta": "Un chiffre peut expliquer beaucoup de tiraillements."},
             {"bg": IRIS/"018-heartleaf-body-v1.webp", "kicker": "Après nettoyage", "title": "Un toner doux aide à revenir au calme.", "body": "Il ne doit pas piquer. Il doit remettre de l'eau, du confort, et préparer la suite.", "cta": "Le toner n'est pas une punition alcoolisée."},
-            {"bg": IMG/"techniques/glass-skin-2.webp", "kicker": "Texture", "title": "Une peau équilibrée reflète mieux la lumière.", "body": "Le glow commence rarement par un highlighter. Il commence par une surface qui retient l'eau.", "cta": "Le pH est moins glamour, mais plus fondamental."},
+            {"bg": IRIS/"022-skin-flooding-body-v1.webp", "kicker": "Texture", "title": "Une peau équilibrée reflète mieux la lumière.", "body": "Le glow commence rarement par un highlighter. Il commence par une surface qui retient l'eau.", "cta": "Le pH est moins glamour, mais plus fondamental."},
             {"bg": IMG/"sections/basic-hero.webp", "kicker": "Erreur", "title": "Le citron, le savon, l'eau chaude : trio faux ami.", "body": "Naturel ne veut pas dire compatible avec ton manteau acide.", "cta": "Simple ne veut pas dire brutal."},
             {"bg": IMG/"basics/la-barriere-cutanee-body-1.webp", "kicker": "Le lien", "title": "pH et barrière travaillent ensemble.", "body": "Quand le pH grimpe, la barrière devient plus perméable. Quand la barrière fuit, tout pique plus vite.", "cta": "Lis l'article complet pour le mécanisme."},
             {"bg": IMG/"cta/cta-community.webp", "kicker": "À faire", "title": "Teste ta routine avant de la durcir.", "body": "Si ta peau tire, commence par le nettoyage et le toner, pas par un actif plus fort.", "cta": "Placeholder shop + quiz + article."},
@@ -247,7 +252,7 @@ decks = [
             {"bg": IMG/"basics/ppm-hero.webp", "kicker": "La dose", "title": "2 à 5 % suffit souvent.", "body": "Plus n'est pas toujours mieux. L'intérêt est la régularité, pas la brûlure.", "cta": "Un actif intelligent n'a pas besoin de crier."},
             {"bg": IMG/"basics/reparer-barriere-hero.webp", "kicker": "Barrière", "title": "Elle aide la peau à refaire ses lipides.", "body": "C'est pour ça qu'elle parle aux peaux ternes, grasses, tachées ou un peu irritables.", "visual": DIA/"niacinamide-mechanism.webp", "cta": "La barrière est souvent le vrai sujet."},
             {"bg": IMG/"basics/hormones-phase-6-real.webp", "kicker": "Sébum", "title": "Elle ne supprime pas le sébum. Elle le module.", "body": "Le but n'est pas d'assécher. Le but est d'obtenir une brillance moins chaotique.", "cta": "La peau grasse aussi a besoin de douceur."},
-            {"bg": IMG/"techniques/glass-skin-2.webp", "kicker": "Taches", "title": "Elle agit aussi sur le transfert du pigment.", "body": "Pas comme un peeling brutal. Plutôt comme une correction lente et mieux tolérée.", "cta": "La patience fait partie de la formule."},
+            {"bg": IRIS/"024-acne-hormonale-body-v1.webp", "kicker": "Taches", "title": "Elle agit aussi sur le transfert du pigment.", "body": "Pas comme un peeling brutal. Plutôt comme une correction lente et mieux tolérée.", "cta": "La patience fait partie de la formule.", "anchor": "center", "wide_ok": True},
             {"bg": IMG/"sections/ingredient-hero.webp", "kicker": "Routine", "title": "Après toner, avant crème et SPF.", "body": "Le matin, elle se place bien sous protection solaire. Le soir, elle soutient la barrière.", "cta": "Routine + références dans le profil Sonagi."},
             {"bg": IMG/"cta/cta-diagnostic.webp", "kicker": "À faire", "title": "Choisis la niacinamide si ta peau doit se stabiliser.", "body": "Pas si tu veux décaper. Oui si tu veux réguler, éclaircir doucement et renforcer.", "cta": "Placeholder shop + quiz + article."},
         ],
@@ -264,7 +269,7 @@ decks = [
             {"bg": IMG/"sections/ingredient-hero.webp", "kicker": "Mythe", "title": "Un pore n'est pas une porte.", "body": "Il ne s'ouvre pas et ne se ferme pas à volonté. Il devient surtout plus ou moins visible.", "cta": "Garde cette phrase pour les promesses absurdes."},
             {"bg": IMG/"basics/hormones-phase-6-real.webp", "kicker": "Pourquoi", "title": "Sébum + kératine + lumière = pore visible.", "body": "Quand la surface est encombrée ou déshydratée, le relief accroche plus la lumière.", "visual": DIA/"le-sebum.webp", "cta": "La visibilité n'est pas une fatalité."},
             {"bg": IMG/"ingredients/niacinamide-hero.webp", "kicker": "Le levier", "title": "La niacinamide aide à réguler sans punir.", "body": "Elle vise le sébum, la barrière et l'inflammation légère. C'est plus fin qu'un produit qui décape.", "visual": DIA/"niacinamide-mechanism.webp", "cta": "Réguler bat assécher."},
-            {"bg": IMG/"techniques/glass-skin-2.webp", "kicker": "Hydratation", "title": "Une peau déshydratée montre plus de texture.", "body": "Avant de chercher plus fort, remets de l'eau et protège le film de surface.", "cta": "Le pore visible n'est pas toujours gras."},
+            {"bg": IRIS/"022-skin-flooding-body-v1.webp", "kicker": "Hydratation", "title": "Une peau déshydratée montre plus de texture.", "body": "Avant de chercher plus fort, remets de l'eau et protège le film de surface.", "cta": "Le pore visible n'est pas toujours gras."},
             {"bg": IRIS/"018-heartleaf-body-v1.webp", "kicker": "Tolérance", "title": "Si ça pique, tu perds le bénéfice.", "body": "Un actif utile devient inutile si la routine autour rend la peau nerveuse.", "cta": "Le calme est une stratégie."},
             {"bg": IMG/"sections/comprendre-hero.webp", "kicker": "Attente", "title": "On vise moins visible, pas invisible.", "body": "Le but réaliste: surface plus régulière, brillance mieux tenue, taches qui s'installent moins.", "cta": "Pas de filtre, juste une meilleure logique."},
             {"bg": IMG/"cta/cta-newsletter.webp", "kicker": "À faire", "title": "Construis autour du pore, pas contre lui.", "body": "Nettoyage doux, niacinamide, hydratation, SPF. C'est moins spectaculaire, plus durable.", "cta": "Placeholder shop + quiz + article."},
@@ -283,7 +288,7 @@ decks = [
             {"bg": IMG/"ingredients/snail-mucin-body-1.webp", "kicker": "Texture", "title": "Elle forme un film hydratant très fin.", "body": "Pas une colle. Un voile qui aide la surface à garder l'eau et à paraître plus lisse.", "visual": DIA/"snail-mucin-mechanism.webp", "cta": "Le glow vient souvent du film."},
             {"bg": IRIS/"022-skin-flooding-body-v1.webp", "kicker": "Pour qui", "title": "Peau déshydratée, post-boutons, barrière fatiguée.", "body": "Elle parle aux peaux qui veulent du confort sans gras lourd.", "cta": "Pas besoin d'en mettre trop."},
             {"bg": IMG/"basics/la-barriere-cutanee-body-1.webp", "kicker": "Le piège", "title": "Ce n'est pas un traitement miracle de l'acné.", "body": "Elle peut aider le confort et l'aspect post-bouton, mais elle ne remplace pas un traitement médical.", "cta": "Ne demande pas à un hydratant d'être un médicament."},
-            {"bg": IMG/"sections/routine-hero.webp", "kicker": "Timing", "title": "Après toner, avant crème.", "body": "Une ou deux couches fines. Attends une minute si tu veux éviter l'effet collant.", "cta": "La couche fine gagne presque toujours."},
+            {"bg": IRIS/"020-beauty-of-joseon-body-v1.webp", "kicker": "Timing", "title": "Après toner, avant crème.", "body": "Une ou deux couches fines. Attends une minute si tu veux éviter l'effet collant.", "cta": "La couche fine gagne presque toujours."},
             {"bg": IMG/"sections/ingredient-hero.webp", "kicker": "Attention", "title": "Si tu es allergique aux escargots, évite.", "body": "Et si ta peau réagit facilement, teste sur une petite zone avant de l'installer.", "cta": "Bizarre ne veut pas dire universel."},
             {"bg": IMG/"cta/cta-community.webp", "kicker": "À faire", "title": "Utilise-la comme hydratant intelligent, pas comme miracle.", "body": "Elle brille quand la routine est simple: toner, mucine, crème, SPF le matin.", "cta": "Placeholder shop + quiz + article."},
         ],
@@ -297,7 +302,7 @@ decks = [
         "quiz_url": "sonagibeauty.com/consultation.html",
         "article_url": "sonagibeauty.com/ref/ingredients/fr/snail-mucin/",
         "slides": [
-            {"bg": IMG/"basics/hormones-phase-6-real.webp", "kicker": "Après-coup", "title": "Le bouton part. La peau reste vexée.", "body": "Rougeur, marque, texture: l'après-bouton est souvent une question de réparation de surface.", "cta": "Sauvegarde avant de ré-exfolier trop vite."},
+            {"bg": IRIS/"024-acne-hormonale-body-v1.webp", "kicker": "Après-coup", "title": "Le bouton part. La peau reste vexée.", "body": "Rougeur, marque, texture: l'après-bouton est souvent une question de réparation de surface.", "cta": "Sauvegarde avant de ré-exfolier trop vite.", "anchor": "center", "wide_ok": True},
             {"bg": IMG/"ingredients/snail-mucin-body-1.webp", "kicker": "Le besoin", "title": "Elle veut de l'eau, du calme, du temps.", "body": "La mucine aide surtout comme couche hydratante et confortable, pas comme attaque.", "visual": DIA/"snail-mucin-mechanism.webp", "cta": "Réparer n'est pas décaper."},
             {"bg": IMG/"basics/reparer-barriere-hero.webp", "kicker": "Erreur", "title": "Acide sur acide peut prolonger l'irritation.", "body": "Quand la barrière est déjà stressée, ajouter de l'intensité peut garder la marque visible plus longtemps.", "cta": "Moins fort peut aller plus vite."},
             {"bg": IMG/"ingredients/niacinamide-hero.webp", "kicker": "Duo", "title": "Niacinamide + mucine : duo patient.", "body": "L'une soutient la barrière et les taches. L'autre apporte le film hydratant.", "cta": "Pas glamour. Très utile."},
@@ -319,7 +324,7 @@ decks = [
             {"bg": IMG/"techniques/slugging-body.webp", "kicker": "Le principe", "title": "Ce n'est pas hydrater. C'est bloquer l'évaporation.", "body": "Le film occlusif garde l'eau sous lui. Il ne remplace pas le toner, le sérum ou la crème.", "visual": DIA/"slugging-mechanism.webp", "cta": "On scelle ce qui est déjà bien posé."},
             {"bg": IMG/"basics/hormones-age-hero.webp", "kicker": "Pour qui", "title": "Peau sèche, hiver, barrière fatiguée.", "body": "Là, le geste peut être très utile. Surtout en fine couche, pas en masque gras.", "cta": "Le slugging est une couverture, pas un traitement."},
             {"bg": IMG/"sections/basic-hero.webp", "kicker": "À éviter", "title": "Pas sur inflammation active.", "body": "Boutons douloureux, folliculite, zone T très grasse: on adapte ou on évite.", "cta": "La tendance ne connaît pas ta peau."},
-            {"bg": IMG/"ingredients/snail-mucin-body-1.webp", "kicker": "Avant", "title": "Hydrate d'abord, scelle ensuite.", "body": "Une peau sèche sous vaseline reste sèche. Elle perd juste moins vite.", "cta": "La préparation fait le résultat."},
+            {"bg": IRIS/"022-skin-flooding-body-v1.webp", "kicker": "Avant", "title": "Hydrate d'abord, scelle ensuite.", "body": "Une peau sèche sous vaseline reste sèche. Elle perd juste moins vite.", "cta": "La préparation fait le résultat."},
             {"bg": IMG/"sections/routine-hero.webp", "kicker": "Fréquence", "title": "Une à deux nuits suffisent souvent.", "body": "Pas besoin d'en faire une identité. Observe la peau le matin.", "cta": "Rituel intelligent, pas automatisme."},
             {"bg": IMG/"cta/cta-newsletter.webp", "kicker": "À faire", "title": "Teste en zone sèche avant tout le visage.", "body": "Si ça chauffe, gratte ou crée des boutons, arrête. Le bon soin doit simplifier la peau.", "cta": "Placeholder shop + quiz + article."},
         ],
@@ -351,7 +356,7 @@ decks = [
         "quiz_url": "sonagibeauty.com/consultation.html",
         "article_url": "sonagibeauty.com/ref/conditions/fr/acne-hormonale/",
         "slides": [
-            {"bg": IMG/"basics/hormones-age-hero.webp", "kicker": "Pattern", "title": "Même zone, même semaine, même bouton.", "body": "Quand ça revient autour du cycle, la peau raconte souvent une histoire hormonale.", "cta": "Sauvegarde si ton menton a un calendrier."},
+            {"bg": IRIS/"024-acne-hormonale-body-v1.webp", "kicker": "Pattern", "title": "Même zone, même semaine, même bouton.", "body": "Quand ça revient autour du cycle, la peau raconte souvent une histoire hormonale.", "cta": "Sauvegarde si ton menton a un calendrier.", "anchor": "center", "wide_ok": True},
             {"bg": IMG/"sections/technique-hero.webp", "kicker": "Zone", "title": "Bas du visage, mâchoire, menton.", "body": "Ce sont des zones fréquentes dans l'acné adulte hormonale, surtout quand la poussée est inflammatoire.", "visual": DIA/"acne-hormonale-mechanism.webp", "cta": "Observer le pattern aide déjà."},
             {"bg": IMG/"basics/hormones-phase-6-real.webp", "kicker": "Mécanisme", "title": "Les androgènes stimulent le sébum.", "body": "Plus de sébum, plus de kératine, plus de risque de microcomédon. Ce n'est pas une question de saleté.", "visual": DIA/"le-sebum.webp", "cta": "Laver plus fort n'est pas la réponse."},
             {"bg": IRIS/"018-heartleaf-body-v1.webp", "kicker": "Cosmétique", "title": "Les soins calment le terrain, ils ne traitent pas l'hormone.", "body": "Heartleaf, centella, niacinamide peuvent aider la tolérance et la barrière.", "cta": "Le rôle du soin doit rester honnête."},
@@ -369,7 +374,7 @@ decks = [
         "quiz_url": "sonagibeauty.com/consultation.html",
         "article_url": "sonagibeauty.com/ref/conditions/fr/acne-hormonale/",
         "slides": [
-            {"bg": IMG/"sections/basic-hero.webp", "kicker": "Hot take", "title": "Décaper l'acné peut nourrir l'inflammation.", "body": "Quand la peau est déjà en conflit, trop laver ou trop exfolier peut prolonger le stress.", "cta": "Sauvegarde avant ton prochain gommage."},
+            {"bg": IRIS/"024-acne-hormonale-body-v1.webp", "kicker": "Hot take", "title": "Décaper l'acné peut nourrir l'inflammation.", "body": "Quand la peau est déjà en conflit, trop laver ou trop exfolier peut prolonger le stress.", "cta": "Sauvegarde avant ton prochain gommage.", "anchor": "center", "wide_ok": True},
             {"bg": IMG/"ingredients/niacinamide-hero.webp", "kicker": "Objectif", "title": "On régule. On ne cherche pas le désert.", "body": "Le sébum protège aussi. Le but est de calmer l'excès, pas d'effacer la peau.", "visual": DIA/"niacinamide-mechanism.webp", "cta": "Une peau sèche peut être encore plus nerveuse."},
             {"bg": IMG/"ingredients/centella-asiatica-hero.webp", "kicker": "Calme", "title": "La centella parle aux peaux qui s'enflamment vite.", "body": "Peu d'ingrédients, texture simple, tolérance. C'est moins sexy qu'un peeling, souvent plus utile.", "cta": "Le calme est un actif."},
             {"bg": IRIS/"018-heartleaf-body-v1.webp", "kicker": "Rougeurs", "title": "Heartleaf aide quand la peau brille et rougit.", "body": "Le geste intéressant: apaiser pendant qu'on régule.", "visual": DIA/"heartleaf-mechanism.webp", "cta": "Pas besoin de faire mal pour agir."},
@@ -403,7 +408,7 @@ def main():
             "- No product packshot or second lifestyle photo is pasted on top of the background.\n"
             "- No diagram/chart backgrounds; only crop-safe photos or still lifes.\n"
             "- Each slide must have a different visual family within the carousel, not only a different filename.\n"
-            "- Images selected first from the same Sonagi Reference article, then crop-safe Iris-produced Sonagi-owned photos, then adjacent Sonagi archive material.\n"
+            "- Images selected first from the same Sonagi Reference article, then Iris-produced Sonagi-owned photos, then adjacent Sonagi archive material.\n"
             "- Wide Iris outputs are not forced into 4:5 backgrounds; request vertical Image Lab variants instead.\n"
             "- Final CTA includes shop tag route, quiz URL, and full article URL.\n"
         )

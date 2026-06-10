@@ -6,11 +6,11 @@ Format: Auteur-style full-bleed photo, upper-left editorial text, optional lower
 
 Visual sourcing order for every future batch:
 1. Images from the same Sonagi Reference article.
-2. Crop-safe Iris-produced / Image Lab Sonagi-owned photos already in `sonagi-reference/assets/images/_prompt-library/outputs/`.
+2. Iris-produced / Image Lab Sonagi-owned photos already in `sonagi-reference/assets/images/_prompt-library/outputs/`.
 3. Adjacent owned Sonagi Reference or Sonagi Beauty archive photos.
 4. If none fit, stop and request a new Iris/Image Lab photo instead of forcing a weak background.
 
-Do not force wide Iris outputs into 4:5 slides. Use them as creative direction, then request vertical/crop-safe variants.
+Do not force wide Iris outputs into 4:5 slides unless an intentional crop still keeps the face/product/context readable. Otherwise use them as creative direction and request vertical/crop-safe variants.
 
 ## Accessibility Away From Laptop
 
@@ -39,9 +39,11 @@ Do not publish the carousels with this placeholder unless the product can actual
 The bank now uses the crop-safe Iris outputs where they fit the topic:
 
 - `018-heartleaf-body-v1.webp` for Heartleaf / calming / reactive skin logic.
+- `020-beauty-of-joseon-body-v1.webp` for routine/product timing logic.
 - `022-skin-flooding-body-v1.webp` for hydration, glow, and mucine comfort logic.
+- `024-acne-hormonale-body-v1.webp` for acne, post-acne, and patch/product context.
 
-The Beauty of Joseon Iris output remains available for product-led V5 carousels; it is not forced into this launch bank because these launch angles are pH, niacinamide, mucine, slugging, glass skin, and acne.
+The Iris cafe/group output remains available but is not forced here because it does not clearly support these launch education topics. Use it for community, social proof, gifting, or friend/routine culture angles.
 
 The bank is usable as a launch draft, but the archive is still thin for a few angles. Before final publication, ask Iris/image lab for more owned, crop-safe, 4:5 full-bleed photos:
 

@@ -9,7 +9,7 @@ Date: 2026-06-10
 - Keep quiz URL as `sonagibeauty.com/consultation.html`.
 - Do not label final slides as "CTA" visually.
 - Review the Iris/image lab requests in `ANGLE-BANK.md` before approving the final launch set.
-- Use article images first, then crop-safe Iris-produced Sonagi-owned photos, then the wider archive. If only a weak crop exists, ask Iris for a new 4:5 image instead of publishing a compromised slide.
+- Use article images first, then Iris-produced Sonagi-owned photos, then the wider archive. If only a weak crop exists, ask Iris for a new 4:5 image instead of publishing a compromised slide.
 - Normal slides should not say "next slide", "dernière slide", or repeat outbound URLs. Use save/profile/link-in-bio language, then keep shop/quiz/article routes for the final slide and caption.
 
 ## Visual Rules

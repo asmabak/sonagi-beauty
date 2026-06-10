@@ -5,6 +5,6 @@
 - No product packshot or second lifestyle photo is pasted on top of the background.
 - No diagram/chart backgrounds; only crop-safe photos or still lifes.
 - Each slide must have a different visual family within the carousel, not only a different filename.
-- Images selected first from the same Sonagi Reference article, then crop-safe Iris-produced Sonagi-owned photos, then adjacent Sonagi archive material.
+- Images selected first from the same Sonagi Reference article, then Iris-produced Sonagi-owned photos, then adjacent Sonagi archive material.
 - Wide Iris outputs are not forced into 4:5 backgrounds; request vertical Image Lab variants instead.
 - Final CTA includes shop tag route, quiz URL, and full article URL.
