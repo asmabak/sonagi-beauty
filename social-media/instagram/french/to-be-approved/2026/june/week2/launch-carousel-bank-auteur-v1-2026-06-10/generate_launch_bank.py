@@ -163,34 +163,36 @@ def paste_diagram(canvas, path):
 
 def draw_cta_bar(draw, deck, i, s):
     if i == 6:
-        draw_centered_single(draw, W // 2, 1198, "Boutique : tag IG/TikTok Shop à connecter.", F["cta"], CREAM)
-        draw_centered_single(draw, W // 2, 1230, f"Quiz : {deck['quiz_url']} / lien en bio", F["cta_sm"], CREAM)
-        draw_centered_single(draw, W // 2, 1254, f"Article : {deck['article_url']} / Sonagi Reference", F["cta_sm"], CREAM)
+        draw.text((72, 1178), "Boutique : tag IG/TikTok Shop à connecter.", font=F["cta"], fill=CREAM)
+        draw.text((72, 1210), f"Quiz : {deck['quiz_url']} / lien en bio", font=F["cta_sm"], fill=CREAM)
+        draw.text((72, 1236), f"Article : {deck['article_url']} / Sonagi Reference", font=F["cta_sm"], fill=CREAM)
         return
 
-    draw_centered_single(draw, W // 2, 1262, "Sauvegarde ce guide · routine + références dans le profil Sonagi", F["cta_sm"], CREAM)
+    draw.text((72, 1252), "Sauvegarde ce guide · routine + références dans le profil Sonagi", font=F["cta_sm"], fill=CREAM)
+    draw.text((892, 1252), "sonagi", font=F["cta"], fill=PEACH)
 
 
 def render_slide(deck, i, s):
     img = cover(s["bg"], s.get("anchor", "center"), s.get("wide_ok", False))
-    img = gradient(img, "top", 92)
-    img = gradient(img, "left", s.get("left_alpha", 58))
+    img = gradient(img, "top", 62)
+    img = gradient(img, "left", s.get("left_alpha", 178))
     img = gradient(img, "bottom", 122)
     d = ImageDraw.Draw(img, "RGBA")
 
-    draw_centered_single(d, W // 2, 48, "SONAGI BEAUTY", F["micro"], (CREAM[0], CREAM[1], CREAM[2], 232))
-    d.line((386, 72, 694, 72), fill=(CREAM[0], CREAM[1], CREAM[2], 135), width=1)
-    draw_centered_single(d, W // 2, 86, deck["label"].upper(), F["micro"], (CREAM[0], CREAM[1], CREAM[2], 210))
+    d.text((72, 50), "SONAGI BEAUTY", font=F["micro"], fill=(CREAM[0], CREAM[1], CREAM[2], 232))
+    d.line((72, 76, 338, 76), fill=(CREAM[0], CREAM[1], CREAM[2], 135), width=1)
+    d.text((72, 90), deck["label"].upper(), font=F["micro"], fill=(CREAM[0], CREAM[1], CREAM[2], 210))
     d.text((932, 52), f"{i+1:02d}/07", font=F["micro"], fill=(CREAM[0], CREAM[1], CREAM[2], 210))
 
-    text_y = 378 if i == 0 else 322
+    text_x = 72
+    text_y = 190 if i == 0 else 210
     kicker = s["kicker"]
     if i == 6 and kicker.upper() == "CTA":
         kicker = "À faire"
-    draw_centered_single(d, W // 2, text_y, kicker.upper(), F["kicker"], (CREAM[0], CREAM[1], CREAM[2], 215))
-    title_font = F["title_sm"] if len(s["title"]) > 42 else F["title"]
-    y = draw_centered_text(d, W // 2, text_y + 54, s["title"], title_font, CREAM, s.get("title_w", 850), 7)
-    draw_centered_text(d, W // 2, y + 20, s["body"], F["body_sm"], CREAM, s.get("body_w", 760), 8)
+    d.text((text_x, text_y), kicker.upper(), font=F["kicker"], fill=(CREAM[0], CREAM[1], CREAM[2], 222))
+    title_font = F["title_sm"] if len(s["title"]) > 38 else F["title"]
+    y = draw_text(d, (text_x, text_y + 52), s["title"], title_font, CREAM, s.get("title_w", 690), 7)
+    draw_text(d, (text_x + 2, y + 20), s["body"], F["body_sm"], CREAM, s.get("body_w", 610), 8)
 
     paste_diagram(img, s.get("visual"))
     draw_cta_bar(d, deck, i, s)

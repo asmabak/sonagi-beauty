@@ -15,9 +15,9 @@ Date: 2026-06-10
 ## Visual Rules
 
 - One centered full-bleed background photo.
-- Auteur-style real estate: centered header, centered kicker/title/body, subtle centered footer.
+- Auteur-style real estate: left-set header, left-set kicker/title/body, subtle left-set footer.
 - Typewriter font throughout the slide copy.
-- No upper-left editorial block.
+- Use a disciplined left editorial column; do not center the main copy.
 - No card or footer bar behind the text.
 - Diagrams only when useful, larger and centered in the lower space, clear of the footer.
 - No product packshot overlay.
