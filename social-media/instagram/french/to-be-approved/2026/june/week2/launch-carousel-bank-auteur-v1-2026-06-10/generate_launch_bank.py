@@ -22,14 +22,14 @@ def font(path, size, index=0):
 
 
 F = {
-    "micro": font(FONT_TYPE, 17),
-    "kicker": font(FONT_TYPE, 22),
-    "title": font(FONT_SERIF_BOLD, 60),
-    "title_sm": font(FONT_SERIF_BOLD, 51),
-    "body": font(FONT_TYPE, 30),
-    "body_sm": font(FONT_TYPE, 27),
-    "cta": font(FONT_TYPE, 23),
-    "cta_sm": font(FONT_TYPE, 18),
+    "micro": font(FONT_TYPE, 15),
+    "kicker": font(FONT_TYPE, 23),
+    "title": font(FONT_TYPE, 54),
+    "title_sm": font(FONT_TYPE, 46),
+    "body": font(FONT_TYPE, 27),
+    "body_sm": font(FONT_TYPE, 24),
+    "cta": font(FONT_TYPE, 20),
+    "cta_sm": font(FONT_TYPE, 16),
 }
 
 
@@ -100,6 +100,30 @@ def draw_text(draw, xy, text, fnt, fill, width, gap=8, shadow=True):
     return y
 
 
+def text_size(draw, text, fnt):
+    box = draw.textbbox((0, 0), text, font=fnt)
+    return box[2] - box[0], box[3] - box[1]
+
+
+def draw_centered_text(draw, cx, y, text, fnt, fill, width, gap=8, shadow=True):
+    for line in wrap(draw, text, fnt, width):
+        line_w, line_h = text_size(draw, line, fnt)
+        x = cx - line_w // 2
+        if shadow:
+            draw.text((x + 2, y + 2), line, font=fnt, fill=(0, 0, 0, 126))
+        draw.text((x, y), line, font=fnt, fill=fill)
+        y += line_h + gap
+    return y
+
+
+def draw_centered_single(draw, cx, y, text, fnt, fill, shadow=True):
+    line_w, _ = text_size(draw, text, fnt)
+    x = cx - line_w // 2
+    if shadow:
+        draw.text((x + 2, y + 2), text, font=fnt, fill=(0, 0, 0, 126))
+    draw.text((x, y), text, font=fnt, fill=fill)
+
+
 def gradient(canvas, side="left", alpha=170):
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     pix = layer.load()
@@ -128,10 +152,10 @@ def paste_diagram(canvas, path):
     if "/diagrams/" not in src_path:
         return
     src = Image.open(path).convert("RGBA")
-    src.thumbnail((660, 420), Image.LANCZOS)
+    src.thumbnail((700, 420), Image.LANCZOS)
     box_w, box_h = src.width + 30, src.height + 30
     x = (W - box_w) // 2
-    y = 750
+    y = 760
     veil = Image.new("RGBA", (box_w, box_h), (248, 241, 230, 210))
     veil.alpha_composite(src, (15, 15))
     canvas.paste(veil, (x, y), veil)
@@ -139,38 +163,34 @@ def paste_diagram(canvas, path):
 
 def draw_cta_bar(draw, deck, i, s):
     if i == 6:
-        draw.rectangle((52, 1184, 1028, 1294), fill=(28, 24, 21, 158))
-        draw.text((74, 1198), "Boutique : tag IG/TikTok Shop à connecter.", font=F["cta"], fill=CREAM)
-        draw.text((74, 1228), f"Quiz routine : {deck['quiz_url']} / lien en bio", font=F["cta_sm"], fill=CREAM)
-        draw.text((74, 1252), f"Article complet : {deck['article_url']} / Sonagi Reference", font=F["cta_sm"], fill=CREAM)
-        draw.text((884, 1252), "sonagi", font=F["cta"], fill=PEACH)
+        draw_centered_single(draw, W // 2, 1198, "Boutique : tag IG/TikTok Shop à connecter.", F["cta"], CREAM)
+        draw_centered_single(draw, W // 2, 1230, f"Quiz : {deck['quiz_url']} / lien en bio", F["cta_sm"], CREAM)
+        draw_centered_single(draw, W // 2, 1254, f"Article : {deck['article_url']} / Sonagi Reference", F["cta_sm"], CREAM)
         return
 
-    draw.rectangle((52, 1222, 1028, 1270), fill=(28, 24, 21, 142))
-    draw.text((74, 1234), "Sauvegarde ce guide · routine + références dans le profil Sonagi", font=F["cta_sm"], fill=CREAM)
-    draw.text((878, 1234), "sonagi", font=F["cta"], fill=PEACH)
+    draw_centered_single(draw, W // 2, 1262, "Sauvegarde ce guide · routine + références dans le profil Sonagi", F["cta_sm"], CREAM)
 
 
 def render_slide(deck, i, s):
     img = cover(s["bg"], s.get("anchor", "center"), s.get("wide_ok", False))
-    img = gradient(img, "top", 54)
-    img = gradient(img, "left", s.get("left_alpha", 170))
-    img = gradient(img, "bottom", 112)
+    img = gradient(img, "top", 92)
+    img = gradient(img, "left", s.get("left_alpha", 58))
+    img = gradient(img, "bottom", 122)
     d = ImageDraw.Draw(img, "RGBA")
 
-    d.text((62, 50), "SONAGI", font=F["micro"], fill=(CREAM[0], CREAM[1], CREAM[2], 230))
-    d.text((62, 76), deck["label"].upper(), font=F["micro"], fill=(CREAM[0], CREAM[1], CREAM[2], 205))
-    d.text((963, 50), f"{i+1:02d}/07", font=F["micro"], fill=(CREAM[0], CREAM[1], CREAM[2], 220))
+    draw_centered_single(d, W // 2, 48, "SONAGI BEAUTY", F["micro"], (CREAM[0], CREAM[1], CREAM[2], 232))
+    d.line((386, 72, 694, 72), fill=(CREAM[0], CREAM[1], CREAM[2], 135), width=1)
+    draw_centered_single(d, W // 2, 86, deck["label"].upper(), F["micro"], (CREAM[0], CREAM[1], CREAM[2], 210))
+    d.text((932, 52), f"{i+1:02d}/07", font=F["micro"], fill=(CREAM[0], CREAM[1], CREAM[2], 210))
 
-    text_x = 62
-    text_y = 154 if i == 0 else 186
+    text_y = 378 if i == 0 else 322
     kicker = s["kicker"]
     if i == 6 and kicker.upper() == "CTA":
         kicker = "À faire"
-    d.text((text_x, text_y), kicker.upper(), font=F["kicker"], fill=YELLOW)
-    title_font = F["title_sm"] if len(s["title"]) > 34 else F["title"]
-    y = draw_text(d, (text_x, text_y + 52), s["title"], title_font, CREAM, s.get("title_w", 700), 5)
-    draw_text(d, (text_x + 2, y + 16), s["body"], F["body_sm"], CREAM, s.get("body_w", 610), 7)
+    draw_centered_single(d, W // 2, text_y, kicker.upper(), F["kicker"], (CREAM[0], CREAM[1], CREAM[2], 215))
+    title_font = F["title_sm"] if len(s["title"]) > 42 else F["title"]
+    y = draw_centered_text(d, W // 2, text_y + 54, s["title"], title_font, CREAM, s.get("title_w", 850), 7)
+    draw_centered_text(d, W // 2, y + 20, s["body"], F["body_sm"], CREAM, s.get("body_w", 760), 8)
 
     paste_diagram(img, s.get("visual"))
     draw_cta_bar(d, deck, i, s)

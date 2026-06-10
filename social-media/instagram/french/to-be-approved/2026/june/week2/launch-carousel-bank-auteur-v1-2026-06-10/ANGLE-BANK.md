@@ -2,7 +2,20 @@
 
 Date: 2026-06-10
 
-Format: Auteur-style full-bleed photo, upper-left editorial text, optional lower centered diagram, final slide with shop placeholder + quiz + full article.
+Format: Auteur-style full-bleed photo, centered editorial text, optional lower centered diagram, final slide with shop placeholder + quiz + full article.
+
+## Locked Layout Rule
+
+Use the Auteur real estate as the reference, with Sonagi identity:
+
+- Full-bleed owned photo background, centered crop, no secondary photo overlay.
+- Small centered `SONAGI BEAUTY` header, thin centered rule, small deck label, page number top-right.
+- Typewriter font for kicker, title, body, and footer.
+- Kicker/title/body centered in the middle-upper field; no upper-left text block.
+- No card behind the copy. Use photo filtering, gradient, and text shadow for legibility.
+- Diagrams sit large and centered in the lower space, below the main text and above the footer.
+- Normal footer is a subtle centered Sonagi line, not a bar.
+- Final slide is not labeled CTA; use `À faire` or another human label.
 
 Visual sourcing order for every future batch:
 1. Images from the same Sonagi Reference article.

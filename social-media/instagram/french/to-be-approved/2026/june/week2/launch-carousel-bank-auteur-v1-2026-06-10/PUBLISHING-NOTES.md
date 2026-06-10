@@ -15,7 +15,11 @@ Date: 2026-06-10
 ## Visual Rules
 
 - One centered full-bleed background photo.
-- Diagrams only when useful, larger and centered in the lower space.
+- Auteur-style real estate: centered header, centered kicker/title/body, subtle centered footer.
+- Typewriter font throughout the slide copy.
+- No upper-left editorial block.
+- No card or footer bar behind the text.
+- Diagrams only when useful, larger and centered in the lower space, clear of the footer.
 - No product packshot overlay.
 - No second lifestyle/photo overlay.
 - Final slide uses a human label such as `À faire`.
