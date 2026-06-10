@@ -55,18 +55,23 @@ def assert_background_ok(path):
         raise ValueError(f"Product packshot cannot be used as slide background; use it as a lower-half insert: {path}")
 
 
-def cover(path, anchor="center"):
+def cover(path, anchor="center", wide_ok=False):
     assert_background_ok(path)
     img = Image.open(path).convert("RGB")
     img = ImageOps.autocontrast(img)
     ratio = img.width / img.height
-    if not (0.70 <= ratio <= 1.20):
+    if not wide_ok and not (0.70 <= ratio <= 1.20):
         raise ValueError(f"Background aspect ratio is unsafe for full-bleed 4:5 slide ({ratio:.2f}): {path}")
 
     scale = max(W / img.width, H / img.height)
     bg = img.resize((math.ceil(img.width * scale), math.ceil(img.height * scale)), Image.LANCZOS)
     # Auteur-style slides need one centered photo, not improvised left/right crops.
-    left = (bg.width - W) // 2
+    if anchor == "left":
+        left = 0
+    elif anchor == "right":
+        left = bg.width - W
+    else:
+        left = (bg.width - W) // 2
     top = max(0, (bg.height - H) // 2)
     return bg.crop((left, top, left + W, top + H))
 
@@ -120,7 +125,7 @@ def paste_diagram(canvas, path):
     if not path:
         return
     src_path = str(path).lower()
-    if "/diagrams/" not in src_path:
+    if "/diagrams/" not in src_path and "taille-routine" not in src_path:
         return
     src = Image.open(path).convert("RGBA")
     src.thumbnail((660, 420), Image.LANCZOS)
@@ -147,7 +152,7 @@ def draw_cta_bar(draw, deck, i, s):
 
 
 def render_slide(deck, i, s):
-    img = cover(s["bg"])
+    img = cover(s["bg"], s.get("anchor", "center"), s.get("wide_ok", False))
     img = gradient(img, "top", 54)
     img = gradient(img, "left", s.get("left_alpha", 170))
     img = gradient(img, "bottom", 112)
@@ -278,8 +283,8 @@ decks = [
         "quiz_url": "sonagibeauty.com/consultation.html",
         "article_url": "sonagibeauty.com/ref/editos/fr/sephora-kids/",
         "slides": [
-            {"bg": IMG/"routines/routine-enfant-hero-v2.webp", "kicker": "Sujet qui fâche", "title": "Le problème des Sephora Kids, ce n'est pas la crème.", "body": "C'est l'idée qu'une enfant devrait déjà surveiller son visage comme un défaut à corriger.", "cta": "Sauvegarde pour la prochaine liste d'anniversaire.", "anchor": "left"},
-            {"bg": IMG/"routines/routine-enfant-hero-v3.webp", "kicker": "La peau jeune", "title": "Elle n'a pas de ride à réparer.", "body": "Une peau d'enfant ou de pré-ado a surtout besoin de douceur, de nettoyage simple, et de protection solaire.", "visual": DIA/"routine-pre-ado-puberty-transition.webp", "cta": "Anti-âge à dix ans : mauvais besoin, mauvais message."},
+            {"bg": IMG/"edito/sephora-kids/sephora-kids-hero-v2.webp", "kicker": "Sujet qui fâche", "title": "Le problème des Sephora Kids, ce n'est pas la crème.", "body": "C'est l'idée qu'une enfant devrait déjà surveiller son visage comme un défaut à corriger.", "cta": "Sauvegarde pour la prochaine liste d'anniversaire.", "anchor": "center", "wide_ok": True},
+            {"bg": IMG/"routines/routine-enfant-hero-v3.webp", "kicker": "La peau jeune", "title": "Elle n'a pas de ride à réparer.", "body": "Une peau d'enfant ou de pré-ado a surtout besoin de douceur, de nettoyage simple, et de protection solaire.", "visual": IMG/"edito/sephora-kids/taille-routine-enfant.webp", "cta": "Anti-âge à dix ans : mauvais besoin, mauvais message."},
             {"bg": IMG/"sections/basic-hero.webp", "kicker": "Le vrai risque", "title": "Trop d'actifs, trop tôt.", "body": "Acides, rétinol, parfums, routines longues : plus de points de friction sur une barrière encore sensible.", "cta": "Une routine d'enfant doit être courte."},
             {"bg": IMG/"sections/routine-hero.webp", "kicker": "Ce qu'elle veut", "title": "Un nettoyant doux. Une crème. Un SPF.", "body": "Pas une performance devant le miroir. Pas douze étapes. Pas une peur de vieillir.", "cta": "Le meilleur soin, c'est parfois d'en enlever."},
             {"bg": IMG/"cta/cta-newsletter.webp", "kicker": "Le paradoxe", "title": "Le seul vrai anti-âge est souvent absent.", "body": "Dans les routines virales d'enfants, l'écran solaire manque trop souvent. C'est pourtant le geste le plus utile.", "visual": IMG/"products/beauty-of-joseon/beauty-of-joseon-relief-sun-rice-probiotics.webp", "visual_mode": "product", "cta": "On remplace la peur par la protection."},

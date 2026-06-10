@@ -8,7 +8,7 @@ These rules exist because V1-V4 exposed recurring mistakes: weak visual judgment
 2. Main photo must be visible and contextually relevant.
 3. Do not crop a photo so hard that the subject becomes random or unclear.
 4. Do not repeat the same background photo inside one carousel.
-5. Use French diagrams only.
+5. Use diagrams in the carousel language only: French diagrams for French carousels, English diagrams for English carousels. If no English diagram exists, do not use the French diagram as a substitute.
 6. Every slide must be understandable without guessing.
 7. Every final slide must have a direct product CTA when the carousel is product-led.
 8. Never use a diagram, chart, mechanism image, or product packshot as a background photo.
@@ -88,7 +88,7 @@ Weak hooks:
 
 Image priority:
 
-1. Images from the exact Sonagi Reference article.
+1. Images from the exact Sonagi Reference article. This is mandatory, not optional. If the exact article has a usable photo, it must be tried before any adjacent archive image.
 2. Crop-safe Iris-produced / Image Lab Sonagi-owned photos already available in `sonagi-reference/assets/images/_prompt-library/outputs/`.
 3. Adjacent Sonagi Reference image from the same skin state, ingredient family, or routine moment.
 4. Existing Sonagi archive/social image if it clarifies the same emotional or physical state.
@@ -103,6 +103,7 @@ Image rejection criteria:
 - The slide needs intimacy but the image is just a product packshot.
 - The slide needs education but the image is decorative lifestyle filler.
 - The same background appears elsewhere in the same carousel.
+- The photo has been rejected by Asma in review. Add it to the carousel blocklist and do not reuse it for the same topic.
 
 ## Crop Rules
 
@@ -127,7 +128,7 @@ Reject the image and ask Iris/image lab when:
 - Do not use diagrams as backgrounds.
 - Diagrams may be used as small educational inserts only.
 - Diagram inserts must be centered in the lower space, below the main text and above the CTA.
-- Diagram inserts must come from the French Sonagi Reference diagram set.
+- Diagram inserts must come from the Sonagi Reference diagram set in the same language as the carousel.
 - Do not use product packshots as diagram substitutes.
 - If the diagram makes the slide feel crowded, remove words before removing the photo.
 
