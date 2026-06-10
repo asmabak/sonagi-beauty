@@ -4,6 +4,14 @@ Date: 2026-06-10
 
 Format: Auteur-style full-bleed photo, upper-left editorial text, optional lower centered diagram, final slide with shop placeholder + quiz + full article.
 
+Visual sourcing order for every future batch:
+1. Images from the same Sonagi Reference article.
+2. Crop-safe Iris-produced / Image Lab Sonagi-owned photos already in `sonagi-reference/assets/images/_prompt-library/outputs/`.
+3. Adjacent owned Sonagi Reference or Sonagi Beauty archive photos.
+4. If none fit, stop and request a new Iris/Image Lab photo instead of forcing a weak background.
+
+Do not force wide Iris outputs into 4:5 slides. Use them as creative direction, then request vertical/crop-safe variants.
+
 ## Accessibility Away From Laptop
 
 Best storage location: this Git-backed folder inside `sonagi-beauty`, then push to GitHub.
@@ -28,7 +36,14 @@ Do not publish the carousels with this placeholder unless the product can actual
 
 ## Iris / Image Lab Requests Before Final Launch Polish
 
-The bank is usable as a launch draft, but the archive is thin for a few angles. Before final publication, ask Iris/image lab for more owned, crop-safe, 4:5 full-bleed photos:
+The bank now uses the crop-safe Iris outputs where they fit the topic:
+
+- `018-heartleaf-body-v1.webp` for Heartleaf / calming / reactive skin logic.
+- `022-skin-flooding-body-v1.webp` for hydration, glow, and mucine comfort logic.
+
+The Beauty of Joseon Iris output remains available for product-led V5 carousels; it is not forced into this launch bank because these launch angles are pH, niacinamide, mucine, slugging, glass skin, and acne.
+
+The bank is usable as a launch draft, but the archive is still thin for a few angles. Before final publication, ask Iris/image lab for more owned, crop-safe, 4:5 full-bleed photos:
 
 - Acné hormonale: 3-4 editorial portraits showing adult acne/cycle sensitivity without feeling clinical or punitive.
 - Mucine d'escargot: 2-3 texture/routine images that are not generic cream-on-face shots.

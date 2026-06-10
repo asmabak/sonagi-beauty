@@ -89,15 +89,17 @@ Weak hooks:
 Image priority:
 
 1. Images from the exact Sonagi Reference article.
-2. Product image from the exact product CTA.
+2. Crop-safe Iris-produced / Image Lab Sonagi-owned photos already available in `sonagi-reference/assets/images/_prompt-library/outputs/`.
 3. Adjacent Sonagi Reference image from the same skin state, ingredient family, or routine moment.
 4. Existing Sonagi archive/social image if it clarifies the same emotional or physical state.
-5. If no good image exists, mark `iris_needed: true` and ask Iris/image lab for a new photo.
+5. Product image from the exact product CTA only when the slide is explicitly about product selection.
+6. If no good image exists, mark `iris_needed: true` and ask Iris/image lab for a new photo.
 
 Image rejection criteria:
 
 - The image only matches the product, not the slide idea.
 - The subject would be destroyed by a 4:5 crop.
+- The image is an Iris horizontal output that needs a vertical variant before full-bleed use.
 - The slide needs intimacy but the image is just a product packshot.
 - The slide needs education but the image is decorative lifestyle filler.
 - The same background appears elsewhere in the same carousel.
