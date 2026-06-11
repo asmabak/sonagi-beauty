@@ -20,6 +20,13 @@ LAB_PRODUCTS = LAB / "05-belonging-three-product-intervention.png"
 LAB_GROUP = LAB / "06-belonging-spf-group-pool.png"
 LAB_CHAOS = LAB / "07-belonging-anua-chaos-calm.png"
 LAB_BARRIER = LAB / "08-belonging-cosrx-barrier-note.png"
+PDRN_HERO = IMG / "ingredients/pdrn-hero.webp"
+PDRN_BODY = IMG / "ingredients/pdrn-body-1.webp"
+PDRN_PORTRAIT = IMG / "ingredients/pdrn-portrait-cica.webp"
+REJURAN_HERO = IMG / "techniques/rejuran-hero.webp"
+REJURAN_BODY = IMG / "techniques/rejuran-1.webp"
+REPAIR_BARRIER = IMG / "basics/reparer-barriere-hero.webp"
+REPAIR_CONTEXT = IMG / "edito/ozempic-face-kbeauty/ozempic-skin-context.webp"
 
 bank.ROOT = ROOT
 bank.decks = [
@@ -167,13 +174,13 @@ bank.decks = [
         "quiz_url": "sonagibeauty.com/consultation.html",
         "article_url": "sonagibeauty.com/ref/ingredients/fr/pdrn/",
         "slides": [
-            {"bg": LAB_CENTELLA, "wide_ok": True, "kicker": "Actif 2026", "title": "Le nouveau fantasme beauté, ce n'est plus décaper. C'est réparer.", "body": "PDRN, exosomes, peptides: le langage a changé. On veut une peau qui récupère."},
-            {"bg": LAB_BARRIER, "wide_ok": True, "kicker": "Le mot", "title": "PDRN signifie polydésoxyribonucléotide.", "body": "Oui, c'est moins vendable qu'un joli nom. Mais l'idée est simple: signal de réparation.", "visual": DIA/"pdrn-mechanism.webp"},
-            {"bg": LAB_CHAOS, "wide_ok": True, "kicker": "Culture", "title": "La peau fatiguée est devenue un sujet social.", "body": "Manque de sommeil, stress, actifs trop forts: la réparation devient le nouveau luxe."},
-            {"bg": LAB_PRODUCTS, "wide_ok": True, "kicker": "Clinique", "title": "En Corée, le soin clinique inspire le retail.", "body": "Les tendances sortent souvent des cabinets, puis deviennent sérums, ampoules, masques."},
-            {"bg": LAB_ANUA, "wide_ok": True, "kicker": "À ne pas confondre", "title": "Un sérum PDRN n'est pas une injection.", "body": "Même mot, intensité différente. Il faut garder les promesses à leur taille."},
-            {"bg": LAB_SNAIL, "wide_ok": True, "kicker": "Routine", "title": "Si ta barrière est cassée, commence plus bas.", "body": "Nettoyant doux, crème, SPF. Les actifs réparation viennent quand la peau tolère."},
-            {"bg": LAB_GROUP, "wide_ok": True, "kicker": "À faire", "title": "Répare avant de chercher plus fort.", "body": "Tag boutique à connecter. Quiz routine dans la bio. Article complet sur Sonagi Reference."},
+            {"bg": PDRN_HERO, "wide_ok": True, "kicker": "Actif 2026", "title": "Le nouveau fantasme beauté, ce n'est plus décaper. C'est réparer.", "body": "PDRN, exosomes, peptides: le langage a changé. On veut une peau qui récupère."},
+            {"bg": PDRN_BODY, "wide_ok": True, "kicker": "Le mot", "title": "PDRN signifie polydésoxyribonucléotide.", "body": "Oui, c'est moins vendable qu'un joli nom. Mais l'idée est simple: signal de réparation.", "visual": DIA/"pdrn-mechanism.webp"},
+            {"bg": REPAIR_BARRIER, "wide_ok": True, "kicker": "Culture", "title": "La peau fatiguée est devenue un sujet social.", "body": "Manque de sommeil, stress, actifs trop forts: la réparation devient le nouveau luxe."},
+            {"bg": REJURAN_HERO, "wide_ok": True, "kicker": "Clinique", "title": "En Corée, le soin clinique inspire le retail.", "body": "Les tendances sortent souvent des cabinets, puis deviennent sérums, ampoules, masques."},
+            {"bg": REJURAN_BODY, "wide_ok": True, "kicker": "À ne pas confondre", "title": "Un sérum PDRN n'est pas une injection.", "body": "Même mot, intensité différente. Il faut garder les promesses à leur taille."},
+            {"bg": REPAIR_CONTEXT, "wide_ok": True, "kicker": "Routine", "title": "Si ta barrière est cassée, commence plus bas.", "body": "Nettoyant doux, crème, SPF. Les actifs réparation viennent quand la peau tolère."},
+            {"bg": PDRN_PORTRAIT, "wide_ok": True, "kicker": "À faire", "title": "Répare avant de chercher plus fort.", "body": "Tag boutique à connecter. Quiz routine dans la bio. Article complet sur Sonagi Reference."},
         ],
     },
     {
@@ -241,7 +248,13 @@ def main():
     )
     for spec_path in ROOT.glob("*/SPEC.md"):
         text = spec_path.read_text()
-        spec_path.write_text(text.replace(old, new))
+        text = text.replace(old, new)
+        if spec_path.parent.name == "09-pdrn-salmon-dna-societe":
+            text = text.replace(
+                "- Backgrounds use the Iris Image Lab Sonagi batch at `~/.claude/agents/iris-memory/library/generated/20260607-093209-d6c8ac/chatgpt-visuals`, with article hero images only when they are the explicit carousel subject.\n",
+                "- Backgrounds are selected first from PDRN, Rejuran, and repair-barrier Sonagi Reference assets; Iris Lab assets are not used as semantic substitutes for PDRN in this carousel.\n",
+            )
+        spec_path.write_text(text)
 
 
 if __name__ == "__main__":
