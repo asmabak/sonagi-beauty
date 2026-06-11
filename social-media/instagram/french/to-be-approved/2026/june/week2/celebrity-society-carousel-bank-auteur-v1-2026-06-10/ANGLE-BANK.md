@@ -37,6 +37,7 @@ Format: Auteur-inspired Sonagi editorial carousel, 1080 x 1350 px, typewriter ty
    - Source: `sonagibeauty.com/ref/celebrities/fr/selena-gomez/`
 
 7. `07-sephora-kids-age-anxiete`
+   - Title: Sephora Kids: le vrai sujet, ce n'est pas la peau. C'est l'angoisse.
    - Angle: Sephora Kids are not a product issue, they are an age-anxiety issue.
    - CTA: Tag boutique placeholder, quiz in bio, full article on Sonagi Reference.
    - Source: `sonagibeauty.com/ref/edito/fr/sephora-kids/`
@@ -86,3 +87,10 @@ Format: Auteur-inspired Sonagi editorial carousel, 1080 x 1350 px, typewriter ty
 - Allure, "PDRN Has Quickly Taken Over Skin Care": PDRN as a fast-growing K-beauty ingredient with scientific caveats. https://www.allure.com/story/what-is-pdrn-skin-care-salmon-sperm
 - Byrdie, "From PDRN to Peptides, 10 K-Beauty Ingredients Defining 2026": slow aging, skin longevity, barrier-first treatments, PDRN, exosomes, spicules. https://www.byrdie.com/trending-korean-skincare-ingredients-11984992
 - Glossy, "What is PDRN and how did it get so popular?": PDRN's TikTok shock value and retail visibility. https://www.glossy.co/beauty/what-is-pdrn-and-how-did-it-get-so-popular/
+
+## Visual Source Correction
+
+- Correction made after review: the generator was overusing the small Iris subset at `sonagi-reference/assets/images/_prompt-library/outputs`.
+- The broader Sonagi AI Lab/reference photo archive is `~/sonagi-beauty/media/reference visuals`.
+- This bank now uses that broader archive for more varied editorial backgrounds, while keeping Sonagi Reference article images when they are the best contextual fit.
+- Future carousel generators should treat `~/sonagi-beauty/media/reference visuals` as a primary owned-photo source before falling back to repeated website assets.

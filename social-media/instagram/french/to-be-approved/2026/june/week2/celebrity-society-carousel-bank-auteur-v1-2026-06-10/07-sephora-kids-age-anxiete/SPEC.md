@@ -1,4 +1,4 @@
-# Les Sephora Kids ne veulent pas des rides. Elles veulent du contrôle.
+# Sephora Kids: le vrai sujet, ce n'est pas la peau. C'est l'angoisse.
 
 - V5 correction: one centered full-bleed background photo only.
 - The only allowed overlay is a small centered lower-space diagram from Sonagi Reference.
