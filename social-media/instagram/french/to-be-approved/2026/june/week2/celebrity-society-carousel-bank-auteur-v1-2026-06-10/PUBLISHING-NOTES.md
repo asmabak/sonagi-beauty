@@ -11,6 +11,8 @@
 - Diagrams appear only as lower centered visual inserts and must remain clear of the footer.
 - No repeated background image inside the same carousel.
 - Product packshots are blocked as full-bleed backgrounds in the generator.
+- Routine article photos are blocked as generic backgrounds, especially `routine-asma`, `routine-pre-ado`, and `Asma hero`.
+- Iris Image Lab source for this bank is `~/.claude/agents/iris-memory/library/generated/20260607-093209-d6c8ac/chatgpt-visuals`, not `~/sonagi-beauty/media/reference visuals`.
 
 ## CTA Rules
 
@@ -32,5 +34,4 @@
 
 - Confirm product tags once Instagram Shop/TikTok Shop catalog is connected.
 - Final human review of celebrity likeness use and rights before posting.
-- If a slide crop feels weak in human review, ask Iris/Image Lab for a topic-specific Sonagi-owned lifestyle background rather than using diagrams or product packshots as backgrounds.
-
+- If a slide crop feels weak in human review, ask Iris/Image Lab for a topic-specific Sonagi-owned lifestyle background in the same `chatgpt-visuals` source family rather than using diagrams, product packshots, or routine article photos as backgrounds.

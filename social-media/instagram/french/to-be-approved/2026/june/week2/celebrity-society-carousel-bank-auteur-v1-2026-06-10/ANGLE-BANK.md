@@ -90,7 +90,17 @@ Format: Auteur-inspired Sonagi editorial carousel, 1080 x 1350 px, typewriter ty
 
 ## Visual Source Correction
 
-- Correction made after review: the generator was overusing the small Iris subset at `sonagi-reference/assets/images/_prompt-library/outputs`.
-- The broader Sonagi AI Lab/reference photo archive is `~/sonagi-beauty/media/reference visuals`.
-- This bank now uses that broader archive for more varied editorial backgrounds, while keeping Sonagi Reference article images when they are the best contextual fit.
-- Future carousel generators should treat `~/sonagi-beauty/media/reference visuals` as a primary owned-photo source before falling back to repeated website assets.
+- Correction made after review: the previous generator pointed at the wrong broad archive (`~/sonagi-beauty/media/reference visuals`) and reused images that looked like routine-article material.
+- Canonical Iris Image Lab source for this bank: `~/.claude/agents/iris-memory/library/generated/20260607-093209-d6c8ac/chatgpt-visuals`.
+- Mirror/source app location: `~/Documents/Codex/2026-06-06/claude-created-this-local-website-as/iris-netlify-preview/dist/generated/20260607-093209-d6c8ac/chatgpt-visuals`.
+- Iris Lab backgrounds used:
+  - `01-science-anua-heartleaf-toner.png`
+  - `02-science-cosrx-snail-mucin-texture.png`
+  - `03-science-boj-relief-sun-spf.png`
+  - `04-science-skin1004-centella-ampoule.png`
+  - `05-belonging-three-product-intervention.png`
+  - `06-belonging-spf-group-pool.png`
+  - `07-belonging-anua-chaos-calm.png`
+  - `08-belonging-cosrx-barrier-note.png`
+- Hard block: never use `sonagi-reference/assets/images/routines/routine-asma-*`, `sonagi-reference/assets/images/routines/routine-pre-ado-*`, or `~/sonagi-beauty/media/reference visuals/Asma hero.png` as carousel backgrounds unless the carousel is explicitly about that routine and the user approves that visual.
+- Future carousel generators should import the Iris Lab `chatgpt-visuals` path directly or use a documented asset registry. Do not infer Iris assets from generic `media/reference visuals` filenames.
