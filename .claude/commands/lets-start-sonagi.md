@@ -34,9 +34,9 @@ Single-select options (recommended order):
 
 Wait for the user's answer. Do not assume from cwd or recent git activity — the user's intent for THIS session is the source of truth.
 
-## Step 2 — Read soul.md from Notion
+## Step 2 — Read soul.md (LOCAL FIRST — Notion is the mirror)
 
-Use `notion-fetch` with `id: "36878492-123f-81fe-b75b-c9040cae1d7f"`. Read the FULL page. The "did I do the work, or did I do enough to look like I did the work?" doctrine governs every decision in this session. Internalize it before reading anything else.
+Read `~/.claude/soul.md` with the Read tool (the canonical master, synced to every project repo by `~/.claude/sync-soul.sh`). Only if that file is missing, fall back to `notion-fetch` with `id: "36878492-123f-81fe-b75b-c9040cae1d7f"`. Never block a session on Notion being reachable. Read the FULL file. The "did I do the work, or did I do enough to look like I did the work?" doctrine governs every decision in this session. Internalize it before reading anything else.
 
 ## Step 3 — Find and read the latest Open handover for the chosen stream
 
@@ -58,14 +58,14 @@ If you have filesystem access (Read tool), also read these. If you don't, note t
 
 | Stream | Standing files to read |
 |---|---|
-| Sonagi Reference | `C:\Users\marou\sonagi-reference\CLAUDE.md`, `C:\Users\marou\sonagi-reference\EDITORIAL-BIBLE.md`, relevant `schemas/<category>.schema.json` |
-| Social Content | `C:\Users\marou\sonagi-beauty\CLAUDE.md`, `C:\Users\marou\sonagi-beauty\SESSION-STATE.md`, `C:\Users\marou\higgsfield-seedance2-skills\MINJUN-CHARACTER-SHEET.md`, `C:\Users\marou\higgsfield-seedance2-skills\MINJUN-PRODUCTION-BIBLE.md` |
+| Sonagi Reference | `~/sonagi-reference/CLAUDE.md`, `~/sonagi-reference/EDITORIAL-BIBLE.md`, relevant `schemas/<category>.schema.json` |
+| Social Content | `~/sonagi-beauty/CLAUDE.md`, `~/sonagi-beauty/SESSION-STATE.md`, `~/higgsfield-seedance2-skills/MINJUN-CHARACTER-SHEET.md`, `~/higgsfield-seedance2-skills/MINJUN-PRODUCTION-BIBLE.md` |
 | LinkedIn Agent | LinkedIn Founder Carousel Guidelines (Notion `36d78492-123f-8151-877a-f59fb15b5509`), Asma's LinkedIn Founder Voice (Notion `36d78492-123f-8190-a4e8-c13ff0dcc61a`), The Asma File (Notion `36d78492-123f-816f-acac-ca06413c3dbf`), 09 — AI Operating Layer (Notion `35e78492-123f-8165-97c1-f824cef08601`), LinkedIn-EN Founder Strategy (Notion `36d78492-123f-8171-8868-cbed7bef005c`) |
-| Brand Strategy & Sonagi OS | `C:\Users\marou\sonagi-beauty\CLAUDE.md`, Sonagi root Notion page `35678492-123f-819e-bd07-e568cbd24049`, Sonagi OS — FR (Notion `35778492-123f-81e1-a082-dce9bec80e48`) |
+| Brand Strategy & Sonagi OS | `~/sonagi-beauty/CLAUDE.md`, Sonagi root Notion page `35678492-123f-819e-bd07-e568cbd24049`, Sonagi OS — FR (Notion `35778492-123f-81e1-a082-dce9bec80e48`) |
 | Site & E-commerce | sonagibeauty.com Shopify state (ask user), Returns & Dispute SLA (Notion `36478492-123f-81ea-a7a6-e810b0928c49`) |
 | Newsletter (Le Petit Rituel) | Newsletter spec in Social Content Hub (Notion `36178492-123f-8144-9db1-cb7652d5835c`) |
 | Paid Ads | ads skills at `~/.claude/skills/ads/`, ads-audit agents at `sonagi-beauty/.claude/agents/` |
-| Visual Production | `C:\Users\marou\sonagi-reference\EDITORIAL-BIBLE.md` section F (hero rules), `C:\Users\marou\higgsfield-seedance2-skills\MINJUN-PRODUCTION-BIBLE.md`, branded-ai-design skill at `~/.claude/skills/anthropic/` |
+| Visual Production | `~/sonagi-reference/EDITORIAL-BIBLE.md` section F (hero rules), `~/higgsfield-seedance2-skills/MINJUN-PRODUCTION-BIBLE.md`, branded-ai-design skill at `~/.claude/skills/anthropic/` |
 | Other | Ask the user. |
 
 ## Step 4b — Branch lock (Sonagi Reference only)
